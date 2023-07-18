@@ -104,3 +104,11 @@ body:
       - TRL 9 - Actual System Proven in Operational Environment
     validations:
       required: true
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Storytelling
+      description: By submitting this issue, I'm open to share the progress of my project for other to see and on the Seeed blog and socials
+      options:
+        - label: I agree to follow this project's will to share my project evolution with documentation and short interviews during the project's deployment
+          required: true
