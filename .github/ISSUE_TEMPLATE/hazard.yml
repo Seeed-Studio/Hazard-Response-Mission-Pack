@@ -18,7 +18,7 @@ body:
     validations:
       required: false
   - type: textarea
-    id: what-do?
+    id: what-do
     attributes:
       label: Which disaster risk or issue are you addressing?  
       description: Also tell us what the possible danger is and how you plan to monitor its occurrence?
