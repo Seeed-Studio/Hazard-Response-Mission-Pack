@@ -1,7 +1,7 @@
 name: Hazard Response Mission Pack Application Form 
 description: Explain us what you want to do with this Mission Pack
 title: "[Application] : "
-labels: ["Application"]
+labels: ["Application", "step-1"]
 assignees:
   - vongomben
 body:
