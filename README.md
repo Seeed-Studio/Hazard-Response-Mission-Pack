@@ -28,4 +28,4 @@ Hazard Response Mission Pack is a comprehensive solution designed for optimized 
 
 ### Call to Action
 
-Do you have question about the Kit or ideas on how to implement a Disaster Prevention System? [Apply now]([https://github.com/Seeed-Studio/Hazard-Response-Mission-Pack/issues/new/choose](https://github.com/Seeed-Studio/Hazard-Response-Mission-Pack/issues/new?assignees=vongomben&labels=Application&projects=&template=hazard.yml&title=%5BApplication%5D+%3A+)https://github.com/Seeed-Studio/Hazard-Response-Mission-Pack/issues/new?assignees=vongomben&labels=Application&projects=&template=hazard.yml&title=%5BApplication%5D+%3A+) 
+Do you have question about the Kit or ideas on how to implement a Disaster Prevention System? [Apply now](https://github.com/Seeed-Studio/Hazard-Response-Mission-Pack/issues/new?assignees=vongomben&labels=Application&projects=&template=hazard.yml&title=%5BApplication%5D+%3A+) 
