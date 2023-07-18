@@ -14,12 +14,18 @@ Hazard Response Mission Pack is a comprehensive solution designed for optimized 
 
 
 ### Part list
+
 | **Name**                          | **Cost** | **Description**                                                                                                      |
 |-----------------------------------|----------|----------------------------------------------------------------------------------------------------------------------|
-| reTerminal                        | $215     | A Raspberry Pi CM4-powered HMI that processes data locally                                                           |
-| SenseCAP M2 LoRaWAN Gateway       | $139     | A device that transmits sensor data with long-range connectivity                                                     |
-| SenseCAP T1000 LoRaWAN Tracker    | $29.9    | A card size tracker for seamless indoor & outdoor positioning                                                        |
-| SenseCAP A1101 Vision AI Sensor   | $79      | An intelligent sensor that gets insights from the vision                                                             |
-| SenseCAP S2100 LoRaWAN DTU        | $69      | A device designed to facilitate reliable and efficient data communication over LoRaWAN                               |
-| SenseCAP Sensor Builder           | $19.9    | A device to build a custom industrial-grade LoRaWAN sensor                                                           |
-| Grove Natural Disaster Sensor Kit | $65.6    | A collection of 5 Grove modules: Lightning sensor, Vibration Sensor, PM2.5 Dust Sensor, Flame Sensor, and ORP Sensor |
+| [reTerminal](https://www.seeedstudio.com/ReTerminal-with-CM4-p-4904.htm)                        | $215     | A Raspberry Pi CM4-powered HMI that processes data locally                                                           |
+| [SenseCAP M2 LoRaWAN Gateway](https://www.seeedstudio.com/SenseCAP-Multi-Platform-LoRaWAN-Indoor-Gateway-SX1302-EU868-p-5471.html)       | $139     | A device that transmits sensor data with long-range connectivity                                                     |
+| [SenseCAP T1000 LoRaWAN Tracker](https://www.seeedstudio.com/sensecap-t1000-tracker)    | $29.9    | A card size tracker for seamless indoor & outdoor positioning                                                        |
+| [SenseCAP A1101 Vision AI Sensor](https://www.seeedstudio.com/SenseCAP-A1101-LoRaWAN-Vision-AI-Sensor-p-5367.html)   | $79      | An intelligent sensor that gets insights from the vision                                                             |
+| [SenseCAP S2100 LoRaWAN DTU](https://www.seeedstudio.com/SenseCAP-S2100-LoRaWAN-Data-Logger-p-5361.html)        | $69      | A device designed to facilitate reliable and efficient data communication over LoRaWAN                               |
+| [SenseCAP Sensor Builder](https://www.seeedstudio.com/SenseCAP-XIAO-LoRaWAN-Controller-p-5474.html)           | $19.9    | A device to build a custom industrial-grade LoRaWAN sensor                                                           |
+| [Grove Natural Disaster Sensor Kit](https://www.seeedstudio.com/natural-disaster-sensor-solution-kit.html) | $65.6    | A collection of 5 Grove modules: Lightning sensor, Vibration Sensor, PM2.5 Dust Sensor, Flame Sensor, and ORP Sensor |
+
+
+### Call to Action
+
+Do you have question about the Kit or ideas on how to implement a Disaster Prevention System? [Apply now](https://github.com/Seeed-Studio/Hazard-Response-Mission-Pack/issues/new/choose) 
