@@ -1,0 +1,99 @@
+name: Hazard Response Mission Pack Application Form 
+description: Explain us what you want to do with this Mission Pack
+title: "[Application] : "
+labels: ["Application"]
+assignees:
+  - vongomben
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this quick form to help us out understanding your project!
+  - type: input
+    id: contact
+    attributes:
+      label: Contact Details
+      description: How can we get in touch with you if we need more info?
+      placeholder: ex. email@example.com
+    validations:
+      required: false
+  - type: textarea
+    id: what-do?
+    attributes:
+      label: Which disaster risk or issue are you addressing?  
+      description: Also tell us what the possible danger is and how you plan to monitor its occurrence?
+      placeholder: Go for it!
+      value: "I live in X and we have been monitoring Y and Z natural distasters in the years. I assume that monitoring Q and H will help us be more prepared in advance and have less damages"
+    validations:
+      required: true
+  - type: dropdown
+    id: disaster
+    attributes:
+      label: disaster
+      description: Which hazard are you addressing?
+      options:
+        - Human Pollution
+        - Earthquakes
+        - WildFires
+        - Floods
+        - Sandstorms
+        - Hurricanes & Cyclones
+        - Droughts
+        - Heatwaves or Coldwaves
+        - other
+    validations:
+      required: true
+  - type: dropdown
+    id: Localization
+    attributes:
+      label: Where are you from?
+      description: We are committed to contribute to a worldwide ecosystem, hence we are willing to distribute these kits eqaully
+      multiple: true
+      options:
+        - Africa / Northern Africa
+        - Africa / West Africa
+        - Africa / Central Africa
+        - Africa / East Africa
+        - Africa / Southern Africa
+        - Asia / East Asia
+        - Asia / South Asia
+        - Asia / Southeast Asia
+        - Asia / Central Asia
+        - Europe / Northern Europe
+        - Europe / Western Europe
+        - Europe / Central Europe
+        - Europe / Eastern Europe
+        - Europe / Southern Europe
+        - Europe / The Balkans
+        - North America / United States
+        - North America / Canada
+        - North America / Mexico
+        - South America / The Guianas
+        - South America / The Caribbean
+        - South America / The Andes
+        - South America / The Amazon
+        - South America / The Southern Cone
+        - Oceania / Australia
+        - Oceania / New Zealand
+        - Oceania / Melanesia
+        - Oceania / Micronesia
+        - Antarctica
+    validations:
+      required: true
+  - type: dropdown
+    id: TRL
+    attributes:
+      label: Readiness Level of a Project
+      description: If you are applying for the kit, you'll may have identified a common (or less common) recurring hazard or possible disaster in your region. How would you define your solution based on the [TRL chart](https://en.wikipedia.org/wiki/Technology_readiness_level). (Note! We obviously expect your project to be in its primal states! Yet maybe you have had many experiments about it) The kit will try to bring your project to TRL >=5
+      options:
+      - TRL 1 - Basic Principles Observed
+      - TRL 2 - Technology Concept Formulated
+      - TRL 3 - Experimental Proof of Concept
+      - TRL 4 - Technology Validated in Lab
+      - TRL 5 - Technology Validated in Relevant Environment
+      - TRL 6 - Technology Demonstrated in Relevant Environment
+      - TRL 7 - System Prototype Demonstration in Operational Environment
+      - TRL 8 - System Complete and Qualified
+      - TRL 9 - Actual System Proven in Operational Environment
+    validations:
+      required: true
