@@ -17,6 +17,14 @@ body:
       placeholder: ex. email@example.com
     validations:
       required: false
+  - type: input
+    id: previous
+    attributes:
+      label: Past Projects
+      description: Can you link us to some of your previous projects or experiences? 
+      placeholder: github / blog / sociali links are ok
+    validations:
+      required: true      
   - type: textarea
     id: what-do
     attributes:
