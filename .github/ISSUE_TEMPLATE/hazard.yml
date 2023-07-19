@@ -13,8 +13,8 @@ body:
     id: contact
     attributes:
       label: Contact Details
-      description: How can we get in touch with you if we need more info?
-      placeholder: ex. email@example.com
+      description: How do you want to be called (not necessary to put your full name at this stage due to privacy reasons
+      placeholder: ex. I'm Joe!
     validations:
       required: false
   - type: input
