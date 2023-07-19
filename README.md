@@ -2,6 +2,8 @@
 
 Equipping You Today for a Safer Tomorrow
 
+[![Apply NOW](./img/apply-now.png)](https://github.com/Seeed-Studio/Hazard-Response-Mission-Pack/issues/new?assignees=vongomben&labels=Application&projects=&template=hazard.yml&title=%5BApplication%5D+%3A+)
+
 ### Description:
 
 Hazard Response Mission Pack is a comprehensive solution designed for optimized disaster preparedness[1], management, and response. This pack includes robust devices for data transmission, data processing,  user interface, precise tracking, intelligent visual analysis, and custom sensor development for environmental monitoring. These devices work together to provide a robust yet flexible system for real-time data collection, analysis, and response, enabling efficient management and mitigation of hazard situations.
@@ -30,8 +32,8 @@ Hazard Response Mission Pack is a comprehensive solution designed for optimized 
 
 ![image](./img/info-idea.png)
 
-
 Do you have question about the Kit or ideas on how to implement a Disaster Prevention System? 
-Do you know somebody who would??
+Do you know somebody who would?
+We love the problems, and we love looking for solutions!
 
-### [Apply now](https://github.com/Seeed-Studio/Hazard-Response-Mission-Pack/issues/new?assignees=vongomben&labels=Application&projects=&template=hazard.yml&title=%5BApplication%5D+%3A+) 
+[![Apply NOW](./img/apply-now.png)](https://github.com/Seeed-Studio/Hazard-Response-Mission-Pack/issues/new?assignees=vongomben&labels=Application&projects=&template=hazard.yml&title=%5BApplication%5D+%3A+)
