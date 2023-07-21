@@ -12,7 +12,7 @@ Hazard Response Mission Pack is a comprehensive solution designed for optimized 
 
 ### Architecture:
 
-![image](./img/info-blue.png)
+![image](./img/final.jpg)
 
 
 ### Part list
