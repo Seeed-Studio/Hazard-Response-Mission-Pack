@@ -32,8 +32,12 @@ Hazard Response Mission Pack is a comprehensive solution designed for optimized 
 
 ![image](./img/info-idea.png)
 
-Do you have question about the Kit or ideas on how to implement a Disaster Prevention System? 
-Do you know somebody who would?
-We love the problems, and we love looking for solutions!
+#### Confirmation throught Replication 
+
+Scientific approach obliges us to confirm a reading with another sensor in order to lower down false positives. This would allow us (for example) to seacrh for wildfires by its [occurance through vision](https://wiki.seeedstudio.com/Train-Deploy-AI-Model-A1101/) and the wildfire sensor or the PM sensros in the pack.
+
+Do you have question about the Kit or ideas on how to implement a Disaster Prevention System?   
+Do you know somebody who would?  
+We love the problems, and we love looking for solutions!  
 
 [![Apply NOW](./img/apply-now-W.png)](https://github.com/Seeed-Studio/Hazard-Response-Mission-Pack/issues/new?assignees=vongomben&labels=Application&projects=&template=hazard.yml&title=%5BApplication%5D+%3A+)
