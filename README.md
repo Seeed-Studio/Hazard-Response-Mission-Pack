@@ -2,6 +2,8 @@
 
 Equipping You Today for a Safer Tomorrow
 
+![tha pack](./img/case.jpg)
+
 [![Apply NOW](./img/apply-now-W.png)](https://github.com/Seeed-Studio/Hazard-Response-Mission-Pack/issues/new?assignees=vongomben&labels=Application&projects=&template=hazard.yml&title=%5BApplication%5D+%3A+)
 
 ### Description:
