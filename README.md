@@ -2,7 +2,7 @@
 
 Equipping You Today for a Safer Tomorrow
 
-![tha pack](./img/case.jpg)
+![tha pack](./img/newCase.jpg)
 
 #### Seeed is giving away 5 Kits for free! apply to be selected before the end of this first batch!
 
@@ -16,7 +16,7 @@ Hazard Response Mission Pack is a comprehensive solution designed for optimized 
 
 ### Architecture:
 
-![image](./img/System Diagram.png)
+![image](./img/System%20Diagram.png)
 
 
 ### Part list
