@@ -2,7 +2,7 @@
 
 Equipping You Today for a Safer Tomorrow
 
-![tha pack](./img/newCase.jpg)
+![the pack](./img/newCase.jpg)
 
 #### Seeed is giving away 5 Kits for free! apply to be selected before the end of this first batch!
 
@@ -10,7 +10,11 @@ Equipping You Today for a Safer Tomorrow
 
 ### Description:
 
-Hazard Response Mission Pack is a comprehensive solution designed for optimized disaster preparedness[1], management, and response. This pack includes robust devices for data transmission, data processing,  user interface, precise tracking, intelligent visual analysis, and custom sensor development for environmental monitoring. These devices work together to provide a robust yet flexible system for real-time data collection, analysis, and response, enabling efficient management and mitigation of hazard situations.
+Hazard Response Mission Pack is an ongoing research projectdesigned for optimized disaster preparedness[1], management, and response. 
+
+This pack includes robust devices for data transmission, data processing,  user interface, precise tracking, intelligent visual analysis, and custom sensor development for environmental monitoring. 
+
+The goal of this research project is to provide a robust yet flexible system for real-time data collection, analysis, and response, enabling efficient management and mitigation of hazard situations. **For this reason the content of the kit may vary in the future, based on the testing of the users and the feedback here. **
 
 [1] WFP defines emergency preparedness as “Actions, arrangements, and procedures in anticipation of an emergency to ensure that the response when needed, be rapid, appropriate and effective.” (Source: [WFP’s Programme Guidance Manual, page 10](https://documents.wfp.org/stellent/groups/public/documents/resources/wfp251892.pdf))
 
@@ -33,8 +37,6 @@ Hazard Response Mission Pack is a comprehensive solution designed for optimized 
 
 
 ### Call to Action
-
-![image](./img/info-idea.png)
 
 #### Confirmation throught Replication 
 
@@ -63,7 +65,7 @@ Since we are receiving some questions by some users, we chose to share some of t
 
 **Q3:** Reviewing the technological aspects, this system is designed in such a way, that in order for an event to be captured as “a disaster” it has to be confirmed by the two sensing devices, e.g. the SenseCAP Vision AI sensor and the Disaster Sensor kit or the LoRaWAN Tracker. 
 
-**A3:** The sensors work independently, and the “double witness” is already a way to analyze data (also: depending on the problem you want to find, one of the two sensors may be more important than the other. This kind of choice is yours. In some scenarios, you may want sensor1 to be triggered a certain amount of times in an hour in order the reading to be “interesting” and so on..
+**A3:** The sensors work independently, and the “double witness” is already a way to analyze data (also: depending on the problem you want to find, one of the two sensors may be more important than the other. This kind of choice is yours. In some scenarios, you may want sensor1 to be triggered a certain amount of times in an hour in order the reading to be “interesting” and so on..  
 
 **Q4:** Also, the equipment must be installed close to a spot with electrical power in order for the system to be constantly operated. 
 
@@ -82,7 +84,7 @@ The SenseCAP M2 Gateway needs to be powered with an external supply and get acce
 
 **Q7:** Referring in specific to the Vision AI sensor, do we have to train a computer vision model for disaster detection (e.g. thunderstorm)? By default, the only available models are the human body detection and the meter detection. So, are they indeed available? Is it mandatory to perform an additional development for training a disaster detection model? Because this requires a lot of effort. 
 
-**A7:** We have a Lighting Sensor in the kit, which can be applied to detect lightning. However, SenseCAP Vision AI sensor features a not very high-res camera (the detected item should be within 5 meters to ensure accuracy) and it supports inference with an interval of 5 mins, which makes it not a good fit for detecting disasters of thunderstorm. Currently, the device has 3 different default models of human body detention, object counting, and image classification, which are all ready for use. Regarding other models, we expect the end users to train their own models (wildlife ). [Roboflow has some Vision AI compatible training sets](https://universe.roboflow.com/arkitekv2/lightning_segmentation_1) going in that direction, but these models are to be tested and refurbished. You can follow [this wiki article to learn how to make your own dataset](https://wiki.seeedstudio.com/Train-Deploy-AI-Model-A1101/#software-introduction) or [use another one](https://wiki.seeedstudio.com/Train-Deploy-AI-Model-A1101/#use-publicly-available-annotated-dataset). This [link](https://www.google.com/url?q=https://wiki.seeedstudio.com/Train-Deploy-AI-Model-A1101/%23use-publicly-available-annotated-dataset&sa=D&source=docs&ust=1690802653913211&usg=AOvVaw3QJhydQDPRR5uyf8kqW9lD) is also relevant
+**A7:** We have a Lighting Sensor in the kit, which can be applied to detect lightning. However, SenseCAP Vision AI sensor features a not very high-res camera (the detected item should be within 5 meters to ensure accuracy) and it supports inference with an interval of 5 mins, which makes it not a good fit for detecting disasters of thunderstorm. Currently, the device has 3 different default models of human body detention, object counting, and image classification, which are all ready for use. Regarding other models, we expect the end users to train their own models (wildlife ). [Roboflow has some Vision AI compatible training sets](https://universe.roboflow.com/arkitekv2/lightning_segmentation_1) going in that direction, but these models are to be tested and refurbished. You can follow [this wiki article to learn how to make your own dataset](https://wiki.seeedstudio.com/Train-Deploy-AI-Model-A1101/#software-introduction) or [use another one](https://wiki.seeedstudio.com/Train-Deploy-AI-Model-A1101/#use-publicly-available-annotated-dataset). This [link](https://www.google.com/url?q=https://wiki.seeedstudio.com/Train-Deploy-AI-Model-A1101/%23use-publicly-available-annotated-dataset&sa=D&source=docs&ust=1690802653913211&usg=AOvVaw3QJhydQDPRR5uyf8kqW9lD) is also relevant. As a matter of fact the Vision AI sensor camera is resilient and sturdy, but not good in its lens lengh to pick big landscapes, **this is a matter to take in account even with good datasets**
 
 **Q8:** Finally, the data will be transferred to their cloud (sensecap server). Is there any chance for local data storing, or in the case of using their cloud, is it any additional cost that we should be aware of? 
 
