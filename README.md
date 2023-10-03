@@ -2,28 +2,111 @@
 
 Equipping You Today for a Safer Tomorrow
 
-![the pack](./img/newCase.jpg)
+![the pack](./img/case.jpg)
 
 #### Seeed is giving away 5 Kits for free! apply to be selected before the end of this first batch!
 
 [![Apply NOW](./img/apply-now-W.png)](https://github.com/Seeed-Studio/Hazard-Response-Mission-Pack/issues/new?assignees=vongomben&labels=Application&projects=&template=hazard.yml&title=%5BApplication%5D+%3A+)
 
+![the pack](./img/user-journey.png)
+
+![the pack](./img/kit-02.png)
+
 ### Description:
 
-Hazard Response Mission Pack is an ongoing research projectdesigned for optimized disaster preparedness[1], management, and response. 
+Hazard Response Mission Pack is an ongoing research project designed for optimized disaster preparedness[1], management, and response. 
 
 This pack includes robust devices for data transmission, data processing,  user interface, precise tracking, intelligent visual analysis, and custom sensor development for environmental monitoring. 
 
-The goal of this research project is to provide a robust yet flexible system for real-time data collection, analysis, and response, enabling efficient management and mitigation of hazard situations. **For this reason the content of the kit may vary in the future, based on the testing of the users and the feedback here. **
+The goal of this research project is to provide a robust yet flexible system for real-time data collection, analysis, and response, enabling efficient management and mitigation of hazard situations. **For this reason the content of the kit may vary in the future, based on the testing of the users and the feedback here. We have just rolled out v 0.2**
 
 [1] WFP defines emergency preparedness as “Actions, arrangements, and procedures in anticipation of an emergency to ensure that the response when needed, be rapid, appropriate and effective.” (Source: [WFP’s Programme Guidance Manual, page 10](https://documents.wfp.org/stellent/groups/public/documents/resources/wfp251892.pdf))
 
 ### Architecture:
 
-![image](./img/System%20Diagram.png)
+![image](./img/photo_diagram.jpg)
 
 
-### Part list
+### Part list v 0.2
+
+<table>
+<tr>
+<td>
+
+<img src="./img/part-02.png" alt="kit">
+
+</td>
+ <td>
+      <!-- Inserisci la tua tabella markdown qui -->
+
+        | Number | Product Name                                                             | SKU       |
+        | ------ | ------------------------------------------------------------------------ | --------- |
+        | 1      | SenseCAP M2 Multi-Platform LoRaWAN Indoor Gateway(SX1302) - EU868        | 114992981 |
+        | 2      | SenseCAP S2103 LoRaWAN® CO2, Temperature, and Humidity                   | 114992869 |
+        | 3      | SenseCAP S2105 - LoRaWAN® Soil Moisture, Temperature and EC Sensor       | 114992871 |
+        | 4      | reComputer J3010-Edge AI Device with NVIDIA Jetson Orin™ Nano 4GB module | 110110146 |
+        | 5      | Wi-Fi Router                                                             |           |
+        | 6      | SenseCAP Indicator                                                       | 114993068 |
+        | 7      | Logitech C270 USB camera                                                 |           |
+        | 8      | SenseCAP T1000 Tracker x4                                                | 114993073 |
+        | 9      | Wio Tracker 1110                                                         |           |
+        | 10     | Grove - Ultrasonic Ranger                                                | 101020010 |
+        | 11     | Grove - Relay                                                            | 103020005 |
+        | 12     | Grove - I2C Hub                                                          | 103020006 |
+        | 13     | Grove - High Precision Barometer Sensor (DPS310)                         | 101020812 |
+        | 14     | Grove - Air Quality Sensor(SGP41)                                        | 101021092 |
+        | 15     | Grove - Sound Sensor                                                     | 101020023 |
+        | 16     | Grove – UV Sensor                                                        | 101020089 |
+
+</td>
+</tr>
+</table>
+
+
+
+
+### Build Your Own Sensor with WIO Tracker -- WIO Tracker + GROVE Sensors
+
+![image](./img/wio-02.png)
+
+![image](./img/wio-03.png)
+
+### Jump into the workd of Conputer Vision and Edge AI
+
+![image](./img/crowd.png)
+
+You can switch the AI inference Model preinstalled on the device by click the AI Model. The list of models are:
+
+| **Model Name**        | Details                                                                                                                                                                                                                 |
+| --------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| COCO Dataset          | 79 labels can be found here [https://github.com/ultralytics/ultralytics/blob/main/ultralytics/cfg/datasets/coco.yaml](/D:/sensecap/Advanced%20Perception%20Systems/Hazard%20Response%20Mission%20Pack/text)             |
+| Containers Detection  | [Containers Detection Object Detection Dataset (v1, 2022-10-18 7:55pm) by One14 Intelligence](/D:/sensecap/Advanced%20Perception%20Systems/Hazard%20Response%20Mission%20Pack/text)                                     |
+| Crowd                 | [CrowdHuman Object Detection Dataset (v6, 2023-06-27 11:58am) by Muhammad Suzaki Zahran](/D:/sensecap/Advanced%20Perception%20Systems/Hazard%20Response%20Mission%20Pack/text)                                          |
+| Fall Detection        | [Fall Detection Object Detection Dataset (v4, resized640_aug3x-ACCURATE) by Roboflow Universe Projects](/D:/sensecap/Advanced%20Perception%20Systems/Hazard%20Response%20Mission%20Pack/text)                           |
+| Forest Fire and Smoke | [Forest Fire Detection Dataset Object Detection Dataset (v1, 2022-11-01 8:08pm) by University of Cyprus](/D:/sensecap/Advanced%20Perception%20Systems/Hazard%20Response%20Mission%20Pack/text)                          |
+| Hardhat               | [Hard Hat Workers Object Detection Dataset (v13, augmented3x-HeadHelmetClasses-AccurateModel) by Northeastern University - China](/D:/sensecap/Advanced%20Perception%20Systems/Hazard%20Response%20Mission%20Pack/text) |
+| People                | [People Detection (General) Object Detection Dataset (v7, 2023-03-29 2:10pm) by Mohamed Traore](/D:/sensecap/Advanced%20Perception%20Systems/Hazard%20Response%20Mission%20Pack/text)                                   |
+| PPE                   | [Construction Site Safety Object Detection Dataset (v27, YOLOv8s) by Roboflow Universe Projects](/D:/sensecap/Advanced%20Perception%20Systems/Hazard%20Response%20Mission%20Pack/text)                                  |
+| Safety Vest           | [Safety Vests Object Detection Dataset (v5, resized640_aug5x-ACCURATE) by Roboflow Universe Projects](/D:/sensecap/Advanced%20Perception%20Systems/Hazard%20Response%20Mission%20Pack/text)                             |
+| Traffic Cars          | [Traffic Survey Object Detection Dataset (v3, resized640_aug3x-plusMosaic) by Roboflow Universe Projects](/D:/sensecap/Advanced%20Perception%20Systems/Hazard%20Response%20Mission%20Pack/text)                         |
+| Traffic Signs         | [Traffic and Road Signs Object Detection Dataset (v1, 2022-03-28 2:27pm) by usmanchaudhry622@gmail.com](/D:/sensecap/Advanced%20Perception%20Systems/Hazard%20Response%20Mission%20Pack/text)                           |
+| Retail                | [SKU 110k Object Detection Dataset (v4, Resized-416_augmented3x-Roboflow-FAST-model) by Jacobs Workspace](/D:/sensecap/Advanced%20Perception%20Systems/Hazard%20Response%20Mission%20Pack/text)                         |
+| Apple                 | [apples Object Detection Dataset (v1, release-640) by Roboflow 100](/D:/sensecap/Advanced%20Perception%20Systems/Hazard%20Response%20Mission%20Pack/text)  
+
+### SenseCAP Tracker - T1000
+#### Tiny Card-Size Locator with High Capability
+
+![image](./img/tracker-02.png)
+
+Play around: 
+* Outdoor & Indoor Tracking 
+* All-in-One Sensors 
+* 2 Years of Battery Service Life 
+* Global Range 
+* Encrypted Location 
+* APP and API 
+
+### Part list v 0.1 (deprecated)
 
 | **Name**                          | **Cost** | **Description**                                                                                                      |
 |-----------------------------------|----------|----------------------------------------------------------------------------------------------------------------------|
@@ -36,11 +119,13 @@ The goal of this research project is to provide a robust yet flexible system for
 | [Grove Natural Disaster Sensor Kit](https://www.seeedstudio.com/natural-disaster-sensor-solution-kit.html) | $65.6    | A collection of 5 Grove modules: Lightning sensor, Vibration Sensor, PM2.5 Dust Sensor, Flame Sensor, and ORP Sensor |
 
 
+
+
 ### Call to Action
 
 #### Confirmation throught Replication 
 
-Scientific approach obliges us to confirm a reading with another sensor in order to lower down false positives. This would allow us (for example) to seacrh for wildfires by its [occurance through vision](https://wiki.seeedstudio.com/Train-Deploy-AI-Model-A1101/) and the wildfire sensor or the PM sensros in the pack.
+Scientific approach obliges us to confirm a reading with another sensor in order to lower down false positives. This would allow us (for example) to seacrh for wildfires by its occurance through vision and the CO2  sensor or the air quality SENSECAP sensors in the pack.
 
 Do you have question about the Kit or ideas on how to implement a Disaster Prevention System?   
 Do you know somebody who would?  
@@ -76,19 +161,15 @@ The SenseCAP M2 Gateway needs to be powered with an external supply and get acce
 
 **Q5:** In what TRL is this kit? It has to be defined if it is at a product level and simply requires an installation with some minor configuration, or at a prototype phase and needs a development effort. 
 
-**A5:** These sensors are IP66 and ready to be deployed in the wild. The TRL of the form refers to its application: the problem you want to monitor/solve, the availability and the community you want to install in, the system you will use to create the notification system/record data and so on. 
+**A5:** Some of these sensors are IP66 and ready to be deployed in the wild. The TRL of the form refers to its application: the problem you want to monitor/solve, the availability and the community you want to install in, the system you will use to create the notification system/record data and so on. 
 
 **Q6:** We would like also to know the level of support that is going to be given during the first deployment, or if straightforward guidelines are available (e.g. manual, etc.) 
 
 **A6:** We have [manuals / online documentation](https://sensecap-docs.seeed.cc/) and a discord channel for help. We can provide this information just online and remote though. We expect you to pose questions and test the solution, adding your effort and knowledge of the problem. 
 
-**Q7:** Referring in specific to the Vision AI sensor, do we have to train a computer vision model for disaster detection (e.g. thunderstorm)? By default, the only available models are the human body detection and the meter detection. So, are they indeed available? Is it mandatory to perform an additional development for training a disaster detection model? Because this requires a lot of effort. 
+**Q7:** Finally, the data will be transferred to their cloud (sensecap server). Is there any chance for local data storing, or in the case of using their cloud, is it any additional cost that we should be aware of? 
 
-**A7:** We have a Lighting Sensor in the kit, which can be applied to detect lightning. However, SenseCAP Vision AI sensor features a not very high-res camera (the detected item should be within 5 meters to ensure accuracy) and it supports inference with an interval of 5 mins, which makes it not a good fit for detecting disasters of thunderstorm. Currently, the device has 3 different default models of human body detention, object counting, and image classification, which are all ready for use. Regarding other models, we expect the end users to train their own models (wildlife ). [Roboflow has some Vision AI compatible training sets](https://universe.roboflow.com/arkitekv2/lightning_segmentation_1) going in that direction, but these models are to be tested and refurbished. You can follow [this wiki article to learn how to make your own dataset](https://wiki.seeedstudio.com/Train-Deploy-AI-Model-A1101/#software-introduction) or [use another one](https://wiki.seeedstudio.com/Train-Deploy-AI-Model-A1101/#use-publicly-available-annotated-dataset). This [link](https://www.google.com/url?q=https://wiki.seeedstudio.com/Train-Deploy-AI-Model-A1101/%23use-publicly-available-annotated-dataset&sa=D&source=docs&ust=1690802653913211&usg=AOvVaw3QJhydQDPRR5uyf8kqW9lD) is also relevant. As a matter of fact the Vision AI sensor camera is resilient and sturdy, but not good in its lens lengh to pick big landscapes, **this is a matter to take in account even with good datasets**
-
-**Q8:** Finally, the data will be transferred to their cloud (sensecap server). Is there any chance for local data storing, or in the case of using their cloud, is it any additional cost that we should be aware of? 
-
-**A8:** First of all, it is not mandatory to use the SenseCAP Server when using SenseCAP devices. SenseCAP LoRaWAN sensors and gateways are designed to be compatible with various LoRaWAN network servers, including third-party servers and local servers to manage everything locally. 
+**A7:** First of all, it is not mandatory to use the SenseCAP Server when using SenseCAP devices. SenseCAP LoRaWAN sensors and gateways are designed to be compatible with various LoRaWAN network servers, including third-party servers and local servers to manage everything locally. 
 Currently, SenseCAP PaaS platforms (cloud, web portal, SenseCAP Mate APP) are offering a 90-day and 180-day free trial for our Tracker and Sensors. After the free trial, we offer licensing package as follows:  
 ● 30 days validity: $0.99/device  
 ● 90 days validity: $2.97/device  
