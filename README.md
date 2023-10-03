@@ -29,6 +29,18 @@ The goal of this research project is to provide a robust yet flexible system for
 
 ### Part list v 0.2
 
+The  Hazard Response Mission Pack consists of five different cornerstones of our SenseCAP family products offer: 
+
+* **A LoRaWAN gateway**, allowing sensors to communicate with a node and broadcast their readings to SenseCAP Cloud or your favorite Cloud
+* **SenseCAP S2103 LoRaWAN® CO2, Temperature, and Humidity and SenseCAP S2105** - **LoRaWAN® Soil Moisture, Temperature and EC Sensor**
+* **Wio Tracker 1110** and several Grove Sensors to make your own tracking device. 
+* **reComputer J3010-Edge** AI Device with NVIDIA Jetson Orin™ Nano 4GB module with webcam and several pre-trainsed models, to bring TinyML machine learning to the edge
+* **Multiple SenseCAP T1000 LoRaWAN Trackers**, able to monitor movements and activities on the field
+* **SenseCAP Indicator** to visualize the data
+
+This kit addresses small independent groups of individuals (or even one person team) willing to monitor and record natural events and bring them online, for community and scientific purposes, with the idea of learning to prevent big disasters and casualties.
+
+
 <table>
 <tr>
 <td>
