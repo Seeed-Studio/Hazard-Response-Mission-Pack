@@ -40,42 +40,26 @@ The  Hazard Response Mission Pack consists of five different cornerstones of ou
 
 This kit addresses small independent groups of individuals (or even one person team) willing to monitor and record natural events and bring them online, for community and scientific purposes, with the idea of learning to prevent big disasters and casualties.
 
+![image](./img/part-02.png)
 
-<table>
-<tr>
-<td>
-
-<img src="./img/part-02.png" alt="kit">
-
-</td>
- <td>
-      <!-- Inserisci la tua tabella markdown qui -->
-
-        | Number | Product Name                                                             | SKU       |
-        | ------ | ------------------------------------------------------------------------ | --------- |
-        | 1      | SenseCAP M2 Multi-Platform LoRaWAN Indoor Gateway(SX1302) - EU868        | 114992981 |
-        | 2      | SenseCAP S2103 LoRaWAN® CO2, Temperature, and Humidity                   | 114992869 |
-        | 3      | SenseCAP S2105 - LoRaWAN® Soil Moisture, Temperature and EC Sensor       | 114992871 |
-        | 4      | reComputer J3010-Edge AI Device with NVIDIA Jetson Orin™ Nano 4GB module | 110110146 |
-        | 5      | Wi-Fi Router                                                             |           |
-        | 6      | SenseCAP Indicator                                                       | 114993068 |
-        | 7      | Logitech C270 USB camera                                                 |           |
-        | 8      | SenseCAP T1000 Tracker x4                                                | 114993073 |
-        | 9      | Wio Tracker 1110                                                         |           |
-        | 10     | Grove - Ultrasonic Ranger                                                | 101020010 |
-        | 11     | Grove - Relay                                                            | 103020005 |
-        | 12     | Grove - I2C Hub                                                          | 103020006 |
-        | 13     | Grove - High Precision Barometer Sensor (DPS310)                         | 101020812 |
-        | 14     | Grove - Air Quality Sensor(SGP41)                                        | 101021092 |
-        | 15     | Grove - Sound Sensor                                                     | 101020023 |
-        | 16     | Grove – UV Sensor                                                        | 101020089 |
-
-</td>
-</tr>
-</table>
-
-
-
+| Number | Product Name                                                             | SKU       |
+| ------ | ------------------------------------------------------------------------ | --------- |
+| 1      | SenseCAP M2 Multi-Platform LoRaWAN Indoor Gateway(SX1302) - EU868        | 114992981 |
+| 2      | SenseCAP S2103 LoRaWAN® CO2, Temperature, and Humidity                   | 114992869 |
+| 3      | SenseCAP S2105 - LoRaWAN® Soil Moisture, Temperature and EC Sensor       | 114992871 |
+| 4      | reComputer J3010-Edge AI Device with NVIDIA Jetson Orin™ Nano 4GB module | 110110146 |
+| 5      | Wi-Fi Router                                                             |           |
+| 6      | SenseCAP Indicator                                                       | 114993068 |
+| 7      | Logitech C270 USB camera                                                 |           |
+| 8      | SenseCAP T1000 Tracker x4                                                | 114993073 |
+| 9      | Wio Tracker 1110                                                         |           |
+| 10     | Grove - Ultrasonic Ranger                                                | 101020010 |
+| 11     | Grove - Relay                                                            | 103020005 |
+| 12     | Grove - I2C Hub                                                          | 103020006 |
+| 13     | Grove - High Precision Barometer Sensor (DPS310)                         | 101020812 |
+| 14     | Grove - Air Quality Sensor(SGP41)                                        | 101021092 |
+| 15     | Grove - Sound Sensor                                                     | 101020023 |
+| 16     | Grove – UV Sensor                                                        | 101020089 |
 
 ### Build Your Own Sensor with WIO Tracker -- WIO Tracker + GROVE Sensors
 
