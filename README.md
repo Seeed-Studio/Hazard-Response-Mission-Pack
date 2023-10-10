@@ -24,7 +24,7 @@ The goal of this research project is to provide a robust yet flexible system for
 
 ### Architecture:
 
-![image](./img/photo_diagram.jpg)
+![image](./img/diagram-03.png)
 
 
 ### Part list v 0.2
@@ -117,6 +117,7 @@ Play around:
 * Global Range 
 * Encrypted Location 
 * APP and API 
+* [check firmware](https://github.com/Seeed-Studio/Wio_Tracker_1110_Examples/blob/main/examples/LoRaWAN/SenseCAP/sensecap_gnss_uplink/sensecap_gnss_uplink.ino)
 
 ### Part list v 0.1 (deprecated)
 
