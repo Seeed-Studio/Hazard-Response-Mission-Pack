@@ -8,7 +8,7 @@ Equipping You Today for a Safer Tomorrow
 
 [![Apply NOW](./img/apply-now-W.png)](https://github.com/Seeed-Studio/Hazard-Response-Mission-Pack/issues/new?assignees=vongomben&labels=Application&projects=&template=hazard.yml&title=%5BApplication%5D+%3A+)
 
-![the pack](./img/user-journey.png)
+![the pack](./img/user-journey.PNG)
 
 ![the pack](./img/kit-02.png)
 
