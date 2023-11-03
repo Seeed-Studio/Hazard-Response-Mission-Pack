@@ -4,9 +4,7 @@ Equipping You Today for a Safer Tomorrow
 
 ![the pack](./img/case.jpg)
 
-#### Seeed is giving away 5 Kits for free! apply to be selected before the end of this first batch!
-
-[![Apply NOW](./img/apply-now-W.png)](https://github.com/Seeed-Studio/Hazard-Response-Mission-Pack/issues/new?assignees=vongomben&labels=Application&projects=&template=hazard.yml&title=%5BApplication%5D+%3A+)
+#### ~~Seeed is giving away 5 Kits for free! apply to be selected before the end of this first batch!~~ We are evaluating the proposals we received up to now. We'll get back to you soon!
 
 ![the pack](./img/user-journey.PNG)
 
@@ -128,9 +126,7 @@ Do you have question about the Kit or ideas on how to implement a Disaster Preve
 Do you know somebody who would?  
 We love the problems, and we love looking for solutions!  
 
-#### Seeed is giving away 5 Kits for free! apply to be selected before the end of this first batch!
-
-[![Apply NOW](./img/apply-now-W.png)](https://github.com/Seeed-Studio/Hazard-Response-Mission-Pack/issues/new?assignees=vongomben&labels=Application&projects=&template=hazard.yml&title=%5BApplication%5D+%3A+)
+#### ~~Seeed is giving away 5 Kits for free! apply to be selected before the end of this first batch!~~ We are evaluating the proposals we received up to now. We'll get back to you soon!
 
 
 ### FAQ
