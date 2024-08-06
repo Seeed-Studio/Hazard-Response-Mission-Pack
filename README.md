@@ -17,6 +17,8 @@ Hazard scenarios, ranging from industrial accidents to natural disasters, presen
 
 At Seeed Studio, we believe that the key to achieving a sustainable future lies in our ability to strike a balance between protecting humans from nature, while also protecting nature from humans. AIoT plays a crucial role in achieving this delicate balance, by allowing us to harness the power of technology to better understand and adapt to our environment.
 
+[Visit the official Hazard page on the Seedstudio site for more user case scenarios!](https://hazard.seeed.cc/)
+
 [1] WFP defines emergency preparedness as “Actions, arrangements, and procedures in anticipation of an emergency to ensure that the response when needed, be rapid, appropriate and effective.” (Source: [WFP’s Programme Guidance Manual, page 10](https://documents.wfp.org/stellent/groups/public/documents/resources/wfp251892.pdf))
 
 
