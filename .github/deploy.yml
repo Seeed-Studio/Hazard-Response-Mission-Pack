@@ -2,7 +2,7 @@ name: Build Router
 on:
   pull_request:
     branches:
-      - love4yzp
+      - dev
     paths:
       - 'docs/**'
       - 'src/**'
@@ -11,7 +11,7 @@ on:
       - '.github/workflows/deploy.yml'
   push:
     branches:
-      - love4yzp
+      - dev
     paths:
       - 'docs/**'
       - 'src/**'
