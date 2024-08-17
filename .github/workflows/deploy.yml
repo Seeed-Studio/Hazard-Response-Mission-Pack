@@ -2,7 +2,7 @@ name: Build Router
 on:
   pull_request:
     branches:
-      - dev
+      - setup-site
     paths:
       - 'docs/**'
       - 'src/**'
@@ -11,7 +11,7 @@ on:
       - '.github/workflows/deploy.yml'
   push:
     branches:
-      - dev
+      - setup-site
     paths:
       - 'docs/**'
       - 'src/**'
