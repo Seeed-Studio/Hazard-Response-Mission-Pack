@@ -22,7 +22,7 @@ At Seeed Studio, we believe that the key to achieving a sustainable future lies 
 [1] WFP defines emergency preparedness as “Actions, arrangements, and procedures in anticipation of an emergency to ensure that the response when needed, be rapid, appropriate and effective.” (Source: [WFP’s Programme Guidance Manual, page 10](https://documents.wfp.org/stellent/groups/public/documents/resources/wfp251892.pdf))
 
 
-![the pack](./img/case.jpg)
+![the pack](./assets/img/case.jpg)
 
 
 - - - 
