@@ -1,0 +1,125 @@
+name: sensecraft-chirpstack
+
+services:
+  chirpstack:
+    image: sensecraft/chirpstack:4
+    command: -c /etc/chirpstack
+    restart: unless-stopped
+    volumes:
+      - ./docker-container-datas/sensecraft-chirpstack/configuration/chirpstack:/etc/chirpstack
+      - ./docker-container-datas/sensecraft-chirpstack/lorawan-devices:/opt/lorawan-devices
+    depends_on:
+      - postgres
+      - redis
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    environment:
+      # - MQTT_BROKER_HOST=mosquitto
+      - MQTT_BROKER_HOST=host.docker.internal
+      - REDIS_HOST=redis
+      - POSTGRESQL_HOST=postgres
+    ports:
+      - 8080:8080
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "1"
+
+  chirpstack-gateway-bridge:
+    image: sensecraft/chirpstack-gateway-bridge:4
+    restart: unless-stopped
+    ports:
+      - 1700:1700/udp
+    volumes:
+      - ./docker-container-datas/sensecraft-chirpstack/configuration/chirpstack-gateway-bridge:/etc/chirpstack-gateway-bridge
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    environment:
+      - INTEGRATION__MQTT__EVENT_TOPIC_TEMPLATE=eu868/gateway/{{ .GatewayID }}/event/{{ .EventType }}
+      - INTEGRATION__MQTT__STATE_TOPIC_TEMPLATE=eu868/gateway/{{ .GatewayID }}/state/{{ .StateType }}
+      - INTEGRATION__MQTT__COMMAND_TOPIC_TEMPLATE=eu868/gateway/{{ .GatewayID }}/command/#
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "1"
+
+  chirpstack-gateway-bridge-basicstation:
+    image: sensecraft/chirpstack-gateway-bridge:4
+    restart: unless-stopped
+    command: -c /etc/chirpstack-gateway-bridge/chirpstack-gateway-bridge-basicstation-eu868.toml
+    ports:
+      - 3001:3001
+    volumes:
+      - ./docker-container-datas/sensecraft-chirpstack/configuration/chirpstack-gateway-bridge:/etc/chirpstack-gateway-bridge
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "1"
+
+  chirpstack-rest-api:
+    image: sensecraft/chirpstack-rest-api:4
+    restart: unless-stopped
+    command: --server chirpstack:8080 --bind 0.0.0.0:8090 --insecure
+    ports:
+      - 8090:8090
+    depends_on:
+      - chirpstack
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "1"
+
+  postgres:
+    image: sensecraft/chirpstack-postgres:14
+    restart: unless-stopped
+    user: "1000:1000"
+    volumes:
+      - ./docker-container-datas/sensecraft-chirpstack/configuration/postgresql/initdb:/docker-entrypoint-initdb.d
+      - ./docker-container-datas/sensecraft-chirpstack/postgresqldata:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=root
+    ports:
+      - 5432:5432
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "1"
+
+  redis:
+    image: sensecraft/chirpstack-redis:7
+    restart: unless-stopped
+    user: "1000:1000"
+    command: redis-server --save 300 1 --save 60 100 --appendonly no
+    volumes:
+      - ./docker-container-datas/sensecraft-chirpstack/redisdata:/data
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "1"
+
+  lora-pktfwd:
+    build: 
+      context: ./docker-image-builds/mission-pack-lora-pktfwd/
+      dockerfile: ./Dockerfile
+    image: sensecraft/mission-pack-lora-pktfwd:1.0
+    restart: always
+    privileged: true
+    network_mode: host
+    volumes:
+      - /sys/class/gpio:/sys/class/gpio
+      - /dev:/dev
+    depends_on:
+      - chirpstack-gateway-bridge
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "1"
