@@ -1,0 +1,1565 @@
+[
+    {
+        "id": "403fd0931430b1ba",
+        "type": "group",
+        "z": "0c809b82525ab765",
+        "name": "",
+        "style": {
+            "label": true,
+            "color": "#000000",
+            "fill": "#dbcbe7"
+        },
+        "nodes": [
+            "995c84e705c42f95",
+            "c10a21c1b22ffdab",
+            "1b8318210eb474c7",
+            "4d962a89b81eb87a",
+            "f8e3221e1e80cbfe",
+            "645dfed0a903142d",
+            "25731624943ab460",
+            "01dc38762911d137",
+            "79bf31c1444fcbe6",
+            "195f5a9cdc829090",
+            "424b8ba73055c5fd",
+            "ba5793fde63da3de",
+            "20ea6d9dd442b76f",
+            "551908b4f634e351",
+            "9db4c2e9d0a9ec58"
+        ],
+        "x": 14,
+        "y": 699,
+        "w": 492,
+        "h": 622
+    },
+    {
+        "id": "21d0619968752bc5",
+        "type": "inject",
+        "z": "a71c1f4952addcd7",
+        "name": "onstartup",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "5",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "0",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 150,
+        "y": 160,
+        "wires": [
+            [
+                "fd1aa19957fe5a3e",
+                "a9a81e691d68d988",
+                "436dac51e46180d8",
+                "d1f3ac7a166ead8d"
+            ]
+        ]
+    },
+    {
+        "id": "fd1aa19957fe5a3e",
+        "type": "random",
+        "z": "a71c1f4952addcd7",
+        "name": "Solar voltage value (placeholder)",
+        "low": "8",
+        "high": "13",
+        "inte": "false",
+        "property": "payload",
+        "x": 420,
+        "y": 80,
+        "wires": [
+            [
+                "a9a81e691d68d988",
+                "e00aad24bc1ea0c0"
+            ]
+        ]
+    },
+    {
+        "id": "a9a81e691d68d988",
+        "type": "range",
+        "z": "a71c1f4952addcd7",
+        "minin": "8",
+        "maxin": "13",
+        "minout": "70",
+        "maxout": "180",
+        "action": "scale",
+        "round": true,
+        "property": "payload",
+        "name": "Power of charge",
+        "x": 360,
+        "y": 140,
+        "wires": [
+            [
+                "506c2695b3dcac2a"
+            ]
+        ]
+    },
+    {
+        "id": "436dac51e46180d8",
+        "type": "random",
+        "z": "a71c1f4952addcd7",
+        "name": "Battery status",
+        "low": "22",
+        "high": "23",
+        "inte": "false",
+        "property": "payload",
+        "x": 360,
+        "y": 200,
+        "wires": [
+            [
+                "899ccd7752f11fc2"
+            ]
+        ]
+    },
+    {
+        "id": "d1f3ac7a166ead8d",
+        "type": "random",
+        "z": "a71c1f4952addcd7",
+        "name": "Battery discharge",
+        "low": "73",
+        "high": "73",
+        "inte": "false",
+        "property": "payload",
+        "x": 370,
+        "y": 260,
+        "wires": [
+            [
+                "ae2892c04d73113b"
+            ]
+        ]
+    },
+    {
+        "id": "e00aad24bc1ea0c0",
+        "type": "change",
+        "z": "a71c1f4952addcd7",
+        "name": "to 2 decimal places",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "$round(payload * 100) / 100",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 690,
+        "y": 80,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "506c2695b3dcac2a",
+        "type": "change",
+        "z": "a71c1f4952addcd7",
+        "name": "to 2 decimal places",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "$round(payload * 100) / 100",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 690,
+        "y": 140,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "899ccd7752f11fc2",
+        "type": "change",
+        "z": "a71c1f4952addcd7",
+        "name": "to 2 decimal places",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "$round(payload * 100) / 100",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 690,
+        "y": 200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ae2892c04d73113b",
+        "type": "change",
+        "z": "a71c1f4952addcd7",
+        "name": "to 2 decimal places",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "$round(payload * 100) / 100",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 690,
+        "y": 260,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5e9440fabfd2da69",
+        "type": "inject",
+        "z": "38e9748a918c1e10",
+        "name": "onstartup",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "5",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 130,
+        "y": 160,
+        "wires": [
+            [
+                "f5ab1fc12799c8ed"
+            ]
+        ]
+    },
+    {
+        "id": "f5ab1fc12799c8ed",
+        "type": "function",
+        "z": "38e9748a918c1e10",
+        "name": "Generate precipitation, address, geomorphology, hydrological data",
+        "func": "var rainfall = {\n    payload: Math.random() * 100,\n    topic: \"rainfall\"\n};\n\nvar rockType = {\n    payload: Math.random() * 100,\n    topic: \"rockType\"\n};\n\nvar faultActivity = {\n    payload: Math.random() * 20,\n    topic: \"faultActivity\"\n};\n\nvar slope = {\n    payload: Math.random() * 50,\n    topic: \"slope\"\n};\n\nvar terrainChange = {\n    payload: Math.random() * 100,\n    topic: \"terrainChange\"\n};\n\nvar surfaceWaterFlow = {\n    payload: Math.random() * 100,\n    topic: \"surfaceWaterFlow\"\n};\n\n\n\nvar total = {\n    payload: {\n        rainfall: rainfall.payload,\n        rockType: rockType.payload,\n        faultActivity: faultActivity.payload,\n        slope: slope.payload,\n        terrainChange: terrainChange.payload,\n        surfaceWaterFlow: surfaceWaterFlow.payload,\n    },\n    topic: \"total\"\n};\n\nreturn [rainfall, rockType, faultActivity, slope, terrainChange, surfaceWaterFlow, total];\n",
+        "outputs": 7,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 460,
+        "y": 160,
+        "wires": [
+            [
+                "5db0f103b9546827"
+            ],
+            [
+                "15fb2d60fd0e04a0"
+            ],
+            [
+                "2a41badc83a1e603"
+            ],
+            [
+                "da67238f9d4ced60"
+            ],
+            [
+                "773740c8ab9f4651"
+            ],
+            [
+                "3b72256b2d2d247d"
+            ],
+            [
+                "69e83088031bdcec"
+            ]
+        ]
+    },
+    {
+        "id": "1149f0a0b9fd843e",
+        "type": "change",
+        "z": "38e9748a918c1e10",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "rainfall",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1320,
+        "y": 60,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5edb4c8f76a82f6a",
+        "type": "change",
+        "z": "38e9748a918c1e10",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "rockType",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1320,
+        "y": 100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "0693edfe70c78b67",
+        "type": "change",
+        "z": "38e9748a918c1e10",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "faultActivity",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1320,
+        "y": 140,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "54fbd230597f32cc",
+        "type": "change",
+        "z": "38e9748a918c1e10",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "slope",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1320,
+        "y": 180,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f9708d2c3af3b53f",
+        "type": "change",
+        "z": "38e9748a918c1e10",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "terrainChange",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1320,
+        "y": 220,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5f7a3634e1d812be",
+        "type": "change",
+        "z": "38e9748a918c1e10",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "surfaceWaterFlow",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1320,
+        "y": 260,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "64a108e017924245",
+        "type": "change",
+        "z": "38e9748a918c1e10",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "total",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1320,
+        "y": 300,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5db0f103b9546827",
+        "type": "switch",
+        "z": "38e9748a918c1e10",
+        "name": "",
+        "property": "rainfall",
+        "propertyType": "env",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 1150,
+        "y": 60,
+        "wires": [
+            [
+                "1149f0a0b9fd843e"
+            ]
+        ]
+    },
+    {
+        "id": "15fb2d60fd0e04a0",
+        "type": "switch",
+        "z": "38e9748a918c1e10",
+        "name": "",
+        "property": "rockType",
+        "propertyType": "env",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 1150,
+        "y": 100,
+        "wires": [
+            [
+                "5edb4c8f76a82f6a"
+            ]
+        ]
+    },
+    {
+        "id": "2a41badc83a1e603",
+        "type": "switch",
+        "z": "38e9748a918c1e10",
+        "name": "",
+        "property": "faultActivity",
+        "propertyType": "env",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 1150,
+        "y": 140,
+        "wires": [
+            [
+                "0693edfe70c78b67"
+            ]
+        ]
+    },
+    {
+        "id": "da67238f9d4ced60",
+        "type": "switch",
+        "z": "38e9748a918c1e10",
+        "name": "",
+        "property": "slope",
+        "propertyType": "env",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 1150,
+        "y": 180,
+        "wires": [
+            [
+                "54fbd230597f32cc"
+            ]
+        ]
+    },
+    {
+        "id": "773740c8ab9f4651",
+        "type": "switch",
+        "z": "38e9748a918c1e10",
+        "name": "",
+        "property": "terrainChange",
+        "propertyType": "env",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 1150,
+        "y": 220,
+        "wires": [
+            [
+                "f9708d2c3af3b53f"
+            ]
+        ]
+    },
+    {
+        "id": "3b72256b2d2d247d",
+        "type": "switch",
+        "z": "38e9748a918c1e10",
+        "name": "",
+        "property": "surfaceWaterFlow",
+        "propertyType": "env",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 1150,
+        "y": 260,
+        "wires": [
+            [
+                "5f7a3634e1d812be"
+            ]
+        ]
+    },
+    {
+        "id": "6b7f3b83a2935fa2",
+        "type": "switch",
+        "z": "38e9748a918c1e10",
+        "name": "",
+        "property": "total",
+        "propertyType": "env",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 1150,
+        "y": 300,
+        "wires": [
+            [
+                "64a108e017924245"
+            ]
+        ]
+    },
+    {
+        "id": "69e83088031bdcec",
+        "type": "function",
+        "z": "38e9748a918c1e10",
+        "name": "Calculate the risk of geological disasters",
+        "func": "var data = msg.payload;\nvar geoRisk = (data.rainfall * 0.3 + data.rockType * 0.2 + data.faultActivity * 0.2 + data.slope * 0.2 + data.terrainChange * 0.1);\nmsg.payload = geoRisk;\n\n// Keep two decimal places\nmsg.payload = parseFloat(msg.payload.toFixed(2));\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 900,
+        "y": 300,
+        "wires": [
+            [
+                "6b7f3b83a2935fa2"
+            ]
+        ]
+    },
+    {
+        "id": "8e4db328f42c4974",
+        "type": "function",
+        "z": "f11a6acbc82d2c5c",
+        "name": "7-in-1 weather station",
+        "func": "var temperature = {\n    payload: Math.random() * 40,\n    topic: \"temperature\"\n};\n\nvar humidity = {\n    payload: Math.random() * 100,\n    topic: \"humidity\"\n};\n\nvar windSpeed = {\n    payload: Math.random() * 20,\n    topic: \"windSpeed\"\n};\n\nvar precipitation = {\n    payload: Math.random() * 50,\n    topic: \"precipitation\"\n};\n\nvar vegetationDensity = {\n    payload: Math.random() * 100,\n    topic: \"vegetationDensity\"\n};\n\nvar fuelMoisture = {\n    payload: Math.random() * 100,\n    topic: \"fuelMoisture\"\n};\n\nvar soilMoisture = {\n    payload: Math.random() * 100,\n    topic: \"soilMoisture\"\n};\n\nvar total = {\n    payload: {\n        temperature: temperature.payload,\n        humidity: humidity.payload,\n        windSpeed: windSpeed.payload,\n        precipitation: precipitation.payload,\n        vegetationDensity: vegetationDensity.payload,\n        fuelMoisture: fuelMoisture.payload,\n        soilMoisture: soilMoisture.payload\n    },\n    topic: \"total\"\n};\n\nreturn [temperature, humidity, windSpeed, precipitation, vegetationDensity, fuelMoisture, soilMoisture, total];\n",
+        "outputs": 8,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 360,
+        "y": 120,
+        "wires": [
+            [
+                "d13ad91ac508db4c"
+            ],
+            [
+                "772715fb0b63dd2a"
+            ],
+            [
+                "7e23227f9b76321f"
+            ],
+            [
+                "55b9f3c6aa5baa15"
+            ],
+            [
+                "6fcd9713b7a0c408"
+            ],
+            [
+                "16cac78624bc6e83"
+            ],
+            [
+                "20cd1089729f666f"
+            ],
+            [
+                "c2437ef708dab502"
+            ]
+        ]
+    },
+    {
+        "id": "c7d6a465aad48164",
+        "type": "inject",
+        "z": "f11a6acbc82d2c5c",
+        "name": "onstartup",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "5",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "0",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 150,
+        "y": 120,
+        "wires": [
+            [
+                "8e4db328f42c4974"
+            ]
+        ]
+    },
+    {
+        "id": "d13ad91ac508db4c",
+        "type": "switch",
+        "z": "f11a6acbc82d2c5c",
+        "name": "",
+        "property": "temperature",
+        "propertyType": "env",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 610,
+        "y": 80,
+        "wires": [
+            [
+                "3a6ab4a46c5c856e"
+            ]
+        ]
+    },
+    {
+        "id": "772715fb0b63dd2a",
+        "type": "switch",
+        "z": "f11a6acbc82d2c5c",
+        "name": "",
+        "property": "humidity",
+        "propertyType": "env",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 610,
+        "y": 120,
+        "wires": [
+            [
+                "6b6a9690a8786b72"
+            ]
+        ]
+    },
+    {
+        "id": "7e23227f9b76321f",
+        "type": "switch",
+        "z": "f11a6acbc82d2c5c",
+        "name": "",
+        "property": "windSpeed",
+        "propertyType": "env",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 610,
+        "y": 160,
+        "wires": [
+            [
+                "c72f1d53fa0877e1"
+            ]
+        ]
+    },
+    {
+        "id": "55b9f3c6aa5baa15",
+        "type": "switch",
+        "z": "f11a6acbc82d2c5c",
+        "name": "",
+        "property": "precipitation",
+        "propertyType": "env",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 610,
+        "y": 200,
+        "wires": [
+            [
+                "833587c680aa5057"
+            ]
+        ]
+    },
+    {
+        "id": "6fcd9713b7a0c408",
+        "type": "switch",
+        "z": "f11a6acbc82d2c5c",
+        "name": "",
+        "property": "vegetationDensity",
+        "propertyType": "env",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 610,
+        "y": 240,
+        "wires": [
+            [
+                "bc4740acb653759e"
+            ]
+        ]
+    },
+    {
+        "id": "16cac78624bc6e83",
+        "type": "switch",
+        "z": "f11a6acbc82d2c5c",
+        "name": "",
+        "property": "fuelMoisture",
+        "propertyType": "env",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 610,
+        "y": 280,
+        "wires": [
+            [
+                "342c90344efb042a"
+            ]
+        ]
+    },
+    {
+        "id": "20cd1089729f666f",
+        "type": "switch",
+        "z": "f11a6acbc82d2c5c",
+        "name": "",
+        "property": "soilMoisture",
+        "propertyType": "env",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 610,
+        "y": 320,
+        "wires": [
+            [
+                "f43224200031aa54"
+            ]
+        ]
+    },
+    {
+        "id": "3a6ab4a46c5c856e",
+        "type": "change",
+        "z": "f11a6acbc82d2c5c",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "temperature",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 780,
+        "y": 80,
+        "wires": [
+            [
+                "9c84a20fd70247b6"
+            ]
+        ]
+    },
+    {
+        "id": "6b6a9690a8786b72",
+        "type": "change",
+        "z": "f11a6acbc82d2c5c",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "humidity",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 780,
+        "y": 120,
+        "wires": [
+            [
+                "9c84a20fd70247b6"
+            ]
+        ]
+    },
+    {
+        "id": "c72f1d53fa0877e1",
+        "type": "change",
+        "z": "f11a6acbc82d2c5c",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "windSpeed",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 780,
+        "y": 160,
+        "wires": [
+            [
+                "9c84a20fd70247b6"
+            ]
+        ]
+    },
+    {
+        "id": "833587c680aa5057",
+        "type": "change",
+        "z": "f11a6acbc82d2c5c",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "precipitation",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 780,
+        "y": 200,
+        "wires": [
+            [
+                "9c84a20fd70247b6"
+            ]
+        ]
+    },
+    {
+        "id": "bc4740acb653759e",
+        "type": "change",
+        "z": "f11a6acbc82d2c5c",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "vegetationDensity",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 780,
+        "y": 240,
+        "wires": [
+            [
+                "9c84a20fd70247b6"
+            ]
+        ]
+    },
+    {
+        "id": "342c90344efb042a",
+        "type": "change",
+        "z": "f11a6acbc82d2c5c",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "fuelMoisture",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 780,
+        "y": 280,
+        "wires": [
+            [
+                "9c84a20fd70247b6"
+            ]
+        ]
+    },
+    {
+        "id": "f43224200031aa54",
+        "type": "change",
+        "z": "f11a6acbc82d2c5c",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "soilMoisture",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 780,
+        "y": 320,
+        "wires": [
+            [
+                "9c84a20fd70247b6"
+            ]
+        ]
+    },
+    {
+        "id": "9c84a20fd70247b6",
+        "type": "change",
+        "z": "f11a6acbc82d2c5c",
+        "name": "to 2 decimal places",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "$round(payload * 100) / 100",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1050,
+        "y": 200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c2437ef708dab502",
+        "type": "function",
+        "z": "f11a6acbc82d2c5c",
+        "name": "compute fire factor",
+        "func": "var data = msg.payload;\nvar fireRisk = (data.temperature * 0.4 + data.humidity * 0.2 + data.windSpeed * 0.3 + data.precipitation * 0.1);\n msg.payload = fireRisk;\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 430,
+        "y": 360,
+        "wires": [
+            [
+                "28d356b875a141bc"
+            ]
+        ]
+    },
+    {
+        "id": "28d356b875a141bc",
+        "type": "switch",
+        "z": "f11a6acbc82d2c5c",
+        "name": "",
+        "property": "fireRisk",
+        "propertyType": "env",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 610,
+        "y": 360,
+        "wires": [
+            [
+                "7a2d00bd3764599c"
+            ]
+        ]
+    },
+    {
+        "id": "7a2d00bd3764599c",
+        "type": "change",
+        "z": "f11a6acbc82d2c5c",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "fireRisk",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 780,
+        "y": 360,
+        "wires": [
+            [
+                "9c84a20fd70247b6"
+            ]
+        ]
+    },
+    {
+        "id": "c25ee8e3cadf74f6",
+        "type": "subflow",
+        "name": "Digital Twin Data Card",
+        "info": "",
+        "category": "※digital-twins",
+        "in": [
+            {
+                "x": 220,
+                "y": 620,
+                "wires": [
+                    {
+                        "id": "81111372d49074cf"
+                    },
+                    {
+                        "id": "270964d67cd7e5ca"
+                    }
+                ]
+            }
+        ],
+        "out": [],
+        "env": [
+            {
+                "name": "↓ Dashboard UI",
+                "type": "str",
+                "value": "",
+                "ui": {
+                    "type": "none"
+                }
+            },
+            {
+                "name": "Group",
+                "type": "ui-group",
+                "value": "",
+                "ui": {
+                    "type": "conf-types"
+                }
+            },
+            {
+                "name": "↓ Card",
+                "type": "str",
+                "value": "",
+                "ui": {
+                    "type": "none"
+                }
+            },
+            {
+                "name": "card_name",
+                "type": "str",
+                "value": "Ultrasonic",
+                "ui": {
+                    "icon": "font-awesome/fa-vcard-o",
+                    "label": {
+                        "zh-CN": "Name",
+                        "en-US": "Name"
+                    },
+                    "type": "input",
+                    "opts": {
+                        "types": [
+                            "str"
+                        ]
+                    }
+                }
+            },
+            {
+                "name": "card_font_size",
+                "type": "num",
+                "value": "14",
+                "ui": {
+                    "icon": "font-awesome/fa-sort-numeric-asc",
+                    "label": {
+                        "zh-CN": "Font size",
+                        "en-US": "Font size"
+                    },
+                    "type": "input",
+                    "opts": {
+                        "types": [
+                            "num"
+                        ]
+                    }
+                }
+            },
+            {
+                "name": "card_unit",
+                "type": "str",
+                "value": "",
+                "ui": {
+                    "label": {
+                        "zh-CN": "Value Unit",
+                        "en-US": "Value Unit"
+                    },
+                    "type": "input",
+                    "opts": {
+                        "types": [
+                            "str"
+                        ]
+                    }
+                }
+            },
+            {
+                "name": "↓ Position",
+                "type": "str",
+                "value": "",
+                "ui": {
+                    "type": "none"
+                }
+            },
+            {
+                "name": "card_position_y",
+                "type": "str",
+                "value": "0%",
+                "ui": {
+                    "icon": "font-awesome/fa-percent",
+                    "label": {
+                        "zh-CN": "Top Position(%)",
+                        "en-US": "Top Position(%)"
+                    },
+                    "type": "input",
+                    "opts": {
+                        "types": [
+                            "str"
+                        ]
+                    }
+                }
+            },
+            {
+                "name": "card_position_x",
+                "type": "str",
+                "value": "0%",
+                "ui": {
+                    "icon": "font-awesome/fa-percent",
+                    "label": {
+                        "zh-CN": "Left Position(%)",
+                        "en-US": "Left Position(%)"
+                    },
+                    "type": "input",
+                    "opts": {
+                        "types": [
+                            "str"
+                        ]
+                    }
+                }
+            }
+        ],
+        "meta": {
+            "version": "0.0.1",
+            "author": "seeed",
+            "license": "Apache-2.0"
+        },
+        "color": "#9FE6EC",
+        "icon": "font-awesome/fa-building-o",
+        "status": {
+            "x": 740,
+            "y": 680,
+            "wires": [
+                {
+                    "id": "270964d67cd7e5ca",
+                    "port": 0
+                },
+                {
+                    "id": "ed8749cbb76eaff3",
+                    "port": 0
+                }
+            ]
+        }
+    },
+    {
+        "id": "dcdfb77142edf9f9",
+        "type": "ui-template",
+        "z": "c25ee8e3cadf74f6",
+        "group": "${Group}",
+        "page": "",
+        "ui": "",
+        "name": "UI Template",
+        "order": 4,
+        "width": "1",
+        "height": "1",
+        "head": "",
+        "format": "<template>\n  <div\n    class=\"item-881695\"\n    :style=\"\n      'left:' +\n      msg.payload.position[0] +\n      ';top:' +\n      msg.payload.position[1] +\n      ';'\n    \"\n  >\n    <div>{{ msg.payload.name }}</div>\n    <div :style=\"'font-size:' + msg.payload.fontSize * 2 + 'px !important;'\">\n      {{ msg.payload.value }} {{msg.payload.unit}}\n    </div>\n    <div :style=\"'font-size:' + msg.payload.fontSize * 0.8 + 'px !important;'\">\n      {{ timeFn(msg.payload.time) }}\n    </div>\n    <div :style=\"'font-size:' + msg.payload.fontSize * 0.8 + 'px !important;'\">\n      {{ msg.payload.time === 0 ? '..' : '' }}\n    </div>\n  </div>\n</template>\n\n<script>\nexport default {\n  data() {\n    return {};\n  },\n  created() {},\n\n  methods: {\n    /**\n     * @description 10位时间戳转换\n     * @param time\n     * @returns {string}\n     */\n    tenBitTimestamp(time, type) {\n      const date = new Date(time * 1000);\n      const y = date.getFullYear();\n      let m = date.getMonth() + 1;\n      m = m < 10 ? \"0\" + m : m;\n      let d = date.getDate();\n      d = d < 10 ? \"0\" + d : d;\n      let h = date.getHours();\n      h = h < 10 ? \"0\" + h : h;\n      let minute = date.getMinutes();\n      let second = date.getSeconds();\n      minute = minute < 10 ? \"0\" + minute : minute;\n      second = second < 10 ? \"0\" + second : second;\n      return type\n        ? y + \"/\" + m + \"/\" + d\n        : y + \"/\" + m + \"/\" + d + \" \" + h + \":\" + minute + \":\" + second; //组合\n    },\n\n    /**\n     * @description 13位时间戳转换\n     * @param time\n     * @returns {string}\n     */\n    thirteenBitTimestamp(time, type) {\n      const date = new Date(time / 1);\n      const y = date.getFullYear();\n      let m = date.getMonth() + 1;\n      m = m < 10 ? \"0\" + m : m;\n      let d = date.getDate();\n      d = d < 10 ? \"0\" + d : d;\n      let h = date.getHours();\n      h = h < 10 ? \"0\" + h : h;\n      let minute = date.getMinutes();\n      let second = date.getSeconds();\n      minute = minute < 10 ? \"0\" + minute : minute;\n      second = second < 10 ? \"0\" + second : second;\n      return type\n        ? y + \"/\" + m + \"/\" + d\n        : y + \"/\" + m + \"/\" + d + \" \" + h + \":\" + minute + \":\" + second; //组合\n    },\n\n    timeFn(time, type) {\n      if (time === 0) {\n        return \"--\";\n      }\n      time = time + \"\";\n      let timestamp;\n      if (time.length == 10) timestamp = this.tenBitTimestamp(time, type);\n      else if (time.length == 13)\n        timestamp = this.thirteenBitTimestamp(time, type);\n      else return (timestamp = \"\");\n      let timezone = timestamp\n        ? parseInt((0 - new Date(timestamp).getTimezoneOffset()) / 60)\n        : \"\";\n      timezone = timezone\n        ? (timezone > 0 ? \"(UTC+\" : \"(UTC\") + timezone + \")\"\n        : \"\";\n      return type ? timestamp : timestamp + timezone;\n    },\n  },\n};\n</script>\n\n<style>\n.item-881695 {\n  width: 170px;\n  height: auto;\n  position: absolute;\n  z-index: 1;\n  background: rgba(255, 255, 255, 0.8);\n  padding: 20px;\n  border-radius: 10px;\n  font-weight: bold;\n}\n</style>\n",
+        "storeOutMessages": true,
+        "passthru": false,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 1410,
+        "y": 520,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3b56b93f6cf23646",
+        "type": "function",
+        "z": "c25ee8e3cadf74f6",
+        "name": "set font size",
+        "func": "msg.payload = {\n    ...msg.payload,\n    fontSize: env.get(\"card_font_size\")\n}\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1030,
+        "y": 520,
+        "wires": [
+            [
+                "3f1983a07bacaa61"
+            ]
+        ]
+    },
+    {
+        "id": "eb2b84e989af7418",
+        "type": "function",
+        "z": "c25ee8e3cadf74f6",
+        "name": "set name",
+        "func": "msg.payload = {\n    ...msg.payload,\n    name: env.get(\"card_name\")\n}\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 680,
+        "y": 520,
+        "wires": [
+            [
+                "afa26713358dce1e"
+            ]
+        ]
+    },
+    {
+        "id": "afa26713358dce1e",
+        "type": "function",
+        "z": "c25ee8e3cadf74f6",
+        "name": "set position",
+        "func": "msg.payload = {\n    ...msg.payload,\n    position: [\n        env.get(\"card_position_x\"), \n        env.get(\"card_position_y\")\n    ]\n}\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 850,
+        "y": 520,
+        "wires": [
+            [
+                "3b56b93f6cf23646"
+            ]
+        ]
+    },
+    {
+        "id": "3f1983a07bacaa61",
+        "type": "function",
+        "z": "c25ee8e3cadf74f6",
+        "name": "set unit",
+        "func": "msg.payload = {\n    ...msg.payload,\n    unit: env.get(\"card_unit\")\n}\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1200,
+        "y": 520,
+        "wires": [
+            [
+                "dcdfb77142edf9f9"
+            ]
+        ]
+    },
+    {
+        "id": "81111372d49074cf",
+        "type": "function",
+        "z": "c25ee8e3cadf74f6",
+        "name": "set value and time",
+        "func": "msg.payload = {\n    value: msg.payload,\n    time: '' + Date.now()\n}\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 470,
+        "y": 520,
+        "wires": [
+            [
+                "eb2b84e989af7418"
+            ]
+        ]
+    },
+    {
+        "id": "74162ccbd520f320",
+        "type": "inject",
+        "z": "c25ee8e3cadf74f6",
+        "name": "On Startup",
+        "props": [],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "0.1",
+        "topic": "",
+        "x": 250,
+        "y": 420,
+        "wires": [
+            [
+                "e75d38e7f7e2418c",
+                "ed8749cbb76eaff3"
+            ]
+        ]
+    },
+    {
+        "id": "e75d38e7f7e2418c",
+        "type": "function",
+        "z": "c25ee8e3cadf74f6",
+        "name": "set value and time",
+        "func": "msg.payload = {\n    value: '--',\n    time: 0\n}\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 470,
+        "y": 420,
+        "wires": [
+            [
+                "eb2b84e989af7418"
+            ]
+        ]
+    },
+    {
+        "id": "270964d67cd7e5ca",
+        "type": "function",
+        "z": "c25ee8e3cadf74f6",
+        "name": "Show 'Lastest value'",
+        "func": "return {\n    payload: 'Last value: ' + msg.payload\n};",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 460,
+        "y": 700,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ed8749cbb76eaff3",
+        "type": "function",
+        "z": "c25ee8e3cadf74f6",
+        "name": "Show 'Waiting to update value'",
+        "func": "return {\n    payload: {\n        fill: \"yellow\",\n        shape: \"dot\",\n        text: 'Waiting to update value'\n    }\n};",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 490,
+        "y": 660,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "551908b4f634e351",
+        "type": "comment",
+        "z": "0c809b82525ab765",
+        "g": "403fd0931430b1ba",
+        "name": "More References solution",
+        "info": "",
+        "x": 150,
+        "y": 740,
+        "wires": []
+    },
+    {
+        "id": "9db4c2e9d0a9ec58",
+        "type": "comment",
+        "z": "0c809b82525ab765",
+        "g": "403fd0931430b1ba",
+        "name": "v0.0.1",
+        "info": "",
+        "x": 430,
+        "y": 1280,
+        "wires": [],
+        "icon": "font-awesome/fa-exclamation-circle"
+    }
+]

@@ -1,0 +1,824 @@
+[
+    {
+        "id": "25dbbcda2ecff0d3",
+        "type": "group",
+        "z": "a9319fe458afe6b6",
+        "name": "",
+        "style": {
+            "label": true,
+            "color": "#000000",
+            "fill": "#dbcbe7"
+        },
+        "nodes": [
+            "715d4e1eff0435c7",
+            "346a2b3c97997210",
+            "3c5b4e04f79ed01c",
+            "45547527be48c127",
+            "c908a7b3e9ceed5f"
+        ],
+        "x": 14,
+        "y": 219,
+        "w": 938,
+        "h": 502
+    },
+    {
+        "id": "715d4e1eff0435c7",
+        "type": "group",
+        "z": "a9319fe458afe6b6",
+        "g": "25dbbcda2ecff0d3",
+        "name": "send chat message",
+        "style": {
+            "label": true,
+            "fill": "none"
+        },
+        "nodes": [
+            "afb2442e6fbc5d8a",
+            "65b38002d80a7926",
+            "fec2fa8ad7704214",
+            "1ec0c0238c825493",
+            "53870e44e5ace8b2",
+            "43be761c3e9e9f74"
+        ],
+        "x": 54,
+        "y": 539,
+        "w": 872,
+        "h": 122
+    },
+    {
+        "id": "15e3d881bcd13372",
+        "type": "subflow",
+        "name": "meshtastic chat - send message",
+        "info": "",
+        "category": "※meshtastic_chat",
+        "in": [
+            {
+                "x": 60,
+                "y": 80,
+                "wires": [
+                    {
+                        "id": "5872a66485b62222"
+                    }
+                ]
+            }
+        ],
+        "out": [],
+        "env": [
+            {
+                "name": "mqtt-broker",
+                "type": "mqtt-broker",
+                "value": "ff55020100010001",
+                "ui": {
+                    "icon": "font-awesome/fa-server",
+                    "label": {
+                        "zh-CN": "*Server",
+                        "en-US": "*Server"
+                    },
+                    "type": "conf-types"
+                }
+            },
+            {
+                "name": "firstLineText",
+                "type": "str",
+                "value": "",
+                "ui": {
+                    "icon": "font-awesome/fa-file-text-o",
+                    "label": {
+                        "zh-CN": "First line text",
+                        "en-US": "First line text"
+                    },
+                    "type": "input",
+                    "opts": {
+                        "types": [
+                            "str",
+                            "env"
+                        ]
+                    }
+                }
+            },
+            {
+                "name": "prefixText",
+                "type": "str",
+                "value": "",
+                "ui": {
+                    "icon": "font-awesome/fa-file-text-o",
+                    "label": {
+                        "zh-CN": "Prefix text",
+                        "en-US": "Prefix text"
+                    },
+                    "type": "input",
+                    "opts": {
+                        "types": [
+                            "str",
+                            "env"
+                        ]
+                    }
+                }
+            },
+            {
+                "name": "suffixText",
+                "type": "str",
+                "value": "",
+                "ui": {
+                    "icon": "font-awesome/fa-file-text-o",
+                    "label": {
+                        "zh-CN": "Suffix text",
+                        "en-US": "Suffix text"
+                    },
+                    "type": "input",
+                    "opts": {
+                        "types": [
+                            "str",
+                            "env"
+                        ]
+                    }
+                }
+            }
+        ],
+        "meta": {},
+        "color": "#B8EA4F",
+        "inputLabels": [
+            "chat message"
+        ],
+        "icon": "node-red/node_icon_meshtastic.png",
+        "status": {
+            "x": 700,
+            "y": 160,
+            "wires": [
+                {
+                    "id": "0a4a0cebe01e9bab",
+                    "port": 0
+                }
+            ]
+        }
+    },
+    {
+        "id": "5872a66485b62222",
+        "type": "function",
+        "z": "15e3d881bcd13372",
+        "name": "set chat message",
+        "func": "var firstLineText = env.get(\"firstLineText\");\nvar prefixText = env.get(\"prefixText\");\nvar suffixText = env.get(\"suffixText\");\n\nvar toSendMessage = '';\nvar inputMessage = msg.payload;\n\nif(firstLineText) {\n    toSendMessage += firstLineText;\n    \n    if (typeof inputMessage === 'string' && inputMessage.trim().length > 0) {\n        toSendMessage += '\\n';\n    }\n}\n\ntoSendMessage += prefixText;\ntoSendMessage += inputMessage;\ntoSendMessage += suffixText;\n\nreturn {\n    payload: {\n        // your meshtastic route id\n        \"from\": global.get('currentRouteId'),\n        \"type\": \"sendtext\",\n        \"payload\": toSendMessage\n    }\n}",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 230,
+        "y": 80,
+        "wires": [
+            [
+                "4107e606d6030695"
+            ]
+        ]
+    },
+    {
+        "id": "4107e606d6030695",
+        "type": "mqtt out",
+        "z": "15e3d881bcd13372",
+        "name": "send a downlink message to meshtastic channel",
+        "topic": "msh/seeed/2/json/mqtt/",
+        "qos": "0",
+        "retain": "false",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "${mqtt-broker}",
+        "x": 540,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "0a4a0cebe01e9bab",
+        "type": "status",
+        "z": "15e3d881bcd13372",
+        "name": "",
+        "scope": [
+            "4107e606d6030695"
+        ],
+        "x": 550,
+        "y": 160,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "afb2442e6fbc5d8a",
+        "type": "ui-text-input",
+        "z": "a9319fe458afe6b6",
+        "g": "715d4e1eff0435c7",
+        "group": "6efcdf57f80c8926",
+        "name": "",
+        "label": "Input chat message here",
+        "order": 2,
+        "width": "3",
+        "height": "1",
+        "topic": "topic",
+        "topicType": "msg",
+        "mode": "text",
+        "tooltip": "",
+        "delay": 300,
+        "passthru": false,
+        "sendOnDelay": false,
+        "sendOnBlur": true,
+        "sendOnEnter": true,
+        "className": "",
+        "clearable": true,
+        "sendOnClear": false,
+        "icon": "",
+        "iconPosition": "left",
+        "iconInnerPosition": "inside",
+        "x": 190,
+        "y": 580,
+        "wires": [
+            [
+                "fec2fa8ad7704214"
+            ]
+        ]
+    },
+    {
+        "id": "65b38002d80a7926",
+        "type": "ui-button",
+        "z": "a9319fe458afe6b6",
+        "g": "715d4e1eff0435c7",
+        "group": "6efcdf57f80c8926",
+        "name": "",
+        "label": "Send Message",
+        "order": 8,
+        "width": "3",
+        "height": "1",
+        "emulateClick": false,
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "iconPosition": "left",
+        "payload": "current_inputtext",
+        "payloadType": "flow",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 160,
+        "y": 620,
+        "wires": [
+            [
+                "1ec0c0238c825493"
+            ]
+        ]
+    },
+    {
+        "id": "fec2fa8ad7704214",
+        "type": "change",
+        "z": "a9319fe458afe6b6",
+        "g": "715d4e1eff0435c7",
+        "name": "record text to flow",
+        "rules": [
+            {
+                "t": "set",
+                "p": "current_inputtext",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 470,
+        "y": 580,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "1ec0c0238c825493",
+        "type": "function",
+        "z": "a9319fe458afe6b6",
+        "g": "715d4e1eff0435c7",
+        "name": "wrap chat message",
+        "func": "var chatUsername = '@You';\nvar chatMessage = msg.payload;\n\nreturn {\n    topic: chatUsername,\n    payload: chatMessage\n};",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 470,
+        "y": 620,
+        "wires": [
+            [
+                "53870e44e5ace8b2",
+                "43be761c3e9e9f74"
+            ]
+        ]
+    },
+    {
+        "id": "53870e44e5ace8b2",
+        "type": "subflow:15e3d881bcd13372",
+        "z": "a9319fe458afe6b6",
+        "g": "715d4e1eff0435c7",
+        "name": "meshtastic chat - send message",
+        "env": [
+            {
+                "name": "mqtt-broker",
+                "value": "ff55020100010001",
+                "type": "conf-type"
+            }
+        ],
+        "x": 760,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "43be761c3e9e9f74",
+        "type": "link out",
+        "z": "a9319fe458afe6b6",
+        "g": "715d4e1eff0435c7",
+        "name": "link A",
+        "mode": "link",
+        "links": [
+            "b70b4cead50cf7b4"
+        ],
+        "x": 670,
+        "y": 580,
+        "wires": [],
+        "l": true
+    },
+    {
+        "id": "6efcdf57f80c8926",
+        "type": "ui-group",
+        "name": "Command Group",
+        "page": "0929debe96edc4f1",
+        "width": "3",
+        "height": "6",
+        "order": 2,
+        "showTitle": true,
+        "className": "",
+        "visible": "true",
+        "disabled": "false"
+    },
+    {
+        "id": "0929debe96edc4f1",
+        "type": "ui-page",
+        "name": "2-Communication and information sharing",
+        "ui": "2a6c6f3f0d1de049",
+        "path": "/page10",
+        "icon": "home",
+        "layout": "grid",
+        "theme": "d86c2124665af35b",
+        "order": 3,
+        "className": "",
+        "visible": true,
+        "disabled": false
+    },
+    {
+        "id": "2a6c6f3f0d1de049",
+        "type": "ui-base",
+        "name": "Hazard Response Mission Pack",
+        "path": "/dashboard",
+        "includeClientData": true,
+        "acceptsClientConfig": [
+            "ui-notification",
+            "ui-control"
+        ],
+        "showPathInSidebar": false,
+        "showPageTitle": true,
+        "navigationStyle": "fixed",
+        "titleBarStyle": "default"
+    },
+    {
+        "id": "d86c2124665af35b",
+        "type": "ui-theme",
+        "name": "Theme",
+        "colors": {
+            "surface": "#ffffff",
+            "primary": "#0094ce",
+            "bgPage": "#eeeeee",
+            "groupBg": "#ffffff",
+            "groupOutline": "#cccccc"
+        },
+        "sizes": {
+            "pagePadding": "12px",
+            "groupGap": "12px",
+            "groupBorderRadius": "4px",
+            "widgetGap": "12px"
+        }
+    },
+    {
+        "id": "346a2b3c97997210",
+        "type": "group",
+        "z": "a9319fe458afe6b6",
+        "g": "25dbbcda2ecff0d3",
+        "name": "chat box ui",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "f080684a49dc646f",
+            "53d0b77130e78707",
+            "bebcbd1ab1269bbf",
+            "b70b4cead50cf7b4",
+            "1fd59b16301a17e8"
+        ],
+        "x": 54,
+        "y": 299,
+        "w": 712,
+        "h": 122
+    },
+    {
+        "id": "6b6c5faec21326f9",
+        "type": "subflow",
+        "name": "meshtastic chat ui",
+        "info": "",
+        "category": "※meshtastic_chat",
+        "in": [
+            {
+                "x": 60,
+                "y": 80,
+                "wires": [
+                    {
+                        "id": "0a0e8259eebb401b"
+                    }
+                ]
+            }
+        ],
+        "out": [],
+        "env": [
+            {
+                "name": "Group",
+                "type": "ui-group",
+                "value": "",
+                "ui": {
+                    "type": "conf-types"
+                }
+            }
+        ],
+        "meta": {},
+        "color": "#9FE6EC",
+        "icon": "node-red/node_icon_meshtastic.png",
+        "status": {
+            "x": 300,
+            "y": 180,
+            "wires": []
+        }
+    },
+    {
+        "id": "0a0e8259eebb401b",
+        "type": "ui-template",
+        "z": "6b6c5faec21326f9",
+        "group": "${Group}",
+        "page": "",
+        "ui": "",
+        "name": "chat ui",
+        "order": 2,
+        "width": "0",
+        "height": "0",
+        "head": "",
+        "format": "<template>\n  <div class=\"chat-window\" id=\"chat\">\n    <div ref=\"chatList\" class=\"chat-content\" id=\"chat-content\">\n      <div v-for=\"(item, index) in reversedMessages\" :key=\"item.id\" class=\"value-per\"\n        :class=\"{ right: item.sender === '@You' }\">\n        <div class=\"flex\">\n          <div v-html=\"item.image\" class=\"avatar-container\"></div>\n          <div>\n            <div style=\"line-height:20px\">\n              <div>\n                <span class=\"text-caption\">{{ formatTime(item.time) }}</span>\n              </div>\n              <div>\n                <strong class=\"user-name\">{{ item.sender }}</strong>\n              </div>\n            </div>\n            <p v-html=\"item.message\" class=\"pre-wrap\"></p>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</template>\n\n<script>\n  export default {\n    data() {\n      return {\n        timer: null,\n      };\n    },\n    computed: {\n      reversedMessages() {\n        return Array.isArray(this.msg.payload) ? [...this.msg.payload] : [];\n      },\n    },\n    methods: {\n      formatTime(timestamp) {\n        const date = new Date(timestamp);\n        return date.toLocaleTimeString();\n      },\n      scrollToBottom(elementId) {\n        const domWrapper = document.getElementById(elementId);\n        const scrollHeight = domWrapper.scrollHeight; // 内容总高度\n        domWrapper.scrollTo(0, scrollHeight + 150);\n\n      },\n    },\n    watch: {\n      msg: {\n        handler(newVal, oldVal) {\n          if (\n            newVal.payload &&\n            newVal.payload.length > (oldVal.payload ? oldVal.payload.length : 0)\n          ) {\n            if (this.timer) clearTimeout(this.timer)\n            this.timer = setTimeout(this.scrollToBottom(\"chat\"), 500)\n          }\n        },\n        deep: true,\n        immediate: true,\n      },\n    },\n    mounted() { },\n    unmounted() {\n      // code here when the component is removed from the Dashboard\n      // i.e. when the user navigates away from the page\n    },\n  };\n</script>\n\n<style scoped>\n  .chat-window {\n    height: 600px;\n    /* Adjust as needed */\n    overflow-y: auto;\n    position: relative;\n  }\n\n  .value-per {\n    display: flex;\n    align-items: flex-start;\n    justify-content: flex-start;\n    line-height: 30px;\n    border-bottom: 1px dashed #abc;\n    padding: 10px;\n  }\n\n  .value-per.right {\n    justify-content: flex-end;\n  }\n\n  .flex {\n    display: flex;\n  }\n\n  .avatar-container {\n    width: 40px;\n    /* Adjust size as needed */\n    height: 40px;\n    /* Adjust size as needed */\n    display: flex;\n    align-items: center;\n    /* Center the avatar vertically */\n  }\n\n  .pre-wrap {\n    white-space: pre-wrap;\n  }\n</style>",
+        "storeOutMessages": true,
+        "passthru": false,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 270,
+        "y": 80,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f080684a49dc646f",
+        "type": "ui-button",
+        "z": "a9319fe458afe6b6",
+        "g": "346a2b3c97997210",
+        "group": "6efcdf57f80c8926",
+        "name": "",
+        "label": "Clear Messages Button UI",
+        "order": 7,
+        "width": "3",
+        "height": "1",
+        "emulateClick": false,
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "iconPosition": "left",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 200,
+        "y": 340,
+        "wires": [
+            [
+                "53d0b77130e78707"
+            ]
+        ]
+    },
+    {
+        "id": "53d0b77130e78707",
+        "type": "change",
+        "z": "a9319fe458afe6b6",
+        "g": "346a2b3c97997210",
+        "name": "delete flow.data",
+        "rules": [
+            {
+                "t": "delete",
+                "p": "data",
+                "pt": "flow"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 430,
+        "y": 340,
+        "wires": [
+            [
+                "1fd59b16301a17e8"
+            ]
+        ]
+    },
+    {
+        "id": "bebcbd1ab1269bbf",
+        "type": "function",
+        "z": "a9319fe458afe6b6",
+        "g": "346a2b3c97997210",
+        "name": "handle user chat ui data",
+        "func": "// 将用户名转换为十六进制的字符串并截取最后四位\nconst chatUsername = msg.topic;\nconst chatMessage = msg.payload\n\n// ------------------ Generate Avatar -----------------------\n// 获取输入参数\nconst text = chatUsername;\nconst width = 30;\nconst height = 30;\nconst textColor = '#FFFFFF'; // 白色\n\n// 生成基于用户名的深色背景\nfunction stringToColor(str) {\n    let hash = 0;\n    for (let i = 0; i < str.length; i++) {\n        hash = str.charCodeAt(i) + ((hash << 5) - hash);\n    }\n    let color = '#';\n    for (let i = 0; i < 3; i++) {\n        let value = (hash >> (i * 8)) & 0xFF;\n        value = Math.floor(value * 0.6); // 调暗颜色\n        color += ('00' + value.toString(16)).substr(-2);\n    }\n    return color;\n}\n\nconst circleColor = stringToColor(chatUsername);\n\n// 使用HTML和CSS生成头像\nconst avatarHtml = `\n    <div style=\"width: ${width}px; height: ${height}px; border-radius: 50%; background-color: ${circleColor}; display: flex; align-items: center; justify-content: center; color: ${textColor}; font-size: 10px; font-weight: bold;\">\n        ${text}\n    </div>\n`;\n\n// ------------------- Generate chat history list ----------------------\nvar tmp = flow.get('data') || [];\n\ntmp.push({\n    image: avatarHtml,\n    sender: chatUsername,\n    message: chatMessage,\n    time: new Date()\n});\n\nflow.set('data', tmp);\nmsg.payload = tmp;\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 400,
+        "y": 380,
+        "wires": [
+            [
+                "1fd59b16301a17e8"
+            ]
+        ]
+    },
+    {
+        "id": "b70b4cead50cf7b4",
+        "type": "link in",
+        "z": "a9319fe458afe6b6",
+        "g": "346a2b3c97997210",
+        "name": "link A'",
+        "links": [
+            "43be761c3e9e9f74",
+            "f4e38e4884fc9cdc",
+            "0a42f96220d3bb8b"
+        ],
+        "x": 130,
+        "y": 380,
+        "wires": [
+            [
+                "bebcbd1ab1269bbf"
+            ]
+        ],
+        "l": true
+    },
+    {
+        "id": "1fd59b16301a17e8",
+        "type": "subflow:6b6c5faec21326f9",
+        "z": "a9319fe458afe6b6",
+        "g": "346a2b3c97997210",
+        "name": "",
+        "env": [
+            {
+                "name": "Group",
+                "value": "e8de57e79e3ba00b",
+                "type": "conf-type"
+            },
+            {
+                "key": "DB2_SF_ORDER",
+                "value": "1",
+                "type": "str"
+            }
+        ],
+        "x": 650,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "3c5b4e04f79ed01c",
+        "type": "group",
+        "z": "a9319fe458afe6b6",
+        "g": "25dbbcda2ecff0d3",
+        "name": "receive chat message",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "8d248fc5be748a9e",
+            "f4e38e4884fc9cdc"
+        ],
+        "x": 54,
+        "y": 439,
+        "w": 472,
+        "h": 82
+    },
+    {
+        "id": "c331a93ea0d418b4",
+        "type": "subflow",
+        "name": "meshtastic chat - receive message",
+        "info": "",
+        "category": "※meshtastic_chat",
+        "in": [],
+        "out": [
+            {
+                "x": 1020,
+                "y": 100,
+                "wires": [
+                    {
+                        "id": "9ebe95fbfa40c393",
+                        "port": 0
+                    }
+                ]
+            }
+        ],
+        "env": [
+            {
+                "name": "mqtt-broker",
+                "type": "mqtt-broker",
+                "value": "ff55020100010001",
+                "ui": {
+                    "icon": "font-awesome/fa-server",
+                    "label": {
+                        "zh-CN": "*Server",
+                        "en-US": "*Server"
+                    },
+                    "type": "conf-types"
+                }
+            }
+        ],
+        "meta": {
+            "version": "0.0.1",
+            "author": "seeed",
+            "license": "Apache-2.0"
+        },
+        "color": "#B8EA4F",
+        "outputLabels": [
+            "chat message"
+        ],
+        "icon": "node-red/node_icon_meshtastic.png",
+        "status": {
+            "x": 960,
+            "y": 200,
+            "wires": [
+                {
+                    "id": "cc68c7211e329ee0",
+                    "port": 0
+                },
+                {
+                    "id": "9ebe95fbfa40c393",
+                    "port": 0
+                }
+            ]
+        }
+    },
+    {
+        "id": "74c8d76f73804762",
+        "type": "function",
+        "z": "c331a93ea0d418b4",
+        "name": "Meshtastic Decoder",
+        "func": "// Function to check if an object is valid JSON\nfunction isValidJsonObject(obj) {\n    try {\n        JSON.stringify(obj);\n    } catch (e) {\n        return false;\n    }\n    return true;\n}\n\n// Check if the payload is a valid JSON string or a JSON object\nif (typeof msg.payload === 'string' && isValidJsonObject(JSON.parse(msg.payload))) {\n    // Parse the JSON message if it's a string\n    msg.payload = JSON.parse(msg.payload);\n} else if (typeof msg.payload === 'object' && isValidJsonObject(msg.payload)) {\n    // Do nothing if it's already a JSON object\n} else {\n    // Ignore invalid JSON strings or objects\n    return [null, null, null, null, null];\n}\n\nlet decoded = msg.payload;\n\nlet positionMsg = null;\nlet textMsg = null;\nlet telemetryMsg = null;\nlet emptyTypeMsg = null;\nlet unknownTypeMsg = null;\n\n// Process different types of messages\nif (decoded.type === \"position\") {\n    if (decoded.payload.latitude_i !== 0 && decoded.payload.longitude_i !== 0) {\n        positionMsg = {\n            payload: {\n                type: \"position\",\n                channel: decoded.channel,\n                from: decoded.from,\n                hop_start: decoded.hop_start,\n                hops_away: decoded.hops_away,\n                id: decoded.id,\n                latitude: decoded.payload.latitude_i,\n                longitude: decoded.payload.longitude_i,\n                PDOP: decoded.payload.PDOP,\n                altitude: decoded.payload.altitude,\n                ground_track: decoded.payload.ground_track,\n                precision_bits: decoded.payload.precision_bits,\n                sats_in_view: decoded.payload.sats_in_view,\n                time: decoded.payload.time,\n                rssi: decoded.rssi,\n                snr: decoded.snr,\n                sender: decoded.sender,\n                timestamp: decoded.timestamp,\n                to: decoded.to\n            }\n        };\n    }\n} else if (decoded.type === \"text\") {\n    var chatmessage = \"\";\n    if (decoded.payload.text && decoded.payload.text.includes(\"\\u0000\")) {\n        chatmessage = \"( Unsupported text content format )\";\n    } else {\n        chatmessage = decoded.payload.text || decoded.payload;\n    }\n\n    textMsg = {\n        payload: {\n            type: \"text\",\n            channel: decoded.channel,\n            from: decoded.from,\n            hop_start: decoded.hop_start,\n            hops_away: decoded.hops_away,\n            id: decoded.id,\n            text: chatmessage,\n            sender: decoded.sender,\n            timestamp: decoded.timestamp,\n            to: decoded.to\n        }\n    };\n} else if (decoded.type === \"telemetry\") {\n    telemetryMsg = {\n        payload: {\n            type: \"telemetry\",\n            channel: decoded.channel,\n            from: decoded.from,\n            hop_start: decoded.hop_start,\n            hops_away: decoded.hops_away,\n            id: decoded.id,\n            air_util_tx: decoded.payload.air_util_tx,\n            battery_level: decoded.payload.battery_level,\n            channel_utilization: decoded.payload.channel_utilization,\n            uptime_seconds: decoded.payload.uptime_seconds,\n            voltage: decoded.payload.voltage,\n            sender: decoded.sender,\n            timestamp: decoded.timestamp,\n            to: decoded.to\n        }\n    };\n} else if (decoded.type === \"\") {\n    emptyTypeMsg = {\n        payload: {\n            type: \"\",\n            channel: decoded.channel,\n            from: decoded.from,\n            hop_start: decoded.hop_start,\n            hops_away: decoded.hops_away,\n            id: decoded.id,\n            rssi: decoded.rssi,\n            sender: decoded.sender,\n            snr: decoded.snr,\n            timestamp: decoded.timestamp,\n            to: decoded.to\n        }\n    };\n} else {\n    unknownTypeMsg = {\n        payload: {\n            type: \"unknown\",\n            raw: decoded\n        }\n    };\n}\n\nreturn [positionMsg, textMsg, telemetryMsg, emptyTypeMsg, unknownTypeMsg];\n",
+        "outputs": 5,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 560,
+        "y": 100,
+        "wires": [
+            [],
+            [
+                "9ebe95fbfa40c393"
+            ],
+            [],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "5d6d30f1d583c1aa",
+        "type": "mqtt in",
+        "z": "c331a93ea0d418b4",
+        "name": "Subscribe meshtastic message",
+        "topic": "msh/seeed/2/json/#",
+        "qos": "0",
+        "datatype": "json",
+        "broker": "${mqtt-broker}",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 270,
+        "y": 100,
+        "wires": [
+            [
+                "74c8d76f73804762"
+            ]
+        ]
+    },
+    {
+        "id": "9ebe95fbfa40c393",
+        "type": "function",
+        "z": "c331a93ea0d418b4",
+        "name": "wrap chat message",
+        "func": "var chatUsername = msg.payload.from.toString(16).slice(-4);\nvar chatMessage = msg.payload.text;\n\nreturn {\n    topic: chatUsername,\n    payload: chatMessage\n};",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 790,
+        "y": 100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "cc68c7211e329ee0",
+        "type": "status",
+        "z": "c331a93ea0d418b4",
+        "name": "",
+        "scope": [
+            "5d6d30f1d583c1aa"
+        ],
+        "x": 790,
+        "y": 200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "8d248fc5be748a9e",
+        "type": "subflow:c331a93ea0d418b4",
+        "z": "a9319fe458afe6b6",
+        "g": "3c5b4e04f79ed01c",
+        "name": "meshtastic chat - receive message",
+        "env": [
+            {
+                "name": "mqtt-broker",
+                "value": "ff55020100010001",
+                "type": "conf-type"
+            }
+        ],
+        "x": 220,
+        "y": 480,
+        "wires": [
+            [
+                "f4e38e4884fc9cdc"
+            ]
+        ]
+    },
+    {
+        "id": "f4e38e4884fc9cdc",
+        "type": "link out",
+        "z": "a9319fe458afe6b6",
+        "g": "3c5b4e04f79ed01c",
+        "name": "link A",
+        "mode": "link",
+        "links": [
+            "b70b4cead50cf7b4"
+        ],
+        "x": 450,
+        "y": 480,
+        "wires": [],
+        "l": true
+    },
+    {
+        "id": "45547527be48c127",
+        "type": "comment",
+        "z": "a9319fe458afe6b6",
+        "g": "25dbbcda2ecff0d3",
+        "name": "Chat",
+        "info": "",
+        "x": 90,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "c908a7b3e9ceed5f",
+        "type": "comment",
+        "z": "a9319fe458afe6b6",
+        "g": "25dbbcda2ecff0d3",
+        "name": "v0.0.1",
+        "info": "",
+        "x": 870,
+        "y": 680,
+        "wires": [],
+        "icon": "font-awesome/fa-exclamation-circle"
+    }
+]

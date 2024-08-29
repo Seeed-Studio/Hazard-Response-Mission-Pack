@@ -1,0 +1,284 @@
+[
+    {
+      "id": "e0d523198c47fac8",
+      "type": "subflow",
+      "name": "SenseCAP Data Logger - Ultrasonic",
+      "info": "",
+      "category": "※data-logger-ultrasonic",
+      "in": [],
+      "out": [
+        {
+          "x": 1660,
+          "y": 80,
+          "wires": [
+            {
+              "id": "4a6bb66a194ebecb",
+              "port": 0
+            },
+            {
+              "id": "e759cd06d6462147",
+              "port": 0
+            }
+          ]
+        }
+      ],
+      "env": [
+        {
+          "name": "----- Device Connection -----",
+          "type": "str",
+          "value": "",
+          "ui": {
+            "type": "none"
+          }
+        },
+        {
+          "name": "mqttBroker",
+          "type": "mqtt-broker",
+          "value": "ff55020100010001",
+          "ui": {
+            "icon": "font-awesome/fa-server",
+            "label": {
+              "zh-CN": "*Server",
+              "en-US": "*Server"
+            },
+            "type": "conf-types"
+          }
+        },
+        {
+          "name": "applicationId",
+          "type": "str",
+          "value": "447ecfe1-6d26-4e82-bf28-d6dba2fb0d36",
+          "ui": {
+            "icon": "font-awesome/fa-align-justify",
+            "label": {
+              "zh-CN": "*AppId",
+              "en-US": "*AppId"
+            },
+            "type": "input",
+            "opts": {
+              "types": [
+                "str",
+                "env"
+              ]
+            }
+          }
+        },
+        {
+          "name": "deviceId",
+          "type": "str",
+          "value": "2cf7f1c0446001bf",
+          "ui": {
+            "icon": "font-awesome/fa-align-justify",
+            "label": {
+              "zh-CN": "*EUI",
+              "en-US": "*EUI"
+            },
+            "type": "input",
+            "opts": {
+              "types": [
+                "str",
+                "env"
+              ]
+            }
+          }
+        }
+      ],
+      "meta": {},
+      "color": "#B8EA4F",
+      "icon": "node-red/node_icon_s2100.png",
+      "status": {
+        "x": 1660,
+        "y": 180,
+        "wires": [
+          {
+            "id": "bf8cf61d9a1c87e9",
+            "port": 0
+          },
+          {
+            "id": "b4cae0a3a27b6aa9",
+            "port": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "4ed1a424454e047f",
+      "type": "mqtt in",
+      "z": "e0d523198c47fac8",
+      "name": "subscribe mqtt, and receive message",
+      "topic": "",
+      "qos": "0",
+      "datatype": "auto-detect",
+      "broker": "${mqttBroker}",
+      "nl": false,
+      "rap": true,
+      "rh": 0,
+      "inputs": 1,
+      "x": 690,
+      "y": 80,
+      "wires": [
+        [
+          "9369152b78be0fd8",
+          "609a0d5ccc3483ea"
+        ]
+      ]
+    },
+    {
+      "id": "bf8cf61d9a1c87e9",
+      "type": "status",
+      "z": "e0d523198c47fac8",
+      "name": "",
+      "scope": [
+        "4ed1a424454e047f"
+      ],
+      "x": 1560,
+      "y": 240,
+      "wires": [
+        []
+      ]
+    },
+    {
+      "id": "66957fd11eb1e7f3",
+      "type": "function",
+      "z": "e0d523198c47fac8",
+      "name": "build subscribe topic command",
+      "func": "var applicationId = env.get(\"applicationId\");\nvar deviceId = env.get(\"deviceId\");\n\nif(!applicationId) {\n    applicationId = env.get(\"SENSECRAFT_MISSION_PACK_CHIRPSTACK_APPID\");\n}\n\nif(!deviceId) {\n    deviceId = env.get(\"SENSECRAFT_MISSION_PACK_DEVICE_ULTRASONIC_DEVEUI\")\n}\n\nmsg.action = 'subscribe'\nmsg.topic = {\n    topic: `application/${applicationId}/device/${deviceId}/event/up`,\n    qos: 0\n}\n\nreturn msg;",
+      "outputs": 1,
+      "timeout": 0,
+      "noerr": 0,
+      "initialize": "",
+      "finalize": "",
+      "libs": [],
+      "x": 370,
+      "y": 80,
+      "wires": [
+        [
+          "4ed1a424454e047f"
+        ]
+      ]
+    },
+    {
+      "id": "f375699ff32824af",
+      "type": "inject",
+      "z": "e0d523198c47fac8",
+      "name": "on startup",
+      "props": [],
+      "repeat": "",
+      "crontab": "",
+      "once": true,
+      "onceDelay": 0.1,
+      "topic": "",
+      "x": 130,
+      "y": 80,
+      "wires": [
+        [
+          "66957fd11eb1e7f3"
+        ]
+      ]
+    },
+    {
+      "id": "4a6bb66a194ebecb",
+      "type": "function",
+      "z": "e0d523198c47fac8",
+      "d": true,
+      "name": "decode ultrasonic message",
+      "func": "var value = (msg.payload.object.messages[0][0].measurementValue || 0) / 1000.0\n\nmsg.payload = value;\nmsg.sensecraft = {}\nmsg.sensecraft.fromType = \"Device\"\nmsg.sensecraft.valueMeaning = \"ChangeValue\"\nmsg.sensecraft.valuetype = \"Number\"\nmsg.sensecraft.expectInputType = [\"Condition\"]\n\nreturn msg;\n",
+      "outputs": 1,
+      "timeout": 0,
+      "noerr": 0,
+      "initialize": "",
+      "finalize": "",
+      "libs": [],
+      "x": 1300,
+      "y": 80,
+      "wires": [
+        [
+          "b4cae0a3a27b6aa9"
+        ]
+      ]
+    },
+    {
+      "id": "9369152b78be0fd8",
+      "type": "change",
+      "z": "e0d523198c47fac8",
+      "d": true,
+      "name": "delete unused msg fields",
+      "rules": [
+        {
+          "t": "delete",
+          "p": "topic",
+          "pt": "msg"
+        }
+      ],
+      "action": "",
+      "property": "",
+      "from": "",
+      "to": "",
+      "reg": false,
+      "x": 1010,
+      "y": 80,
+      "wires": [
+        [
+          "4a6bb66a194ebecb"
+        ]
+      ]
+    },
+    {
+      "id": "b4cae0a3a27b6aa9",
+      "type": "function",
+      "z": "e0d523198c47fac8",
+      "name": "update status",
+      "func": "return {\n    payload: {\n        fill: \"green\",\n        shape: \"dot\",\n        text: 'Last Value: ' + msg.payload\n    }\n};",
+      "outputs": 1,
+      "timeout": 0,
+      "noerr": 0,
+      "initialize": "",
+      "finalize": "",
+      "libs": [],
+      "x": 1540,
+      "y": 180,
+      "wires": [
+        []
+      ]
+    },
+    {
+      "id": "609a0d5ccc3483ea",
+      "type": "function",
+      "z": "e0d523198c47fac8",
+      "name": "decode lorawan raw message",
+      "func": "// Decode the MQTT payload from ChirpStack, which is Base64 encoded hex data\nvar base64Data = msg.payload.data || \"\";\nvar devEui = msg.payload.deviceInfo.devEui;\nvar bytes = Buffer.from(base64Data, 'base64'); // Decode Base64 string to byte array\nvar port = msg.payload.fPort || 0; // Extract fPort from the message, defaulting to 0 if not present\n\n// Call the decodeUplink function to process the decoded bytes\nmsg = {\n    payload: decodeUplink({bytes: bytes}, port).data\n}\n\n// Return the processed message object\nreturn msg;\n\n/**\n * Main decoder function for uplink messages.\n * Takes in the decoded byte array and processes it into a structured format.\n */\nfunction decodeUplink(input, port) {\n    var bytes = input['bytes'];\n    bytes = bytes2HexString(bytes).toUpperCase(); // Convert byte array to uppercase hex string\n\n    let result = {\n        'err': 0, \n        'eui': devEui,\n        'port': port,\n        'payload': bytes, \n        'valid': true,\n        'messages': []\n    };\n\n    // Split the hex string into individual data frames based on their identifiers\n    let splitArray = dataSplit(bytes);\n\n    // Decode each data frame according to its dataId and store the results\n    let decoderArray = splitArray.map(item => {\n        return dataIdAndDataValueJudge(item.dataId, item.dataValue);\n    });\n\n    // Store the decoded messages in the result object\n    result.messages = decoderArray;\n\n    return { data: result };\n}\n\n/**\n * Converts a byte array or buffer to a hex string.\n * This function ensures that each byte is represented as a two-character hex value.\n * \n * @param {Buffer|Array} arrBytes - The byte array to convert\n * @returns {string} - The resulting hex string\n */\nfunction bytes2HexString(arrBytes) {\n    if (!Array.isArray(arrBytes)) {\n        arrBytes = Array.from(arrBytes); // Convert buffer or array-like object to array\n    }\n    return arrBytes.map(byte => ('0' + (byte & 0xFF).toString(16)).slice(-2)).join('');\n}\n\n/**\n * Splits the hex string into data frames based on their identifiers.\n * Each frame is defined by a dataId and a corresponding dataValue.\n * \n * @param {string} bytes - The hex string to split\n * @returns {Array} - An array of objects containing dataId and dataValue\n */\nfunction dataSplit(bytes) {\n    let frameArray = [];\n\n    while (bytes.length > 2) {\n        let dataId = bytes.substring(0, 2); // Extract the data identifier\n        let dataValue;\n        let dataObj = {};\n\n        // Define the length of each data frame based on the dataId\n        const dataIdMap = {\n            '01': 22, '20': 22, '21': 22, '30': 22, '31': 22, '33': 22, \n            '40': 22, '41': 22, '42': 22, '43': 22, '44': 22, '45': 22,\n            '02': 18, '03': 4, '06': 4, '05': 10, '34': 10, \n            '04': 20, '10': 20, '32': 20, '35': 20, '36': 20, '37': 20, '38': 20, '39': 20\n        };\n\n        // Determine the length of the dataValue based on the dataId\n        let length = dataIdMap[dataId] || 2;\n        dataValue = bytes.substring(2, length); // Extract the dataValue based on the length\n        bytes = bytes.substring(length); // Move to the next frame\n\n        dataObj = { 'dataId': dataId, 'dataValue': dataValue }; // Create an object for this data frame\n\n        frameArray.push(dataObj); // Add the object to the array of frames\n    }\n\n    return frameArray;\n}\n\n/**\n * Decodes the dataValue of a given dataId and converts it into meaningful measurements.\n * \n * @param {string} dataId - The identifier for the type of data\n * @param {string} dataValue - The hex string representing the data to be decoded\n * @returns {Array} - An array of measurement objects\n */\nfunction dataIdAndDataValueJudge(dataId, dataValue) {\n    const measurements = [];\n    switch (dataId) {\n        case '01': // Temperature, humidity, light intensity, UV index, wind speed\n            measurements.push(createMeasurement('4097', 'Air Temperature', dataValue.substring(0, 4), 10));\n            measurements.push(createMeasurement('4098', 'Air Humidity', dataValue.substring(4, 6)));\n            measurements.push(createMeasurement('4099', 'Light Intensity', dataValue.substring(6, 14)));\n            measurements.push(createMeasurement('4190', 'UV Index', dataValue.substring(14, 16), 10));\n            measurements.push(createMeasurement('4105', 'Wind Speed', dataValue.substring(16, 20), 10));\n            break;\n        case '02': // Wind direction, rainfall, barometric pressure\n            measurements.push(createMeasurement('4104', 'Wind Direction Sensor', dataValue.substring(0, 4)));\n            measurements.push(createMeasurement('4113', 'Rain Gauge', dataValue.substring(4, 12), 1000));\n            measurements.push(createMeasurement('4101', 'Barometric Pressure', dataValue.substring(12, 16), 0.1));\n            break;\n        case '03': // Battery level\n            measurements.push({ 'Battery(%)': loraWANV2DataFormat(dataValue) });\n            break;\n        case '04': // Battery, hardware version, firmware version, measurement intervals\n            measurements.push({\n                'Battery(%)': loraWANV2DataFormat(dataValue.substring(0, 2)),\n                'Hardware Version': createVersion(dataValue.substring(2, 6)),\n                'Firmware Version': createVersion(dataValue.substring(6, 10)),\n                'measureInterval': parseInt(loraWANV2DataFormat(dataValue.substring(10, 14))) * 60,\n                'gpsInterval': parseInt(loraWANV2DataFormat(dataValue.substring(14, 18))) * 60\n            });\n            break;\n        case '05': // Measurement interval, GPS interval\n            measurements.push({\n                'measureInterval': parseInt(loraWANV2DataFormat(dataValue.substring(0, 4))) * 60,\n                'gpsInterval': parseInt(loraWANV2DataFormat(dataValue.substring(4, 8))) * 60\n            });\n            break;\n        case '06': // Sensor error event\n            measurements.push(createErrorMeasurement(dataValue));\n            break;\n        case '10': // Status and channel type\n            let { status, type } = loraWANV2BitDataFormat(dataValue.substring(0, 2));\n            measurements.push({\n                status: status, \n                channelType: type, \n                sensorEui: dataValue.substring(2)\n            });\n            break;\n        case '20':\n        case '21':\n        case '43':\n        case '44':\n        case '45': // AI detections\n            measurements.push(...createAIMeasurements(dataId, dataValue));\n            break;\n        case '30':\n        case '31':\n        case '32':\n        case '33': // Channel measurements\n            measurements.push(...createChannelMeasurements(dataId, dataValue));\n            break;\n        case '34': // Data logger configuration\n            measurements.push({\n                'dataloggerProtocol': loraWANV2DataFormat(dataValue.substring(0, 2)),\n                'dataloggerGPIOInput': loraWANV2DataFormat(dataValue.substring(2, 4)),\n                'dataloggerAnalogType': loraWANV2DataFormat(dataValue.substring(4, 6)),\n                'dataloggerAnalogInterface': loraWANV2DataFormat(dataValue.substring(6, 8))\n            });\n            break;\n        case '35':\n        case '36':\n        case '37':\n        case '38': // Channel pair measurements\n            measurements.push(createChannelMeasurementPair(dataValue));\n            break;\n        case '39': // Battery, hardware version, firmware version, measurement intervals\n            measurements.push({\n                'Battery(%)': loraWANV2DataFormat(dataValue.substring(0, 2)),\n                'Hardware Version': createVersion(dataValue.substring(2, 6)),\n                'Firmware Version': createVersion(dataValue.substring(6, 10)),\n                'measureInterval': parseInt(loraWANV2DataFormat(dataValue.substring(10, 14))) * 60,\n                'thresholdMeasureInterval': parseInt(loraWANV2DataFormat(dataValue.substring(14, 18)))\n            });\n            break;\n        case '40':\n        case '41': // Light intensity, sound intensity, accelerometer data\n            measurements.push(...createSensorMeasurements(dataValue));\n            break;\n        case '42': // Air temperature, humidity, tVOC, CO2, soil moisture\n            measurements.push(createMeasurement('4097', 'Air Temperature', dataValue.substring(0, 4), 100));\n            measurements.push(createMeasurement('4098', 'Air Humidity', dataValue.substring(4, 8), 100));\n            measurements.push(createMeasurement('4195', 'Total Volatile Organic Compounds', dataValue.substring(8, 12)));\n            measurements.push(createMeasurement('4100', 'CO2', dataValue.substring(12, 16)));\n            measurements.push(createMeasurement('4196', 'Soil moisture intensity', dataValue.substring(16, 20)));\n            break;\n        default:\n            break;\n    }\n    return measurements;\n}\n\n/**\n * Creates a measurement object.\n * \n * @param {string} measurementId - The ID of the measurement type\n * @param {string} type - The type of measurement (e.g., temperature, humidity)\n * @param {string} data - The raw hex string representing the data\n * @param {number} divisor - A divisor for scaling the data value (optional)\n * @returns {Object} - A measurement object with the formatted data\n */\nfunction createMeasurement(measurementId, type, data, divisor = 1) {\n    return {\n        measurementValue: loraWANV2DataFormat(data, divisor),\n        measurementId: measurementId,\n        type: type\n    };\n}\n\n/**\n * Creates a version string from a data string.\n * \n * @param {string} data - The raw hex string representing version information\n * @returns {string} - The formatted version string (e.g., \"1.0\")\n */\nfunction createVersion(data) {\n    return `${loraWANV2DataFormat(data.substring(0, 2))}.${loraWANV2DataFormat(data.substring(2, 4))}`;\n}\n\n/**\n * Creates an error measurement object based on an error code.\n * \n * @param {string} dataValue - The raw hex string representing the error code\n * @returns {Object} - An error measurement object with detailed error information\n */\nfunction createErrorMeasurement(dataValue) {\n    const errorCodes = {\n        '00': 'CCL_SENSOR_ERROR_NONE',\n        '01': 'CCL_SENSOR_NOT_FOUND',\n        '02': 'CCL_SENSOR_WAKEUP_ERROR',\n        '03': 'CCL_SENSOR_NOT_RESPONSE',\n        '04': 'CCL_SENSOR_DATA_EMPTY',\n        '05': 'CCL_SENSOR_DATA_HEAD_ERROR',\n        '06': 'CCL_SENSOR_DATA_CRC_ERROR',\n        '07': 'CCL_SENSOR_DATA_B1_NO_VALID',\n        '08': 'CCL_SENSOR_DATA_B2_NO_VALID',\n        '09': 'CCL_SENSOR_RANDOM_NOT_MATCH',\n        '0A': 'CCL_SENSOR_PUBKEY_SIGN_VERIFY_FAILED',\n        '0B': 'CCL_SENSOR_DATA_SIGN_VERIFY_FAILED',\n        '0C': 'CCL_SENSOR_DATA_VALUE_HI',\n        '0D': 'CCL_SENSOR_DATA_VALUE_LOW',\n        '0E': 'CCL_SENSOR_DATA_VALUE_MISSED',\n        '0F': 'CCL_SENSOR_ARG_INVAILD',\n        '10': 'CCL_SENSOR_RS485_MASTER_BUSY',\n        '11': 'CCL_SENSOR_RS485_REV_DATA_ERROR',\n        '12': 'CCL_SENSOR_RS485_REG MISSING',\n        '13': 'CCL_SENSOR_RS485_FUN_EXE_ERROR',\n        '14': 'CCL_SENSOR_RS485_WRITE_STRATEGY_ERROR',\n        '15': 'CCL_SENSOR_CONFIG_ERROR',\n        'FF': 'CCL_SENSOR_DATA_ERROR_UNKNOWN'\n    };\n    const errCode = dataValue;\n    return {\n        measurementId: '4101',\n        type: 'sensor_error_event',\n        errCode: errCode,\n        descZh: errorCodes[errCode] || 'CC_OTHER_FAILED'\n    };\n}\n\n/**\n * Creates an array of AI detection measurements.\n * \n * @param {string} dataId - The identifier for the AI detection type\n * @param {string} dataValue - The raw hex string representing AI detection data\n * @returns {Array} - An array of AI detection measurement objects\n */\nfunction createAIMeasurements(dataId, dataValue) {\n    let measurements = [];\n    let initMeasurementId = dataId === '20' ? 4175 : dataId === '21' ? 4180 : 0;\n    for (let i = 0; i < dataValue.length; i += 4) {\n        let modelId = loraWANV2DataFormat(dataValue.substring(i, i + 2));\n        let detectionType = loraWANV2DataFormat(dataValue.substring(i + 2, i + 4));\n        let aiValues = `${modelId}.${detectionType}`;\n        measurements.push({\n            measurementValue: aiValues,\n            measurementId: initMeasurementId,\n            type: `AI Detection ${i}`\n        });\n        initMeasurementId++;\n    }\n    return measurements;\n}\n\n/**\n * Creates an array of channel measurements.\n * \n * @param {string} dataId - The identifier for the channel measurement type\n * @param {string} dataValue - The raw hex string representing channel measurement data\n * @returns {Array} - An array of channel measurement objects\n */\nfunction createChannelMeasurements(dataId, dataValue) {\n    let measurements = [];\n    let channelInfo = loraWANV2ChannelBitFormat(dataValue.substring(0, 2));\n    let dataOne = createMeasurement(parseInt(channelInfo.one), 'Measurement', dataValue.substring(4, 12), 1000);\n    let dataTwo = createMeasurement(parseInt(channelInfo.two), 'Measurement', dataValue.substring(12, 20), 1000);\n\n    if (parseInt(channelInfo.one)) measurements.push(dataOne);\n    if (parseInt(channelInfo.two)) measurements.push(dataTwo);\n    return measurements;\n}\n\n/**\n * Creates a pair of channel measurement objects.\n * \n * @param {string} dataValue - The raw hex string representing the channel data\n * @returns {Object} - An object containing two channel measurements\n */\nfunction createChannelMeasurementPair(dataValue) {\n    let channelInfo = loraWANV2ChannelBitFormat(dataValue.substring(0, 2));\n    let channelSortOne = 3920 + (parseInt(channelInfo.one) - 1) * 2;\n    let channelSortTwo = 3921 + (parseInt(channelInfo.two) - 1) * 2;\n\n    return {\n        [channelSortOne]: loraWANV2DataFormat(dataValue.substring(2, 10), 1000),\n        [channelSortTwo]: loraWANV2DataFormat(dataValue.substring(10, 18), 1000)\n    };\n}\n\n/**\n * Creates an array of sensor measurements (light intensity, sound intensity, accelerometer data).\n * \n * @param {string} dataValue - The raw hex string representing sensor data\n * @returns {Array} - An array of sensor measurement objects\n */\nfunction createSensorMeasurements(dataValue) {\n    return [\n        createMeasurement('4193', 'Light Intensity', dataValue.substring(0, 4)),\n        createMeasurement('4192', 'Sound Intensity', dataValue.substring(4, 8)),\n        createMeasurement('4150', 'AccelerometerX', dataValue.substring(8, 12), 100),\n        createMeasurement('4151', 'AccelerometerY', dataValue.substring(12, 16), 100),\n        createMeasurement('4152', 'AccelerometerZ', dataValue.substring(16, 20), 100)\n    ];\n}\n\n/**\n * Converts a hex string to a decimal number, applying a divisor for scaling if necessary.\n * Handles big-endian formats and supports signed integers.\n * \n * @param {string} str - The raw hex string to format\n * @param {number} divisor - A divisor for scaling the result (optional, default is 1)\n * @returns {number} - The formatted value as a number\n */\nfunction loraWANV2DataFormat(str, divisor = 1) {\n    let strReverse = bigEndianTransform(str);\n    let str2 = toBinary(strReverse);\n    if (str2[0] === '1') {\n        let arr = str2.split('').map(item => (parseInt(item) === 1 ? 0 : 1));\n        str2 = parseInt(arr.join(''), 2) + 1;\n        return -str2 / divisor;\n    }\n    return parseInt(str2, 2) / divisor;\n}\n\n/**\n * Transforms a hex string from big-endian format to an array of bytes.\n * \n * @param {string} data - The raw hex string\n * @returns {Array} - An array of byte strings\n */\nfunction bigEndianTransform(data) {\n    let dataArray = [];\n    for (let i = 0; i < data.length; i += 2) {\n        dataArray.push(data.substring(i, i + 2));\n    }\n    return dataArray;\n}\n\n/**\n * Converts an array of hex bytes to a binary string.\n * Ensures each byte is represented as an 8-bit binary number.\n * \n * @param {Array} arr - The array of hex byte strings\n * @returns {string} - The concatenated binary string\n */\nfunction toBinary(arr) {\n    return arr.map(item => parseInt(item, 16).toString(2).padStart(8, '0')).join('');\n}\n\n/**\n * Decodes a status and channel type from a bitfield.\n * \n * @param {string} str - The raw hex string representing the bitfield\n * @returns {Object} - An object containing the decoded channel, status, and type\n */\nfunction loraWANV2BitDataFormat(str) {\n    let strReverse = bigEndianTransform(str);\n    let str2 = toBinary(strReverse);\n    return {\n        channel: parseInt(str2.substring(0, 4), 2),\n        status: parseInt(str2.substring(4, 5), 2),\n        type: parseInt(str2.substring(5), 2)\n    };\n}\n\n/**\n * Decodes two channel identifiers from a bitfield.\n * \n * @param {string} str - The raw hex string representing the bitfield\n * @returns {Object} - An object containing the decoded channel identifiers\n */\nfunction loraWANV2ChannelBitFormat(str) {\n    let strReverse = bigEndianTransform(str);\n    let str2 = toBinary(strReverse);\n    return {\n        one: parseInt(str2.substring(0, 4), 2),\n        two: parseInt(str2.substring(4, 8), 2)\n    };\n}\n",
+      "outputs": 1,
+      "timeout": 0,
+      "noerr": 0,
+      "initialize": "",
+      "finalize": "",
+      "libs": [],
+      "x": 990,
+      "y": 160,
+      "wires": [
+        [
+          "e759cd06d6462147"
+        ]
+      ]
+    },
+    {
+      "id": "e759cd06d6462147",
+      "type": "function",
+      "z": "e0d523198c47fac8",
+      "name": "decode ultrasonic message",
+      "func": "var value = (msg.payload.messages[0][0].measurementValue || 0) / 1000.0\n\nreturn {\n    payload: value,\n    sensecraft: {\n        fromType: 'Device',\n        valueMeaning: 'ChangeValue',\n        valuetype: 'Number',\n        expectInputType: ['Condition']\n    }\n}\n",
+      "outputs": 1,
+      "timeout": 0,
+      "noerr": 0,
+      "initialize": "",
+      "finalize": "",
+      "libs": [],
+      "x": 1300,
+      "y": 160,
+      "wires": [
+        [
+          "b4cae0a3a27b6aa9"
+        ]
+      ]
+    }
+  ]

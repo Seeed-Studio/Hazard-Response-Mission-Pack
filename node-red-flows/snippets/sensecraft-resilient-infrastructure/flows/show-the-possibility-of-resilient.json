@@ -1,0 +1,662 @@
+[
+    {
+        "id": "34c846645d31e79e",
+        "type": "group",
+        "z": "ce3acd4e9503d8d4",
+        "name": "",
+        "style": {
+            "label": true,
+            "color": "#000000",
+            "fill": "#dbcbe7"
+        },
+        "nodes": [
+            "bde7d2af1d20bdc0",
+            "021abd08a31e38fc",
+            "7b3ad55f860d0b20",
+            "1477ebc70370783c",
+            "133dda81cd7e7391",
+            "1c4edea8d1de3c64",
+            "afd21e9a47161fbb",
+            "3d1d87e0fe772899",
+            "c3b28684d9e8c692",
+            "c932e698ae2bd064",
+            "54bdb1de78c78123",
+            "edee6582d6c4a68e",
+            "2307e91bec054f96",
+            "192bdcf3da14608f",
+            "8a50e605490ebb8a",
+            "1a2fdaeaae8a6893",
+            "2995a7860e9707f2"
+        ],
+        "x": 14,
+        "y": 19,
+        "w": 792,
+        "h": 482
+    },
+    {
+        "id": "bde7d2af1d20bdc0",
+        "type": "ui-gauge",
+        "z": "ce3acd4e9503d8d4",
+        "g": "34c846645d31e79e",
+        "name": "Solar charging voltage",
+        "group": "4c42d5986c4bbb30",
+        "order": 1,
+        "width": 3,
+        "height": 3,
+        "gtype": "gauge-half",
+        "gstyle": "needle",
+        "title": "Solar charging voltage",
+        "units": "V",
+        "icon": "",
+        "prefix": "",
+        "suffix": "",
+        "segments": [
+            {
+                "from": "0",
+                "color": "#ea5353"
+            },
+            {
+                "from": "8",
+                "color": "#ffc800"
+            },
+            {
+                "from": "11",
+                "color": "#5cd65c"
+            }
+        ],
+        "min": 0,
+        "max": "18",
+        "sizeThickness": 16,
+        "sizeGap": 4,
+        "sizeKeyThickness": 8,
+        "styleRounded": true,
+        "styleGlow": false,
+        "className": "",
+        "x": 420,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "021abd08a31e38fc",
+        "type": "ui-gauge",
+        "z": "ce3acd4e9503d8d4",
+        "g": "34c846645d31e79e",
+        "name": "Power of charge",
+        "group": "4c42d5986c4bbb30",
+        "order": 2,
+        "width": 3,
+        "height": 3,
+        "gtype": "gauge-half",
+        "gstyle": "needle",
+        "title": "Power of charge",
+        "units": "W",
+        "icon": "",
+        "prefix": "",
+        "suffix": "",
+        "segments": [
+            {
+                "from": "0",
+                "color": "#ea5353"
+            },
+            {
+                "from": "10",
+                "color": "#ffc800"
+            },
+            {
+                "from": "80",
+                "color": "#5cd65c"
+            }
+        ],
+        "min": 0,
+        "max": "300",
+        "sizeThickness": 16,
+        "sizeGap": 4,
+        "sizeKeyThickness": 8,
+        "styleRounded": true,
+        "styleGlow": false,
+        "className": "",
+        "x": 400,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "7b3ad55f860d0b20",
+        "type": "ui-gauge",
+        "z": "ce3acd4e9503d8d4",
+        "g": "34c846645d31e79e",
+        "name": "Battery status",
+        "group": "4c42d5986c4bbb30",
+        "order": 3,
+        "width": 3,
+        "height": 3,
+        "gtype": "gauge-half",
+        "gstyle": "needle",
+        "title": "Battery status",
+        "units": "%",
+        "icon": "",
+        "prefix": "",
+        "suffix": "",
+        "segments": [
+            {
+                "from": "0",
+                "color": "#ea5353"
+            },
+            {
+                "from": "20",
+                "color": "#ffc800"
+            },
+            {
+                "from": "40",
+                "color": "#5cd65c"
+            }
+        ],
+        "min": 0,
+        "max": "100",
+        "sizeThickness": 16,
+        "sizeGap": 4,
+        "sizeKeyThickness": 8,
+        "styleRounded": true,
+        "styleGlow": false,
+        "className": "",
+        "x": 680,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "1477ebc70370783c",
+        "type": "ui-gauge",
+        "z": "ce3acd4e9503d8d4",
+        "g": "34c846645d31e79e",
+        "name": "Battery discharge status",
+        "group": "4c42d5986c4bbb30",
+        "order": 4,
+        "width": 3,
+        "height": 3,
+        "gtype": "gauge-half",
+        "gstyle": "needle",
+        "title": "Battery discharge status",
+        "units": "W",
+        "icon": "",
+        "prefix": "",
+        "suffix": "",
+        "segments": [
+            {
+                "from": "0",
+                "color": "#ea5353"
+            },
+            {
+                "from": "10",
+                "color": "#ffc800"
+            },
+            {
+                "from": "15",
+                "color": "#5cd65c"
+            }
+        ],
+        "min": 0,
+        "max": "30",
+        "sizeThickness": 16,
+        "sizeGap": 4,
+        "sizeKeyThickness": 8,
+        "styleRounded": true,
+        "styleGlow": false,
+        "className": "",
+        "x": 430,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "133dda81cd7e7391",
+        "type": "ui-button",
+        "z": "ce3acd4e9503d8d4",
+        "g": "34c846645d31e79e",
+        "group": "11c7bc76871ef97a",
+        "name": "red",
+        "label": "Red",
+        "order": 4,
+        "width": "1",
+        "height": "1",
+        "emulateClick": true,
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "battery-10",
+        "iconPosition": "left",
+        "payload": "red",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 450,
+        "y": 380,
+        "wires": [
+            [
+                "edee6582d6c4a68e"
+            ]
+        ]
+    },
+    {
+        "id": "1c4edea8d1de3c64",
+        "type": "ui-button",
+        "z": "ce3acd4e9503d8d4",
+        "g": "34c846645d31e79e",
+        "group": "11c7bc76871ef97a",
+        "name": "yellow",
+        "label": "Yellow",
+        "order": 5,
+        "width": "1",
+        "height": "1",
+        "emulateClick": true,
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "battery-50",
+        "iconPosition": "left",
+        "payload": "yellow",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 450,
+        "y": 420,
+        "wires": [
+            [
+                "edee6582d6c4a68e"
+            ]
+        ]
+    },
+    {
+        "id": "afd21e9a47161fbb",
+        "type": "ui-button",
+        "z": "ce3acd4e9503d8d4",
+        "g": "34c846645d31e79e",
+        "group": "11c7bc76871ef97a",
+        "name": "green",
+        "label": "Green",
+        "order": 6,
+        "width": "1",
+        "height": "1",
+        "emulateClick": true,
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "battery-90",
+        "iconPosition": "left",
+        "payload": "green",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 450,
+        "y": 460,
+        "wires": [
+            [
+                "edee6582d6c4a68e"
+            ]
+        ]
+    },
+    {
+        "id": "3d1d87e0fe772899",
+        "type": "switch",
+        "z": "ce3acd4e9503d8d4",
+        "g": "34c846645d31e79e",
+        "name": "Alarm selector",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "btwn",
+                "v": "0",
+                "vt": "num",
+                "v2": "20",
+                "v2t": "num"
+            },
+            {
+                "t": "btwn",
+                "v": "21",
+                "vt": "num",
+                "v2": "40",
+                "v2t": "num"
+            },
+            {
+                "t": "gte",
+                "v": "40",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 3,
+        "x": 240,
+        "y": 420,
+        "wires": [
+            [
+                "133dda81cd7e7391"
+            ],
+            [
+                "1c4edea8d1de3c64"
+            ],
+            [
+                "afd21e9a47161fbb"
+            ]
+        ]
+    },
+    {
+        "id": "c3b28684d9e8c692",
+        "type": "ui-gauge",
+        "z": "ce3acd4e9503d8d4",
+        "g": "34c846645d31e79e",
+        "name": "Battery status",
+        "group": "11c7bc76871ef97a",
+        "order": 1,
+        "width": "6",
+        "height": "1",
+        "gtype": "gauge-tile",
+        "gstyle": "rounded",
+        "title": "Battery status",
+        "units": "W",
+        "icon": "",
+        "prefix": "",
+        "suffix": "",
+        "segments": [
+            {
+                "from": "0",
+                "color": "#ea5353"
+            },
+            {
+                "from": "20",
+                "color": "#ffc800"
+            },
+            {
+                "from": "40",
+                "color": "#5cd65c"
+            }
+        ],
+        "min": 0,
+        "max": "100",
+        "sizeThickness": 16,
+        "sizeGap": 4,
+        "sizeKeyThickness": 8,
+        "styleRounded": true,
+        "styleGlow": false,
+        "className": "",
+        "x": 680,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "c932e698ae2bd064",
+        "type": "ui-slider",
+        "z": "ce3acd4e9503d8d4",
+        "g": "34c846645d31e79e",
+        "group": "11c7bc76871ef97a",
+        "name": "Battery status slider",
+        "label": "slider",
+        "tooltip": "",
+        "order": 3,
+        "width": "3",
+        "height": "1",
+        "passthru": true,
+        "outs": "all",
+        "topic": "topic",
+        "topicType": "msg",
+        "thumbLabel": "true",
+        "showTicks": "always",
+        "min": 0,
+        "max": "100",
+        "step": 1,
+        "className": "",
+        "iconPrepend": "",
+        "iconAppend": "",
+        "color": "",
+        "colorTrack": "",
+        "colorThumb": "",
+        "x": 260,
+        "y": 340,
+        "wires": [
+            [
+                "3d1d87e0fe772899",
+                "7b3ad55f860d0b20",
+                "c3b28684d9e8c692"
+            ]
+        ]
+    },
+    {
+        "id": "54bdb1de78c78123",
+        "type": "ui-chart",
+        "z": "ce3acd4e9503d8d4",
+        "g": "34c846645d31e79e",
+        "group": "4c42d5986c4bbb30",
+        "name": "Solar Voltage",
+        "label": "Solar Voltage",
+        "order": 5,
+        "chartType": "line",
+        "category": "topic",
+        "categoryType": "msg",
+        "xAxisLabel": "",
+        "xAxisProperty": "",
+        "xAxisPropertyType": "msg",
+        "xAxisType": "time",
+        "xAxisFormat": "",
+        "xAxisFormatType": "auto",
+        "yAxisLabel": "",
+        "yAxisProperty": "",
+        "ymin": "0",
+        "ymax": "20",
+        "action": "append",
+        "pointShape": "circle",
+        "pointRadius": "2",
+        "showLegend": false,
+        "removeOlder": "1",
+        "removeOlderUnit": "3600",
+        "removeOlderPoints": "",
+        "colors": [
+            "#b3ae1e",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "width": "6",
+        "height": "4",
+        "className": "",
+        "x": 390,
+        "y": 120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "edee6582d6c4a68e",
+        "type": "ui-template",
+        "z": "ce3acd4e9503d8d4",
+        "g": "34c846645d31e79e",
+        "group": "11c7bc76871ef97a",
+        "page": "",
+        "ui": "",
+        "name": "light dashboard ui",
+        "order": 2,
+        "width": "3",
+        "height": "3",
+        "head": "",
+        "format": "<template>\n    <div>\n        <svg viewBox=\"0 0 128 128\" :class=\"['light', status]\">\n            <path d=\"M64 4C38.43 4 18 24.43 18 50c0 15.464 8.324 29.234 20.8 36.77C38.292 89.724 38 93.776 38 98v2c0 5.522 4.478 10 10 10h32c5.522 0 10-4.478 10-10v-2c0-4.224-.292-8.276-.8-11.23C101.676 79.234 110 65.464 110 50 110 24.43 89.57 4 64 4zm0 116c-2.21 0-4-1.79-4-4h8c0 2.21-1.79 4-4 4zm16-8H48v-4h32v4zm4-8H44v-4h40v4zm-2.66-16.768C73.344 94.014 68.81 96 64 96s-9.344-1.986-13.34-4.768C45.4 88.756 42 83.576 42 78v-2h44v2c0 5.576-3.4 10.756-8.66 13.232z\"/>\n        </svg>\n    </div>\n</template>\n\n<script>\n    export default {\n        data() {\n            return {\n                status: 'off' // Initial status: off\n            }\n        },\n        watch: {\n            msg: function () {\n                if (this.msg && this.msg.payload) {\n                    this.status = this.msg.payload;\n                }\n            }\n        },\n        methods: {\n            toggleStatus() {\n                const states = ['off', 'red', 'green', 'yellow', 'blink-red', 'blink-green', 'blink-yellow'];\n                this.status = states[(states.indexOf(this.status) + 1) % states.length];\n                this.send({ payload: this.status });\n            }\n        },\n        mounted() {\n            this.$socket.on('msg-input:' + this.id, (msg) => {\n                if (msg && msg.payload) {\n                    this.status = msg.payload;\n                }\n            });\n        }\n    }\n</script>\n\n<style>\n    .light {\n        width: 128px;\n        height: 128px;\n        display: block;\n        margin: 20px auto;\n        fill: gray;\n        transition: fill 0.3s;\n    }\n    .light.red { fill: red; }\n    .light.green { fill: green; }\n    .light.yellow { fill: yellow; }\n    .light.blink-red { animation: blink-red 1s infinite; }\n    .light.blink-green { animation: blink-green 1s infinite; }\n    .light.blink-yellow { animation: blink-yellow 1s infinite; }\n\n    @keyframes blink-red {\n        0%, 50% { fill: red; }\n        25%, 75% { fill: gray; }\n    }\n    @keyframes blink-green {\n        0%, 50% { fill: green; }\n        25%, 75% { fill: gray; }\n    }\n    @keyframes blink-yellow {\n        0%, 50% { fill: yellow; }\n        25%, 75% { fill: gray; }\n    }\n</style>\n",
+        "storeOutMessages": true,
+        "passthru": false,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 690,
+        "y": 420,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "2307e91bec054f96",
+        "type": "inject",
+        "z": "ce3acd4e9503d8d4",
+        "g": "34c846645d31e79e",
+        "name": "on startup",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "0",
+        "topic": "",
+        "payload": "73",
+        "payloadType": "num",
+        "x": 150,
+        "y": 280,
+        "wires": [
+            [
+                "1a2fdaeaae8a6893"
+            ]
+        ]
+    },
+    {
+        "id": "192bdcf3da14608f",
+        "type": "subflow:a71c1f4952addcd7",
+        "z": "ce3acd4e9503d8d4",
+        "g": "34c846645d31e79e",
+        "name": "",
+        "x": 160,
+        "y": 180,
+        "wires": [
+            [
+                "54bdb1de78c78123",
+                "bde7d2af1d20bdc0"
+            ],
+            [
+                "021abd08a31e38fc"
+            ],
+            [],
+            [
+                "1477ebc70370783c"
+            ]
+        ]
+    },
+    {
+        "id": "8a50e605490ebb8a",
+        "type": "comment",
+        "z": "ce3acd4e9503d8d4",
+        "g": "34c846645d31e79e",
+        "name": "Showing the possibility of resilient",
+        "info": "",
+        "x": 180,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "1a2fdaeaae8a6893",
+        "type": "template",
+        "z": "ce3acd4e9503d8d4",
+        "g": "34c846645d31e79e",
+        "name": "Residual battery voltage",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "73",
+        "output": "str",
+        "x": 350,
+        "y": 280,
+        "wires": [
+            [
+                "c932e698ae2bd064"
+            ]
+        ]
+    },
+    {
+        "id": "2995a7860e9707f2",
+        "type": "comment",
+        "z": "ce3acd4e9503d8d4",
+        "g": "34c846645d31e79e",
+        "name": "v0.0.1",
+        "info": "",
+        "x": 730,
+        "y": 460,
+        "wires": [],
+        "icon": "font-awesome/fa-exclamation-circle"
+    },
+    {
+        "id": "4c42d5986c4bbb30",
+        "type": "ui-group",
+        "name": "Energy monitoring",
+        "page": "53377d4c79f72de5",
+        "width": "6",
+        "height": "1",
+        "order": 4,
+        "showTitle": true,
+        "className": "",
+        "visible": "true",
+        "disabled": "false"
+    },
+    {
+        "id": "11c7bc76871ef97a",
+        "type": "ui-group",
+        "name": "  Battery Status",
+        "page": "53377d4c79f72de5",
+        "width": "6",
+        "height": "1",
+        "order": 2,
+        "showTitle": false,
+        "className": "",
+        "visible": "true",
+        "disabled": "false"
+    },
+    {
+        "id": "53377d4c79f72de5",
+        "type": "ui-page",
+        "name": "4-Resilient Infrastructure",
+        "ui": "2a6c6f3f0d1de049",
+        "path": "/resilient",
+        "icon": "home",
+        "layout": "grid",
+        "theme": "d86c2124665af35b",
+        "order": 5,
+        "className": "",
+        "visible": true,
+        "disabled": false
+    },
+    {
+        "id": "2a6c6f3f0d1de049",
+        "type": "ui-base",
+        "name": "Hazard Response Mission Pack",
+        "path": "/dashboard",
+        "includeClientData": true,
+        "acceptsClientConfig": [
+            "ui-notification",
+            "ui-control"
+        ],
+        "showPathInSidebar": false,
+        "showPageTitle": true,
+        "navigationStyle": "fixed",
+        "titleBarStyle": "default"
+    },
+    {
+        "id": "d86c2124665af35b",
+        "type": "ui-theme",
+        "name": "Theme",
+        "colors": {
+            "surface": "#ffffff",
+            "primary": "#0094ce",
+            "bgPage": "#eeeeee",
+            "groupBg": "#ffffff",
+            "groupOutline": "#cccccc"
+        },
+        "sizes": {
+            "pagePadding": "12px",
+            "groupGap": "12px",
+            "groupBorderRadius": "4px",
+            "widgetGap": "12px"
+        }
+    }
+]

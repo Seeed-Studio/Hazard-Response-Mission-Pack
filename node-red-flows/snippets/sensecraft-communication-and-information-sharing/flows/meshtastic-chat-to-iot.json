@@ -1,0 +1,278 @@
+[
+    {
+        "id": "d72fe5300f0090a1",
+        "type": "group",
+        "z": "a9319fe458afe6b6",
+        "name": "",
+        "style": {
+            "label": true,
+            "color": "#000000",
+            "fill": "#dbcbe7"
+        },
+        "nodes": [
+            "747375a58c6ca14e",
+            "aa1a0522cb1e76b4",
+            "a6279e97f8d67997",
+            "b288e522160ae3e5",
+            "a4bb8528feb6766c",
+            "710ca388b2b9c30f",
+            "158ad691aac3f239",
+            "70a4a1dd58581050",
+            "46a4333e9f1af0bb",
+            "7743bc6a2a1fee06",
+            "1551266451c3fb26"
+        ],
+        "x": 14,
+        "y": 1259,
+        "w": 852,
+        "h": 442
+    },
+    {
+        "id": "747375a58c6ca14e",
+        "type": "subflow:e0d523198c47fac8",
+        "z": "a9319fe458afe6b6",
+        "g": "d72fe5300f0090a1",
+        "name": "",
+        "env": [
+            {
+                "name": "mqttBroker",
+                "value": "ff55020100010001",
+                "type": "conf-type"
+            },
+            {
+                "name": "applicationId",
+                "value": "",
+                "type": "str"
+            },
+            {
+                "name": "deviceId",
+                "value": "",
+                "type": "str"
+            }
+        ],
+        "x": 220,
+        "y": 1540,
+        "wires": [
+            [
+                "a4bb8528feb6766c",
+                "158ad691aac3f239"
+            ]
+        ]
+    },
+    {
+        "id": "aa1a0522cb1e76b4",
+        "type": "subflow:15e3d881bcd13372",
+        "z": "a9319fe458afe6b6",
+        "g": "d72fe5300f0090a1",
+        "name": "meshtastic chat - send message",
+        "env": [
+            {
+                "name": "mqtt-broker",
+                "value": "ff55020100010001",
+                "type": "conf-type"
+            },
+            {
+                "name": "firstLineText",
+                "value": "[Automatic]current ultrasonic value:",
+                "type": "str"
+            },
+            {
+                "name": "suffixText",
+                "value": "m",
+                "type": "str"
+            }
+        ],
+        "x": 700,
+        "y": 1540,
+        "wires": []
+    },
+    {
+        "id": "a6279e97f8d67997",
+        "type": "subflow:fdfd26c77e5e2a42",
+        "z": "a9319fe458afe6b6",
+        "g": "d72fe5300f0090a1",
+        "name": "",
+        "env": [
+            {
+                "name": "mqttBroker",
+                "value": "ff55020100010001",
+                "type": "conf-type"
+            },
+            {
+                "name": "applicationId",
+                "value": "",
+                "type": "str"
+            },
+            {
+                "name": "deviceId",
+                "value": "",
+                "type": "str"
+            }
+        ],
+        "x": 210,
+        "y": 1620,
+        "wires": [
+            [
+                "710ca388b2b9c30f",
+                "70a4a1dd58581050"
+            ]
+        ]
+    },
+    {
+        "id": "b288e522160ae3e5",
+        "type": "subflow:15e3d881bcd13372",
+        "z": "a9319fe458afe6b6",
+        "g": "d72fe5300f0090a1",
+        "name": "meshtastic chat - send message",
+        "env": [
+            {
+                "name": "mqtt-broker",
+                "value": "ff55020100010001",
+                "type": "conf-type"
+            },
+            {
+                "name": "firstLineText",
+                "value": "[Automatic]current tripwire status:",
+                "type": "str"
+            }
+        ],
+        "x": 700,
+        "y": 1620,
+        "wires": []
+    },
+    {
+        "id": "a4bb8528feb6766c",
+        "type": "switch",
+        "z": "a9319fe458afe6b6",
+        "g": "d72fe5300f0090a1",
+        "name": "enabled?",
+        "property": "reportSensorValueEnabled",
+        "propertyType": "flow",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 460,
+        "y": 1540,
+        "wires": [
+            [
+                "aa1a0522cb1e76b4"
+            ]
+        ]
+    },
+    {
+        "id": "710ca388b2b9c30f",
+        "type": "switch",
+        "z": "a9319fe458afe6b6",
+        "g": "d72fe5300f0090a1",
+        "name": "enabled?",
+        "property": "reportSensorValueEnabled",
+        "propertyType": "flow",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 460,
+        "y": 1620,
+        "wires": [
+            [
+                "b288e522160ae3e5"
+            ]
+        ]
+    },
+    {
+        "id": "158ad691aac3f239",
+        "type": "change",
+        "z": "a9319fe458afe6b6",
+        "g": "d72fe5300f0090a1",
+        "name": "save",
+        "rules": [
+            {
+                "t": "set",
+                "p": "save_u",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg",
+                "dc": true
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 450,
+        "y": 1500,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "70a4a1dd58581050",
+        "type": "change",
+        "z": "a9319fe458afe6b6",
+        "g": "d72fe5300f0090a1",
+        "name": "save",
+        "rules": [
+            {
+                "t": "set",
+                "p": "save_t",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg",
+                "dc": true
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 450,
+        "y": 1580,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "46a4333e9f1af0bb",
+        "type": "comment",
+        "z": "a9319fe458afe6b6",
+        "g": "d72fe5300f0090a1",
+        "name": "send ultrasonic sensor value through meshtastic",
+        "info": "",
+        "x": 220,
+        "y": 1300,
+        "wires": []
+    },
+    {
+        "id": "7743bc6a2a1fee06",
+        "type": "comment",
+        "z": "a9319fe458afe6b6",
+        "g": "d72fe5300f0090a1",
+        "name": "send tripwire status through meshtastic",
+        "info": "",
+        "x": 220,
+        "y": 1380,
+        "wires": []
+    },
+    {
+        "id": "1551266451c3fb26",
+        "type": "comment",
+        "z": "a9319fe458afe6b6",
+        "g": "d72fe5300f0090a1",
+        "name": "send text to both",
+        "info": "",
+        "x": 210,
+        "y": 1460,
+        "wires": []
+    }
+]

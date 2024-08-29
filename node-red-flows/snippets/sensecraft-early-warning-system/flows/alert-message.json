@@ -1,0 +1,242 @@
+[
+    {
+        "id": "78ead2245c9ecb8e",
+        "type": "group",
+        "z": "7ea6938ae37cbe94",
+        "name": "",
+        "style": {
+            "label": false,
+            "fill": "#dbcbe7"
+        },
+        "nodes": [
+            "f49129326bef6f16",
+            "cc8e83e89534a08f",
+            "4a616b5089116eae",
+            "d00dd35e25666b41",
+            "ea74dfdadcfbe09a",
+            "cff700f5f73faa68",
+            "379a0aaa5767e20c",
+            "050b71b9be932811",
+            "7d6faec91cd41eb5"
+        ],
+        "x": 14,
+        "y": 219,
+        "w": 812,
+        "h": 222
+    },
+    {
+        "id": "f49129326bef6f16",
+        "type": "ui-notification",
+        "z": "7ea6938ae37cbe94",
+        "g": "78ead2245c9ecb8e",
+        "ui": "2a6c6f3f0d1de049",
+        "position": "top center",
+        "colorDefault": true,
+        "color": "#f50a0a",
+        "displayTime": "5",
+        "showCountdown": true,
+        "outputs": 1,
+        "allowDismiss": false,
+        "dismissText": "Close",
+        "raw": false,
+        "className": "",
+        "name": "Alarm Message ui",
+        "x": 710,
+        "y": 340,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "cc8e83e89534a08f",
+        "type": "subflow:e0d523198c47fac8",
+        "z": "7ea6938ae37cbe94",
+        "g": "78ead2245c9ecb8e",
+        "name": "ultrasonic",
+        "env": [
+            {
+                "name": "mqttBroker",
+                "value": "ff55020100010001",
+                "type": "conf-type"
+            },
+            {
+                "name": "applicationId",
+                "value": "",
+                "type": "str"
+            },
+            {
+                "name": "deviceId",
+                "value": "",
+                "type": "str"
+            }
+        ],
+        "x": 120,
+        "y": 380,
+        "wires": [
+            [
+                "4a616b5089116eae"
+            ]
+        ]
+    },
+    {
+        "id": "4a616b5089116eae",
+        "type": "switch",
+        "z": "7ea6938ae37cbe94",
+        "g": "78ead2245c9ecb8e",
+        "name": "If =1 match, then ...",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "lt",
+                "v": "1",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 290,
+        "y": 380,
+        "wires": [
+            [
+                "379a0aaa5767e20c"
+            ]
+        ]
+    },
+    {
+        "id": "d00dd35e25666b41",
+        "type": "subflow:fdfd26c77e5e2a42",
+        "z": "7ea6938ae37cbe94",
+        "g": "78ead2245c9ecb8e",
+        "name": "tripwire",
+        "env": [
+            {
+                "name": "mqttBroker",
+                "value": "ff55020100010001",
+                "type": "conf-type"
+            },
+            {
+                "name": "applicationId",
+                "value": "",
+                "type": "str"
+            },
+            {
+                "name": "deviceId",
+                "value": "",
+                "type": "str"
+            }
+        ],
+        "x": 110,
+        "y": 320,
+        "wires": [
+            [
+                "ea74dfdadcfbe09a"
+            ]
+        ]
+    },
+    {
+        "id": "ea74dfdadcfbe09a",
+        "type": "switch",
+        "z": "7ea6938ae37cbe94",
+        "g": "78ead2245c9ecb8e",
+        "name": "If =1 match, then ...",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "1",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 290,
+        "y": 320,
+        "wires": [
+            [
+                "cff700f5f73faa68"
+            ]
+        ]
+    },
+    {
+        "id": "cff700f5f73faa68",
+        "type": "template",
+        "z": "7ea6938ae37cbe94",
+        "g": "78ead2245c9ecb8e",
+        "name": "Set alert message",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "Alert!! The trip wire set off",
+        "output": "str",
+        "x": 490,
+        "y": 320,
+        "wires": [
+            [
+                "f49129326bef6f16"
+            ]
+        ]
+    },
+    {
+        "id": "379a0aaa5767e20c",
+        "type": "template",
+        "z": "7ea6938ae37cbe94",
+        "g": "78ead2245c9ecb8e",
+        "name": "Set alert message",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "Alert!! The water level is about to exceed the limit",
+        "output": "str",
+        "x": 490,
+        "y": 380,
+        "wires": [
+            [
+                "f49129326bef6f16"
+            ]
+        ]
+    },
+    {
+        "id": "050b71b9be932811",
+        "type": "comment",
+        "z": "7ea6938ae37cbe94",
+        "g": "78ead2245c9ecb8e",
+        "name": "alert message - tripwire and ultrasonic",
+        "info": "",
+        "x": 190,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "7d6faec91cd41eb5",
+        "type": "comment",
+        "z": "7ea6938ae37cbe94",
+        "g": "78ead2245c9ecb8e",
+        "name": "v0.0.1",
+        "info": "",
+        "x": 750,
+        "y": 400,
+        "wires": [],
+        "icon": "font-awesome/fa-exclamation-circle"
+    },
+    {
+        "id": "2a6c6f3f0d1de049",
+        "type": "ui-base",
+        "name": "Hazard Response Mission Pack",
+        "path": "/dashboard",
+        "includeClientData": true,
+        "acceptsClientConfig": [
+            "ui-notification",
+            "ui-control"
+        ],
+        "showPathInSidebar": false,
+        "showPageTitle": true,
+        "navigationStyle": "fixed",
+        "titleBarStyle": "default"
+    }
+]

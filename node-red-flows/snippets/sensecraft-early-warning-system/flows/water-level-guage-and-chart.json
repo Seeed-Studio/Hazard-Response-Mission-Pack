@@ -1,0 +1,206 @@
+[
+    {
+        "id": "b304e5ad0409a34b",
+        "type": "group",
+        "z": "7ea6938ae37cbe94",
+        "name": "",
+        "style": {
+            "label": true,
+            "color": "#000000",
+            "fill": "#dbcbe7"
+        },
+        "nodes": [
+            "74b1a10d56999ee0",
+            "611b6e7781b9c234",
+            "e378acb9cb9e0b3d",
+            "38a0bd82eea44c01",
+            "aaf481974a57e1e8",
+            "f41bcc40229d88f3"
+        ],
+        "x": 854,
+        "y": 219,
+        "w": 372,
+        "h": 242
+    },
+    {
+        "id": "74b1a10d56999ee0",
+        "type": "ui-gauge",
+        "z": "7ea6938ae37cbe94",
+        "g": "b304e5ad0409a34b",
+        "name": "Water Level",
+        "group": "aaef1ae98f9e5ac7",
+        "order": 1,
+        "width": "19",
+        "height": "1",
+        "gtype": "gauge-tile",
+        "gstyle": "needle",
+        "title": "Water level",
+        "units": "units",
+        "icon": "",
+        "prefix": "",
+        "suffix": "",
+        "segments": [
+            {
+                "from": "0",
+                "color": "#5cd65c"
+            },
+            {
+                "from": "2",
+                "color": "#ea5353"
+            }
+        ],
+        "min": 0,
+        "max": "10",
+        "sizeThickness": 16,
+        "sizeGap": 4,
+        "sizeKeyThickness": 8,
+        "styleRounded": true,
+        "styleGlow": false,
+        "className": "",
+        "x": 1130,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "611b6e7781b9c234",
+        "type": "ui-chart",
+        "z": "7ea6938ae37cbe94",
+        "g": "b304e5ad0409a34b",
+        "group": "aaef1ae98f9e5ac7",
+        "name": "Water Data",
+        "label": "Water_data",
+        "order": 2,
+        "chartType": "line",
+        "category": "topic",
+        "categoryType": "msg",
+        "xAxisLabel": "Time",
+        "xAxisProperty": "",
+        "xAxisPropertyType": "msg",
+        "xAxisType": "time",
+        "xAxisFormat": "",
+        "xAxisFormatType": "HH:mm",
+        "yAxisLabel": "Water Level (m)",
+        "yAxisProperty": "",
+        "ymin": "",
+        "ymax": "",
+        "action": "append",
+        "pointShape": "circle",
+        "pointRadius": 4,
+        "showLegend": false,
+        "removeOlder": 1,
+        "removeOlderUnit": "3600",
+        "removeOlderPoints": "60",
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "textColor": [
+            "#666666"
+        ],
+        "textColorDefault": true,
+        "gridColor": [
+            "#e5e5e5"
+        ],
+        "gridColorDefault": true,
+        "width": "0",
+        "height": "0",
+        "className": "",
+        "x": 1130,
+        "y": 380,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e378acb9cb9e0b3d",
+        "type": "subflow:e0d523198c47fac8",
+        "z": "7ea6938ae37cbe94",
+        "g": "b304e5ad0409a34b",
+        "name": "ultrasonic",
+        "env": [
+            {
+                "name": "mqttBroker",
+                "value": "ff55020100010001",
+                "type": "conf-type"
+            },
+            {
+                "name": "applicationId",
+                "value": "",
+                "type": "str"
+            },
+            {
+                "name": "deviceId",
+                "value": "",
+                "type": "str"
+            }
+        ],
+        "x": 960,
+        "y": 320,
+        "wires": [
+            [
+                "74b1a10d56999ee0"
+            ]
+        ]
+    },
+    {
+        "id": "38a0bd82eea44c01",
+        "type": "subflow:e0d523198c47fac8",
+        "z": "7ea6938ae37cbe94",
+        "g": "b304e5ad0409a34b",
+        "name": "ultrasonic",
+        "env": [
+            {
+                "name": "mqttBroker",
+                "value": "ff55020100010001",
+                "type": "conf-type"
+            },
+            {
+                "name": "applicationId",
+                "value": "",
+                "type": "str"
+            },
+            {
+                "name": "deviceId",
+                "value": "",
+                "type": "str"
+            }
+        ],
+        "x": 960,
+        "y": 380,
+        "wires": [
+            [
+                "611b6e7781b9c234"
+            ]
+        ]
+    },
+    {
+        "id": "aaf481974a57e1e8",
+        "type": "comment",
+        "z": "7ea6938ae37cbe94",
+        "g": "b304e5ad0409a34b",
+        "name": "water level guage and chart",
+        "info": "",
+        "x": 1000,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "f41bcc40229d88f3",
+        "type": "comment",
+        "z": "7ea6938ae37cbe94",
+        "g": "b304e5ad0409a34b",
+        "name": "v0.0.1",
+        "info": "",
+        "x": 1150,
+        "y": 420,
+        "wires": [],
+        "icon": "font-awesome/fa-exclamation-circle"
+    }
+]

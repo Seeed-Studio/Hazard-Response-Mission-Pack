@@ -1,0 +1,270 @@
+[
+    {
+        "id": "a71c1f4952addcd7",
+        "type": "subflow",
+        "name": "power system sensor",
+        "info": "",
+        "category": "※sensecap-weather-station",
+        "in": [],
+        "out": [
+            {
+                "x": 910,
+                "y": 80,
+                "wires": [
+                    {
+                        "id": "e00aad24bc1ea0c0",
+                        "port": 0
+                    }
+                ]
+            },
+            {
+                "x": 920,
+                "y": 140,
+                "wires": [
+                    {
+                        "id": "506c2695b3dcac2a",
+                        "port": 0
+                    }
+                ]
+            },
+            {
+                "x": 920,
+                "y": 200,
+                "wires": [
+                    {
+                        "id": "899ccd7752f11fc2",
+                        "port": 0
+                    }
+                ]
+            },
+            {
+                "x": 930,
+                "y": 260,
+                "wires": [
+                    {
+                        "id": "ae2892c04d73113b",
+                        "port": 0
+                    }
+                ]
+            }
+        ],
+        "env": [],
+        "meta": {},
+        "color": "#B8EA4F",
+        "outputLabels": [
+            "Solar voltage",
+            "Power of charge",
+            "Battery status",
+            "Battery discharge"
+        ],
+        "status": {
+            "x": 860,
+            "y": 360,
+            "wires": []
+        }
+    },
+    {
+        "id": "21d0619968752bc5",
+        "type": "inject",
+        "z": "a71c1f4952addcd7",
+        "name": "onstartup",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "5",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "0",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 150,
+        "y": 160,
+        "wires": [
+            [
+                "fd1aa19957fe5a3e",
+                "a9a81e691d68d988",
+                "436dac51e46180d8",
+                "d1f3ac7a166ead8d"
+            ]
+        ]
+    },
+    {
+        "id": "fd1aa19957fe5a3e",
+        "type": "random",
+        "z": "a71c1f4952addcd7",
+        "name": "Solar voltage value (placeholder)",
+        "low": "8",
+        "high": "13",
+        "inte": "false",
+        "property": "payload",
+        "x": 420,
+        "y": 80,
+        "wires": [
+            [
+                "a9a81e691d68d988",
+                "e00aad24bc1ea0c0"
+            ]
+        ]
+    },
+    {
+        "id": "a9a81e691d68d988",
+        "type": "range",
+        "z": "a71c1f4952addcd7",
+        "minin": "8",
+        "maxin": "13",
+        "minout": "70",
+        "maxout": "180",
+        "action": "scale",
+        "round": true,
+        "property": "payload",
+        "name": "Power of charge",
+        "x": 360,
+        "y": 140,
+        "wires": [
+            [
+                "506c2695b3dcac2a"
+            ]
+        ]
+    },
+    {
+        "id": "436dac51e46180d8",
+        "type": "random",
+        "z": "a71c1f4952addcd7",
+        "name": "Battery status",
+        "low": "22",
+        "high": "23",
+        "inte": "false",
+        "property": "payload",
+        "x": 360,
+        "y": 200,
+        "wires": [
+            [
+                "899ccd7752f11fc2"
+            ]
+        ]
+    },
+    {
+        "id": "d1f3ac7a166ead8d",
+        "type": "random",
+        "z": "a71c1f4952addcd7",
+        "name": "Battery discharge",
+        "low": "73",
+        "high": "73",
+        "inte": "false",
+        "property": "payload",
+        "x": 370,
+        "y": 260,
+        "wires": [
+            [
+                "ae2892c04d73113b"
+            ]
+        ]
+    },
+    {
+        "id": "e00aad24bc1ea0c0",
+        "type": "change",
+        "z": "a71c1f4952addcd7",
+        "name": "to 2 decimal places",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "$round(payload * 100) / 100",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 690,
+        "y": 80,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "506c2695b3dcac2a",
+        "type": "change",
+        "z": "a71c1f4952addcd7",
+        "name": "to 2 decimal places",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "$round(payload * 100) / 100",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 690,
+        "y": 140,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "899ccd7752f11fc2",
+        "type": "change",
+        "z": "a71c1f4952addcd7",
+        "name": "to 2 decimal places",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "$round(payload * 100) / 100",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 690,
+        "y": 200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ae2892c04d73113b",
+        "type": "change",
+        "z": "a71c1f4952addcd7",
+        "name": "to 2 decimal places",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "$round(payload * 100) / 100",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 690,
+        "y": 260,
+        "wires": [
+            []
+        ]
+    }
+]

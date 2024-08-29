@@ -1,0 +1,1373 @@
+[
+    {
+      "id": "1766c4cb75850c2c",
+      "type": "subflow",
+      "name": "Grove Vision AI V2 - Get Camera",
+      "info": "",
+      "category": "※camera-grove-vision-ai-v2",
+      "in": [
+        {
+          "x": 40,
+          "y": 360,
+          "wires": [
+            {
+              "id": "17bdb18a27c66e11"
+            }
+          ]
+        }
+      ],
+      "out": [
+        {
+          "x": 1680,
+          "y": 740,
+          "wires": [
+            {
+              "id": "7712b011fe04d5e2",
+              "port": 0
+            }
+          ]
+        },
+        {
+          "x": 1680,
+          "y": 840,
+          "wires": [
+            {
+              "id": "a3d2cf36d30ad3a8",
+              "port": 0
+            }
+          ]
+        },
+        {
+          "x": 1810,
+          "y": 1000,
+          "wires": [
+            {
+              "id": "2a5b878f4609d83d",
+              "port": 0
+            }
+          ]
+        },
+        {
+          "x": 1930,
+          "y": 1240,
+          "wires": [
+            {
+              "id": "e4db2d42d0a9aab5",
+              "port": 0
+            },
+            {
+              "id": "3d8473d039795dd6",
+              "port": 0
+            }
+          ]
+        }
+      ],
+      "env": [
+        {
+          "name": "----- Device Settings -----",
+          "type": "str",
+          "value": "",
+          "ui": {
+            "type": "none"
+          }
+        },
+        {
+          "name": "mqtt-broker",
+          "type": "mqtt-broker",
+          "value": "ff55020100010001",
+          "ui": {
+            "icon": "font-awesome/fa-server",
+            "label": {
+              "zh-CN": "*Server",
+              "en-US": "*Server"
+            },
+            "type": "conf-types"
+          }
+        },
+        {
+          "name": "----- Camera Settings -----",
+          "type": "str",
+          "value": "",
+          "ui": {
+            "type": "none"
+          }
+        },
+        {
+          "name": "cameraId",
+          "type": "str",
+          "value": "",
+          "ui": {
+            "icon": "font-awesome/fa-camera",
+            "label": {
+              "zh-CN": "Camera ID",
+              "en-US": "Camera ID"
+            },
+            "type": "input",
+            "opts": {
+              "types": [
+                "str"
+              ]
+            }
+          }
+        },
+        {
+          "name": "!note_camera",
+          "type": "str",
+          "value": "",
+          "ui": {
+            "label": {
+              "zh-CN": "",
+              "en-US": "....Note: You can also leave it blank and configure it dynamically through input"
+            },
+            "type": "none"
+          }
+        },
+        {
+          "name": "----- Output 4: Trigger -----",
+          "type": "str",
+          "value": "",
+          "ui": {
+            "type": "none"
+          }
+        },
+        {
+          "name": "triggerMode",
+          "type": "str",
+          "value": "yes",
+          "ui": {
+            "label": {
+              "zh-CN": "When ...",
+              "en-US": "When ..."
+            },
+            "type": "select",
+            "opts": {
+              "opts": [
+                {
+                  "l": {
+                    "zh-CN": "Detected",
+                    "en-US": "Detected"
+                  },
+                  "v": "yes"
+                },
+                {
+                  "l": {
+                    "zh-CN": "Not detected",
+                    "en-US": "Not detected"
+                  },
+                  "v": "no"
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "meta": {
+        "module": "Grove Vision AI V2 - Get Camera",
+        "version": "0.0.1",
+        "author": "seeed",
+        "license": "Apache-2.0"
+      },
+      "color": "#B8EA4F",
+      "outputLabels": [
+        "Original Image",
+        "Inference Result",
+        "Iriginal Data (only can connect to 'tracking analyze' node)",
+        "Detection Trigger"
+      ],
+      "status": {
+        "x": 1660,
+        "y": 1060,
+        "wires": [
+          {
+            "id": "cc53c77934293557",
+            "port": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "977b1c156a278f35",
+      "type": "group",
+      "z": "1766c4cb75850c2c",
+      "style": {
+        "stroke": "#999999",
+        "stroke-opacity": "1",
+        "fill": "none",
+        "fill-opacity": "1",
+        "label": true,
+        "label-position": "nw",
+        "color": "#a4a4a4"
+      },
+      "nodes": [
+        "82a43b334bf4b932",
+        "c6651882a2276fc2",
+        "03a1c725d65f15e2",
+        "7fff0e065d651496",
+        "9abc04b2e7d3257a"
+      ],
+      "x": 274,
+      "y": 19,
+      "w": 1312,
+      "h": 142
+    },
+    {
+      "id": "b36553531342820f",
+      "type": "group",
+      "z": "1766c4cb75850c2c",
+      "style": {
+        "stroke": "#999999",
+        "stroke-opacity": "1",
+        "fill": "none",
+        "fill-opacity": "1",
+        "label": true,
+        "label-position": "nw",
+        "color": "#a4a4a4"
+      },
+      "nodes": [
+        "a78007c93b1c1fe1",
+        "46ee7c72c6d678a2",
+        "1fec46e9cd347a2a",
+        "d1f974398f147b02",
+        "1567eeb1bb47fec5"
+      ],
+      "x": 274,
+      "y": 479,
+      "w": 532,
+      "h": 202
+    },
+    {
+      "id": "d821d39182a45218",
+      "type": "group",
+      "z": "1766c4cb75850c2c",
+      "style": {
+        "stroke": "#999999",
+        "stroke-opacity": "1",
+        "fill": "none",
+        "fill-opacity": "1",
+        "label": true,
+        "label-position": "nw",
+        "color": "#a4a4a4"
+      },
+      "nodes": [
+        "195c561cb96ad7cb",
+        "8e5fb88de994075b",
+        "a8dfe50e821dfd0b"
+      ],
+      "x": 268,
+      "y": 179,
+      "w": 1704,
+      "h": 268
+    },
+    {
+      "id": "4812ceb994ecee47",
+      "type": "group",
+      "z": "1766c4cb75850c2c",
+      "style": {
+        "stroke": "#999999",
+        "stroke-opacity": "1",
+        "fill": "none",
+        "fill-opacity": "1",
+        "label": true,
+        "label-position": "nw",
+        "color": "#a4a4a4"
+      },
+      "nodes": [
+        "6f49bb85fb1ca9dd",
+        "2a5b878f4609d83d",
+        "5c869b5a19000f23",
+        "a3d2cf36d30ad3a8",
+        "7712b011fe04d5e2",
+        "1a9a58a193b6a274",
+        "86d3046f1847f777"
+      ],
+      "x": 274,
+      "y": 699,
+      "w": 1132,
+      "h": 142
+    },
+    {
+      "id": "e17956ebf8df1058",
+      "type": "group",
+      "z": "1766c4cb75850c2c",
+      "style": {
+        "stroke": "#999999",
+        "stroke-opacity": "1",
+        "fill": "none",
+        "fill-opacity": "1",
+        "label": true,
+        "label-position": "nw",
+        "color": "#a4a4a4"
+      },
+      "nodes": [
+        "c0843f7df37d8e49",
+        "b64fe8d75146fa69",
+        "ca580e1444a51d82"
+      ],
+      "x": 814,
+      "y": 479,
+      "w": 312,
+      "h": 142
+    },
+    {
+      "id": "8e5fb88de994075b",
+      "type": "group",
+      "z": "1766c4cb75850c2c",
+      "g": "d821d39182a45218",
+      "style": {
+        "stroke": "#999999",
+        "stroke-opacity": "1",
+        "fill": "none",
+        "fill-opacity": "1",
+        "label": true,
+        "label-position": "nw",
+        "color": "#a4a4a4"
+      },
+      "nodes": [
+        "3ea0d24d5a357d8c",
+        "b97841458d677cf9",
+        "4712b34643952b3c",
+        "1ed7a698814e5190",
+        "45f2f20fc1a0b77f"
+      ],
+      "x": 294,
+      "y": 259,
+      "w": 732,
+      "h": 162
+    },
+    {
+      "id": "a8dfe50e821dfd0b",
+      "type": "group",
+      "z": "1766c4cb75850c2c",
+      "g": "d821d39182a45218",
+      "style": {
+        "stroke": "#999999",
+        "stroke-opacity": "1",
+        "fill": "none",
+        "fill-opacity": "1",
+        "label": true,
+        "label-position": "nw",
+        "color": "#a4a4a4"
+      },
+      "nodes": [
+        "37a4169a796bc409",
+        "1a1aac49baec583b",
+        "27dc0363dfd2c60d",
+        "e5470b0dea4188f0",
+        "6b25c7462632d304",
+        "b9be4eadde0d5464",
+        "4813977826279959"
+      ],
+      "x": 1034,
+      "y": 219,
+      "w": 912,
+      "h": 202
+    },
+    {
+      "id": "37a4169a796bc409",
+      "type": "change",
+      "z": "1766c4cb75850c2c",
+      "g": "a8dfe50e821dfd0b",
+      "name": "Unsubscribe Action Builder",
+      "rules": [
+        {
+          "t": "set",
+          "p": "topic",
+          "pt": "msg",
+          "to": "mqtt_tx",
+          "tot": "flow"
+        },
+        {
+          "t": "set",
+          "p": "action",
+          "pt": "msg",
+          "to": "unsubscribe",
+          "tot": "str"
+        }
+      ],
+      "action": "",
+      "property": "",
+      "from": "",
+      "to": "",
+      "reg": false,
+      "x": 1360,
+      "y": 260,
+      "wires": [
+        [
+          "b9be4eadde0d5464"
+        ]
+      ]
+    },
+    {
+      "id": "1a1aac49baec583b",
+      "type": "delay",
+      "z": "1766c4cb75850c2c",
+      "g": "a8dfe50e821dfd0b",
+      "name": "delay 0.2s",
+      "pauseType": "delay",
+      "timeout": "200",
+      "timeoutUnits": "milliseconds",
+      "rate": "1",
+      "nbRateUnits": "1",
+      "rateUnits": "second",
+      "randomFirst": "1",
+      "randomLast": "5",
+      "randomUnits": "seconds",
+      "drop": false,
+      "allowrate": false,
+      "outputs": 1,
+      "x": 1130,
+      "y": 360,
+      "wires": [
+        [
+          "e5470b0dea4188f0"
+        ]
+      ]
+    },
+    {
+      "id": "27dc0363dfd2c60d",
+      "type": "change",
+      "z": "1766c4cb75850c2c",
+      "g": "a8dfe50e821dfd0b",
+      "name": "subscribe Action Builder",
+      "rules": [
+        {
+          "t": "set",
+          "p": "action",
+          "pt": "msg",
+          "to": "subscribe",
+          "tot": "str"
+        },
+        {
+          "t": "set",
+          "p": "topic",
+          "pt": "msg",
+          "to": "{}",
+          "tot": "json"
+        },
+        {
+          "t": "set",
+          "p": "topic.topic",
+          "pt": "msg",
+          "to": "\"sscma/v0/\" & payload & \"/tx\"",
+          "tot": "jsonata"
+        },
+        {
+          "t": "set",
+          "p": "topic.qos",
+          "pt": "msg",
+          "to": "0",
+          "tot": "num"
+        }
+      ],
+      "action": "",
+      "property": "",
+      "from": "",
+      "to": "",
+      "reg": false,
+      "x": 1630,
+      "y": 340,
+      "wires": [
+        [
+          "b9be4eadde0d5464"
+        ]
+      ]
+    },
+    {
+      "id": "6f49bb85fb1ca9dd",
+      "type": "mqtt in",
+      "z": "1766c4cb75850c2c",
+      "g": "4812ceb994ecee47",
+      "name": "when receive data",
+      "topic": "",
+      "qos": "2",
+      "datatype": "auto-detect",
+      "broker": "${mqtt-broker}",
+      "nl": false,
+      "rap": true,
+      "rh": 0,
+      "inputs": 1,
+      "x": 590,
+      "y": 800,
+      "wires": [
+        [
+          "2a5b878f4609d83d"
+        ]
+      ]
+    },
+    {
+      "id": "3ea0d24d5a357d8c",
+      "type": "change",
+      "z": "1766c4cb75850c2c",
+      "g": "8e5fb88de994075b",
+      "name": "Retrieve Input",
+      "rules": [
+        {
+          "t": "set",
+          "p": "payload",
+          "pt": "msg",
+          "to": "camera_id",
+          "tot": "flow",
+          "dc": true
+        }
+      ],
+      "action": "",
+      "property": "",
+      "from": "",
+      "to": "",
+      "reg": false,
+      "x": 920,
+      "y": 360,
+      "wires": [
+        [
+          "1a1aac49baec583b",
+          "37a4169a796bc409"
+        ]
+      ]
+    },
+    {
+      "id": "2a5b878f4609d83d",
+      "type": "switch",
+      "z": "1766c4cb75850c2c",
+      "g": "4812ceb994ecee47",
+      "name": "Check msg is valid",
+      "property": "payload",
+      "propertyType": "msg",
+      "rules": [
+        {
+          "t": "nempty"
+        }
+      ],
+      "checkall": "true",
+      "repair": false,
+      "outputs": 1,
+      "x": 830,
+      "y": 800,
+      "wires": [
+        [
+          "5c869b5a19000f23",
+          "a3d2cf36d30ad3a8",
+          "76719286957aa942"
+        ]
+      ]
+    },
+    {
+      "id": "a78007c93b1c1fe1",
+      "type": "change",
+      "z": "1766c4cb75850c2c",
+      "g": "b36553531342820f",
+      "name": "send a stop command to camera",
+      "rules": [
+        {
+          "t": "set",
+          "p": "topic",
+          "pt": "msg",
+          "to": "mqtt_rx",
+          "tot": "flow",
+          "dc": true
+        },
+        {
+          "t": "set",
+          "p": "payload",
+          "pt": "msg",
+          "to": "[65,84,43,66,82,69,65,75,13,10]",
+          "tot": "bin"
+        }
+      ],
+      "action": "",
+      "property": "",
+      "from": "",
+      "to": "",
+      "reg": false,
+      "x": 440,
+      "y": 580,
+      "wires": [
+        [
+          "1567eeb1bb47fec5"
+        ]
+      ]
+    },
+    {
+      "id": "82a43b334bf4b932",
+      "type": "inject",
+      "z": "1766c4cb75850c2c",
+      "g": "977b1c156a278f35",
+      "name": "auto resend command",
+      "props": [
+        {
+          "p": "payload"
+        }
+      ],
+      "repeat": "3",
+      "crontab": "",
+      "once": true,
+      "onceDelay": "0",
+      "topic": "",
+      "payload": "",
+      "payloadType": "date",
+      "x": 450,
+      "y": 120,
+      "wires": [
+        [
+          "03a1c725d65f15e2"
+        ]
+      ]
+    },
+    {
+      "id": "c6651882a2276fc2",
+      "type": "change",
+      "z": "1766c4cb75850c2c",
+      "g": "977b1c156a278f35",
+      "name": "send a start command to camera",
+      "rules": [
+        {
+          "t": "set",
+          "p": "topic",
+          "pt": "msg",
+          "to": "mqtt_rx",
+          "tot": "flow"
+        },
+        {
+          "t": "set",
+          "p": "payload",
+          "pt": "msg",
+          "to": "[65,84,43,73,78,86,79,75,69,61,45,49,44,48,44,48,13,10]",
+          "tot": "bin"
+        }
+      ],
+      "action": "",
+      "property": "",
+      "from": "",
+      "to": "",
+      "reg": false,
+      "x": 1280,
+      "y": 120,
+      "wires": [
+        [
+          "9abc04b2e7d3257a"
+        ]
+      ]
+    },
+    {
+      "id": "03a1c725d65f15e2",
+      "type": "switch",
+      "z": "1766c4cb75850c2c",
+      "g": "977b1c156a278f35",
+      "name": "Confirm that the camera is currently expected to be connected",
+      "property": "mqtt_rx",
+      "propertyType": "flow",
+      "rules": [
+        {
+          "t": "nempty"
+        }
+      ],
+      "checkall": "true",
+      "repair": false,
+      "outputs": 1,
+      "x": 850,
+      "y": 120,
+      "wires": [
+        [
+          "c6651882a2276fc2"
+        ]
+      ]
+    },
+    {
+      "id": "7fff0e065d651496",
+      "type": "comment",
+      "z": "1766c4cb75850c2c",
+      "g": "977b1c156a278f35",
+      "name": "reconnect logic",
+      "info": "",
+      "x": 380,
+      "y": 60,
+      "wires": []
+    },
+    {
+      "id": "5c869b5a19000f23",
+      "type": "change",
+      "z": "1766c4cb75850c2c",
+      "g": "4812ceb994ecee47",
+      "name": "get image",
+      "rules": [
+        {
+          "t": "set",
+          "p": "payload",
+          "pt": "msg",
+          "to": "payload.data.image",
+          "tot": "msg"
+        },
+        {
+          "t": "set",
+          "p": "topic",
+          "pt": "msg",
+          "to": "raw",
+          "tot": "str"
+        }
+      ],
+      "action": "",
+      "property": "",
+      "from": "",
+      "to": "",
+      "reg": false,
+      "x": 1080,
+      "y": 740,
+      "wires": [
+        [
+          "7712b011fe04d5e2"
+        ]
+      ]
+    },
+    {
+      "id": "a3d2cf36d30ad3a8",
+      "type": "change",
+      "z": "1766c4cb75850c2c",
+      "g": "4812ceb994ecee47",
+      "name": "get inference result",
+      "rules": [
+        {
+          "t": "set",
+          "p": "payload",
+          "pt": "msg",
+          "to": "payload.data.boxes",
+          "tot": "msg",
+          "dc": true
+        },
+        {
+          "t": "set",
+          "p": "topic",
+          "pt": "msg",
+          "to": "raw",
+          "tot": "str"
+        }
+      ],
+      "action": "",
+      "property": "",
+      "from": "",
+      "to": "",
+      "reg": false,
+      "x": 1110,
+      "y": 800,
+      "wires": [
+        [
+          "ce2e532308aa4012"
+        ]
+      ],
+      "info": "[[118,150,237,175,100,0],[114,119,76,84,100,2]]"
+    },
+    {
+      "id": "7712b011fe04d5e2",
+      "type": "switch",
+      "z": "1766c4cb75850c2c",
+      "g": "4812ceb994ecee47",
+      "name": "Check image is valid",
+      "property": "payload.length",
+      "propertyType": "msg",
+      "rules": [
+        {
+          "t": "gte",
+          "v": "100",
+          "vt": "str"
+        }
+      ],
+      "checkall": "true",
+      "repair": false,
+      "outputs": 1,
+      "x": 1280,
+      "y": 740,
+      "wires": [
+        []
+      ]
+    },
+    {
+      "id": "b97841458d677cf9",
+      "type": "switch",
+      "z": "1766c4cb75850c2c",
+      "g": "8e5fb88de994075b",
+      "name": "whether cameraId is set in env",
+      "property": "cameraId",
+      "propertyType": "env",
+      "rules": [
+        {
+          "t": "nempty"
+        },
+        {
+          "t": "empty"
+        }
+      ],
+      "checkall": "true",
+      "repair": false,
+      "outputs": 2,
+      "x": 450,
+      "y": 360,
+      "wires": [
+        [
+          "1ed7a698814e5190"
+        ],
+        [
+          "4712b34643952b3c"
+        ]
+      ]
+    },
+    {
+      "id": "4712b34643952b3c",
+      "type": "change",
+      "z": "1766c4cb75850c2c",
+      "g": "8e5fb88de994075b",
+      "name": "set flow.camera_id",
+      "rules": [
+        {
+          "t": "set",
+          "p": "camera_id",
+          "pt": "flow",
+          "to": "topic",
+          "tot": "msg",
+          "dc": true
+        },
+        {
+          "t": "set",
+          "p": "payload",
+          "pt": "msg",
+          "to": "topic",
+          "tot": "msg",
+          "dc": true
+        }
+      ],
+      "action": "",
+      "property": "",
+      "from": "",
+      "to": "",
+      "reg": false,
+      "x": 710,
+      "y": 380,
+      "wires": [
+        [
+          "3ea0d24d5a357d8c"
+        ]
+      ]
+    },
+    {
+      "id": "1ed7a698814e5190",
+      "type": "change",
+      "z": "1766c4cb75850c2c",
+      "g": "8e5fb88de994075b",
+      "name": "set flow.camera_id",
+      "rules": [
+        {
+          "t": "set",
+          "p": "camera_id",
+          "pt": "flow",
+          "to": "cameraId",
+          "tot": "env",
+          "dc": true
+        },
+        {
+          "t": "set",
+          "p": "payload",
+          "pt": "msg",
+          "to": "cameraId",
+          "tot": "env",
+          "dc": true
+        }
+      ],
+      "action": "",
+      "property": "",
+      "from": "",
+      "to": "",
+      "reg": false,
+      "x": 710,
+      "y": 340,
+      "wires": [
+        [
+          "3ea0d24d5a357d8c"
+        ]
+      ]
+    },
+    {
+      "id": "e5470b0dea4188f0",
+      "type": "change",
+      "z": "1766c4cb75850c2c",
+      "g": "a8dfe50e821dfd0b",
+      "name": "override mqtt_tx and mqtt_rx",
+      "rules": [
+        {
+          "t": "set",
+          "p": "mqtt_tx",
+          "pt": "flow",
+          "to": "\"sscma/v0/\" & payload & \"/tx\"",
+          "tot": "jsonata"
+        },
+        {
+          "t": "set",
+          "p": "mqtt_rx",
+          "pt": "flow",
+          "to": "\"sscma/v0/\" & payload & \"/rx\"",
+          "tot": "jsonata"
+        }
+      ],
+      "action": "",
+      "property": "",
+      "from": "",
+      "to": "",
+      "reg": false,
+      "x": 1360,
+      "y": 340,
+      "wires": [
+        [
+          "27dc0363dfd2c60d",
+          "6b25c7462632d304"
+        ]
+      ]
+    },
+    {
+      "id": "6b25c7462632d304",
+      "type": "change",
+      "z": "1766c4cb75850c2c",
+      "g": "a8dfe50e821dfd0b",
+      "name": "send a start command to camera",
+      "rules": [
+        {
+          "t": "set",
+          "p": "topic",
+          "pt": "msg",
+          "to": "mqtt_rx",
+          "tot": "flow",
+          "dc": true
+        },
+        {
+          "t": "set",
+          "p": "payload",
+          "pt": "msg",
+          "to": "[65,84,43,73,78,86,79,75,69,61,45,49,44,48,44,48,13,10]",
+          "tot": "bin"
+        }
+      ],
+      "action": "",
+      "property": "",
+      "from": "",
+      "to": "",
+      "reg": false,
+      "x": 1660,
+      "y": 380,
+      "wires": [
+        [
+          "4813977826279959"
+        ]
+      ]
+    },
+    {
+      "id": "46ee7c72c6d678a2",
+      "type": "change",
+      "z": "1766c4cb75850c2c",
+      "g": "b36553531342820f",
+      "name": "Unsubscribe Action Builder",
+      "rules": [
+        {
+          "t": "set",
+          "p": "topic",
+          "pt": "msg",
+          "to": "mqtt_tx",
+          "tot": "flow"
+        },
+        {
+          "t": "set",
+          "p": "action",
+          "pt": "msg",
+          "to": "unsubscribe",
+          "tot": "str"
+        }
+      ],
+      "action": "",
+      "property": "",
+      "from": "",
+      "to": "",
+      "reg": false,
+      "x": 420,
+      "y": 640,
+      "wires": [
+        [
+          "d1f974398f147b02"
+        ]
+      ]
+    },
+    {
+      "id": "1fec46e9cd347a2a",
+      "type": "comment",
+      "z": "1766c4cb75850c2c",
+      "g": "b36553531342820f",
+      "name": "Handle stop",
+      "info": "",
+      "x": 370,
+      "y": 520,
+      "wires": []
+    },
+    {
+      "id": "195c561cb96ad7cb",
+      "type": "comment",
+      "z": "1766c4cb75850c2c",
+      "g": "d821d39182a45218",
+      "name": "Handle start",
+      "info": "",
+      "x": 370,
+      "y": 220,
+      "wires": []
+    },
+    {
+      "id": "45f2f20fc1a0b77f",
+      "type": "comment",
+      "z": "1766c4cb75850c2c",
+      "g": "8e5fb88de994075b",
+      "name": "check camera id, to flow.camera_id",
+      "info": "",
+      "x": 460,
+      "y": 300,
+      "wires": []
+    },
+    {
+      "id": "1a9a58a193b6a274",
+      "type": "comment",
+      "z": "1766c4cb75850c2c",
+      "g": "4812ceb994ecee47",
+      "name": "Received data",
+      "info": "",
+      "x": 370,
+      "y": 740,
+      "wires": []
+    },
+    {
+      "id": "b9be4eadde0d5464",
+      "type": "link out",
+      "z": "1766c4cb75850c2c",
+      "g": "a8dfe50e821dfd0b",
+      "name": "sub/unsub",
+      "mode": "link",
+      "links": [
+        "86d3046f1847f777"
+      ],
+      "x": 1850,
+      "y": 260,
+      "wires": [],
+      "l": true
+    },
+    {
+      "id": "86d3046f1847f777",
+      "type": "link in",
+      "z": "1766c4cb75850c2c",
+      "g": "4812ceb994ecee47",
+      "name": "sub/unsub",
+      "links": [
+        "b9be4eadde0d5464",
+        "d1f974398f147b02"
+      ],
+      "x": 400,
+      "y": 800,
+      "wires": [
+        [
+          "6f49bb85fb1ca9dd"
+        ]
+      ],
+      "l": true
+    },
+    {
+      "id": "d1f974398f147b02",
+      "type": "link out",
+      "z": "1766c4cb75850c2c",
+      "g": "b36553531342820f",
+      "name": "sub/unsub",
+      "mode": "link",
+      "links": [
+        "86d3046f1847f777"
+      ],
+      "x": 710,
+      "y": 640,
+      "wires": [],
+      "l": true
+    },
+    {
+      "id": "c0843f7df37d8e49",
+      "type": "mqtt out",
+      "z": "1766c4cb75850c2c",
+      "g": "e17956ebf8df1058",
+      "name": "mqtt out",
+      "topic": "",
+      "qos": "0",
+      "retain": "false",
+      "respTopic": "",
+      "contentType": "",
+      "userProps": "",
+      "correl": "",
+      "expiry": "",
+      "broker": "${mqtt-broker}",
+      "x": 1040,
+      "y": 580,
+      "wires": []
+    },
+    {
+      "id": "1567eeb1bb47fec5",
+      "type": "link out",
+      "z": "1766c4cb75850c2c",
+      "g": "b36553531342820f",
+      "name": "pub",
+      "mode": "link",
+      "links": [
+        "b64fe8d75146fa69"
+      ],
+      "x": 690,
+      "y": 580,
+      "wires": [],
+      "l": true
+    },
+    {
+      "id": "b64fe8d75146fa69",
+      "type": "link in",
+      "z": "1766c4cb75850c2c",
+      "g": "e17956ebf8df1058",
+      "name": "pub",
+      "links": [
+        "1567eeb1bb47fec5",
+        "4813977826279959",
+        "9abc04b2e7d3257a"
+      ],
+      "x": 910,
+      "y": 580,
+      "wires": [
+        [
+          "c0843f7df37d8e49"
+        ]
+      ],
+      "l": true
+    },
+    {
+      "id": "9abc04b2e7d3257a",
+      "type": "link out",
+      "z": "1766c4cb75850c2c",
+      "g": "977b1c156a278f35",
+      "name": "pub",
+      "mode": "link",
+      "links": [
+        "b64fe8d75146fa69"
+      ],
+      "x": 1510,
+      "y": 120,
+      "wires": [],
+      "l": true
+    },
+    {
+      "id": "4813977826279959",
+      "type": "link out",
+      "z": "1766c4cb75850c2c",
+      "g": "a8dfe50e821dfd0b",
+      "name": "pub",
+      "mode": "link",
+      "links": [
+        "b64fe8d75146fa69"
+      ],
+      "x": 1870,
+      "y": 380,
+      "wires": [],
+      "l": true
+    },
+    {
+      "id": "ca580e1444a51d82",
+      "type": "comment",
+      "z": "1766c4cb75850c2c",
+      "g": "e17956ebf8df1058",
+      "name": "Basic mqtt publish",
+      "info": "",
+      "x": 930,
+      "y": 520,
+      "wires": []
+    },
+    {
+      "id": "cc53c77934293557",
+      "type": "status",
+      "z": "1766c4cb75850c2c",
+      "name": "",
+      "scope": null,
+      "x": 1450,
+      "y": 1060,
+      "wires": [
+        []
+      ]
+    },
+    {
+      "id": "6961ad7433fb3c65",
+      "type": "comment",
+      "z": "1766c4cb75850c2c",
+      "name": "image buffer",
+      "info": "",
+      "x": 1670,
+      "y": 700,
+      "wires": []
+    },
+    {
+      "id": "aef67c51ff6af9a3",
+      "type": "comment",
+      "z": "1766c4cb75850c2c",
+      "name": "inference result",
+      "info": "",
+      "x": 1680,
+      "y": 800,
+      "wires": []
+    },
+    {
+      "id": "17bdb18a27c66e11",
+      "type": "switch",
+      "z": "1766c4cb75850c2c",
+      "name": "start or stop",
+      "property": "payload",
+      "propertyType": "msg",
+      "rules": [
+        {
+          "t": "eq",
+          "v": "start",
+          "vt": "str"
+        },
+        {
+          "t": "eq",
+          "v": "stop",
+          "vt": "str"
+        }
+      ],
+      "checkall": "true",
+      "repair": false,
+      "outputs": 2,
+      "x": 150,
+      "y": 360,
+      "wires": [
+        [
+          "b97841458d677cf9"
+        ],
+        [
+          "a78007c93b1c1fe1",
+          "46ee7c72c6d678a2"
+        ]
+      ]
+    },
+    {
+      "id": "a89d1fafc072f198",
+      "type": "comment",
+      "z": "1766c4cb75850c2c",
+      "name": "original data",
+      "info": "",
+      "x": 1670,
+      "y": 960,
+      "wires": []
+    },
+    {
+      "id": "ce2e532308aa4012",
+      "type": "function",
+      "z": "1766c4cb75850c2c",
+      "name": "Check if the target is detected",
+      "func": "if (Array.isArray(msg.payload)) {\n    var length = msg.payload.length;\n    if (length > 1) {\n        msg.payload = 1;\n    } else if (length === 0) {\n        msg.payload = 0;\n    } else {\n        msg.payload = 1;\n    }\n} else {\n    msg.payload = 0;\n}\nreturn msg;",
+      "outputs": 1,
+      "timeout": 0,
+      "noerr": 0,
+      "initialize": "",
+      "finalize": "",
+      "libs": [],
+      "x": 1390,
+      "y": 1240,
+      "wires": [
+        [
+          "963a647e7b951cba"
+        ]
+      ]
+    },
+    {
+      "id": "963a647e7b951cba",
+      "type": "switch",
+      "z": "1766c4cb75850c2c",
+      "name": "yes or no",
+      "property": "payload",
+      "propertyType": "msg",
+      "rules": [
+        {
+          "t": "eq",
+          "v": "1",
+          "vt": "str"
+        },
+        {
+          "t": "eq",
+          "v": "0",
+          "vt": "str"
+        }
+      ],
+      "checkall": "true",
+      "repair": false,
+      "outputs": 2,
+      "x": 1620,
+      "y": 1240,
+      "wires": [
+        [
+          "e4db2d42d0a9aab5"
+        ],
+        [
+          "3d8473d039795dd6"
+        ]
+      ]
+    },
+    {
+      "id": "e4db2d42d0a9aab5",
+      "type": "switch",
+      "z": "1766c4cb75850c2c",
+      "name": "",
+      "property": "triggerMode",
+      "propertyType": "env",
+      "rules": [
+        {
+          "t": "eq",
+          "v": "yes",
+          "vt": "str"
+        }
+      ],
+      "checkall": "true",
+      "repair": false,
+      "outputs": 1,
+      "x": 1750,
+      "y": 1200,
+      "wires": [
+        []
+      ]
+    },
+    {
+      "id": "3d8473d039795dd6",
+      "type": "switch",
+      "z": "1766c4cb75850c2c",
+      "name": "",
+      "property": "triggerMode",
+      "propertyType": "env",
+      "rules": [
+        {
+          "t": "eq",
+          "v": "no",
+          "vt": "str"
+        }
+      ],
+      "checkall": "true",
+      "repair": false,
+      "outputs": 1,
+      "x": 1750,
+      "y": 1280,
+      "wires": [
+        []
+      ]
+    },
+    {
+      "id": "76719286957aa942",
+      "type": "msg-speed",
+      "z": "1766c4cb75850c2c",
+      "name": "",
+      "frequency": "sec",
+      "interval": 1,
+      "estimation": false,
+      "ignore": false,
+      "pauseAtStartup": false,
+      "topicDependent": false,
+      "x": 1310,
+      "y": 1000,
+      "wires": [
+        [],
+        []
+      ]
+    }
+  ]

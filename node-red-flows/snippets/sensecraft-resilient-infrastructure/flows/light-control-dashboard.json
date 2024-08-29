@@ -1,0 +1,1365 @@
+[
+    {
+        "id": "97a27d4ddc376247",
+        "type": "group",
+        "z": "ce3acd4e9503d8d4",
+        "name": "",
+        "style": {
+            "label": true,
+            "color": "#000000",
+            "fill": "#dbcbe7"
+        },
+        "nodes": [
+            "16391da1d25c33d0",
+            "606db3a49302cb6b",
+            "ee33718c46d78681",
+            "1bf5fbd9a14b9edc",
+            "395bfc24b7648832",
+            "1720de01fab9e8dc",
+            "345dc03ab48231a9",
+            "1d02f4acf91bc4c0",
+            "6a1b4e060635d355",
+            "827f835144d03ad4",
+            "8074d3bd9f84a5f5",
+            "c3a9d9983156a44f",
+            "629144233b94a2a6",
+            "dea375b48fcd6296",
+            "029b1feb9b8344c4",
+            "55247c8ab539d04b",
+            "2c2251d76372bb85"
+        ],
+        "x": 634,
+        "y": 519,
+        "w": 592,
+        "h": 422
+    },
+    {
+        "id": "16391da1d25c33d0",
+        "type": "change",
+        "z": "ce3acd4e9503d8d4",
+        "g": "97a27d4ddc376247",
+        "name": "update ui to red",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "red",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 880,
+        "y": 620,
+        "wires": [
+            [
+                "345dc03ab48231a9"
+            ]
+        ]
+    },
+    {
+        "id": "606db3a49302cb6b",
+        "type": "change",
+        "z": "ce3acd4e9503d8d4",
+        "g": "97a27d4ddc376247",
+        "name": "update ui to green",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "green",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 870,
+        "y": 660,
+        "wires": [
+            [
+                "345dc03ab48231a9"
+            ]
+        ]
+    },
+    {
+        "id": "ee33718c46d78681",
+        "type": "change",
+        "z": "ce3acd4e9503d8d4",
+        "g": "97a27d4ddc376247",
+        "name": "update ui to yellow",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "yellow",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 870,
+        "y": 700,
+        "wires": [
+            [
+                "345dc03ab48231a9"
+            ]
+        ]
+    },
+    {
+        "id": "1bf5fbd9a14b9edc",
+        "type": "change",
+        "z": "ce3acd4e9503d8d4",
+        "g": "97a27d4ddc376247",
+        "name": "update ui to blink-red",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "blink-red",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 860,
+        "y": 740,
+        "wires": [
+            [
+                "345dc03ab48231a9"
+            ]
+        ]
+    },
+    {
+        "id": "395bfc24b7648832",
+        "type": "change",
+        "z": "ce3acd4e9503d8d4",
+        "g": "97a27d4ddc376247",
+        "name": "update ui to blink-green",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "blink-green",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 850,
+        "y": 780,
+        "wires": [
+            [
+                "345dc03ab48231a9"
+            ]
+        ]
+    },
+    {
+        "id": "1720de01fab9e8dc",
+        "type": "change",
+        "z": "ce3acd4e9503d8d4",
+        "g": "97a27d4ddc376247",
+        "name": "update ui to blink-yellow",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "blink-yellow",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 850,
+        "y": 820,
+        "wires": [
+            [
+                "345dc03ab48231a9"
+            ]
+        ]
+    },
+    {
+        "id": "345dc03ab48231a9",
+        "type": "ui-template",
+        "z": "ce3acd4e9503d8d4",
+        "g": "97a27d4ddc376247",
+        "group": "32e94b3eb843c9f2",
+        "page": "",
+        "ui": "",
+        "name": "light dashboard ui",
+        "order": 1,
+        "width": "3",
+        "height": "3",
+        "head": "",
+        "format": "<template>\n    <div>\n        <svg viewBox=\"0 0 128 128\" :class=\"['light', status]\">\n            <path d=\"M64 4C38.43 4 18 24.43 18 50c0 15.464 8.324 29.234 20.8 36.77C38.292 89.724 38 93.776 38 98v2c0 5.522 4.478 10 10 10h32c5.522 0 10-4.478 10-10v-2c0-4.224-.292-8.276-.8-11.23C101.676 79.234 110 65.464 110 50 110 24.43 89.57 4 64 4zm0 116c-2.21 0-4-1.79-4-4h8c0 2.21-1.79 4-4 4zm16-8H48v-4h32v4zm4-8H44v-4h40v4zm-2.66-16.768C73.344 94.014 68.81 96 64 96s-9.344-1.986-13.34-4.768C45.4 88.756 42 83.576 42 78v-2h44v2c0 5.576-3.4 10.756-8.66 13.232z\"/>\n        </svg>\n    </div>\n</template>\n\n<script>\n    export default {\n        data() {\n            return {\n                status: 'off' // Initial status: off\n            }\n        },\n        watch: {\n            msg: function () {\n                if (this.msg && this.msg.payload) {\n                    this.status = this.msg.payload;\n                }\n            }\n        },\n        methods: {\n            toggleStatus() {\n                const states = ['off', 'red', 'green', 'yellow', 'blink-red', 'blink-green', 'blink-yellow'];\n                this.status = states[(states.indexOf(this.status) + 1) % states.length];\n                this.send({ payload: this.status });\n            }\n        },\n        mounted() {\n            this.$socket.on('msg-input:' + this.id, (msg) => {\n                if (msg && msg.payload) {\n                    this.status = msg.payload;\n                }\n            });\n        }\n    }\n</script>\n\n<style>\n    .light {\n        width: 128px;\n        height: 128px;\n        display: block;\n        margin: 20px auto;\n        fill: gray;\n        transition: fill 0.3s;\n    }\n    .light.red { fill: red; }\n    .light.green { fill: green; }\n    .light.yellow { fill: yellow; }\n    .light.blink-red { animation: blink-red 1s infinite; }\n    .light.blink-green { animation: blink-green 1s infinite; }\n    .light.blink-yellow { animation: blink-yellow 1s infinite; }\n\n    @keyframes blink-red {\n        0%, 50% { fill: red; }\n        25%, 75% { fill: gray; }\n    }\n    @keyframes blink-green {\n        0%, 50% { fill: green; }\n        25%, 75% { fill: gray; }\n    }\n    @keyframes blink-yellow {\n        0%, 50% { fill: yellow; }\n        25%, 75% { fill: gray; }\n    }\n</style>\n",
+        "storeOutMessages": true,
+        "passthru": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 1110,
+        "y": 740,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "1d02f4acf91bc4c0",
+        "type": "change",
+        "z": "ce3acd4e9503d8d4",
+        "g": "97a27d4ddc376247",
+        "name": "update ui to off",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "off",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 880,
+        "y": 860,
+        "wires": [
+            [
+                "345dc03ab48231a9"
+            ]
+        ]
+    },
+    {
+        "id": "6a1b4e060635d355",
+        "type": "link in",
+        "z": "ce3acd4e9503d8d4",
+        "g": "97a27d4ddc376247",
+        "name": "link in 5",
+        "links": [
+            "e63e3eaf3443875c",
+            "ae736e6f24909157"
+        ],
+        "x": 705,
+        "y": 620,
+        "wires": [
+            [
+                "16391da1d25c33d0"
+            ]
+        ]
+    },
+    {
+        "id": "827f835144d03ad4",
+        "type": "link in",
+        "z": "ce3acd4e9503d8d4",
+        "g": "97a27d4ddc376247",
+        "name": "link in 6",
+        "links": [
+            "9eb62452c12e3fb2",
+            "3c85d3b04d5b1ba6"
+        ],
+        "x": 705,
+        "y": 660,
+        "wires": [
+            [
+                "606db3a49302cb6b"
+            ]
+        ]
+    },
+    {
+        "id": "8074d3bd9f84a5f5",
+        "type": "link in",
+        "z": "ce3acd4e9503d8d4",
+        "g": "97a27d4ddc376247",
+        "name": "link in 7",
+        "links": [
+            "0351159f478dfac6",
+            "18d7770e94ae03c7"
+        ],
+        "x": 705,
+        "y": 700,
+        "wires": [
+            [
+                "ee33718c46d78681"
+            ]
+        ]
+    },
+    {
+        "id": "c3a9d9983156a44f",
+        "type": "link in",
+        "z": "ce3acd4e9503d8d4",
+        "g": "97a27d4ddc376247",
+        "name": "link in 8",
+        "links": [
+            "8a7ef8709ca22408",
+            "7f1b18337f24478b"
+        ],
+        "x": 705,
+        "y": 740,
+        "wires": [
+            [
+                "1bf5fbd9a14b9edc"
+            ]
+        ]
+    },
+    {
+        "id": "629144233b94a2a6",
+        "type": "link in",
+        "z": "ce3acd4e9503d8d4",
+        "g": "97a27d4ddc376247",
+        "name": "link in 9",
+        "links": [
+            "a2e3a3cb4b0f3c7f",
+            "99dcb5982cfa549e"
+        ],
+        "x": 705,
+        "y": 780,
+        "wires": [
+            [
+                "395bfc24b7648832"
+            ]
+        ]
+    },
+    {
+        "id": "dea375b48fcd6296",
+        "type": "link in",
+        "z": "ce3acd4e9503d8d4",
+        "g": "97a27d4ddc376247",
+        "name": "link in 10",
+        "links": [
+            "57594b14324cb2c5",
+            "3e5a100ccf36861b"
+        ],
+        "x": 705,
+        "y": 820,
+        "wires": [
+            [
+                "1720de01fab9e8dc"
+            ]
+        ]
+    },
+    {
+        "id": "029b1feb9b8344c4",
+        "type": "link in",
+        "z": "ce3acd4e9503d8d4",
+        "g": "97a27d4ddc376247",
+        "name": "link in 11",
+        "links": [
+            "4554f7bb1070da2a",
+            "24354cb7b8e2707e"
+        ],
+        "x": 705,
+        "y": 860,
+        "wires": [
+            [
+                "1d02f4acf91bc4c0"
+            ]
+        ]
+    },
+    {
+        "id": "55247c8ab539d04b",
+        "type": "comment",
+        "z": "ce3acd4e9503d8d4",
+        "g": "97a27d4ddc376247",
+        "name": "light dashboard ui, and update ui",
+        "info": "",
+        "x": 790,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "2c2251d76372bb85",
+        "type": "comment",
+        "z": "ce3acd4e9503d8d4",
+        "g": "97a27d4ddc376247",
+        "name": "v0.0.1",
+        "info": "",
+        "x": 1150,
+        "y": 900,
+        "wires": [],
+        "icon": "font-awesome/fa-exclamation-circle"
+    },
+    {
+        "id": "8132d836852c68fe",
+        "type": "group",
+        "z": "ce3acd4e9503d8d4",
+        "name": "",
+        "style": {
+            "label": true,
+            "color": "#000000",
+            "fill": "#dbcbe7"
+        },
+        "nodes": [
+            "b3bc622d575108dc",
+            "5f580c8b1d58f87d",
+            "e63e3eaf3443875c",
+            "9eb62452c12e3fb2",
+            "0351159f478dfac6",
+            "8a7ef8709ca22408",
+            "a2e3a3cb4b0f3c7f",
+            "57594b14324cb2c5",
+            "4554f7bb1070da2a",
+            "29a672a1c4e4d1ee",
+            "ef8471cb96dc764e"
+        ],
+        "x": 14,
+        "y": 1059,
+        "w": 592,
+        "h": 302
+    },
+    {
+        "id": "b3bc622d575108dc",
+        "type": "switch",
+        "z": "ce3acd4e9503d8d4",
+        "g": "8132d836852c68fe",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "0x0011",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "0x0013",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "0x0012",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "0x0031",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "0x0033",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "0x0032",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "0x0060",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 7,
+        "x": 450,
+        "y": 1200,
+        "wires": [
+            [
+                "e63e3eaf3443875c"
+            ],
+            [
+                "9eb62452c12e3fb2"
+            ],
+            [
+                "0351159f478dfac6"
+            ],
+            [
+                "8a7ef8709ca22408"
+            ],
+            [
+                "a2e3a3cb4b0f3c7f"
+            ],
+            [
+                "57594b14324cb2c5"
+            ],
+            [
+                "4554f7bb1070da2a"
+            ]
+        ]
+    },
+    {
+        "id": "5f580c8b1d58f87d",
+        "type": "subflow:f31e55153689cae9",
+        "z": "ce3acd4e9503d8d4",
+        "g": "8132d836852c68fe",
+        "name": "",
+        "env": [
+            {
+                "name": "modbus-client",
+                "value": "ff55020100020001",
+                "type": "conf-type"
+            }
+        ],
+        "x": 220,
+        "y": 1200,
+        "wires": [
+            [
+                "b3bc622d575108dc"
+            ]
+        ]
+    },
+    {
+        "id": "e63e3eaf3443875c",
+        "type": "link out",
+        "z": "ce3acd4e9503d8d4",
+        "g": "8132d836852c68fe",
+        "name": "link out 4",
+        "mode": "link",
+        "links": [
+            "6a1b4e060635d355",
+            "8ce24e15240d7b5c"
+        ],
+        "x": 565,
+        "y": 1140,
+        "wires": []
+    },
+    {
+        "id": "9eb62452c12e3fb2",
+        "type": "link out",
+        "z": "ce3acd4e9503d8d4",
+        "g": "8132d836852c68fe",
+        "name": "link out 6",
+        "mode": "link",
+        "links": [
+            "827f835144d03ad4",
+            "8ce24e15240d7b5c"
+        ],
+        "x": 565,
+        "y": 1160,
+        "wires": []
+    },
+    {
+        "id": "0351159f478dfac6",
+        "type": "link out",
+        "z": "ce3acd4e9503d8d4",
+        "g": "8132d836852c68fe",
+        "name": "link out 8",
+        "mode": "link",
+        "links": [
+            "8074d3bd9f84a5f5",
+            "8ce24e15240d7b5c"
+        ],
+        "x": 565,
+        "y": 1180,
+        "wires": []
+    },
+    {
+        "id": "8a7ef8709ca22408",
+        "type": "link out",
+        "z": "ce3acd4e9503d8d4",
+        "g": "8132d836852c68fe",
+        "name": "link out 10",
+        "mode": "link",
+        "links": [
+            "c3a9d9983156a44f",
+            "8ce24e15240d7b5c"
+        ],
+        "x": 565,
+        "y": 1200,
+        "wires": []
+    },
+    {
+        "id": "a2e3a3cb4b0f3c7f",
+        "type": "link out",
+        "z": "ce3acd4e9503d8d4",
+        "g": "8132d836852c68fe",
+        "name": "link out 12",
+        "mode": "link",
+        "links": [
+            "629144233b94a2a6",
+            "8ce24e15240d7b5c"
+        ],
+        "x": 565,
+        "y": 1220,
+        "wires": []
+    },
+    {
+        "id": "57594b14324cb2c5",
+        "type": "link out",
+        "z": "ce3acd4e9503d8d4",
+        "g": "8132d836852c68fe",
+        "name": "link out 14",
+        "mode": "link",
+        "links": [
+            "dea375b48fcd6296",
+            "8ce24e15240d7b5c"
+        ],
+        "x": 565,
+        "y": 1240,
+        "wires": []
+    },
+    {
+        "id": "4554f7bb1070da2a",
+        "type": "link out",
+        "z": "ce3acd4e9503d8d4",
+        "g": "8132d836852c68fe",
+        "name": "link out 16",
+        "mode": "link",
+        "links": [
+            "029b1feb9b8344c4",
+            "8ce24e15240d7b5c"
+        ],
+        "x": 565,
+        "y": 1260,
+        "wires": []
+    },
+    {
+        "id": "29a672a1c4e4d1ee",
+        "type": "comment",
+        "z": "ce3acd4e9503d8d4",
+        "g": "8132d836852c68fe",
+        "name": "Check current light controller status",
+        "info": "",
+        "x": 180,
+        "y": 1100,
+        "wires": []
+    },
+    {
+        "id": "ef8471cb96dc764e",
+        "type": "comment",
+        "z": "ce3acd4e9503d8d4",
+        "g": "8132d836852c68fe",
+        "name": "v0.0.1",
+        "info": "",
+        "x": 530,
+        "y": 1320,
+        "wires": [],
+        "icon": "font-awesome/fa-exclamation-circle"
+    },
+    {
+        "id": "7838c19b434525ad",
+        "type": "group",
+        "z": "ce3acd4e9503d8d4",
+        "name": "",
+        "style": {
+            "label": true,
+            "color": "#000000",
+            "fill": "#dbcbe7"
+        },
+        "nodes": [
+            "2e92fd27d7ac40a5",
+            "6cbb3414127e3215",
+            "9b1ab04215747138",
+            "c67ba04301dac130",
+            "12dde4415dcc183a",
+            "af2ab6278f822d0c",
+            "062e7b3b1001f53d"
+        ],
+        "x": 634,
+        "y": 959,
+        "w": 958,
+        "h": 648
+    },
+    {
+        "id": "2e92fd27d7ac40a5",
+        "type": "comment",
+        "z": "ce3acd4e9503d8d4",
+        "g": "7838c19b434525ad",
+        "name": "LIGHT_COLOR options: red, green, yellow",
+        "info": "",
+        "x": 1000,
+        "y": 1040,
+        "wires": []
+    },
+    {
+        "id": "6cbb3414127e3215",
+        "type": "comment",
+        "z": "ce3acd4e9503d8d4",
+        "g": "7838c19b434525ad",
+        "name": "LIGHT_MODE options: on, blink, flashing, off",
+        "info": "",
+        "x": 990,
+        "y": 1080,
+        "wires": []
+    },
+    {
+        "id": "9b1ab04215747138",
+        "type": "group",
+        "z": "ce3acd4e9503d8d4",
+        "g": "7838c19b434525ad",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "61cf8d1cf496d042",
+            "45626d31481fa1a5",
+            "866c6621fb385bed",
+            "b05e8825c9e1de3b",
+            "2dbc641a4e839a72",
+            "7a91ee276c0ee3a7",
+            "ae736e6f24909157",
+            "3c85d3b04d5b1ba6",
+            "18d7770e94ae03c7"
+        ],
+        "x": 674,
+        "y": 1119,
+        "w": 432,
+        "h": 322
+    },
+    {
+        "id": "61cf8d1cf496d042",
+        "type": "subflow:61d68b31136dfa92",
+        "z": "ce3acd4e9503d8d4",
+        "g": "9b1ab04215747138",
+        "name": "yellow on",
+        "env": [
+            {
+                "name": "modbus-client",
+                "value": "ff55020100020001",
+                "type": "conf-type"
+            },
+            {
+                "name": "productModel",
+                "value": "typea",
+                "type": "str"
+            },
+            {
+                "name": "LIGHT_COLOR",
+                "value": "yellow",
+                "type": "str"
+            },
+            {
+                "name": "DEVICE_VENDOR",
+                "value": "typea",
+                "type": "str"
+            }
+        ],
+        "x": 1020,
+        "y": 1400,
+        "wires": []
+    },
+    {
+        "id": "45626d31481fa1a5",
+        "type": "ui-button",
+        "z": "ce3acd4e9503d8d4",
+        "g": "9b1ab04215747138",
+        "group": "32e94b3eb843c9f2",
+        "name": "",
+        "label": "Yellow Light On",
+        "order": 4,
+        "width": "1",
+        "height": "1",
+        "emulateClick": false,
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "iconPosition": "left",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 780,
+        "y": 1360,
+        "wires": [
+            [
+                "61cf8d1cf496d042",
+                "18d7770e94ae03c7"
+            ]
+        ]
+    },
+    {
+        "id": "866c6621fb385bed",
+        "type": "ui-button",
+        "z": "ce3acd4e9503d8d4",
+        "g": "9b1ab04215747138",
+        "group": "32e94b3eb843c9f2",
+        "name": "",
+        "label": "Red Light On",
+        "order": 2,
+        "width": "1",
+        "height": "1",
+        "emulateClick": false,
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "iconPosition": "left",
+        "payload": "\"{\\\"LIGHT_COLOR\\\":\\\"red\\\",\\\"LIGHT_MODE\\\":\\\"blink\\\"}\"",
+        "payloadType": "json",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 770,
+        "y": 1160,
+        "wires": [
+            [
+                "b05e8825c9e1de3b",
+                "ae736e6f24909157"
+            ]
+        ]
+    },
+    {
+        "id": "b05e8825c9e1de3b",
+        "type": "subflow:61d68b31136dfa92",
+        "z": "ce3acd4e9503d8d4",
+        "g": "9b1ab04215747138",
+        "name": "red on",
+        "env": [
+            {
+                "name": "modbus-client",
+                "value": "ff55020100020001",
+                "type": "conf-type"
+            },
+            {
+                "name": "productModel",
+                "value": "typea",
+                "type": "str"
+            },
+            {
+                "name": "DEVICE_VENDOR",
+                "value": "typea",
+                "type": "str"
+            }
+        ],
+        "x": 1010,
+        "y": 1200,
+        "wires": []
+    },
+    {
+        "id": "2dbc641a4e839a72",
+        "type": "subflow:61d68b31136dfa92",
+        "z": "ce3acd4e9503d8d4",
+        "g": "9b1ab04215747138",
+        "name": "green on",
+        "env": [
+            {
+                "name": "modbus-client",
+                "value": "ff55020100020001",
+                "type": "conf-type"
+            },
+            {
+                "name": "productModel",
+                "value": "typea",
+                "type": "str"
+            },
+            {
+                "name": "LIGHT_COLOR",
+                "value": "green",
+                "type": "str"
+            },
+            {
+                "name": "DEVICE_VENDOR",
+                "value": "typea",
+                "type": "str"
+            }
+        ],
+        "x": 1020,
+        "y": 1300,
+        "wires": []
+    },
+    {
+        "id": "7a91ee276c0ee3a7",
+        "type": "ui-button",
+        "z": "ce3acd4e9503d8d4",
+        "g": "9b1ab04215747138",
+        "group": "32e94b3eb843c9f2",
+        "name": "",
+        "label": "Green Light On",
+        "order": 3,
+        "width": "1",
+        "height": "1",
+        "emulateClick": false,
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "iconPosition": "left",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 780,
+        "y": 1260,
+        "wires": [
+            [
+                "2dbc641a4e839a72",
+                "3c85d3b04d5b1ba6"
+            ]
+        ]
+    },
+    {
+        "id": "ae736e6f24909157",
+        "type": "link out",
+        "z": "ce3acd4e9503d8d4",
+        "g": "9b1ab04215747138",
+        "name": "update ui 1",
+        "mode": "link",
+        "links": [
+            "6a1b4e060635d355"
+        ],
+        "x": 975,
+        "y": 1160,
+        "wires": []
+    },
+    {
+        "id": "3c85d3b04d5b1ba6",
+        "type": "link out",
+        "z": "ce3acd4e9503d8d4",
+        "g": "9b1ab04215747138",
+        "name": "link out 7",
+        "mode": "link",
+        "links": [
+            "827f835144d03ad4",
+            "8ce24e15240d7b5c"
+        ],
+        "x": 975,
+        "y": 1260,
+        "wires": []
+    },
+    {
+        "id": "18d7770e94ae03c7",
+        "type": "link out",
+        "z": "ce3acd4e9503d8d4",
+        "g": "9b1ab04215747138",
+        "name": "link out 9",
+        "mode": "link",
+        "links": [
+            "8074d3bd9f84a5f5",
+            "8ce24e15240d7b5c"
+        ],
+        "x": 975,
+        "y": 1360,
+        "wires": []
+    },
+    {
+        "id": "c67ba04301dac130",
+        "type": "group",
+        "z": "ce3acd4e9503d8d4",
+        "g": "7838c19b434525ad",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "53799784356cbeae",
+            "28d07e6ea9b5e64c",
+            "9c59a67e0736c59e",
+            "cf2468590b419d1d",
+            "a8572c7d4c62a237",
+            "256af3895f3096e4",
+            "7f1b18337f24478b",
+            "99dcb5982cfa549e",
+            "3e5a100ccf36861b"
+        ],
+        "x": 1114,
+        "y": 1119,
+        "w": 452,
+        "h": 322
+    },
+    {
+        "id": "53799784356cbeae",
+        "type": "subflow:61d68b31136dfa92",
+        "z": "ce3acd4e9503d8d4",
+        "g": "c67ba04301dac130",
+        "name": "yellow flashing",
+        "env": [
+            {
+                "name": "modbus-client",
+                "value": "ff55020100020001",
+                "type": "conf-type"
+            },
+            {
+                "name": "productModel",
+                "value": "typea",
+                "type": "str"
+            },
+            {
+                "name": "LIGHT_MODE",
+                "value": "flashing",
+                "type": "str"
+            },
+            {
+                "name": "LIGHT_COLOR",
+                "value": "yellow",
+                "type": "str"
+            },
+            {
+                "name": "DEVICE_VENDOR",
+                "value": "typea",
+                "type": "str"
+            }
+        ],
+        "x": 1460,
+        "y": 1400,
+        "wires": []
+    },
+    {
+        "id": "28d07e6ea9b5e64c",
+        "type": "subflow:61d68b31136dfa92",
+        "z": "ce3acd4e9503d8d4",
+        "g": "c67ba04301dac130",
+        "name": "green flashing",
+        "env": [
+            {
+                "name": "modbus-client",
+                "value": "ff55020100020001",
+                "type": "conf-type"
+            },
+            {
+                "name": "productModel",
+                "value": "typea",
+                "type": "str"
+            },
+            {
+                "name": "LIGHT_MODE",
+                "value": "flashing",
+                "type": "str"
+            },
+            {
+                "name": "LIGHT_COLOR",
+                "value": "green",
+                "type": "str"
+            },
+            {
+                "name": "DEVICE_VENDOR",
+                "value": "typea",
+                "type": "str"
+            }
+        ],
+        "x": 1460,
+        "y": 1300,
+        "wires": []
+    },
+    {
+        "id": "9c59a67e0736c59e",
+        "type": "ui-button",
+        "z": "ce3acd4e9503d8d4",
+        "g": "c67ba04301dac130",
+        "group": "32e94b3eb843c9f2",
+        "name": "",
+        "label": "Yellow Light Flashing",
+        "order": 7,
+        "width": "1",
+        "height": "1",
+        "emulateClick": false,
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "iconPosition": "left",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 1240,
+        "y": 1360,
+        "wires": [
+            [
+                "53799784356cbeae",
+                "3e5a100ccf36861b"
+            ]
+        ]
+    },
+    {
+        "id": "cf2468590b419d1d",
+        "type": "ui-button",
+        "z": "ce3acd4e9503d8d4",
+        "g": "c67ba04301dac130",
+        "group": "32e94b3eb843c9f2",
+        "name": "",
+        "label": "Green Light Flashing",
+        "order": 6,
+        "width": "1",
+        "height": "1",
+        "emulateClick": false,
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "iconPosition": "left",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 1240,
+        "y": 1260,
+        "wires": [
+            [
+                "28d07e6ea9b5e64c",
+                "99dcb5982cfa549e"
+            ]
+        ]
+    },
+    {
+        "id": "a8572c7d4c62a237",
+        "type": "subflow:61d68b31136dfa92",
+        "z": "ce3acd4e9503d8d4",
+        "g": "c67ba04301dac130",
+        "name": "red flashing",
+        "env": [
+            {
+                "name": "modbus-client",
+                "value": "ff55020100020001",
+                "type": "conf-type"
+            },
+            {
+                "name": "productModel",
+                "value": "typea",
+                "type": "str"
+            },
+            {
+                "name": "LIGHT_MODE",
+                "value": "flashing",
+                "type": "str"
+            },
+            {
+                "name": "DEVICE_VENDOR",
+                "value": "typea",
+                "type": "str"
+            }
+        ],
+        "x": 1450,
+        "y": 1200,
+        "wires": []
+    },
+    {
+        "id": "256af3895f3096e4",
+        "type": "ui-button",
+        "z": "ce3acd4e9503d8d4",
+        "g": "c67ba04301dac130",
+        "group": "32e94b3eb843c9f2",
+        "name": "",
+        "label": "Red Light Flashing",
+        "order": 5,
+        "width": "1",
+        "height": "1",
+        "emulateClick": false,
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "iconPosition": "left",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 1230,
+        "y": 1160,
+        "wires": [
+            [
+                "a8572c7d4c62a237",
+                "7f1b18337f24478b"
+            ]
+        ]
+    },
+    {
+        "id": "7f1b18337f24478b",
+        "type": "link out",
+        "z": "ce3acd4e9503d8d4",
+        "g": "c67ba04301dac130",
+        "name": "link out 11",
+        "mode": "link",
+        "links": [
+            "c3a9d9983156a44f",
+            "8ce24e15240d7b5c"
+        ],
+        "x": 1395,
+        "y": 1160,
+        "wires": []
+    },
+    {
+        "id": "99dcb5982cfa549e",
+        "type": "link out",
+        "z": "ce3acd4e9503d8d4",
+        "g": "c67ba04301dac130",
+        "name": "link out 13",
+        "mode": "link",
+        "links": [
+            "629144233b94a2a6",
+            "8ce24e15240d7b5c"
+        ],
+        "x": 1395,
+        "y": 1260,
+        "wires": []
+    },
+    {
+        "id": "3e5a100ccf36861b",
+        "type": "link out",
+        "z": "ce3acd4e9503d8d4",
+        "g": "c67ba04301dac130",
+        "name": "link out 15",
+        "mode": "link",
+        "links": [
+            "dea375b48fcd6296",
+            "8ce24e15240d7b5c"
+        ],
+        "x": 1395,
+        "y": 1360,
+        "wires": []
+    },
+    {
+        "id": "12dde4415dcc183a",
+        "type": "group",
+        "z": "ce3acd4e9503d8d4",
+        "g": "7838c19b434525ad",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "dd54a1369b1d82bd",
+            "25be2db94e247a2b",
+            "24354cb7b8e2707e"
+        ],
+        "x": 674,
+        "y": 1459,
+        "w": 432,
+        "h": 122
+    },
+    {
+        "id": "dd54a1369b1d82bd",
+        "type": "subflow:61d68b31136dfa92",
+        "z": "ce3acd4e9503d8d4",
+        "g": "12dde4415dcc183a",
+        "name": "light off",
+        "env": [
+            {
+                "name": "modbus-client",
+                "value": "ff55020100020001",
+                "type": "conf-type"
+            },
+            {
+                "name": "productModel",
+                "value": "typea",
+                "type": "str"
+            },
+            {
+                "name": "LIGHT_MODE",
+                "value": "off",
+                "type": "str"
+            },
+            {
+                "name": "DEVICE_VENDOR",
+                "value": "typea",
+                "type": "str"
+            },
+            {
+                "name": "LIGHT_POWER",
+                "value": "false",
+                "type": "bool"
+            }
+        ],
+        "x": 1020,
+        "y": 1540,
+        "wires": []
+    },
+    {
+        "id": "25be2db94e247a2b",
+        "type": "ui-button",
+        "z": "ce3acd4e9503d8d4",
+        "g": "12dde4415dcc183a",
+        "group": "32e94b3eb843c9f2",
+        "name": "",
+        "label": "Turn Off Light",
+        "order": 8,
+        "width": "3",
+        "height": "1",
+        "emulateClick": false,
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "iconPosition": "left",
+        "payload": "true",
+        "payloadType": "bool",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 780,
+        "y": 1500,
+        "wires": [
+            [
+                "dd54a1369b1d82bd",
+                "24354cb7b8e2707e"
+            ]
+        ]
+    },
+    {
+        "id": "24354cb7b8e2707e",
+        "type": "link out",
+        "z": "ce3acd4e9503d8d4",
+        "g": "12dde4415dcc183a",
+        "name": "link out 17",
+        "mode": "link",
+        "links": [
+            "029b1feb9b8344c4",
+            "8ce24e15240d7b5c"
+        ],
+        "x": 975,
+        "y": 1500,
+        "wires": []
+    },
+    {
+        "id": "af2ab6278f822d0c",
+        "type": "comment",
+        "z": "ce3acd4e9503d8d4",
+        "g": "7838c19b434525ad",
+        "name": "Light Control with Buttons",
+        "info": "",
+        "x": 770,
+        "y": 1000,
+        "wires": []
+    },
+    {
+        "id": "062e7b3b1001f53d",
+        "type": "comment",
+        "z": "ce3acd4e9503d8d4",
+        "g": "7838c19b434525ad",
+        "name": "v0.0.1",
+        "info": "",
+        "x": 1510,
+        "y": 1560,
+        "wires": [],
+        "icon": "font-awesome/fa-exclamation-circle"
+    }
+]

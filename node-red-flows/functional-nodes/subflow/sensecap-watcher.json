@@ -1,0 +1,635 @@
+[
+    {
+        "id": "a6ec996dc8d4208d",
+        "type": "subflow",
+        "name": "watcher-stt",
+        "info": "",
+        "category": "",
+        "in": [],
+        "out": [
+            {
+                "x": 1760,
+                "y": 400,
+                "wires": [
+                    {
+                        "id": "4b0eee312fed3a38",
+                        "port": 0
+                    }
+                ]
+            }
+        ],
+        "env": [
+            {
+                "name": "RSP_TEXT",
+                "type": "str",
+                "value": "OK!"
+            },
+            {
+                "name": "RSP_AUDIO",
+                "type": "str",
+                "value": ""
+            }
+        ],
+        "meta": {},
+        "color": "#DDAA99"
+    },
+    {
+        "id": "4b0eee312fed3a38",
+        "type": "http request",
+        "z": "a6ec996dc8d4208d",
+        "name": "ASR API Request",
+        "method": "POST",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "http://host.docker.internal:9000/asr?encode=true&task=translate&language=en&word_timestamps=false&output=txt",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [
+            {
+                "keyType": "Content-Type",
+                "keyValue": "",
+                "valueType": "other",
+                "valueValue": "multipart/form-data"
+            },
+            {
+                "keyType": "Accept",
+                "keyValue": "",
+                "valueType": "other",
+                "valueValue": "application/json"
+            }
+        ],
+        "x": 1550,
+        "y": 400,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "16aa2489d166706b",
+        "type": "change",
+        "z": "a6ec996dc8d4208d",
+        "name": "Set payload",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{     \"audio_file\": {         \"value\": msg.payload,         \"options\": {             \"filename\": \"temp.wav\",             \"contentType\": \"audio/wav\"         }     } }",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1290,
+        "y": 400,
+        "wires": [
+            [
+                "4b0eee312fed3a38"
+            ]
+        ]
+    },
+    {
+        "id": "c80b6a0988e6d049",
+        "type": "http in",
+        "z": "a6ec996dc8d4208d",
+        "name": "",
+        "url": "/v2/watcher/talk/audio_stream",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 440,
+        "y": 400,
+        "wires": [
+            [
+                "344e40e7a732a989",
+                "22818511d293cc9d"
+            ]
+        ]
+    },
+    {
+        "id": "42e46d7e709e99e9",
+        "type": "file",
+        "z": "a6ec996dc8d4208d",
+        "name": "",
+        "filename": "/tmp/stt/audio_stream.wav",
+        "filenameType": "str",
+        "appendNewline": false,
+        "createDir": true,
+        "overwriteFile": "true",
+        "encoding": "binary",
+        "x": 1020,
+        "y": 400,
+        "wires": [
+            [
+                "16aa2489d166706b"
+            ]
+        ]
+    },
+    {
+        "id": "344e40e7a732a989",
+        "type": "function",
+        "z": "a6ec996dc8d4208d",
+        "name": "Create WAV Header",
+        "func": "const numChannels = 1; // 单声道\nconst sampleRate = 16000; // 采样率\nconst bitsPerSample = 16; // 每个样本的位数\nconst byteRate = sampleRate * numChannels * bitsPerSample / 8;\nconst blockAlign = numChannels * bitsPerSample / 8;\nconst dataSize = msg.payload.length;\n\n// 创建 WAV 文件头部\nconst header = Buffer.alloc(44);\nheader.write('RIFF', 0); // ChunkID\nheader.writeUInt32LE(36 + dataSize, 4); // ChunkSize\nheader.write('WAVE', 8); // Format\nheader.write('fmt ', 12); // Subchunk1ID\nheader.writeUInt32LE(16, 16); // Subchunk1Size\nheader.writeUInt16LE(1, 20); // AudioFormat (1 = PCM)\nheader.writeUInt16LE(numChannels, 22); // NumChannels\nheader.writeUInt32LE(sampleRate, 24); // SampleRate\nheader.writeUInt32LE(byteRate, 28); // ByteRate\nheader.writeUInt16LE(blockAlign, 32); // BlockAlign\nheader.writeUInt16LE(bitsPerSample, 34); // BitsPerSample\nheader.write('data', 36); // Subchunk2ID\nheader.writeUInt32LE(dataSize, 40); // Subchunk2Size\n\n// 合并头部和音频数据\nmsg.payload = Buffer.concat([header, msg.payload]);\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 740,
+        "y": 400,
+        "wires": [
+            [
+                "42e46d7e709e99e9"
+            ]
+        ]
+    },
+    {
+        "id": "22818511d293cc9d",
+        "type": "function",
+        "z": "a6ec996dc8d4208d",
+        "name": "Build JSON Response",
+        "func": "// 获取环境变量的值\nconst screenText = env.get(\"RSP_TEXT\");\n\n// 构建包含音频和 JSON 的响应\nconst jsonResponse = {\n    \"code\": 200,\n    \"msg\": \"\",\n    \"data\": {\n        \"mode\": 0,\n        \"duration\": 1000,\n        \"screen_text\": screenText, // 使用环境变量的值\n        \"stt_result\": \"\",\n        \"task_summary\": {}\n    }\n};\n\n// 将 JSON 转换为 Buffer\nconst jsonBuffer = Buffer.from(JSON.stringify(jsonResponse), 'utf8');\n\n// 特殊分隔符\nconst boundary = Buffer.from('\\n---sensecraftboundary---\\n', 'utf8');\n\n// 将 JSON Buffer 和分隔符存储在 msg 中，以便在文件读取完成后使用\nmsg.jsonBuffer = jsonBuffer;\nmsg.boundary = boundary;\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 740,
+        "y": 560,
+        "wires": [
+            [
+                "da1cd537d1a56cc9"
+            ]
+        ]
+    },
+    {
+        "id": "da1cd537d1a56cc9",
+        "type": "function",
+        "z": "a6ec996dc8d4208d",
+        "name": "Check RSP_AUDIO",
+        "func": "const rspAudio = env.get(\"RSP_AUDIO\");\nif (rspAudio) {\n    msg.payload.filename = rspAudio;\n    return [msg, null];\n} else {\n    // Generate silent audio\n    const sampleRate = 16000;\n    const toneDuration = 0.2; // 0.2 second per tone\n    const silenceDuration = 0.1; // 0.1 second of silence between tones\n    const frequency = 440; // A4 note\n    const amplitude = 20000; // Reduced amplitude for 16-bit audio\n\n    const toneSamples = sampleRate * toneDuration;\n    const silenceSamples = sampleRate * silenceDuration;\n    const numTones = 3;\n    const numSamples = numTones * (toneSamples + silenceSamples) - silenceSamples;\n\n    let buffer = Buffer.alloc(numSamples * 2); // 16-bit mono\n\n    // Function to apply Hanning window\n    function hanningWindow(index, totalSamples) {\n        return 0.5 * (1 - Math.cos((2 * Math.PI * index) / (totalSamples - 1)));\n    }\n\n    for (let t = 0; t < numTones; t++) {\n        for (let i = 0; i < toneSamples; i++) {\n            let sampleIndex = t * (toneSamples + silenceSamples) + i;\n            let window = hanningWindow(i, toneSamples);\n            let sample = amplitude * window * Math.sin(2 * Math.PI * frequency * (i / sampleRate));\n            buffer.writeInt16LE(sample, sampleIndex * 2);\n        }\n    }\n\n    msg.payload = buffer;\n    return [null, msg];\n}",
+        "outputs": 2,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 980,
+        "y": 560,
+        "wires": [
+            [
+                "7c6ac802862984ea"
+            ],
+            [
+                "88564f7ca71a3616"
+            ]
+        ]
+    },
+    {
+        "id": "7c6ac802862984ea",
+        "type": "file in",
+        "z": "a6ec996dc8d4208d",
+        "name": "Read Audio File",
+        "filename": "payload.filename",
+        "filenameType": "msg",
+        "format": "",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 1260,
+        "y": 500,
+        "wires": [
+            [
+                "88564f7ca71a3616"
+            ]
+        ]
+    },
+    {
+        "id": "88564f7ca71a3616",
+        "type": "function",
+        "z": "a6ec996dc8d4208d",
+        "name": "Combine JSON and Audio",
+        "func": "// 读取音频文件内容\nconst audioBuffer = msg.payload;\n\n// 从 msg 中获取之前存储的 JSON Buffer 和分隔符\nconst jsonBuffer = msg.jsonBuffer;\nconst boundary = msg.boundary;\n\n// 生成 HTTP 响应\nmsg.payload = Buffer.concat([jsonBuffer, boundary, audioBuffer]);\nmsg.headers = { 'Content-Type': 'application/octet-stream' };\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1520,
+        "y": 580,
+        "wires": [
+            [
+                "3e356d31b1124846"
+            ]
+        ]
+    },
+    {
+        "id": "3e356d31b1124846",
+        "type": "http response",
+        "z": "a6ec996dc8d4208d",
+        "name": "",
+        "statusCode": "200",
+        "headers": {},
+        "x": 1800,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "336d4af7487f2429",
+        "type": "subflow",
+        "name": "watcher-take-pictures",
+        "info": "",
+        "category": "",
+        "in": [],
+        "out": [
+            {
+                "x": 980,
+                "y": 840,
+                "wires": [
+                    {
+                        "id": "5e72fad9417a86ce",
+                        "port": 0
+                    }
+                ]
+            }
+        ],
+        "env": [
+            {
+                "name": "RSP_TEXT",
+                "type": "str",
+                "value": "OK!"
+            },
+            {
+                "name": "RSP_AUDIO",
+                "type": "str",
+                "value": ""
+            },
+            {
+                "name": "PIC_DURATION",
+                "type": "str",
+                "value": "1"
+            }
+        ],
+        "meta": {},
+        "color": "#DDAA99"
+    },
+    {
+        "id": "5a75c9e05d170858",
+        "type": "http in",
+        "z": "336d4af7487f2429",
+        "name": "",
+        "url": "/v2/watcher/talk/view_task_detail",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 510,
+        "y": 660,
+        "wires": [
+            [
+                "8ef38b1bc19a1c21"
+            ]
+        ]
+    },
+    {
+        "id": "bb5684af2454b9d8",
+        "type": "http response",
+        "z": "336d4af7487f2429",
+        "name": "",
+        "statusCode": "200",
+        "headers": {},
+        "x": 1180,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "fd41a18cc0ba3963",
+        "type": "http in",
+        "z": "336d4af7487f2429",
+        "name": "",
+        "url": "/v1/watcher/vision",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 470,
+        "y": 940,
+        "wires": [
+            [
+                "5e72fad9417a86ce"
+            ]
+        ]
+    },
+    {
+        "id": "5e72fad9417a86ce",
+        "type": "function",
+        "z": "336d4af7487f2429",
+        "name": "Parse Image",
+        "func": "// 解析请求参数\nlet payload = msg.payload;\nlet imgBase64 = payload.img;\n\n// 将 Base64 编码的图像存储到 msg.payload\nmsg.payload = imgBase64;\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 730,
+        "y": 940,
+        "wires": [
+            [
+                "511a11e641b282fd"
+            ]
+        ]
+    },
+    {
+        "id": "bd55cc75279cd3fe",
+        "type": "http response",
+        "z": "336d4af7487f2429",
+        "name": "",
+        "statusCode": "200",
+        "headers": {},
+        "x": 1140,
+        "y": 1000,
+        "wires": []
+    },
+    {
+        "id": "8ef38b1bc19a1c21",
+        "type": "function",
+        "z": "336d4af7487f2429",
+        "name": "Process Model Content",
+        "func": "let silence_duration = parseInt(env.get(\"PIC_DURATION\"), 10);\nsilence_duration = Math.max(silence_duration, 1);\n\nlet model_content = {};\nlet conditions = [];\n\n\nmsg.payload = {\n    \"code\": 200,\n    \"msg\": \"\",\n    \"data\": {\n        \"tl\": {\n            \"tlid\": 1723771099517,\n            \"ctd\": 1723771099517,\n            \"tn\": \"watcher push to talk\",\n            \"type\": 3,\n            \"task_flow\": [\n                {\n                    \"id\": 60516737,\n                    \"type\": \"ai camera\",\n                    \"type_id\": 0,\n                    \"index\": 0,\n                    \"vision\": \"0.0.1\",\n                    \"params\": {\n                        \"model_type\": 0,\n                        \"model\": {}, // 使用读取到的model字段内容或默认值\n                        \"modes\": 1,\n                        \"conditions\": conditions,\n                        \"conditions_combo\": 0,\n                        \"silent_period\": {\n                            \"time_period\": {\n                                \"repeat\": [\n                                    1,\n                                    1,\n                                    1,\n                                    1,\n                                    1,\n                                    1,\n                                    1\n                                ],\n                                \"time_start\": \"00:00:00\",\n                                \"time_end\": \"23:59:59\"\n                            },\n                            \"silence_duration\": silence_duration\n                        },\n                        \"output_type\": 1,\n                        \"shutter\": 0\n                    },\n                    \"wires\": [\n                        [\n                            1582908678\n                        ]\n                    ]\n                },\n                {\n                    \"id\": 1582908678,\n                    \"type\": \"image analyzer\",\n                    \"type_id\": 3,\n                    \"index\": 1,\n                    \"version\": \"0.0.1\",\n                    \"params\": {\n                        \"url\": \"\",\n                        \"header\": \"\",\n                        \"body\": {\n                            \"prompt\": \"\",\n                            \"type\": 1,\n                            \"audio_txt\": \"\"\n                        }\n                    },\n                    \"wires\": []\n                }\n            ]\n        }\n    }\n};\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 870,
+        "y": 660,
+        "wires": [
+            [
+                "bb5684af2454b9d8",
+                "54c1dcecc2df8230"
+            ]
+        ]
+    },
+    {
+        "id": "511a11e641b282fd",
+        "type": "function",
+        "z": "336d4af7487f2429",
+        "name": "Build Response",
+        "func": "let image = msg.payload;\n\nmsg.payload = {\n    \"code\": 200,\n    \"msg\": \"\",\n    \"data\": {\n        \"state\": 0,// 0 不告警;1 告警\n        \"audio\": \"\",\n        \"img\": \"\",\n        \"res\": \"\"\n    }\n};\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 920,
+        "y": 1000,
+        "wires": [
+            [
+                "bd55cc75279cd3fe"
+            ]
+        ]
+    },
+    {
+        "id": "2a63eacac06cf3b7",
+        "type": "http in",
+        "z": "336d4af7487f2429",
+        "name": "",
+        "url": "/v2/watcher/talk/audio_stream",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 500,
+        "y": 420,
+        "wires": [
+            [
+                "2b00ec4943d93347"
+            ]
+        ]
+    },
+    {
+        "id": "2b00ec4943d93347",
+        "type": "function",
+        "z": "336d4af7487f2429",
+        "name": "Build JSON Response",
+        "func": "// 获取环境变量的值\nconst screenText = env.get(\"RSP_TEXT\");\n\n// 构建包含音频和 JSON 的响应\nconst jsonResponse = {\n    \"code\": 200,\n    \"msg\": \"\",\n    \"data\": {\n        \"mode\": 2,\n        \"duration\": 1000,\n        \"screen_text\": screenText, // 使用环境变量的值\n        \"stt_result\": \"\",\n        \"task_summary\": {}\n    }\n};\n\n// 将 JSON 转换为 Buffer\nconst jsonBuffer = Buffer.from(JSON.stringify(jsonResponse), 'utf8');\n\n// 特殊分隔符\nconst boundary = Buffer.from('\\n---sensecraftboundary---\\n', 'utf8');\n\n// 将 JSON Buffer 和分隔符存储在 msg 中，以便在文件读取完成后使用\nmsg.jsonBuffer = jsonBuffer;\nmsg.boundary = boundary;\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 780,
+        "y": 420,
+        "wires": [
+            [
+                "98098bcbc41b57bb"
+            ]
+        ]
+    },
+    {
+        "id": "98098bcbc41b57bb",
+        "type": "function",
+        "z": "336d4af7487f2429",
+        "name": "Check RSP_AUDIO",
+        "func": "const rspAudio = env.get(\"RSP_AUDIO\");\nif (rspAudio) {\n    msg.payload.filename = rspAudio;\n    return [msg, null];\n} else {\n    // Generate silent audio\n    const sampleRate = 16000;\n    const toneDuration = 0.2; // 0.2 second per tone\n    const silenceDuration = 0.1; // 0.1 second of silence between tones\n    const frequency = 440; // A4 note\n    const amplitude = 20000; // Reduced amplitude for 16-bit audio\n\n    const toneSamples = sampleRate * toneDuration;\n    const silenceSamples = sampleRate * silenceDuration;\n    const numTones = 3;\n    const numSamples = numTones * (toneSamples + silenceSamples) - silenceSamples;\n\n    let buffer = Buffer.alloc(numSamples * 2); // 16-bit mono\n\n    // Function to apply Hanning window\n    function hanningWindow(index, totalSamples) {\n        return 0.5 * (1 - Math.cos((2 * Math.PI * index) / (totalSamples - 1)));\n    }\n\n    for (let t = 0; t < numTones; t++) {\n        for (let i = 0; i < toneSamples; i++) {\n            let sampleIndex = t * (toneSamples + silenceSamples) + i;\n            let window = hanningWindow(i, toneSamples);\n            let sample = amplitude * window * Math.sin(2 * Math.PI * frequency * (i / sampleRate));\n            buffer.writeInt16LE(sample, sampleIndex * 2);\n        }\n    }\n\n    msg.payload = buffer;\n    return [null, msg];\n}",
+        "outputs": 2,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1020,
+        "y": 420,
+        "wires": [
+            [
+                "a31c863abcdce1fa"
+            ],
+            [
+                "1277fe454dd02788"
+            ]
+        ]
+    },
+    {
+        "id": "a31c863abcdce1fa",
+        "type": "file in",
+        "z": "336d4af7487f2429",
+        "name": "Read Audio File",
+        "filename": "payload.filename",
+        "filenameType": "msg",
+        "format": "",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 1300,
+        "y": 360,
+        "wires": [
+            [
+                "1277fe454dd02788"
+            ]
+        ]
+    },
+    {
+        "id": "1277fe454dd02788",
+        "type": "function",
+        "z": "336d4af7487f2429",
+        "name": "Combine JSON and Audio",
+        "func": "// 读取音频文件内容\nconst audioBuffer = msg.payload;\n\n// 从 msg 中获取之前存储的 JSON Buffer 和分隔符\nconst jsonBuffer = msg.jsonBuffer;\nconst boundary = msg.boundary;\n\n// 生成 HTTP 响应\nmsg.payload = Buffer.concat([jsonBuffer, boundary, audioBuffer]);\nmsg.headers = { 'Content-Type': 'application/octet-stream' };\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1560,
+        "y": 420,
+        "wires": [
+            [
+                "7fd4d8d4464768da"
+            ]
+        ]
+    },
+    {
+        "id": "7fd4d8d4464768da",
+        "type": "http response",
+        "z": "336d4af7487f2429",
+        "name": "",
+        "statusCode": "200",
+        "headers": {},
+        "x": 1840,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "54c1dcecc2df8230",
+        "type": "debug",
+        "z": "336d4af7487f2429",
+        "name": "debug 13",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1180,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "c1b434e7ff15727e",
+        "type": "subflow",
+        "name": "whether detect any object",
+        "info": "",
+        "category": "※camera-grove-vision-ai-v2",
+        "in": [
+            {
+                "x": 60,
+                "y": 80,
+                "wires": [
+                    {
+                        "id": "684df14293772fea"
+                    }
+                ]
+            }
+        ],
+        "out": [
+            {
+                "x": 760,
+                "y": 40,
+                "wires": [
+                    {
+                        "id": "e5661c67a0e2a2fd",
+                        "port": 0
+                    }
+                ]
+            },
+            {
+                "x": 750,
+                "y": 140,
+                "wires": [
+                    {
+                        "id": "e5661c67a0e2a2fd",
+                        "port": 1
+                    }
+                ]
+            }
+        ],
+        "env": [],
+        "meta": {
+            "version": "0.0.1",
+            "author": "seeed",
+            "license": "Apache-2.0"
+        },
+        "color": "#E2D96E",
+        "inputLabels": [
+            "connect from the inference result output"
+        ],
+        "outputLabels": [
+            "if yes ...",
+            "if no ..."
+        ]
+    },
+    {
+        "id": "684df14293772fea",
+        "type": "function",
+        "z": "c1b434e7ff15727e",
+        "name": "Check if the target is detected",
+        "func": "if (Array.isArray(msg.payload)) {\n    var length = msg.payload.length;\n    if (length > 1) {\n        msg.payload = 1;\n    } else if (length === 0) {\n        msg.payload = 0;\n    } else {\n        msg.payload = 1;\n    }\n} else {\n    msg.payload = 0;\n}\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 270,
+        "y": 80,
+        "wires": [
+            [
+                "e5661c67a0e2a2fd"
+            ]
+        ]
+    },
+    {
+        "id": "e5661c67a0e2a2fd",
+        "type": "switch",
+        "z": "c1b434e7ff15727e",
+        "name": "yes or no",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "1",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "0",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 560,
+        "y": 80,
+        "wires": [
+            [],
+            []
+        ]
+    }
+]

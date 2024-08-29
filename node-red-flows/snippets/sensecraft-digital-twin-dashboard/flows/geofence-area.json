@@ -1,0 +1,266 @@
+[
+    {
+        "id": "53583def5a2df0c8",
+        "type": "group",
+        "z": "0c809b82525ab765",
+        "name": "",
+        "style": {
+            "label": true,
+            "color": "#000000",
+            "fill": "#dbcbe7"
+        },
+        "nodes": [
+            "c28dc59ceae9c32d",
+            "98c40f424a9c44e2",
+            "f353fb9f47e745d7",
+            "c3b1a5da5f43d713",
+            "519ba749ee53d39b"
+        ],
+        "x": 14,
+        "y": 279,
+        "w": 792,
+        "h": 402
+    },
+    {
+        "id": "c28dc59ceae9c32d",
+        "type": "group",
+        "z": "0c809b82525ab765",
+        "g": "53583def5a2df0c8",
+        "name": "When a new tracker's position reported, check geofence",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "c843e5d7ef9ff5ae",
+            "1146255d1badf7fc",
+            "5988c82904bef598"
+        ],
+        "x": 64,
+        "y": 459,
+        "w": 702,
+        "h": 82
+    },
+    {
+        "id": "c843e5d7ef9ff5ae",
+        "type": "subflow:ff55010600100002",
+        "z": "0c809b82525ab765",
+        "g": "c28dc59ceae9c32d",
+        "name": "",
+        "env": [
+            {
+                "name": "mqtt-broker",
+                "value": "ff55020100010001",
+                "type": "conf-type"
+            },
+            {
+                "name": "MQTT Broker",
+                "value": "",
+                "type": "str"
+            }
+        ],
+        "x": 230,
+        "y": 500,
+        "wires": [
+            [
+                "1146255d1badf7fc"
+            ]
+        ]
+    },
+    {
+        "id": "1146255d1badf7fc",
+        "type": "subflow:8e71ad1d725a1c4b",
+        "z": "0c809b82525ab765",
+        "g": "c28dc59ceae9c32d",
+        "name": "",
+        "x": 520,
+        "y": 500,
+        "wires": [
+            [
+                "5988c82904bef598"
+            ]
+        ]
+    },
+    {
+        "id": "98c40f424a9c44e2",
+        "type": "group",
+        "z": "0c809b82525ab765",
+        "g": "53583def5a2df0c8",
+        "name": "A ui button to clear geofence record",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "62700aef3ed0781b",
+            "b18ad46558af0da4",
+            "4ac8240eb50406b5"
+        ],
+        "x": 54,
+        "y": 559,
+        "w": 612,
+        "h": 82
+    },
+    {
+        "id": "62700aef3ed0781b",
+        "type": "ui-button",
+        "z": "0c809b82525ab765",
+        "g": "98c40f424a9c44e2",
+        "group": "ee7258bda6d1e1eb",
+        "name": "",
+        "label": "Clear Geofence",
+        "order": 2,
+        "width": "1",
+        "height": "1",
+        "emulateClick": true,
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "iconPosition": "left",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 360,
+        "y": 600,
+        "wires": [
+            [
+                "b18ad46558af0da4"
+            ]
+        ]
+    },
+    {
+        "id": "b18ad46558af0da4",
+        "type": "subflow:864d0ea09f268ade",
+        "z": "0c809b82525ab765",
+        "g": "98c40f424a9c44e2",
+        "name": "",
+        "x": 560,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "4ac8240eb50406b5",
+        "type": "inject",
+        "z": "0c809b82525ab765",
+        "g": "98c40f424a9c44e2",
+        "name": "on startup",
+        "props": [],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "0",
+        "topic": "",
+        "x": 170,
+        "y": 600,
+        "wires": [
+            [
+                "62700aef3ed0781b"
+            ]
+        ]
+    },
+    {
+        "id": "519ba749ee53d39b",
+        "type": "group",
+        "z": "0c809b82525ab765",
+        "g": "53583def5a2df0c8",
+        "name": "Receive tracker's postion reported, and add a poin to the map",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "33ba69f8c29db322",
+            "8717ef571bd0c94b"
+        ],
+        "x": 64,
+        "y": 359,
+        "w": 582,
+        "h": 82
+    },
+    {
+        "id": "33ba69f8c29db322",
+        "type": "subflow:ff55010600100002",
+        "z": "0c809b82525ab765",
+        "g": "519ba749ee53d39b",
+        "name": "",
+        "env": [
+            {
+                "name": "mqtt-broker",
+                "value": "ff55020100010001",
+                "type": "conf-type"
+            },
+            {
+                "name": "MQTT Broker",
+                "value": "",
+                "type": "str"
+            }
+        ],
+        "x": 230,
+        "y": 400,
+        "wires": [
+            [
+                "8717ef571bd0c94b"
+            ]
+        ]
+    },
+    {
+        "id": "8717ef571bd0c94b",
+        "type": "subflow:c4c69de5166fafdd",
+        "z": "0c809b82525ab765",
+        "g": "519ba749ee53d39b",
+        "name": "",
+        "env": [
+            {
+                "name": "Group",
+                "value": "5c4a9eb8bcc506ec",
+                "type": "conf-type"
+            },
+            {
+                "name": "zoom",
+                "value": "12",
+                "type": "str"
+            },
+            {
+                "name": "useOfflineMap",
+                "value": "true",
+                "type": "bool"
+            },
+            {
+                "name": "offlineMapZoom",
+                "value": "8",
+                "type": "str"
+            },
+            {
+                "key": "DB2_SF_ORDER",
+                "value": "1",
+                "type": "str"
+            }
+        ],
+        "x": 530,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "f353fb9f47e745d7",
+        "type": "comment",
+        "z": "0c809b82525ab765",
+        "g": "53583def5a2df0c8",
+        "name": "Geofence Area",
+        "info": "",
+        "x": 120,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "c3b1a5da5f43d713",
+        "type": "comment",
+        "z": "0c809b82525ab765",
+        "g": "53583def5a2df0c8",
+        "name": "v0.0.2",
+        "info": "",
+        "x": 730,
+        "y": 640,
+        "wires": [],
+        "icon": "font-awesome/fa-exclamation-circle"
+    }
+]

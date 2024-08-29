@@ -1,0 +1,232 @@
+[
+    {
+        "id": "b860a2396af6a58d",
+        "type": "group",
+        "z": "0c809b82525ab765",
+        "name": "",
+        "style": {
+            "label": true,
+            "color": "#000000",
+            "fill": "#dbcbe7"
+        },
+        "nodes": [
+            "c343e6092a6dbe7c",
+            "c0aa7556530111a0",
+            "bb3471a7f85fb434",
+            "2daa1918dc47a50f",
+            "73051e495187766b",
+            "20231490b3c12cec",
+            "84ae227288e9adad"
+        ],
+        "x": 14,
+        "y": 19,
+        "w": 812,
+        "h": 242
+    },
+    {
+        "id": "c343e6092a6dbe7c",
+        "type": "comment",
+        "z": "0c809b82525ab765",
+        "g": "b860a2396af6a58d",
+        "name": "Digital Twin Area",
+        "info": "",
+        "x": 120,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "c0aa7556530111a0",
+        "type": "subflow:c64ffede4f1f69bd",
+        "z": "0c809b82525ab765",
+        "g": "b860a2396af6a58d",
+        "name": "",
+        "env": [
+            {
+                "name": "Group",
+                "value": "8a67b5077a1657c0",
+                "type": "conf-type"
+            },
+            {
+                "name": "Width",
+                "value": "6",
+                "type": "num"
+            },
+            {
+                "name": "Height",
+                "value": "5",
+                "type": "num"
+            },
+            {
+                "name": "imageSelector",
+                "value": "file",
+                "type": "str"
+            },
+            {
+                "name": "imagePath",
+                "value": "default_background.jpg",
+                "type": "str"
+            },
+            {
+                "key": "DB2_SF_ORDER",
+                "value": "1",
+                "type": "str"
+            }
+        ],
+        "x": 170,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "bb3471a7f85fb434",
+        "type": "comment",
+        "z": "0c809b82525ab765",
+        "g": "b860a2396af6a58d",
+        "name": "v0.0.2",
+        "info": "",
+        "x": 750,
+        "y": 220,
+        "wires": [],
+        "icon": "font-awesome/fa-exclamation-circle"
+    },
+    {
+        "id": "2daa1918dc47a50f",
+        "type": "subflow:c25ee8e3cadf74f6",
+        "z": "0c809b82525ab765",
+        "g": "b860a2396af6a58d",
+        "name": "digital twin data card - tripwire",
+        "env": [
+            {
+                "name": "Group",
+                "value": "8a67b5077a1657c0",
+                "type": "conf-type"
+            },
+            {
+                "name": "card_name",
+                "value": "Tripwire",
+                "type": "str"
+            },
+            {
+                "name": "card_position_y",
+                "value": "10%",
+                "type": "str"
+            },
+            {
+                "name": "card_position_x",
+                "value": "27%",
+                "type": "str"
+            },
+            {
+                "key": "DB2_SF_ORDER",
+                "value": 8,
+                "type": "str"
+            }
+        ],
+        "x": 530,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "73051e495187766b",
+        "type": "subflow:fdfd26c77e5e2a42",
+        "z": "0c809b82525ab765",
+        "g": "b860a2396af6a58d",
+        "name": "",
+        "env": [
+            {
+                "name": "mqttBroker",
+                "value": "ff55020100010001",
+                "type": "conf-type"
+            },
+            {
+                "name": "applicationId",
+                "value": "",
+                "type": "str"
+            },
+            {
+                "name": "deviceId",
+                "value": "",
+                "type": "str"
+            }
+        ],
+        "x": 190,
+        "y": 220,
+        "wires": [
+            [
+                "2daa1918dc47a50f"
+            ]
+        ]
+    },
+    {
+        "id": "20231490b3c12cec",
+        "type": "subflow:c25ee8e3cadf74f6",
+        "z": "0c809b82525ab765",
+        "g": "b860a2396af6a58d",
+        "name": "digital twin data card - ultrasonic",
+        "env": [
+            {
+                "name": "Group",
+                "value": "8a67b5077a1657c0",
+                "type": "conf-type"
+            },
+            {
+                "name": "card_unit",
+                "value": "m",
+                "type": "str"
+            },
+            {
+                "name": "card_position_y",
+                "value": "10%",
+                "type": "str"
+            },
+            {
+                "name": "card_position_x",
+                "value": "5%",
+                "type": "str"
+            },
+            {
+                "name": "UI Group",
+                "value": "",
+                "type": "str"
+            },
+            {
+                "key": "DB2_SF_ORDER",
+                "value": 2,
+                "type": "str"
+            }
+        ],
+        "x": 520,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "84ae227288e9adad",
+        "type": "subflow:e0d523198c47fac8",
+        "z": "0c809b82525ab765",
+        "g": "b860a2396af6a58d",
+        "name": "",
+        "env": [
+            {
+                "name": "mqttBroker",
+                "value": "ff55020100010001",
+                "type": "conf-type"
+            },
+            {
+                "name": "applicationId",
+                "value": "",
+                "type": "str"
+            },
+            {
+                "name": "deviceId",
+                "value": "",
+                "type": "str"
+            }
+        ],
+        "x": 200,
+        "y": 160,
+        "wires": [
+            [
+                "20231490b3c12cec"
+            ]
+        ]
+    }
+]

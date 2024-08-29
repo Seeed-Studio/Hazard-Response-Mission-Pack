@@ -1,0 +1,667 @@
+[
+    {
+        "id": "f11a6acbc82d2c5c",
+        "type": "subflow",
+        "name": "7in1 weather station",
+        "info": "",
+        "category": "※sensecap-weather-station",
+        "in": [],
+        "out": [
+            {
+                "x": 1220,
+                "y": 200,
+                "wires": [
+                    {
+                        "id": "9c84a20fd70247b6",
+                        "port": 0
+                    }
+                ]
+            }
+        ],
+        "env": [
+            {
+                "name": "mqtt-broker",
+                "type": "mqtt-broker",
+                "value": "ff55020100010001",
+                "ui": {
+                    "icon": "font-awesome/fa-server",
+                    "label": {
+                        "zh-CN": "*Server",
+                        "en-US": "*Server"
+                    },
+                    "type": "conf-types"
+                }
+            },
+            {
+                "name": "Title - Select data to output",
+                "type": "str",
+                "value": "",
+                "ui": {
+                    "label": {
+                        "zh-CN": "Select data to output:",
+                        "en-US": "Select data to output:"
+                    },
+                    "type": "none"
+                }
+            },
+            {
+                "name": "temperature",
+                "type": "bool",
+                "value": "true",
+                "ui": {
+                    "label": {
+                        "zh-CN": "Temperature",
+                        "en-US": "Temperature"
+                    },
+                    "type": "checkbox"
+                }
+            },
+            {
+                "name": "humidity",
+                "type": "bool",
+                "value": "true",
+                "ui": {
+                    "label": {
+                        "zh-CN": "Humidity",
+                        "en-US": "Humidity"
+                    },
+                    "type": "checkbox"
+                }
+            },
+            {
+                "name": "windSpeed",
+                "type": "bool",
+                "value": "true",
+                "ui": {
+                    "label": {
+                        "zh-CN": "Wind Speed",
+                        "en-US": "Wind Speed"
+                    },
+                    "type": "checkbox"
+                }
+            },
+            {
+                "name": "precipitation",
+                "type": "bool",
+                "value": "true",
+                "ui": {
+                    "label": {
+                        "zh-CN": "Precipitation",
+                        "en-US": "Precipitation"
+                    },
+                    "type": "checkbox"
+                }
+            },
+            {
+                "name": "vegetationDensity",
+                "type": "bool",
+                "value": "true",
+                "ui": {
+                    "label": {
+                        "zh-CN": "Vegetation Density",
+                        "en-US": "Vegetation Density"
+                    },
+                    "type": "checkbox"
+                }
+            },
+            {
+                "name": "fuelMoisture",
+                "type": "bool",
+                "value": "true",
+                "ui": {
+                    "label": {
+                        "zh-CN": "Fuel Moisture",
+                        "en-US": "Fuel Moisture"
+                    },
+                    "type": "checkbox"
+                }
+            },
+            {
+                "name": "soilMoisture",
+                "type": "bool",
+                "value": "true",
+                "ui": {
+                    "label": {
+                        "zh-CN": "Soil Moisture",
+                        "en-US": "Soil Moisture"
+                    },
+                    "type": "checkbox"
+                }
+            },
+            {
+                "name": "fireRisk",
+                "type": "bool",
+                "value": "true",
+                "ui": {
+                    "label": {
+                        "zh-CN": "Fire Risk",
+                        "en-US": "Fire Risk"
+                    },
+                    "type": "checkbox"
+                }
+            }
+        ],
+        "meta": {},
+        "color": "#B8EA4F",
+        "status": {
+            "x": 1220,
+            "y": 360,
+            "wires": []
+        }
+    },
+    {
+        "id": "8e4db328f42c4974",
+        "type": "function",
+        "z": "f11a6acbc82d2c5c",
+        "name": "7-in-1 weather station",
+        "func": "var temperature = {\n    payload: Math.random() * 40,\n    topic: \"temperature\"\n};\n\nvar humidity = {\n    payload: Math.random() * 100,\n    topic: \"humidity\"\n};\n\nvar windSpeed = {\n    payload: Math.random() * 20,\n    topic: \"windSpeed\"\n};\n\nvar precipitation = {\n    payload: Math.random() * 50,\n    topic: \"precipitation\"\n};\n\nvar vegetationDensity = {\n    payload: Math.random() * 100,\n    topic: \"vegetationDensity\"\n};\n\nvar fuelMoisture = {\n    payload: Math.random() * 100,\n    topic: \"fuelMoisture\"\n};\n\nvar soilMoisture = {\n    payload: Math.random() * 100,\n    topic: \"soilMoisture\"\n};\n\nvar total = {\n    payload: {\n        temperature: temperature.payload,\n        humidity: humidity.payload,\n        windSpeed: windSpeed.payload,\n        precipitation: precipitation.payload,\n        vegetationDensity: vegetationDensity.payload,\n        fuelMoisture: fuelMoisture.payload,\n        soilMoisture: soilMoisture.payload\n    },\n    topic: \"total\"\n};\n\nreturn [temperature, humidity, windSpeed, precipitation, vegetationDensity, fuelMoisture, soilMoisture, total];\n",
+        "outputs": 8,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 360,
+        "y": 120,
+        "wires": [
+            [
+                "d13ad91ac508db4c"
+            ],
+            [
+                "772715fb0b63dd2a"
+            ],
+            [
+                "7e23227f9b76321f"
+            ],
+            [
+                "55b9f3c6aa5baa15"
+            ],
+            [
+                "6fcd9713b7a0c408"
+            ],
+            [
+                "16cac78624bc6e83"
+            ],
+            [
+                "20cd1089729f666f"
+            ],
+            [
+                "c2437ef708dab502"
+            ]
+        ]
+    },
+    {
+        "id": "c7d6a465aad48164",
+        "type": "inject",
+        "z": "f11a6acbc82d2c5c",
+        "name": "onstartup",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "5",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "0",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 150,
+        "y": 120,
+        "wires": [
+            [
+                "8e4db328f42c4974"
+            ]
+        ]
+    },
+    {
+        "id": "d13ad91ac508db4c",
+        "type": "switch",
+        "z": "f11a6acbc82d2c5c",
+        "name": "",
+        "property": "temperature",
+        "propertyType": "env",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 610,
+        "y": 80,
+        "wires": [
+            [
+                "3a6ab4a46c5c856e"
+            ]
+        ]
+    },
+    {
+        "id": "772715fb0b63dd2a",
+        "type": "switch",
+        "z": "f11a6acbc82d2c5c",
+        "name": "",
+        "property": "humidity",
+        "propertyType": "env",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 610,
+        "y": 120,
+        "wires": [
+            [
+                "6b6a9690a8786b72"
+            ]
+        ]
+    },
+    {
+        "id": "7e23227f9b76321f",
+        "type": "switch",
+        "z": "f11a6acbc82d2c5c",
+        "name": "",
+        "property": "windSpeed",
+        "propertyType": "env",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 610,
+        "y": 160,
+        "wires": [
+            [
+                "c72f1d53fa0877e1"
+            ]
+        ]
+    },
+    {
+        "id": "55b9f3c6aa5baa15",
+        "type": "switch",
+        "z": "f11a6acbc82d2c5c",
+        "name": "",
+        "property": "precipitation",
+        "propertyType": "env",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 610,
+        "y": 200,
+        "wires": [
+            [
+                "833587c680aa5057"
+            ]
+        ]
+    },
+    {
+        "id": "6fcd9713b7a0c408",
+        "type": "switch",
+        "z": "f11a6acbc82d2c5c",
+        "name": "",
+        "property": "vegetationDensity",
+        "propertyType": "env",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 610,
+        "y": 240,
+        "wires": [
+            [
+                "bc4740acb653759e"
+            ]
+        ]
+    },
+    {
+        "id": "16cac78624bc6e83",
+        "type": "switch",
+        "z": "f11a6acbc82d2c5c",
+        "name": "",
+        "property": "fuelMoisture",
+        "propertyType": "env",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 610,
+        "y": 280,
+        "wires": [
+            [
+                "342c90344efb042a"
+            ]
+        ]
+    },
+    {
+        "id": "20cd1089729f666f",
+        "type": "switch",
+        "z": "f11a6acbc82d2c5c",
+        "name": "",
+        "property": "soilMoisture",
+        "propertyType": "env",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 610,
+        "y": 320,
+        "wires": [
+            [
+                "f43224200031aa54"
+            ]
+        ]
+    },
+    {
+        "id": "3a6ab4a46c5c856e",
+        "type": "change",
+        "z": "f11a6acbc82d2c5c",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "temperature",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 780,
+        "y": 80,
+        "wires": [
+            [
+                "9c84a20fd70247b6"
+            ]
+        ]
+    },
+    {
+        "id": "6b6a9690a8786b72",
+        "type": "change",
+        "z": "f11a6acbc82d2c5c",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "humidity",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 780,
+        "y": 120,
+        "wires": [
+            [
+                "9c84a20fd70247b6"
+            ]
+        ]
+    },
+    {
+        "id": "c72f1d53fa0877e1",
+        "type": "change",
+        "z": "f11a6acbc82d2c5c",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "windSpeed",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 780,
+        "y": 160,
+        "wires": [
+            [
+                "9c84a20fd70247b6"
+            ]
+        ]
+    },
+    {
+        "id": "833587c680aa5057",
+        "type": "change",
+        "z": "f11a6acbc82d2c5c",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "precipitation",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 780,
+        "y": 200,
+        "wires": [
+            [
+                "9c84a20fd70247b6"
+            ]
+        ]
+    },
+    {
+        "id": "bc4740acb653759e",
+        "type": "change",
+        "z": "f11a6acbc82d2c5c",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "vegetationDensity",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 780,
+        "y": 240,
+        "wires": [
+            [
+                "9c84a20fd70247b6"
+            ]
+        ]
+    },
+    {
+        "id": "342c90344efb042a",
+        "type": "change",
+        "z": "f11a6acbc82d2c5c",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "fuelMoisture",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 780,
+        "y": 280,
+        "wires": [
+            [
+                "9c84a20fd70247b6"
+            ]
+        ]
+    },
+    {
+        "id": "f43224200031aa54",
+        "type": "change",
+        "z": "f11a6acbc82d2c5c",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "soilMoisture",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 780,
+        "y": 320,
+        "wires": [
+            [
+                "9c84a20fd70247b6"
+            ]
+        ]
+    },
+    {
+        "id": "9c84a20fd70247b6",
+        "type": "change",
+        "z": "f11a6acbc82d2c5c",
+        "name": "to 2 decimal places",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "$round(payload * 100) / 100",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1050,
+        "y": 200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c2437ef708dab502",
+        "type": "function",
+        "z": "f11a6acbc82d2c5c",
+        "name": "compute fire factor",
+        "func": "var data = msg.payload;\nvar fireRisk = (data.temperature * 0.4 + data.humidity * 0.2 + data.windSpeed * 0.3 + data.precipitation * 0.1);\n msg.payload = fireRisk;\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 430,
+        "y": 360,
+        "wires": [
+            [
+                "28d356b875a141bc"
+            ]
+        ]
+    },
+    {
+        "id": "28d356b875a141bc",
+        "type": "switch",
+        "z": "f11a6acbc82d2c5c",
+        "name": "",
+        "property": "fireRisk",
+        "propertyType": "env",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 610,
+        "y": 360,
+        "wires": [
+            [
+                "7a2d00bd3764599c"
+            ]
+        ]
+    },
+    {
+        "id": "7a2d00bd3764599c",
+        "type": "change",
+        "z": "f11a6acbc82d2c5c",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "fireRisk",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 780,
+        "y": 360,
+        "wires": [
+            [
+                "9c84a20fd70247b6"
+            ]
+        ]
+    }
+]

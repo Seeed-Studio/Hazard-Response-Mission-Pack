@@ -1,0 +1,297 @@
+[
+    {
+        "id": "287000f327b1be22",
+        "type": "group",
+        "z": "ce3acd4e9503d8d4",
+        "name": "",
+        "style": {
+            "label": true,
+            "color": "#000000",
+            "fill": "#dbcbe7"
+        },
+        "nodes": [
+            "a2c3efba58088756",
+            "44958244653afb30",
+            "e79418b6c835dbae",
+            "b2bba85d94b36aed",
+            "3defb712fb98a1e2",
+            "a8be22b73701ee1a"
+        ],
+        "x": 14,
+        "y": 519,
+        "w": 592,
+        "h": 262
+    },
+    {
+        "id": "a2c3efba58088756",
+        "type": "ui-chart",
+        "z": "ce3acd4e9503d8d4",
+        "g": "287000f327b1be22",
+        "group": "cd0ac6079998d71c",
+        "name": "Water Level",
+        "label": "Ultrasonic Data",
+        "order": 2,
+        "chartType": "line",
+        "category": "topic",
+        "categoryType": "msg",
+        "xAxisLabel": "",
+        "xAxisProperty": "",
+        "xAxisPropertyType": "msg",
+        "xAxisType": "time",
+        "xAxisFormat": "",
+        "xAxisFormatType": "auto",
+        "yAxisLabel": "Water Level",
+        "yAxisProperty": "",
+        "ymin": "0",
+        "ymax": "10",
+        "action": "append",
+        "pointShape": "circle",
+        "pointRadius": "2",
+        "showLegend": false,
+        "removeOlder": "15",
+        "removeOlderUnit": "60",
+        "removeOlderPoints": "",
+        "colors": [
+            "#461eb3",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "textColor": [
+            "#666666"
+        ],
+        "textColorDefault": true,
+        "gridColor": [
+            "#e5e5e5"
+        ],
+        "gridColorDefault": true,
+        "width": "6",
+        "height": "4",
+        "className": "",
+        "x": 450,
+        "y": 640,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "44958244653afb30",
+        "type": "ui-gauge",
+        "z": "ce3acd4e9503d8d4",
+        "g": "287000f327b1be22",
+        "name": "Ultrasonic Data",
+        "group": "ee7e123b644fb0fb",
+        "order": 1,
+        "width": 3,
+        "height": 3,
+        "gtype": "gauge-half",
+        "gstyle": "needle",
+        "title": "Ultrasonic Data",
+        "units": "m",
+        "icon": "",
+        "prefix": "",
+        "suffix": "",
+        "segments": [
+            {
+                "from": "0",
+                "color": "#ea5353"
+            },
+            {
+                "from": "2",
+                "color": "#ffc800"
+            },
+            {
+                "from": "3",
+                "color": "#5cd65c"
+            }
+        ],
+        "min": 0,
+        "max": "10",
+        "sizeThickness": 16,
+        "sizeGap": 4,
+        "sizeKeyThickness": 8,
+        "styleRounded": true,
+        "styleGlow": false,
+        "className": "",
+        "x": 460,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "e79418b6c835dbae",
+        "type": "ui-gauge",
+        "z": "ce3acd4e9503d8d4",
+        "g": "287000f327b1be22",
+        "name": " Water monitoring",
+        "group": "cd0ac6079998d71c",
+        "order": 1,
+        "width": "6",
+        "height": "1",
+        "gtype": "gauge-tile",
+        "gstyle": "rounded",
+        "title": " Water monitoring",
+        "units": "W",
+        "icon": "",
+        "prefix": "",
+        "suffix": "",
+        "segments": [
+            {
+                "from": "0",
+                "color": "#ea5353"
+            },
+            {
+                "from": "2",
+                "color": "#ffc800"
+            },
+            {
+                "from": "3",
+                "color": "#5cd65c"
+            }
+        ],
+        "min": 0,
+        "max": "10",
+        "sizeThickness": 16,
+        "sizeGap": 4,
+        "sizeKeyThickness": 8,
+        "styleRounded": true,
+        "styleGlow": false,
+        "className": "",
+        "x": 470,
+        "y": 680,
+        "wires": []
+    },
+    {
+        "id": "b2bba85d94b36aed",
+        "type": "subflow:e0d523198c47fac8",
+        "z": "ce3acd4e9503d8d4",
+        "g": "287000f327b1be22",
+        "name": "",
+        "env": [
+            {
+                "name": "mqttBroker",
+                "value": "ff55020100010001",
+                "type": "conf-type"
+            },
+            {
+                "name": "applicationId",
+                "value": "",
+                "type": "str"
+            },
+            {
+                "name": "deviceId",
+                "value": "",
+                "type": "str"
+            }
+        ],
+        "x": 200,
+        "y": 640,
+        "wires": [
+            [
+                "44958244653afb30",
+                "a2c3efba58088756",
+                "e79418b6c835dbae"
+            ]
+        ]
+    },
+    {
+        "id": "3defb712fb98a1e2",
+        "type": "comment",
+        "z": "ce3acd4e9503d8d4",
+        "g": "287000f327b1be22",
+        "name": "Water Level",
+        "info": "",
+        "x": 110,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "a8be22b73701ee1a",
+        "type": "comment",
+        "z": "ce3acd4e9503d8d4",
+        "g": "287000f327b1be22",
+        "name": "v0.0.1",
+        "info": "",
+        "x": 530,
+        "y": 740,
+        "wires": [],
+        "icon": "font-awesome/fa-exclamation-circle"
+    },
+    {
+        "id": "cd0ac6079998d71c",
+        "type": "ui-group",
+        "name": "  Water",
+        "page": "53377d4c79f72de5",
+        "width": "6",
+        "height": "1",
+        "order": 1,
+        "showTitle": false,
+        "className": "",
+        "visible": "true",
+        "disabled": "false"
+    },
+    {
+        "id": "ee7e123b644fb0fb",
+        "type": "ui-group",
+        "name": "Ultrasonic datalogger",
+        "page": "53377d4c79f72de5",
+        "width": "6",
+        "height": "1",
+        "order": 3,
+        "showTitle": true,
+        "className": "",
+        "visible": "true",
+        "disabled": "false"
+    },
+    {
+        "id": "53377d4c79f72de5",
+        "type": "ui-page",
+        "name": "4-Resilient Infrastructure",
+        "ui": "2a6c6f3f0d1de049",
+        "path": "/resilient",
+        "icon": "home",
+        "layout": "grid",
+        "theme": "d86c2124665af35b",
+        "order": 5,
+        "className": "",
+        "visible": true,
+        "disabled": false
+    },
+    {
+        "id": "2a6c6f3f0d1de049",
+        "type": "ui-base",
+        "name": "Hazard Response Mission Pack",
+        "path": "/dashboard",
+        "includeClientData": true,
+        "acceptsClientConfig": [
+            "ui-notification",
+            "ui-control"
+        ],
+        "showPathInSidebar": false,
+        "showPageTitle": true,
+        "navigationStyle": "fixed",
+        "titleBarStyle": "default"
+    },
+    {
+        "id": "d86c2124665af35b",
+        "type": "ui-theme",
+        "name": "Theme",
+        "colors": {
+            "surface": "#ffffff",
+            "primary": "#0094ce",
+            "bgPage": "#eeeeee",
+            "groupBg": "#ffffff",
+            "groupOutline": "#cccccc"
+        },
+        "sizes": {
+            "pagePadding": "12px",
+            "groupGap": "12px",
+            "groupBorderRadius": "4px",
+            "widgetGap": "12px"
+        }
+    }
+]

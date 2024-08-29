@@ -1,0 +1,221 @@
+[
+    {
+      "id": "24744a865787dab5",
+      "type": "subflow",
+      "name": "image preview ui",
+      "info": "",
+      "category": "※camera-grove-vision-ai-v2",
+      "in": [
+        {
+          "x": 80,
+          "y": 140,
+          "wires": [
+            {
+              "id": "6b8f8035357f4902"
+            },
+            {
+              "id": "25ab445582af8af5"
+            }
+          ]
+        }
+      ],
+      "out": [],
+      "env": [
+        {
+          "name": "Group",
+          "type": "ui-group",
+          "value": "",
+          "ui": {
+            "label": {
+              "zh-CN": "Group",
+              "en-US": "Group"
+            },
+            "type": "conf-types"
+          }
+        },
+        {
+          "name": "height",
+          "type": "num",
+          "value": "48",
+          "ui": {
+            "label": {
+              "zh-CN": "Height",
+              "en-US": "Height"
+            },
+            "type": "spinner",
+            "opts": {
+              "min": 1,
+              "max": 1920
+            }
+          }
+        },
+        {
+          "name": "mirror",
+          "type": "bool",
+          "value": "false",
+          "ui": {
+            "label": {
+              "zh-CN": "Image mirror",
+              "en-US": "Image mirror"
+            }
+          }
+        }
+      ],
+      "meta": {},
+      "color": "#9FE6EC",
+      "icon": "font-awesome/fa-video-camera",
+      "status": {
+        "x": 560,
+        "y": 320,
+        "wires": [
+          {
+            "id": "53efe0a905a0143c",
+            "port": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "3c0fed2eb2400e17",
+      "type": "ui-template",
+      "z": "24744a865787dab5",
+      "group": "${Group}",
+      "page": "",
+      "ui": "",
+      "name": "processed preview ui",
+      "order": 1,
+      "width": 0,
+      "height": 0,
+      "head": "",
+      "format": "<template>\n    <div class=\"container\" :style=\"{ height: msg.env.height + 'px' }\">\n        <template v-if=\"msg.payload\">\n            <img class=\"image\" :class=\"{ mirrored: msg.env.mirror }\" :style=\"{ height: msg.env.height + 'px' }\" :src=\"'data:image/jpeg;base64,' + msg.payload\">\n        </template>\n        <template v-else>\n            <div class=\"placeholder\" :style=\"{ height: msg.env.height + 'px' }\">\n                no image\n            </div>\n        </template>\n    </div>\n</template>\n\n<style scoped>\n.container {\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    width: 100%;\n}\n\n.image {\n    width: auto; /* 确保图片宽度根据内容自适应 */\n}\n\n.mirrored {\n    transform: scaleX(-1); /* 水平翻转图像 */\n}\n\n.placeholder {\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    width: 100%;\n    font-size: 24px;\n    border: 1px solid #ccc;\n}\n</style>\n",
+      "storeOutMessages": true,
+      "passthru": false,
+      "resendOnRefresh": true,
+      "templateScope": "local",
+      "className": "",
+      "x": 980,
+      "y": 140,
+      "wires": [
+        []
+      ]
+    },
+    {
+      "id": "25ab445582af8af5",
+      "type": "function",
+      "z": "24744a865787dab5",
+      "name": "delete image's base64 header, if input contains",
+      "func": "// 获取msg.payload\nvar payload = msg.payload;\n\n// 检查msg.payload是否以'data:image/jpeg;base64,'开头\nif (payload.startsWith('data:image/jpeg;base64,')) {\n    // 去掉开头的'data:image/jpeg;base64,'\n    payload = payload.substring('data:image/jpeg;base64,'.length);\n}\n\n// 更新msg.payload\nmsg.payload = payload;\n\n// 返回msg对象\nreturn msg;",
+      "outputs": 1,
+      "timeout": 0,
+      "noerr": 0,
+      "initialize": "",
+      "finalize": "",
+      "libs": [],
+      "x": 380,
+      "y": 140,
+      "wires": [
+        [
+          "9c4a94790c70b5ab"
+        ]
+      ]
+    },
+    {
+      "id": "6b8f8035357f4902",
+      "type": "function",
+      "z": "24744a865787dab5",
+      "name": "counting",
+      "func": "// Initialize flow variable if not already initialized\nif (typeof flow.get('count') === 'undefined') {\n    flow.set('count', 0);\n}\n\n// Get the current count\nlet count = flow.get('count');\n\n// Increment the count\ncount += 1;\n\n// Update the count in the flow context\nflow.set('count', count);\n\n// Set the count in the message payload\nmsg.payload = 'sent images: ' + count;\n\n// Return the message\nreturn msg;",
+      "outputs": 1,
+      "timeout": 0,
+      "noerr": 0,
+      "initialize": "",
+      "finalize": "",
+      "libs": [],
+      "x": 220,
+      "y": 320,
+      "wires": [
+        [
+          "53efe0a905a0143c"
+        ]
+      ]
+    },
+    {
+      "id": "53efe0a905a0143c",
+      "type": "function",
+      "z": "24744a865787dab5",
+      "name": "summary status",
+      "func": "return {\n    payload: {\n        fill: \"green\",\n        shape: \"dot\",\n        text: msg.payload\n    }\n};",
+      "outputs": 1,
+      "timeout": 0,
+      "noerr": 0,
+      "initialize": "node.send({\n    payload: {\n        fill: \"grey\",\n        shape: \"dot\",\n        text: 'no image input'\n    }\n});",
+      "finalize": "",
+      "libs": [],
+      "x": 400,
+      "y": 320,
+      "wires": [
+        []
+      ]
+    },
+    {
+      "id": "9c4a94790c70b5ab",
+      "type": "change",
+      "z": "24744a865787dab5",
+      "name": "get and pass env vars",
+      "rules": [
+        {
+          "t": "set",
+          "p": "env.height",
+          "pt": "msg",
+          "to": "height",
+          "tot": "env",
+          "dc": true
+        },
+        {
+          "t": "set",
+          "p": "env.mirror",
+          "pt": "msg",
+          "to": "mirror",
+          "tot": "env",
+          "dc": true
+        }
+      ],
+      "action": "",
+      "property": "",
+      "from": "",
+      "to": "",
+      "reg": false,
+      "x": 720,
+      "y": 140,
+      "wires": [
+        [
+          "3c0fed2eb2400e17"
+        ]
+      ]
+    },
+    {
+      "id": "27b6288f430f7417",
+      "type": "inject",
+      "z": "24744a865787dab5",
+      "name": "on startup, set the default no image view",
+      "props": [
+        {
+          "p": "payload"
+        }
+      ],
+      "repeat": "",
+      "crontab": "",
+      "once": true,
+      "onceDelay": "0",
+      "topic": "",
+      "payload": "false",
+      "payloadType": "bool",
+      "x": 400,
+      "y": 80,
+      "wires": [
+        [
+          "9c4a94790c70b5ab"
+        ]
+      ]
+    }
+  ]

@@ -1,0 +1,716 @@
+[
+    {
+        "id": "239ef0f0af9891c0",
+        "type": "group",
+        "z": "7ea6938ae37cbe94",
+        "name": "",
+        "style": {
+            "label": true,
+            "fill": "#dbcbe7"
+        },
+        "nodes": [
+            "a102e5a6ff2b3083",
+            "cda70a2a5aa2c560",
+            "7e2cb081415ff48a",
+            "8a526b623bbf27c6",
+            "6243e7f95a3c1843",
+            "979eea87e1ae3f87",
+            "accc8527ff15d5cf",
+            "5c265efcb4ae662a",
+            "2d6367f378c0e452",
+            "59563b7dd998cfa6",
+            "6e29624efc573235",
+            "d48e7fe06e1554d5",
+            "aa4f3537143069d7",
+            "a15bfa0a610171ec",
+            "89dae88b645185bd"
+        ],
+        "x": 14,
+        "y": 459,
+        "w": 672,
+        "h": 502
+    },
+    {
+        "id": "a102e5a6ff2b3083",
+        "type": "ui-gauge",
+        "z": "7ea6938ae37cbe94",
+        "g": "239ef0f0af9891c0",
+        "name": "Seismic factor",
+        "group": "ae209b4f406aab66",
+        "order": 2,
+        "width": "6",
+        "height": "6",
+        "gtype": "gauge-34",
+        "gstyle": "rounded",
+        "title": "Seismic factor",
+        "units": "%",
+        "icon": "",
+        "prefix": "",
+        "suffix": "",
+        "segments": [
+            {
+                "from": "0",
+                "color": "#5cd65c"
+            },
+            {
+                "from": "80",
+                "color": "#ffc800"
+            },
+            {
+                "from": "100",
+                "color": "#ea5353"
+            }
+        ],
+        "min": 0,
+        "max": "100",
+        "sizeThickness": 16,
+        "sizeGap": 4,
+        "sizeKeyThickness": 8,
+        "styleRounded": true,
+        "styleGlow": false,
+        "className": "",
+        "x": 580,
+        "y": 880,
+        "wires": []
+    },
+    {
+        "id": "cda70a2a5aa2c560",
+        "type": "ui-gauge",
+        "z": "7ea6938ae37cbe94",
+        "g": "239ef0f0af9891c0",
+        "name": "Fire factor",
+        "group": "ae209b4f406aab66",
+        "order": 1,
+        "width": "6",
+        "height": "6",
+        "gtype": "gauge-34",
+        "gstyle": "rounded",
+        "title": "Fire factor",
+        "units": "%",
+        "icon": "",
+        "prefix": "",
+        "suffix": "",
+        "segments": [
+            {
+                "from": "0",
+                "color": "#5cd65c"
+            },
+            {
+                "from": "80",
+                "color": "#ffc800"
+            },
+            {
+                "from": "100",
+                "color": "#ea5353"
+            }
+        ],
+        "min": 0,
+        "max": "100",
+        "sizeThickness": 16,
+        "sizeGap": 4,
+        "sizeKeyThickness": 8,
+        "styleRounded": true,
+        "styleGlow": false,
+        "className": "",
+        "x": 600,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "7e2cb081415ff48a",
+        "type": "ui-chart",
+        "z": "7ea6938ae37cbe94",
+        "g": "239ef0f0af9891c0",
+        "group": "ae209b4f406aab66",
+        "name": "Geohazard factor data source",
+        "label": "地质灾害因子数据源",
+        "order": 3,
+        "chartType": "line",
+        "category": "topic",
+        "categoryType": "msg",
+        "xAxisLabel": "",
+        "xAxisProperty": "",
+        "xAxisPropertyType": "msg",
+        "xAxisType": "time",
+        "xAxisFormat": "",
+        "xAxisFormatType": "HH:mm",
+        "yAxisLabel": "",
+        "yAxisProperty": "",
+        "ymin": "",
+        "ymax": "",
+        "action": "append",
+        "pointShape": "circle",
+        "pointRadius": 4,
+        "showLegend": false,
+        "removeOlder": 1,
+        "removeOlderUnit": "60",
+        "removeOlderPoints": "200",
+        "colors": [
+            "#1f77b4",
+            "#abbace",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "textColor": [
+            "#666666"
+        ],
+        "textColorDefault": true,
+        "gridColor": [
+            "#e5e5e5"
+        ],
+        "gridColorDefault": true,
+        "width": "6",
+        "height": "6",
+        "className": "",
+        "x": 530,
+        "y": 740,
+        "wires": []
+    },
+    {
+        "id": "8a526b623bbf27c6",
+        "type": "ui-chart",
+        "z": "7ea6938ae37cbe94",
+        "g": "239ef0f0af9891c0",
+        "group": "ae209b4f406aab66",
+        "name": "Fire factor data source",
+        "label": "火灾因子数据源",
+        "order": 4,
+        "chartType": "line",
+        "category": "topic",
+        "categoryType": "msg",
+        "xAxisLabel": "",
+        "xAxisProperty": "",
+        "xAxisPropertyType": "msg",
+        "xAxisType": "time",
+        "xAxisFormat": "",
+        "xAxisFormatType": "HH:mm",
+        "yAxisLabel": "",
+        "yAxisProperty": "",
+        "ymin": "",
+        "ymax": "",
+        "action": "append",
+        "pointShape": "circle",
+        "pointRadius": 4,
+        "showLegend": false,
+        "removeOlder": 1,
+        "removeOlderUnit": "60",
+        "removeOlderPoints": "200",
+        "colors": [
+            "#1f77b4",
+            "#abbace",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "textColor": [
+            "#666666"
+        ],
+        "textColorDefault": true,
+        "gridColor": [
+            "#e5e5e5"
+        ],
+        "gridColorDefault": true,
+        "width": "6",
+        "height": "6",
+        "className": "",
+        "x": 560,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "6243e7f95a3c1843",
+        "type": "subflow:f11a6acbc82d2c5c",
+        "z": "7ea6938ae37cbe94",
+        "g": "239ef0f0af9891c0",
+        "name": "7in1 weather station - 7 channels",
+        "env": [
+            {
+                "name": "mqtt-broker",
+                "value": "_ADD_",
+                "type": "conf-type"
+            },
+            {
+                "name": "fireRisk",
+                "type": "bool",
+                "value": "false"
+            }
+        ],
+        "x": 180,
+        "y": 560,
+        "wires": [
+            [
+                "8a526b623bbf27c6"
+            ]
+        ]
+    },
+    {
+        "id": "979eea87e1ae3f87",
+        "type": "subflow:f11a6acbc82d2c5c",
+        "z": "7ea6938ae37cbe94",
+        "g": "239ef0f0af9891c0",
+        "name": "7in1 weather station - fire factor",
+        "env": [
+            {
+                "name": "mqtt-broker",
+                "value": "_ADD_",
+                "type": "conf-type"
+            },
+            {
+                "name": "temperature",
+                "type": "bool",
+                "value": "false"
+            },
+            {
+                "name": "humidity",
+                "type": "bool",
+                "value": "false"
+            },
+            {
+                "name": "windSpeed",
+                "type": "bool",
+                "value": "false"
+            },
+            {
+                "name": "precipitation",
+                "type": "bool",
+                "value": "false"
+            },
+            {
+                "name": "vegetationDensity",
+                "type": "bool",
+                "value": "false"
+            },
+            {
+                "name": "fuelMoisture",
+                "type": "bool",
+                "value": "false"
+            },
+            {
+                "name": "soilMoisture",
+                "type": "bool",
+                "value": "false"
+            }
+        ],
+        "x": 180,
+        "y": 600,
+        "wires": [
+            [
+                "cda70a2a5aa2c560"
+            ]
+        ]
+    },
+    {
+        "id": "accc8527ff15d5cf",
+        "type": "subflow:38e9748a918c1e10",
+        "z": "7ea6938ae37cbe94",
+        "g": "239ef0f0af9891c0",
+        "name": "geological sensor - rainfall",
+        "env": [
+            {
+                "name": "rockType",
+                "type": "bool",
+                "value": "false"
+            },
+            {
+                "name": "faultActivity",
+                "type": "bool",
+                "value": "false"
+            },
+            {
+                "name": "slope",
+                "type": "bool",
+                "value": "false"
+            },
+            {
+                "name": "terrainChange",
+                "type": "bool",
+                "value": "false"
+            },
+            {
+                "name": "surfaceWaterFlow",
+                "type": "bool",
+                "value": "false"
+            },
+            {
+                "name": "total",
+                "type": "bool",
+                "value": "false"
+            }
+        ],
+        "x": 160,
+        "y": 640,
+        "wires": [
+            [
+                "7e2cb081415ff48a"
+            ]
+        ]
+    },
+    {
+        "id": "5c265efcb4ae662a",
+        "type": "subflow:38e9748a918c1e10",
+        "z": "7ea6938ae37cbe94",
+        "g": "239ef0f0af9891c0",
+        "name": "geological sensor - rock type",
+        "env": [
+            {
+                "name": "rainfall",
+                "type": "bool",
+                "value": "false"
+            },
+            {
+                "name": "faultActivity",
+                "type": "bool",
+                "value": "false"
+            },
+            {
+                "name": "slope",
+                "type": "bool",
+                "value": "false"
+            },
+            {
+                "name": "terrainChange",
+                "type": "bool",
+                "value": "false"
+            },
+            {
+                "name": "surfaceWaterFlow",
+                "type": "bool",
+                "value": "false"
+            },
+            {
+                "name": "total",
+                "type": "bool",
+                "value": "false"
+            }
+        ],
+        "x": 170,
+        "y": 680,
+        "wires": [
+            [
+                "7e2cb081415ff48a"
+            ]
+        ]
+    },
+    {
+        "id": "2d6367f378c0e452",
+        "type": "subflow:38e9748a918c1e10",
+        "z": "7ea6938ae37cbe94",
+        "g": "239ef0f0af9891c0",
+        "name": "geological sensor - fault activity",
+        "env": [
+            {
+                "name": "rainfall",
+                "type": "bool",
+                "value": "false"
+            },
+            {
+                "name": "rockType",
+                "type": "bool",
+                "value": "false"
+            },
+            {
+                "name": "slope",
+                "type": "bool",
+                "value": "false"
+            },
+            {
+                "name": "terrainChange",
+                "type": "bool",
+                "value": "false"
+            },
+            {
+                "name": "surfaceWaterFlow",
+                "type": "bool",
+                "value": "false"
+            },
+            {
+                "name": "total",
+                "type": "bool",
+                "value": "false"
+            }
+        ],
+        "x": 180,
+        "y": 720,
+        "wires": [
+            [
+                "7e2cb081415ff48a"
+            ]
+        ]
+    },
+    {
+        "id": "59563b7dd998cfa6",
+        "type": "subflow:38e9748a918c1e10",
+        "z": "7ea6938ae37cbe94",
+        "g": "239ef0f0af9891c0",
+        "name": "geological sensor - slope",
+        "env": [
+            {
+                "name": "rainfall",
+                "type": "bool",
+                "value": "false"
+            },
+            {
+                "name": "rockType",
+                "type": "bool",
+                "value": "false"
+            },
+            {
+                "name": "faultActivity",
+                "type": "bool",
+                "value": "false"
+            },
+            {
+                "name": "terrainChange",
+                "type": "bool",
+                "value": "false"
+            },
+            {
+                "name": "surfaceWaterFlow",
+                "type": "bool",
+                "value": "false"
+            },
+            {
+                "name": "total",
+                "type": "bool",
+                "value": "false"
+            }
+        ],
+        "x": 160,
+        "y": 760,
+        "wires": [
+            [
+                "7e2cb081415ff48a"
+            ]
+        ]
+    },
+    {
+        "id": "6e29624efc573235",
+        "type": "subflow:38e9748a918c1e10",
+        "z": "7ea6938ae37cbe94",
+        "g": "239ef0f0af9891c0",
+        "name": "geological sensor - terrain change",
+        "env": [
+            {
+                "name": "rainfall",
+                "type": "bool",
+                "value": "false"
+            },
+            {
+                "name": "rockType",
+                "type": "bool",
+                "value": "false"
+            },
+            {
+                "name": "faultActivity",
+                "type": "bool",
+                "value": "false"
+            },
+            {
+                "name": "slope",
+                "type": "bool",
+                "value": "false"
+            },
+            {
+                "name": "surfaceWaterFlow",
+                "type": "bool",
+                "value": "false"
+            },
+            {
+                "name": "total",
+                "type": "bool",
+                "value": "false"
+            }
+        ],
+        "x": 190,
+        "y": 800,
+        "wires": [
+            [
+                "7e2cb081415ff48a"
+            ]
+        ]
+    },
+    {
+        "id": "d48e7fe06e1554d5",
+        "type": "subflow:38e9748a918c1e10",
+        "z": "7ea6938ae37cbe94",
+        "g": "239ef0f0af9891c0",
+        "name": "geological sensor - surface water flow",
+        "env": [
+            {
+                "name": "rainfall",
+                "type": "bool",
+                "value": "false"
+            },
+            {
+                "name": "rockType",
+                "type": "bool",
+                "value": "false"
+            },
+            {
+                "name": "faultActivity",
+                "type": "bool",
+                "value": "false"
+            },
+            {
+                "name": "slope",
+                "type": "bool",
+                "value": "false"
+            },
+            {
+                "name": "terrainChange",
+                "type": "bool",
+                "value": "false"
+            },
+            {
+                "name": "total",
+                "type": "bool",
+                "value": "false"
+            }
+        ],
+        "x": 200,
+        "y": 840,
+        "wires": [
+            [
+                "7e2cb081415ff48a"
+            ]
+        ]
+    },
+    {
+        "id": "aa4f3537143069d7",
+        "type": "subflow:38e9748a918c1e10",
+        "z": "7ea6938ae37cbe94",
+        "g": "239ef0f0af9891c0",
+        "name": "geological sensor - total",
+        "env": [
+            {
+                "name": "rainfall",
+                "type": "bool",
+                "value": "false"
+            },
+            {
+                "name": "rockType",
+                "type": "bool",
+                "value": "false"
+            },
+            {
+                "name": "faultActivity",
+                "type": "bool",
+                "value": "false"
+            },
+            {
+                "name": "slope",
+                "type": "bool",
+                "value": "false"
+            },
+            {
+                "name": "terrainChange",
+                "type": "bool",
+                "value": "false"
+            },
+            {
+                "name": "surfaceWaterFlow",
+                "type": "bool",
+                "value": "false"
+            }
+        ],
+        "x": 160,
+        "y": 880,
+        "wires": [
+            [
+                "a102e5a6ff2b3083"
+            ]
+        ]
+    },
+    {
+        "id": "a15bfa0a610171ec",
+        "type": "comment",
+        "z": "7ea6938ae37cbe94",
+        "g": "239ef0f0af9891c0",
+        "name": "fire and seismic factor",
+        "info": "",
+        "x": 140,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "89dae88b645185bd",
+        "type": "comment",
+        "z": "7ea6938ae37cbe94",
+        "g": "239ef0f0af9891c0",
+        "name": "v0.0.1",
+        "info": "",
+        "x": 610,
+        "y": 920,
+        "wires": [],
+        "icon": "font-awesome/fa-exclamation-circle"
+    },
+    {
+        "id": "ae209b4f406aab66",
+        "type": "ui-group",
+        "name": "Factor Show",
+        "page": "c7c9430e7e787d8a",
+        "width": "18",
+        "height": "9",
+        "order": 3,
+        "showTitle": true,
+        "className": "",
+        "visible": "true",
+        "disabled": "false"
+    },
+    {
+        "id": "c7c9430e7e787d8a",
+        "type": "ui-page",
+        "name": "1-Early Warning System",
+        "ui": "2a6c6f3f0d1de049",
+        "path": "/early",
+        "icon": "home",
+        "layout": "notebook",
+        "theme": "a3e3f0f53df52d39",
+        "order": 2,
+        "className": "",
+        "visible": true,
+        "disabled": false
+    },
+    {
+        "id": "2a6c6f3f0d1de049",
+        "type": "ui-base",
+        "name": "Hazard Response Mission Pack",
+        "path": "/dashboard",
+        "includeClientData": true,
+        "acceptsClientConfig": [
+            "ui-notification",
+            "ui-control"
+        ],
+        "showPathInSidebar": false,
+        "showPageTitle": true,
+        "navigationStyle": "fixed",
+        "titleBarStyle": "default"
+    },
+    {
+        "id": "a3e3f0f53df52d39",
+        "type": "ui-theme",
+        "name": "Theme Name",
+        "colors": {
+            "surface": "#ffffff",
+            "primary": "#0094ce",
+            "bgPage": "#eeeeee",
+            "groupBg": "#ffffff",
+            "groupOutline": "#cccccc"
+        },
+        "sizes": {
+            "pagePadding": "12px",
+            "groupGap": "12px",
+            "groupBorderRadius": "4px",
+            "widgetGap": "12px"
+        }
+    }
+]
