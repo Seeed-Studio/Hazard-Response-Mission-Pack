@@ -2,7 +2,7 @@
 
 The **Hazard Response Mission Pack** is a versatile solution specifically designed to address challenges in environments where hazards are a persistent concern. Combining state-of-the-art hardware and software, this pack provides a comprehensive platform for real-time monitoring, alerting, and response, empowering users to effectively manage risks and ensure safety.
 
-![the pack](https://raw.githubusercontent.com/Seeed-Studio/Hazard-Response-Mission-Pack/v0.2/assets/img/case.jpg)
+![the pack](https://raw.githubusercontent.com/Seeed-Studio/Hazard-Response-Mission-Pack/v0.2/img/case.jpg)
 
 ## Hardware - Built for Specific Scenarios
 
@@ -30,7 +30,7 @@ To further enhance usability, the software environment is packaged with **Docker
 
 ## Getting Started
 
-![the pack](https://raw.githubusercontent.com/Seeed-Studio/Hazard-Response-Mission-Pack/v0.2/assets/img/v2-system-diagram.png)
+![the pack](https://raw.githubusercontent.com/Seeed-Studio/Hazard-Response-Mission-Pack/v0.2/img/v2-system-diagram.png)
 
 To begin using the **Mission Pack**, follow these steps:
 

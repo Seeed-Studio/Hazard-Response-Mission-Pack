@@ -2,7 +2,7 @@
 
 In this section, you'll get through the process of physically setting up the hardware components of the **Hazard Response Mission Pack**. Follow these steps to ensure all devices are properly connected and ready for operation.
 
-![system diagram](https://raw.githubusercontent.com/Seeed-Studio/Hazard-Response-Mission-Pack/docs-v0.2/assets/img/v2-system-diagram.png)
+![system diagram](https://raw.githubusercontent.com/Seeed-Studio/Hazard-Response-Mission-Pack/v0.2/img/v2-system-diagram.png)
 
 ## Unpack and Inspect All Components
 
