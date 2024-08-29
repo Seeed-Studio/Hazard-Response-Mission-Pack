@@ -34,7 +34,7 @@ To further enhance usability, the software environment is packaged with **Docker
 
 To begin using the **Mission Pack**, follow these steps:
 
-1. **Understand the Mission Pack**: Start by reading the [Introduction to Mission Pack](/README.md) to familiarize yourself with its purpose and capabilities.
+1. **Understand the Mission Pack**: Start by reading the [Jumpstart Usage](/docs/jumpstart-usage/README.md) to familiarize yourself with its purpose and capabilities.
 2. **Hardware Connection**: Learn about the necessary hardware and how to set it up by reading [Hardware Connection](./hardware-connection.md).
 3. **Software Setup**: Understand how to set up the software and configure workflows by reviewing the [Software Setup](./software-setup.md).
 4. **Integrate More Devices**: Expand your system’s capabilities by learning how to add additional devices with the guide on [Integrating More Devices](./integrate-more-devices.md).
