@@ -8,6 +8,8 @@ This initiative is not a market-ready product but rather a collaborative effort 
 - **Contact Us for Cooperation**: [solution@seeed.cc](mailto:solution@seeed.cc)
 - **Learn More**: [Visit Our Website](https://hazard.seeed.cc/)
 
+![hazard-post](https://github.com/user-attachments/assets/61f7f9af-0603-4ec1-8a16-d00a3b78a8f9)
+
 ### Documentation Overview
 
 1. **[Jumpstart Guide](./docs/jumpstart-usage/README.md)** - Get started quickly with a hands-on introduction to the Mission Pack's features and capabilities.
@@ -45,3 +47,5 @@ Check out the [contribution guidelines](/CONTRIBUTING.md) to learn how to contri
 **Join the Mission Pack Beta Test:** [Sign Up Here](https://forms.gle/UXpAJX5wNcLd7CWJA)
 
 We are deeply grateful to the diverse group of individuals who have generously shared their expertise, insights, time, and support to enhance the Mission Pack's effectiveness in addressing disaster challenges worldwide. Join our WhatsApp working group by scanning the QR code below to connect with like-minded individuals, share your experiences and ideas, and collaborate on exciting new projects! 
+
+<img src="https://github.com/user-attachments/assets/f60a8731-02db-4d4f-a9df-47b3c3f8f014" width="480" alt="hazard-WhatsApp">
