@@ -24,10 +24,6 @@ The **Mission Pack** is equipped with a powerful software environment, centered 
 
 To further streamline the user experience, the software environment is packaged with **Docker containers** that are ready to deploy, ensuring that all necessary dependencies and configurations are pre-installed. This setup reduces the time and effort required to get the system operational, allowing users to focus on customizing and expanding their hazard response capabilities.
 
-The **Mission Pack** comes pre-configured with a powerful software environment, centered around **Node-RED**, an open-source visual programming tool that simplifies the integration and automation of IoT devices. Node-RED’s drag-and-drop interface allows users to easily set up workflows for data processing, alerts, and system control, making it accessible for both technical and non-technical users.
-
-To further enhance usability, the software environment is packaged with **Docker containers** that are ready to deploy, ensuring all necessary dependencies and configurations are automatically set up. This reduces the time and effort required to get the system up and running, allowing users to focus on customizing and expanding the capabilities of their hazard response system.
-
 ## Getting Started
 
 ![the pack](https://raw.githubusercontent.com/Seeed-Studio/Hazard-Response-Mission-Pack/v0.2/img/v2-system-diagram.png)
