@@ -1,0 +1,187 @@
+[
+    {
+      "id": "cca203ebc25b2ce6",
+      "type": "subflow",
+      "name": "IP Camera rtsp",
+      "info": "",
+      "category": "※camera-general",
+      "in": [
+        {
+          "x": 60,
+          "y": 80,
+          "wires": [
+            {
+              "id": "f8c167e299ad5d74"
+            }
+          ]
+        }
+      ],
+      "out": [
+        {
+          "x": 420,
+          "y": 80,
+          "wires": [
+            {
+              "id": "f8c167e299ad5d74",
+              "port": 0
+            }
+          ]
+        }
+      ],
+      "env": [
+        {
+          "name": "url",
+          "type": "str",
+          "value": "rtsp://",
+          "ui": {
+            "type": "input",
+            "opts": {
+              "types": [
+                "str"
+              ]
+            }
+          }
+        },
+        {
+          "name": "username",
+          "type": "str",
+          "value": "",
+          "ui": {
+            "type": "input",
+            "opts": {
+              "types": [
+                "str"
+              ]
+            }
+          }
+        },
+        {
+          "name": "passowrd",
+          "type": "str",
+          "value": "",
+          "ui": {
+            "type": "input",
+            "opts": {
+              "types": [
+                "str"
+              ]
+            }
+          }
+        },
+        {
+          "name": "frameRate",
+          "type": "num",
+          "value": "",
+          "ui": {
+            "type": "input",
+            "opts": {
+              "types": [
+                "num"
+              ]
+            }
+          }
+        },
+        {
+          "name": "quality",
+          "type": "str",
+          "value": "",
+          "ui": {
+            "type": "input",
+            "opts": {
+              "types": [
+                "str",
+                "num"
+              ]
+            }
+          }
+        },
+        {
+          "name": "resolution",
+          "type": "str",
+          "value": "<width>x<height>",
+          "ui": {
+            "type": "input",
+            "opts": {
+              "types": [
+                "str"
+              ]
+            }
+          }
+        }
+      ],
+      "meta": {},
+      "color": "#B8EA4F",
+      "icon": "font-awesome/fa-camera",
+      "status": {
+        "x": 420,
+        "y": 160,
+        "wires": [
+          {
+            "id": "96a1b615dbe08457",
+            "port": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "f8c167e299ad5d74",
+      "type": "rtsp2mjpeg",
+      "z": "cca203ebc25b2ce6",
+      "url": "${url}",
+      "username": "${username}",
+      "password": "${passowrd}",
+      "rate": "1",
+      "quality": "1",
+      "resolution": "${resolution}",
+      "x": 210,
+      "y": 80,
+      "wires": [
+        []
+      ]
+    },
+    {
+      "id": "96a1b615dbe08457",
+      "type": "status",
+      "z": "cca203ebc25b2ce6",
+      "name": "",
+      "scope": null,
+      "x": 190,
+      "y": 160,
+      "wires": [
+        []
+      ]
+    },
+    {
+      "id": "ec19f33ceb5af3e5",
+      "type": "catch",
+      "z": "cca203ebc25b2ce6",
+      "name": "",
+      "scope": [
+        "f8c167e299ad5d74"
+      ],
+      "uncaught": false,
+      "x": 200,
+      "y": 240,
+      "wires": [
+        [
+          "9b1eb01ff5f01c5b"
+        ]
+      ]
+    },
+    {
+      "id": "9b1eb01ff5f01c5b",
+      "type": "debug",
+      "z": "cca203ebc25b2ce6",
+      "name": "debug 5",
+      "active": true,
+      "tosidebar": true,
+      "console": false,
+      "tostatus": false,
+      "complete": "false",
+      "statusVal": "",
+      "statusType": "auto",
+      "x": 400,
+      "y": 220,
+      "wires": []
+    }
+  ]

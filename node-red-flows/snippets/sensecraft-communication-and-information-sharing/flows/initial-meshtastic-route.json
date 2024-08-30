@@ -1,0 +1,341 @@
+[
+    {
+        "id": "8eb1280652c660c2",
+        "type": "group",
+        "z": "a9319fe458afe6b6",
+        "name": "",
+        "style": {
+            "label": true,
+            "color": "#000000",
+            "fill": "#dbcbe7"
+        },
+        "nodes": [
+            "03f1fdf2a31d8134",
+            "db5ac7ba2a754d65",
+            "4a5b13a4e63396ee",
+            "8f011a4c95e46173",
+            "33637b17a506cbd0"
+        ],
+        "x": 14,
+        "y": 19,
+        "w": 932,
+        "h": 182
+    },
+    {
+        "id": "ff55010600100001",
+        "type": "subflow",
+        "name": "meshtastic chat - init route state",
+        "info": "",
+        "category": "※meshtastic_chat",
+        "in": [],
+        "out": [
+            {
+                "x": 740,
+                "y": 160,
+                "wires": [
+                    {
+                        "id": "9e8f4a0ffd0eda44",
+                        "port": 0
+                    }
+                ]
+            }
+        ],
+        "env": [
+            {
+                "name": "mqtt-broker",
+                "type": "mqtt-broker",
+                "value": "ff55020100010001",
+                "ui": {
+                    "icon": "font-awesome/fa-server",
+                    "label": {
+                        "zh-CN": "*Server",
+                        "en-US": "*Server"
+                    },
+                    "type": "conf-types"
+                }
+            }
+        ],
+        "meta": {
+            "version": "0.0.1",
+            "author": "seeed",
+            "license": "Apache-2.0"
+        },
+        "color": "#B8EA4F",
+        "icon": "node-red/node_icon_meshtastic.png",
+        "status": {
+            "x": 740,
+            "y": 240,
+            "wires": [
+                {
+                    "id": "5b54f9c21e1e18cf",
+                    "port": 0
+                }
+            ]
+        }
+    },
+    {
+        "id": "5f1a254d4658f374",
+        "type": "mqtt in",
+        "z": "ff55010600100001",
+        "name": "Subscribe route online state",
+        "topic": "msh/seeed/2/stat/+",
+        "qos": "0",
+        "datatype": "utf8",
+        "broker": "${mqtt-broker}",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 260,
+        "y": 160,
+        "wires": [
+            [
+                "9e8f4a0ffd0eda44"
+            ]
+        ]
+    },
+    {
+        "id": "9e8f4a0ffd0eda44",
+        "type": "function",
+        "z": "ff55010600100001",
+        "name": "get online route id",
+        "func": "let topic = msg.topic;\nlet outputMsg = {\n    payload: {\n        routeid: 0,\n        state: false\n    }\n};\n\nlet originalRouteId = topic.split('/')[4];\n\nlet processed = originalRouteId.replace(/[^a-z0-9]/g, '');\nlet decimalValue = parseInt(processed, 16);\n\n\nif (msg.payload === 'online') {\n    outputMsg.payload.routeid = decimalValue;\n    outputMsg.payload.state = true;\n    flow.set(\"currentRouteId\", decimalValue);\n    flow.set(\"currentRouteState\", true);\n    global.set(\"currentRouteId\", decimalValue);\n    global.set(\"currentRouteState\", true);\n    return {\n        topic: outputMsg.payload.routeid,\n        payload: outputMsg.payload.state\n    };\n} else if (msg.payload === 'offline') {\n    if (global.get(\"currentRouteId\") == decimalValue) {\n        outputMsg.payload.routeid = 0;\n        outputMsg.payload.state = false;\n        flow.set(\"currentRouteId\", 0);\n        flow.set(\"currentRouteState\", false);\n        global.set(\"currentRouteId\", 0);\n        global.set(\"currentRouteState\", false);\n        return {\n            topic: outputMsg.payload.routeid,\n            payload: outputMsg.payload.state\n        };\n    } else {\n        return null;\n    }\n} else {\n    return null;\n}\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 570,
+        "y": 160,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c392a41fd52b31fe",
+        "type": "inject",
+        "z": "ff55010600100001",
+        "name": "on startup",
+        "props": [],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "0",
+        "topic": "",
+        "x": 230,
+        "y": 80,
+        "wires": [
+            [
+                "5c9eedc434bd084a"
+            ]
+        ]
+    },
+    {
+        "id": "5c9eedc434bd084a",
+        "type": "change",
+        "z": "ff55010600100001",
+        "name": "init flow envs",
+        "rules": [
+            {
+                "t": "set",
+                "p": "currentRouteId",
+                "pt": "flow",
+                "to": "0",
+                "tot": "num"
+            },
+            {
+                "t": "set",
+                "p": "currentRouteState",
+                "pt": "flow",
+                "to": "false",
+                "tot": "bool"
+            },
+            {
+                "t": "set",
+                "p": "currentRouteId",
+                "pt": "global",
+                "to": "0",
+                "tot": "num"
+            },
+            {
+                "t": "set",
+                "p": "currentRouteState",
+                "pt": "global",
+                "to": "false",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 550,
+        "y": 80,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5b54f9c21e1e18cf",
+        "type": "status",
+        "z": "ff55010600100001",
+        "name": "",
+        "scope": [
+            "5f1a254d4658f374"
+        ],
+        "x": 570,
+        "y": 240,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "03f1fdf2a31d8134",
+        "type": "ui-text",
+        "z": "a9319fe458afe6b6",
+        "g": "8eb1280652c660c2",
+        "group": "6efcdf57f80c8926",
+        "order": 1,
+        "width": "3",
+        "height": "1",
+        "name": "Show route info",
+        "label": "",
+        "format": "{{msg.payload}}",
+        "layout": "row-left",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#717171",
+        "className": "",
+        "x": 820,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "db5ac7ba2a754d65",
+        "type": "subflow:ff55010600100001",
+        "z": "a9319fe458afe6b6",
+        "g": "8eb1280652c660c2",
+        "name": "",
+        "env": [
+            {
+                "name": "mqtt-broker",
+                "value": "ff55020100010001",
+                "type": "conf-type"
+            }
+        ],
+        "x": 190,
+        "y": 120,
+        "wires": [
+            [
+                "4a5b13a4e63396ee"
+            ]
+        ]
+    },
+    {
+        "id": "4a5b13a4e63396ee",
+        "type": "function",
+        "z": "a9319fe458afe6b6",
+        "g": "8eb1280652c660c2",
+        "name": "set route info text",
+        "func": "var routeIdHexStr = parseInt(msg.topic).toString(16);\nvar onlineStatusStr = msg.payload ? 'Online' : 'Offline';\n\nreturn {\n    payload: `Route State: ${onlineStatusStr}<br/>Route ID: ${msg.topic === 0 ? 'None' : (msg.topic + '(' + routeIdHexStr + ')')}`\n}",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 510,
+        "y": 120,
+        "wires": [
+            [
+                "03f1fdf2a31d8134"
+            ]
+        ]
+    },
+    {
+        "id": "8f011a4c95e46173",
+        "type": "comment",
+        "z": "a9319fe458afe6b6",
+        "g": "8eb1280652c660c2",
+        "name": "initial meshtastic route, and get state",
+        "info": "",
+        "x": 180,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "33637b17a506cbd0",
+        "type": "comment",
+        "z": "a9319fe458afe6b6",
+        "g": "8eb1280652c660c2",
+        "name": "v0.0.1",
+        "info": "",
+        "x": 870,
+        "y": 160,
+        "wires": [],
+        "icon": "font-awesome/fa-exclamation-circle"
+    },
+    {
+        "id": "6efcdf57f80c8926",
+        "type": "ui-group",
+        "name": "Command Group",
+        "page": "0929debe96edc4f1",
+        "width": "3",
+        "height": "6",
+        "order": 2,
+        "showTitle": true,
+        "className": "",
+        "visible": "true",
+        "disabled": "false"
+    },
+    {
+        "id": "0929debe96edc4f1",
+        "type": "ui-page",
+        "name": "2-Communication and information sharing",
+        "ui": "2a6c6f3f0d1de049",
+        "path": "/page10",
+        "icon": "home",
+        "layout": "grid",
+        "theme": "d86c2124665af35b",
+        "order": 3,
+        "className": "",
+        "visible": true,
+        "disabled": false
+    },
+    {
+        "id": "2a6c6f3f0d1de049",
+        "type": "ui-base",
+        "name": "Hazard Response Mission Pack",
+        "path": "/dashboard",
+        "includeClientData": true,
+        "acceptsClientConfig": [
+            "ui-notification",
+            "ui-control"
+        ],
+        "showPathInSidebar": false,
+        "showPageTitle": true,
+        "navigationStyle": "fixed",
+        "titleBarStyle": "default"
+    },
+    {
+        "id": "d86c2124665af35b",
+        "type": "ui-theme",
+        "name": "Theme",
+        "colors": {
+            "surface": "#ffffff",
+            "primary": "#0094ce",
+            "bgPage": "#eeeeee",
+            "groupBg": "#ffffff",
+            "groupOutline": "#cccccc"
+        },
+        "sizes": {
+            "pagePadding": "12px",
+            "groupGap": "12px",
+            "groupBorderRadius": "4px",
+            "widgetGap": "12px"
+        }
+    }
+]

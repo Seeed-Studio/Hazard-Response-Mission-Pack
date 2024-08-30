@@ -1,0 +1,154 @@
+[
+    {
+        "id": "b980ede9e4e6e0a1",
+        "type": "group",
+        "z": "7ea6938ae37cbe94",
+        "name": "",
+        "style": {
+            "label": true,
+            "color": "#000000",
+            "fill": "#dbcbe7"
+        },
+        "nodes": [
+            "9bc0ffab86826e62",
+            "d51874c22a88bcf0",
+            "963e2bb44b0d624e",
+            "b2c277b5e5f0d381"
+        ],
+        "x": 14,
+        "y": 19,
+        "w": 612,
+        "h": 182
+    },
+    {
+        "id": "9bc0ffab86826e62",
+        "type": "ui-text",
+        "z": "7ea6938ae37cbe94",
+        "g": "b980ede9e4e6e0a1",
+        "group": "fa596d99836a105b",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "name": "Text Introduciton dashboard ui",
+        "label": "",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#717171",
+        "className": "",
+        "x": 470,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "d51874c22a88bcf0",
+        "type": "inject",
+        "z": "7ea6938ae37cbe94",
+        "g": "b980ede9e4e6e0a1",
+        "name": "Here is an introduction.",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "0",
+        "topic": "",
+        "payload": "Here is an introduction.",
+        "payloadType": "str",
+        "x": 190,
+        "y": 120,
+        "wires": [
+            [
+                "9bc0ffab86826e62"
+            ]
+        ]
+    },
+    {
+        "id": "963e2bb44b0d624e",
+        "type": "comment",
+        "z": "7ea6938ae37cbe94",
+        "g": "b980ede9e4e6e0a1",
+        "name": "introduction",
+        "info": "",
+        "x": 110,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "b2c277b5e5f0d381",
+        "type": "comment",
+        "z": "7ea6938ae37cbe94",
+        "g": "b980ede9e4e6e0a1",
+        "name": "v0.0.1",
+        "info": "",
+        "x": 550,
+        "y": 160,
+        "wires": [],
+        "icon": "font-awesome/fa-exclamation-circle"
+    },
+    {
+        "id": "fa596d99836a105b",
+        "type": "ui-group",
+        "name": "Introduction",
+        "page": "c7c9430e7e787d8a",
+        "width": "19",
+        "height": "1",
+        "order": 1,
+        "showTitle": true,
+        "className": "",
+        "visible": "true",
+        "disabled": "false"
+    },
+    {
+        "id": "c7c9430e7e787d8a",
+        "type": "ui-page",
+        "name": "1-Early Warning System",
+        "ui": "2a6c6f3f0d1de049",
+        "path": "/early",
+        "icon": "home",
+        "layout": "notebook",
+        "theme": "a3e3f0f53df52d39",
+        "order": 2,
+        "className": "",
+        "visible": true,
+        "disabled": false
+    },
+    {
+        "id": "2a6c6f3f0d1de049",
+        "type": "ui-base",
+        "name": "Hazard Response Mission Pack",
+        "path": "/dashboard",
+        "includeClientData": true,
+        "acceptsClientConfig": [
+            "ui-notification",
+            "ui-control"
+        ],
+        "showPathInSidebar": false,
+        "showPageTitle": true,
+        "navigationStyle": "fixed",
+        "titleBarStyle": "default"
+    },
+    {
+        "id": "a3e3f0f53df52d39",
+        "type": "ui-theme",
+        "name": "Theme Name",
+        "colors": {
+            "surface": "#ffffff",
+            "primary": "#0094ce",
+            "bgPage": "#eeeeee",
+            "groupBg": "#ffffff",
+            "groupOutline": "#cccccc"
+        },
+        "sizes": {
+            "pagePadding": "12px",
+            "groupGap": "12px",
+            "groupBorderRadius": "4px",
+            "widgetGap": "12px"
+        }
+    }
+]

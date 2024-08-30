@@ -1,0 +1,692 @@
+[
+    {
+        "id": "c64ffede4f1f69bd",
+        "type": "subflow",
+        "name": "Digital Twin Background",
+        "info": "",
+        "category": "※digital-twins",
+        "in": [],
+        "out": [],
+        "env": [
+            {
+                "name": "↓ Dashboard UI",
+                "type": "str",
+                "value": "",
+                "ui": {
+                    "type": "none"
+                }
+            },
+            {
+                "name": "Group",
+                "type": "ui-group",
+                "value": "",
+                "ui": {
+                    "type": "conf-types"
+                }
+            },
+            {
+                "name": "Width",
+                "type": "num",
+                "value": "1"
+            },
+            {
+                "name": "Height",
+                "type": "num",
+                "value": "1"
+            },
+            {
+                "name": "↓ Background Image",
+                "type": "str",
+                "value": "",
+                "ui": {
+                    "type": "none"
+                }
+            },
+            {
+                "name": "imageSelector",
+                "type": "str",
+                "value": "url",
+                "ui": {
+                    "type": "select",
+                    "opts": {
+                        "opts": [
+                            {
+                                "l": {
+                                    "zh-CN": "Web image links",
+                                    "en-US": "Web image links"
+                                },
+                                "v": "url"
+                            },
+                            {
+                                "l": {
+                                    "zh-CN": "Local image filename",
+                                    "en-US": "Local image filename"
+                                },
+                                "v": "file"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "name": "imagePath",
+                "type": "str",
+                "value": "http://192.168.100.10:8092/default_background.jpg",
+                "ui": {
+                    "label": {
+                        "zh-CN": "url or filename",
+                        "en-US": "url or filename"
+                    },
+                    "type": "input",
+                    "opts": {
+                        "types": [
+                            "str"
+                        ]
+                    }
+                }
+            }
+        ],
+        "meta": {
+            "version": "0.0.1",
+            "author": "seeed"
+        },
+        "color": "#9FE6EC",
+        "icon": "font-awesome/fa-building-o",
+        "status": {
+            "x": 1060,
+            "y": 440,
+            "wires": []
+        }
+    },
+    {
+        "id": "f2e7e8a6abfabf27",
+        "type": "ui-template",
+        "z": "c64ffede4f1f69bd",
+        "group": "${Group}",
+        "page": "",
+        "ui": "",
+        "name": "Digital Twin UI - Background",
+        "order": 3,
+        "width": "${Width}",
+        "height": "${Height}",
+        "head": "",
+        "format": "<template>\n  <div class=\"bg-585562\">\n    <img class=\"bg-585562\" :src=\"processedUrl\" />\n  </div>\n</template>\n\n<script>\n  export default {\n    data() {\n      return {\n        processedUrl: ''\n      }\n    },\n    created() {\n      this.processImageUrl();\n    },\n    watch: {\n      msg: function() {\n        // Watch for changes in msg and reprocess the image URL when it changes\n        this.processImageUrl();\n      }\n    },\n    methods: {\n      processImageUrl() {\n        // Get the current dashboard domain and port\n        const currentDomain = window.location.hostname;\n\n        // Get the original image URL from msg.payload\n        const originalUrl = this.msg?.payload;\n\n        if (originalUrl) {\n          try {\n            const url = new URL(originalUrl);\n\n            // Check and replace the IP part of the URL while retaining the port\n            if (url.hostname === '192.168.100.10' && url.port === '8092') {\n              url.hostname = currentDomain;\n              this.processedUrl = url.toString();\n            } else {\n              this.processedUrl = originalUrl;\n            }\n          } catch (e) {\n            // Log any errors encountered during URL processing\n            console.error('Error processing URL:', e);\n            this.processedUrl = originalUrl;\n          }\n        } else {\n          // Log a message if msg.payload is null or undefined\n          console.error('msg.payload is null or undefined');\n        }\n      }\n    }\n  }\n</script>\n\n<style>\n/* Define any styles here - supports raw CSS */\n.bg-585562 {\n  width: 100%;\n  height: 100%;\n  position: absolute;\n  top: 0;\n  left: 0;\n}\n\n.bg-585562 img.bg-585562 {\n  height: 100%;\n  width: 100%;\n  object-fit: cover;\n}\n</style>\n",
+        "storeOutMessages": true,
+        "passthru": false,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 1540,
+        "y": 100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9d2dbc8c74d1df4b",
+        "type": "ui-template",
+        "z": "c64ffede4f1f69bd",
+        "group": "${Group}",
+        "page": "",
+        "ui": "",
+        "name": "Digital Twin UI - Container",
+        "order": 0,
+        "width": "${Width}",
+        "height": "${Height}",
+        "head": "",
+        "format": "<template>\n    <div class=\"box\">\n        \n    </div>\n</template>\n\n<script>\n    export default {\n        data() {\n            // define variables available component-wide\n            // (in <template> and component functions)\n            return {\n            }\n        },\n    }\n</script>\n<style>\n    .box{\n        position: relative;\n        margin: 10px;\n        width: 100%;\n        height: 100%;\n    }\n</style>",
+        "storeOutMessages": true,
+        "passthru": false,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 1090,
+        "y": 140,
+        "wires": [
+            [
+                "f2e7e8a6abfabf27"
+            ]
+        ]
+    },
+    {
+        "id": "6bfa48f56105ef16",
+        "type": "inject",
+        "z": "c64ffede4f1f69bd",
+        "name": "on startup",
+        "props": [],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "0",
+        "topic": "",
+        "x": 110,
+        "y": 220,
+        "wires": [
+            [
+                "9b6e3ab7a7f2929f",
+                "13880e52c8665520"
+            ]
+        ]
+    },
+    {
+        "id": "efd7c095acb08799",
+        "type": "file in",
+        "z": "c64ffede4f1f69bd",
+        "name": "read image",
+        "filename": "payload",
+        "filenameType": "msg",
+        "format": "",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "base64",
+        "allProps": false,
+        "x": 770,
+        "y": 300,
+        "wires": [
+            [
+                "01020db6ba1607be"
+            ]
+        ]
+    },
+    {
+        "id": "01020db6ba1607be",
+        "type": "function",
+        "z": "c64ffede4f1f69bd",
+        "name": "encode image",
+        "func": "msg.payload = \"data:image/jpeg;base64,\" + msg.payload.toString('base64');\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 940,
+        "y": 300,
+        "wires": [
+            [
+                "f2e7e8a6abfabf27"
+            ]
+        ]
+    },
+    {
+        "id": "95e2ca8e72c0c25a",
+        "type": "change",
+        "z": "c64ffede4f1f69bd",
+        "name": "get imagepath from envs",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "imagePath",
+                "tot": "env",
+                "dc": true
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 550,
+        "y": 100,
+        "wires": [
+            [
+                "f2e7e8a6abfabf27"
+            ]
+        ]
+    },
+    {
+        "id": "9b6e3ab7a7f2929f",
+        "type": "switch",
+        "z": "c64ffede4f1f69bd",
+        "name": "",
+        "property": "imageSelector",
+        "propertyType": "env",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "url",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "file",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 330,
+        "y": 220,
+        "wires": [
+            [
+                "95e2ca8e72c0c25a"
+            ],
+            [
+                "d25e6135eedfa7a2"
+            ]
+        ]
+    },
+    {
+        "id": "d25e6135eedfa7a2",
+        "type": "change",
+        "z": "c64ffede4f1f69bd",
+        "name": "get imagepath from envs",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "imagePath",
+                "tot": "env"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 550,
+        "y": 300,
+        "wires": [
+            [
+                "efd7c095acb08799"
+            ]
+        ]
+    },
+    {
+        "id": "13880e52c8665520",
+        "type": "change",
+        "z": "c64ffede4f1f69bd",
+        "name": "set empty on startup",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 380,
+        "y": 40,
+        "wires": [
+            [
+                "f2e7e8a6abfabf27"
+            ]
+        ]
+    },
+    {
+        "id": "c25ee8e3cadf74f6",
+        "type": "subflow",
+        "name": "Digital Twin Data Card",
+        "info": "",
+        "category": "※digital-twins",
+        "in": [
+            {
+                "x": 220,
+                "y": 620,
+                "wires": [
+                    {
+                        "id": "81111372d49074cf"
+                    },
+                    {
+                        "id": "270964d67cd7e5ca"
+                    }
+                ]
+            }
+        ],
+        "out": [],
+        "env": [
+            {
+                "name": "↓ Dashboard UI",
+                "type": "str",
+                "value": "",
+                "ui": {
+                    "type": "none"
+                }
+            },
+            {
+                "name": "Group",
+                "type": "ui-group",
+                "value": "",
+                "ui": {
+                    "type": "conf-types"
+                }
+            },
+            {
+                "name": "↓ Card",
+                "type": "str",
+                "value": "",
+                "ui": {
+                    "type": "none"
+                }
+            },
+            {
+                "name": "card_name",
+                "type": "str",
+                "value": "Ultrasonic",
+                "ui": {
+                    "icon": "font-awesome/fa-vcard-o",
+                    "label": {
+                        "zh-CN": "Name",
+                        "en-US": "Name"
+                    },
+                    "type": "input",
+                    "opts": {
+                        "types": [
+                            "str"
+                        ]
+                    }
+                }
+            },
+            {
+                "name": "card_font_size",
+                "type": "num",
+                "value": "14",
+                "ui": {
+                    "icon": "font-awesome/fa-sort-numeric-asc",
+                    "label": {
+                        "zh-CN": "Font size",
+                        "en-US": "Font size"
+                    },
+                    "type": "input",
+                    "opts": {
+                        "types": [
+                            "num"
+                        ]
+                    }
+                }
+            },
+            {
+                "name": "card_unit",
+                "type": "str",
+                "value": "",
+                "ui": {
+                    "label": {
+                        "zh-CN": "Value Unit",
+                        "en-US": "Value Unit"
+                    },
+                    "type": "input",
+                    "opts": {
+                        "types": [
+                            "str"
+                        ]
+                    }
+                }
+            },
+            {
+                "name": "↓ Position",
+                "type": "str",
+                "value": "",
+                "ui": {
+                    "type": "none"
+                }
+            },
+            {
+                "name": "card_position_y",
+                "type": "str",
+                "value": "0%",
+                "ui": {
+                    "icon": "font-awesome/fa-percent",
+                    "label": {
+                        "zh-CN": "Top Position(%)",
+                        "en-US": "Top Position(%)"
+                    },
+                    "type": "input",
+                    "opts": {
+                        "types": [
+                            "str"
+                        ]
+                    }
+                }
+            },
+            {
+                "name": "card_position_x",
+                "type": "str",
+                "value": "0%",
+                "ui": {
+                    "icon": "font-awesome/fa-percent",
+                    "label": {
+                        "zh-CN": "Left Position(%)",
+                        "en-US": "Left Position(%)"
+                    },
+                    "type": "input",
+                    "opts": {
+                        "types": [
+                            "str"
+                        ]
+                    }
+                }
+            }
+        ],
+        "meta": {
+            "version": "0.0.1",
+            "author": "seeed",
+            "license": "Apache-2.0"
+        },
+        "color": "#9FE6EC",
+        "icon": "font-awesome/fa-building-o",
+        "status": {
+            "x": 740,
+            "y": 680,
+            "wires": [
+                {
+                    "id": "270964d67cd7e5ca",
+                    "port": 0
+                },
+                {
+                    "id": "ed8749cbb76eaff3",
+                    "port": 0
+                }
+            ]
+        }
+    },
+    {
+        "id": "dcdfb77142edf9f9",
+        "type": "ui-template",
+        "z": "c25ee8e3cadf74f6",
+        "group": "${Group}",
+        "page": "",
+        "ui": "",
+        "name": "UI Template",
+        "order": 4,
+        "width": "1",
+        "height": "1",
+        "head": "",
+        "format": "<template>\n  <div\n    class=\"item-881695\"\n    :style=\"\n      'left:' +\n      msg.payload.position[0] +\n      ';top:' +\n      msg.payload.position[1] +\n      ';'\n    \"\n  >\n    <div>{{ msg.payload.name }}</div>\n    <div :style=\"'font-size:' + msg.payload.fontSize * 2 + 'px !important;'\">\n      {{ msg.payload.value }} {{msg.payload.unit}}\n    </div>\n    <div :style=\"'font-size:' + msg.payload.fontSize * 0.8 + 'px !important;'\">\n      {{ timeFn(msg.payload.time) }}\n    </div>\n    <div :style=\"'font-size:' + msg.payload.fontSize * 0.8 + 'px !important;'\">\n      {{ msg.payload.time === 0 ? '..' : '' }}\n    </div>\n  </div>\n</template>\n\n<script>\nexport default {\n  data() {\n    return {};\n  },\n  created() {},\n\n  methods: {\n    /**\n     * @description 10位时间戳转换\n     * @param time\n     * @returns {string}\n     */\n    tenBitTimestamp(time, type) {\n      const date = new Date(time * 1000);\n      const y = date.getFullYear();\n      let m = date.getMonth() + 1;\n      m = m < 10 ? \"0\" + m : m;\n      let d = date.getDate();\n      d = d < 10 ? \"0\" + d : d;\n      let h = date.getHours();\n      h = h < 10 ? \"0\" + h : h;\n      let minute = date.getMinutes();\n      let second = date.getSeconds();\n      minute = minute < 10 ? \"0\" + minute : minute;\n      second = second < 10 ? \"0\" + second : second;\n      return type\n        ? y + \"/\" + m + \"/\" + d\n        : y + \"/\" + m + \"/\" + d + \" \" + h + \":\" + minute + \":\" + second; //组合\n    },\n\n    /**\n     * @description 13位时间戳转换\n     * @param time\n     * @returns {string}\n     */\n    thirteenBitTimestamp(time, type) {\n      const date = new Date(time / 1);\n      const y = date.getFullYear();\n      let m = date.getMonth() + 1;\n      m = m < 10 ? \"0\" + m : m;\n      let d = date.getDate();\n      d = d < 10 ? \"0\" + d : d;\n      let h = date.getHours();\n      h = h < 10 ? \"0\" + h : h;\n      let minute = date.getMinutes();\n      let second = date.getSeconds();\n      minute = minute < 10 ? \"0\" + minute : minute;\n      second = second < 10 ? \"0\" + second : second;\n      return type\n        ? y + \"/\" + m + \"/\" + d\n        : y + \"/\" + m + \"/\" + d + \" \" + h + \":\" + minute + \":\" + second; //组合\n    },\n\n    timeFn(time, type) {\n      if (time === 0) {\n        return \"--\";\n      }\n      time = time + \"\";\n      let timestamp;\n      if (time.length == 10) timestamp = this.tenBitTimestamp(time, type);\n      else if (time.length == 13)\n        timestamp = this.thirteenBitTimestamp(time, type);\n      else return (timestamp = \"\");\n      let timezone = timestamp\n        ? parseInt((0 - new Date(timestamp).getTimezoneOffset()) / 60)\n        : \"\";\n      timezone = timezone\n        ? (timezone > 0 ? \"(UTC+\" : \"(UTC\") + timezone + \")\"\n        : \"\";\n      return type ? timestamp : timestamp + timezone;\n    },\n  },\n};\n</script>\n\n<style>\n.item-881695 {\n  width: 170px;\n  height: auto;\n  position: absolute;\n  z-index: 1;\n  background: rgba(255, 255, 255, 0.8);\n  padding: 20px;\n  border-radius: 10px;\n  font-weight: bold;\n}\n</style>\n",
+        "storeOutMessages": true,
+        "passthru": false,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 1410,
+        "y": 520,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3b56b93f6cf23646",
+        "type": "function",
+        "z": "c25ee8e3cadf74f6",
+        "name": "set font size",
+        "func": "msg.payload = {\n    ...msg.payload,\n    fontSize: env.get(\"card_font_size\")\n}\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1030,
+        "y": 520,
+        "wires": [
+            [
+                "3f1983a07bacaa61"
+            ]
+        ]
+    },
+    {
+        "id": "eb2b84e989af7418",
+        "type": "function",
+        "z": "c25ee8e3cadf74f6",
+        "name": "set name",
+        "func": "msg.payload = {\n    ...msg.payload,\n    name: env.get(\"card_name\")\n}\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 680,
+        "y": 520,
+        "wires": [
+            [
+                "afa26713358dce1e"
+            ]
+        ]
+    },
+    {
+        "id": "afa26713358dce1e",
+        "type": "function",
+        "z": "c25ee8e3cadf74f6",
+        "name": "set position",
+        "func": "msg.payload = {\n    ...msg.payload,\n    position: [\n        env.get(\"card_position_x\"), \n        env.get(\"card_position_y\")\n    ]\n}\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 850,
+        "y": 520,
+        "wires": [
+            [
+                "3b56b93f6cf23646"
+            ]
+        ]
+    },
+    {
+        "id": "3f1983a07bacaa61",
+        "type": "function",
+        "z": "c25ee8e3cadf74f6",
+        "name": "set unit",
+        "func": "msg.payload = {\n    ...msg.payload,\n    unit: env.get(\"card_unit\")\n}\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1200,
+        "y": 520,
+        "wires": [
+            [
+                "dcdfb77142edf9f9"
+            ]
+        ]
+    },
+    {
+        "id": "81111372d49074cf",
+        "type": "function",
+        "z": "c25ee8e3cadf74f6",
+        "name": "set value and time",
+        "func": "msg.payload = {\n    value: msg.payload,\n    time: '' + Date.now()\n}\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 470,
+        "y": 520,
+        "wires": [
+            [
+                "eb2b84e989af7418"
+            ]
+        ]
+    },
+    {
+        "id": "74162ccbd520f320",
+        "type": "inject",
+        "z": "c25ee8e3cadf74f6",
+        "name": "On Startup",
+        "props": [],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "0.1",
+        "topic": "",
+        "x": 250,
+        "y": 420,
+        "wires": [
+            [
+                "e75d38e7f7e2418c",
+                "ed8749cbb76eaff3"
+            ]
+        ]
+    },
+    {
+        "id": "e75d38e7f7e2418c",
+        "type": "function",
+        "z": "c25ee8e3cadf74f6",
+        "name": "set value and time",
+        "func": "msg.payload = {\n    value: '--',\n    time: 0\n}\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 470,
+        "y": 420,
+        "wires": [
+            [
+                "eb2b84e989af7418"
+            ]
+        ]
+    },
+    {
+        "id": "270964d67cd7e5ca",
+        "type": "function",
+        "z": "c25ee8e3cadf74f6",
+        "name": "Show 'Lastest value'",
+        "func": "return {\n    payload: 'Last value: ' + msg.payload\n};",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 460,
+        "y": 700,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ed8749cbb76eaff3",
+        "type": "function",
+        "z": "c25ee8e3cadf74f6",
+        "name": "Show 'Waiting to update value'",
+        "func": "return {\n    payload: {\n        fill: \"yellow\",\n        shape: \"dot\",\n        text: 'Waiting to update value'\n    }\n};",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 490,
+        "y": 660,
+        "wires": [
+            []
+        ]
+    }
+]

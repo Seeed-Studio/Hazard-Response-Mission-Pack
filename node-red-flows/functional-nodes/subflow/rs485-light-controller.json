@@ -1,0 +1,832 @@
+[
+    {
+        "id": "61d68b31136dfa92",
+        "type": "subflow",
+        "name": "rs485 light controller - control light",
+        "info": "The Light Controller Node is designed to control the state of a light based on two environment variables: `LIGHT_COLOR` and `LIGHT_MODE`. Set the light color to red, green, or yellow and the light mode to blink, flashing, on, or off. The node converts these settings into corresponding decimal values for further processing.\n\n### Environment Variables\n\n- **LIGHT_COLOR**: Defines the color of the light.\n  - Valid options: `red`, `green`, `yellow`\n  \n- **LIGHT_MODE**: Defines the mode of the light.\n  - Valid options: `blink`, `flashing`, `on`, `off`\n\n### Output Values\n\nThe node maps the combinations of `LIGHT_COLOR` and `LIGHT_MODE` to specific hexadecimal values, which are then converted to decimal values and output through the node's message payload.\n\n| LIGHT_COLOR | LIGHT_MODE | Hex Value | Decimal Value |\n|-------------|-------------|-----------|---------------|\n| red         | blink       | 0x21      | 33            |\n| red         | flashing    | 0x31      | 49            |\n| red         | on          | 0x11      | 17            |\n| red         | off         | 0x60      | 96            |\n| green       | blink       | 0x23      | 35            |\n| green       | flashing    | 0x33      | 51            |\n| green       | on          | 0x13      | 19            |\n| green       | off         | 0x60      | 96            |\n| yellow      | blink       | 0x22      | 34            |\n| yellow      | flashing    | 0x32      | 50            |\n| yellow      | on          | 0x12      | 18            |\n| yellow      | off         | 0x60      | 96            |\n\n### How to Use\n\n1. **Set Environment Variables**:\n   - Define `LIGHT_COLOR` and `LIGHT_MODE` in the node properties.\n\n2. **Deploy the Node**:\n   - Ensure the node is deployed and integrated into your main flow.\n\n3. **Trigger the Node**:\n   - Use an Inject node to set and trigger the environment variables.\n\n4. **Check Output**:\n   - The output will be a decimal value corresponding to the light settings, viewable through a Debug node.\n\n### Example Flow\n\n1. **Inject Node**: Use to set and trigger the environment variables.\n2. **Light Controller Node**: Insert the Light Controller Node.\n3. **Debug Node**: Connect to the node output to see the result.\n\nConfigure the Inject node to set `LIGHT_COLOR` and `LIGHT_MODE`. Deploy the flow, trigger the inject node, and view the output in the debug panel.",
+        "category": "※rs485-light-controller",
+        "in": [
+            {
+                "x": 60,
+                "y": 80,
+                "wires": [
+                    {
+                        "id": "cc379f45cd70a2bb"
+                    }
+                ]
+            }
+        ],
+        "out": [],
+        "env": [
+            {
+                "name": "----- Device Settings -----",
+                "type": "str",
+                "value": "",
+                "ui": {
+                    "type": "none"
+                }
+            },
+            {
+                "name": "modbus-client",
+                "type": "modbus-client",
+                "value": "ff55020100020001",
+                "ui": {
+                    "icon": "font-awesome/fa-server",
+                    "label": {
+                        "zh-CN": "*Server",
+                        "en-US": "*Server"
+                    },
+                    "type": "conf-types"
+                }
+            },
+            {
+                "name": "productModel",
+                "type": "str",
+                "value": "",
+                "ui": {
+                    "label": {
+                        "zh-CN": "*Product model",
+                        "en-US": "*Product model"
+                    },
+                    "type": "select",
+                    "opts": {
+                        "opts": [
+                            {
+                                "l": {
+                                    "zh-CN": "Type A",
+                                    "en-US": "Type A"
+                                },
+                                "v": "typea"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "name": "----- Light Mode -----",
+                "type": "str",
+                "value": "",
+                "ui": {
+                    "type": "none"
+                }
+            },
+            {
+                "name": "LIGHT_MODE",
+                "type": "str",
+                "value": "on",
+                "ui": {
+                    "label": {
+                        "zh-CN": "*Light mode",
+                        "en-US": "*Light mode"
+                    },
+                    "type": "select",
+                    "opts": {
+                        "opts": [
+                            {
+                                "l": {
+                                    "zh-CN": "On",
+                                    "en-US": "On"
+                                },
+                                "v": "on"
+                            },
+                            {
+                                "l": {
+                                    "zh-CN": "Blink",
+                                    "en-US": "Blink"
+                                },
+                                "v": "blink"
+                            },
+                            {
+                                "l": {
+                                    "zh-CN": "Flashing",
+                                    "en-US": "Flashing"
+                                },
+                                "v": "flashing"
+                            },
+                            {
+                                "l": {
+                                    "zh-CN": "Off",
+                                    "en-US": "Off"
+                                },
+                                "v": "off"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "name": "LIGHT_COLOR",
+                "type": "str",
+                "value": "red",
+                "ui": {
+                    "label": {
+                        "zh-CN": "*Light color",
+                        "en-US": "*Light color"
+                    },
+                    "type": "select",
+                    "opts": {
+                        "opts": [
+                            {
+                                "l": {
+                                    "zh-CN": "Red",
+                                    "en-US": "Red"
+                                },
+                                "v": "red"
+                            },
+                            {
+                                "l": {
+                                    "zh-CN": "Green",
+                                    "en-US": "Green"
+                                },
+                                "v": "green"
+                            },
+                            {
+                                "l": {
+                                    "zh-CN": "Yellow",
+                                    "en-US": "Yellow"
+                                },
+                                "v": "yellow"
+                            }
+                        ]
+                    }
+                }
+            }
+        ],
+        "meta": {
+            "module": "lgiht-controller-yx75r-ryg",
+            "version": "0.0.1",
+            "author": "Peter Pan",
+            "desc": "This is a modbus Light Controller for yx75r-ryg light",
+            "license": "MIT"
+        },
+        "color": "#B8EA4F",
+        "icon": "node-red/light.svg",
+        "status": {
+            "x": 960,
+            "y": 140,
+            "wires": [
+                {
+                    "id": "de52d590953c98c7",
+                    "port": 0
+                }
+            ]
+        }
+    },
+    {
+        "id": "cc379f45cd70a2bb",
+        "type": "function",
+        "z": "61d68b31136dfa92",
+        "name": "Address Converter",
+        "func": "// Function to normalize the environment variables (convert to lowercase)\nfunction normalizeEnvVar(value) {\n    if (value===true || value===false){\n        return value;\n    }\n    return value ? value.toLowerCase() : \"\";\n}\n\n// Retrieve and normalize the environment variables\nvar lightColor = normalizeEnvVar(env.get(\"LIGHT_COLOR\"));\nvar lightMode = normalizeEnvVar(env.get(\"LIGHT_MODE\"));\n\nvar value = 0x00;\nvar notification = \"\";\n\n// Define the mapping\nif (lightMode === 'off') {\n    value = 0x60;\n} else if (lightColor === \"red\") {\n    if (lightMode === \"blink\") {\n        value = 0x21;\n    } else if (lightMode === \"flashing\") {\n        value = 0x31;\n    } else if (lightMode === \"on\") {\n        value = 0x11;\n    } else {\n    }\n} else if (lightColor === \"green\") {\n    if (lightMode === \"blink\") {\n        value = 0x23;\n    } else if (lightMode === \"flashing\") {\n        value = 0x33;\n    } else if (lightMode === \"on\") {\n        value = 0x13;\n    } else {\n    }\n} else if (lightColor === \"yellow\") {\n    if (lightMode === \"blink\") {\n        value = 0x22;\n    } else if (lightMode === \"flashing\") {\n        value = 0x32;\n    } else if (lightMode === \"on\") {\n        value = 0x12;\n    } else {\n    }\n} else {\n}\n\n// Convert the hexadecimal value to decimal\nvar decimalValue = value;\n\n// Set the output message\nif (notification) {\n    msg.payload = notification;\n} else {\n    msg.payload = decimalValue;\n}\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 210,
+        "y": 80,
+        "wires": [
+            [
+                "1300fb3d05071c03"
+            ]
+        ]
+    },
+    {
+        "id": "bd4190a43e4774e8",
+        "type": "modbus-response",
+        "z": "61d68b31136dfa92",
+        "name": "",
+        "registerShowMax": 20,
+        "x": 670,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "1300fb3d05071c03",
+        "type": "modbus-write",
+        "z": "61d68b31136dfa92",
+        "name": "Light Modbus Config",
+        "showStatusActivities": true,
+        "showErrors": false,
+        "showWarnings": true,
+        "unitid": "1",
+        "dataType": "HoldingRegister",
+        "adr": "194",
+        "quantity": "1",
+        "server": "${modbus-client}",
+        "emptyMsgOnFail": false,
+        "keepMsgProperties": false,
+        "delayOnStart": false,
+        "startDelayTime": "5",
+        "x": 440,
+        "y": 80,
+        "wires": [
+            [],
+            [
+                "bd4190a43e4774e8"
+            ]
+        ]
+    },
+    {
+        "id": "de52d590953c98c7",
+        "type": "status",
+        "z": "61d68b31136dfa92",
+        "name": "",
+        "scope": null,
+        "x": 670,
+        "y": 140,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "1aac682eea8590eb",
+        "type": "catch",
+        "z": "61d68b31136dfa92",
+        "name": "",
+        "scope": null,
+        "uncaught": false,
+        "x": 660,
+        "y": 220,
+        "wires": [
+            [
+                "7a63f74387974b8f"
+            ]
+        ]
+    },
+    {
+        "id": "7a63f74387974b8f",
+        "type": "debug",
+        "z": "61d68b31136dfa92",
+        "name": "rs485 light controller - control light",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 980,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "b8596ac29abcf525",
+        "type": "subflow",
+        "name": "rs485 light controller - control sound",
+        "info": "",
+        "category": "※rs485-light-controller",
+        "in": [
+            {
+                "x": 300,
+                "y": 460,
+                "wires": [
+                    {
+                        "id": "f25ba559326dccfb"
+                    }
+                ]
+            }
+        ],
+        "out": [],
+        "env": [
+            {
+                "name": "----- Device Connection -----",
+                "type": "str",
+                "value": "",
+                "ui": {
+                    "type": "hide"
+                }
+            },
+            {
+                "name": "modbus-client",
+                "type": "modbus-client",
+                "value": "ff55020100020001",
+                "ui": {
+                    "icon": "font-awesome/fa-server",
+                    "label": {
+                        "zh-CN": "*Server",
+                        "en-US": "*Server"
+                    },
+                    "type": "conf-types"
+                }
+            },
+            {
+                "name": "product-model",
+                "type": "str",
+                "value": "type_a",
+                "ui": {
+                    "label": {
+                        "zh-CN": "*Product model",
+                        "en-US": "*Product model"
+                    },
+                    "type": "select",
+                    "opts": {
+                        "opts": [
+                            {
+                                "l": {
+                                    "zh-CN": "Type A",
+                                    "en-US": "Type A"
+                                },
+                                "v": "type_a"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "name": "----- Device Settings -----",
+                "type": "str",
+                "value": "",
+                "ui": {
+                    "type": "none"
+                }
+            },
+            {
+                "name": "action",
+                "type": "str",
+                "value": "play",
+                "ui": {
+                    "label": {
+                        "zh-CN": "Action",
+                        "en-US": "Action"
+                    },
+                    "type": "select",
+                    "opts": {
+                        "opts": [
+                            {
+                                "l": {
+                                    "zh-CN": "Play",
+                                    "en-US": "Play"
+                                },
+                                "v": "play"
+                            },
+                            {
+                                "l": {
+                                    "zh-CN": "Stop",
+                                    "en-US": "Stop"
+                                },
+                                "v": "stop"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "name": "volume",
+                "type": "num",
+                "value": "1",
+                "ui": {
+                    "label": {
+                        "zh-CN": "Volume",
+                        "en-US": "Volume"
+                    },
+                    "type": "spinner",
+                    "opts": {
+                        "min": 1,
+                        "max": 30
+                    }
+                }
+            }
+        ],
+        "meta": {},
+        "color": "#B8EA4F",
+        "icon": "font-awesome/fa-volume-up",
+        "status": {
+            "x": 1220,
+            "y": 640,
+            "wires": [
+                {
+                    "id": "7f7fc470a59b569f",
+                    "port": 0
+                }
+            ]
+        }
+    },
+    {
+        "id": "531e23630b5fa7e4",
+        "type": "function",
+        "z": "b8596ac29abcf525",
+        "name": "set volumn",
+        "func": "msg.payload = {\n    'unitid': 1,\n    'fc': 6,\n    'quantity': 1,\n    'address': 0x0006,\n    'value': env.get(\"volumn\") || 1 // 1~30\n};\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 530,
+        "y": 280,
+        "wires": [
+            [
+                "a4059d176b2a92a7"
+            ]
+        ]
+    },
+    {
+        "id": "c2be6a5e8de4caff",
+        "type": "function",
+        "z": "b8596ac29abcf525",
+        "name": "play sound",
+        "func": "msg.payload = {\n    'unitid': 1,\n    'fc': 6,\n    'quantity': 1,\n    'address': 0x0008,\n    'value': 0x0001, // 1~30\n};\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 690,
+        "y": 420,
+        "wires": [
+            [
+                "566fe77c7f7f9bc7"
+            ]
+        ]
+    },
+    {
+        "id": "29fd66e49dac1ff8",
+        "type": "function",
+        "z": "b8596ac29abcf525",
+        "name": "stop sound",
+        "func": "msg.payload = {\n    'unitid': 1,\n    'fc': 6,\n    'quantity': 1,\n    'address': 0x0016,\n    'value': 0x0000, // 1~30\n};\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 690,
+        "y": 520,
+        "wires": [
+            [
+                "a59287a8c1b4806c"
+            ]
+        ]
+    },
+    {
+        "id": "a4059d176b2a92a7",
+        "type": "modbus-flex-write",
+        "z": "b8596ac29abcf525",
+        "name": "",
+        "showStatusActivities": true,
+        "showErrors": false,
+        "showWarnings": true,
+        "server": "${modbus-client}",
+        "emptyMsgOnFail": false,
+        "keepMsgProperties": false,
+        "delayOnStart": false,
+        "startDelayTime": "5",
+        "x": 730,
+        "y": 280,
+        "wires": [
+            [],
+            [
+                "8a3c6d49b7cde4e0"
+            ]
+        ]
+    },
+    {
+        "id": "8a3c6d49b7cde4e0",
+        "type": "modbus-response",
+        "z": "b8596ac29abcf525",
+        "name": "",
+        "registerShowMax": 20,
+        "x": 970,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "566fe77c7f7f9bc7",
+        "type": "modbus-flex-write",
+        "z": "b8596ac29abcf525",
+        "name": "",
+        "showStatusActivities": true,
+        "showErrors": false,
+        "showWarnings": true,
+        "server": "${modbus-client}",
+        "emptyMsgOnFail": false,
+        "keepMsgProperties": false,
+        "delayOnStart": false,
+        "startDelayTime": "5",
+        "x": 890,
+        "y": 420,
+        "wires": [
+            [],
+            [
+                "e8157e7719c8cae8"
+            ]
+        ]
+    },
+    {
+        "id": "e8157e7719c8cae8",
+        "type": "modbus-response",
+        "z": "b8596ac29abcf525",
+        "name": "",
+        "registerShowMax": 20,
+        "x": 1110,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "a59287a8c1b4806c",
+        "type": "modbus-flex-write",
+        "z": "b8596ac29abcf525",
+        "name": "",
+        "showStatusActivities": true,
+        "showErrors": false,
+        "showWarnings": true,
+        "server": "${modbus-client}",
+        "emptyMsgOnFail": false,
+        "keepMsgProperties": false,
+        "delayOnStart": false,
+        "startDelayTime": "5",
+        "x": 890,
+        "y": 520,
+        "wires": [
+            [],
+            [
+                "b6b57e8a2368518e"
+            ]
+        ]
+    },
+    {
+        "id": "b6b57e8a2368518e",
+        "type": "modbus-response",
+        "z": "b8596ac29abcf525",
+        "name": "",
+        "registerShowMax": 20,
+        "x": 1110,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "f25ba559326dccfb",
+        "type": "switch",
+        "z": "b8596ac29abcf525",
+        "name": "action switch",
+        "property": "action",
+        "propertyType": "env",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "play",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "stop",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 470,
+        "y": 460,
+        "wires": [
+            [
+                "c2be6a5e8de4caff"
+            ],
+            [
+                "29fd66e49dac1ff8"
+            ]
+        ]
+    },
+    {
+        "id": "7f7fc470a59b569f",
+        "type": "status",
+        "z": "b8596ac29abcf525",
+        "name": "",
+        "scope": null,
+        "x": 1030,
+        "y": 640,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3b5f77c1a5b86b89",
+        "type": "inject",
+        "z": "b8596ac29abcf525",
+        "name": "on startup",
+        "props": [],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 360,
+        "y": 280,
+        "wires": [
+            [
+                "531e23630b5fa7e4"
+            ]
+        ]
+    },
+    {
+        "id": "fcbf6fde33ed01b2",
+        "type": "catch",
+        "z": "b8596ac29abcf525",
+        "name": "",
+        "scope": null,
+        "uncaught": false,
+        "x": 1040,
+        "y": 720,
+        "wires": [
+            [
+                "4f9ed8d5827c26af"
+            ]
+        ]
+    },
+    {
+        "id": "4f9ed8d5827c26af",
+        "type": "debug",
+        "z": "b8596ac29abcf525",
+        "name": "rs485 light controller - control sound",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1350,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "f31e55153689cae9",
+        "type": "subflow",
+        "name": "rs485 light controller - get light status",
+        "info": "",
+        "category": "※rs485-light-controller",
+        "in": [],
+        "out": [
+            {
+                "x": 860,
+                "y": 60,
+                "wires": [
+                    {
+                        "id": "1e6f02dddd31a2e7",
+                        "port": 0
+                    }
+                ]
+            }
+        ],
+        "env": [
+            {
+                "name": "----- Device Connection -----",
+                "type": "str",
+                "value": "",
+                "ui": {
+                    "type": "none"
+                }
+            },
+            {
+                "name": "modbus-client",
+                "type": "modbus-client",
+                "value": "ff55020100020001",
+                "ui": {
+                    "icon": "font-awesome/fa-server",
+                    "label": {
+                        "zh-CN": "*Server",
+                        "en-US": "*Server"
+                    },
+                    "type": "conf-types"
+                }
+            }
+        ],
+        "meta": {
+            "version": "0.0.1",
+            "author": "seeed",
+            "license": "Apache-2.0"
+        },
+        "color": "#B8EA4F",
+        "icon": "node-red/light.svg",
+        "status": {
+            "x": 860,
+            "y": 260,
+            "wires": [
+                {
+                    "id": "7bae1afd782eeb71",
+                    "port": 0
+                }
+            ]
+        }
+    },
+    {
+        "id": "444409c41ab5e9a4",
+        "type": "modbus-response",
+        "z": "f31e55153689cae9",
+        "name": "",
+        "registerShowMax": 20,
+        "x": 690,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "a2c3e5619cf60d6d",
+        "type": "inject",
+        "z": "f31e55153689cae9",
+        "name": "on startup, and replay",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "5",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 160,
+        "y": 100,
+        "wires": [
+            [
+                "893ed17c5c757939"
+            ]
+        ]
+    },
+    {
+        "id": "893ed17c5c757939",
+        "type": "modbus-getter",
+        "z": "f31e55153689cae9",
+        "name": "Query light controller status",
+        "showStatusActivities": true,
+        "showErrors": false,
+        "showWarnings": true,
+        "logIOActivities": false,
+        "unitid": "1",
+        "dataType": "HoldingRegister",
+        "adr": "112",
+        "quantity": "1",
+        "server": "${modbus-client}",
+        "useIOFile": false,
+        "ioFile": "",
+        "useIOForPayload": false,
+        "emptyMsgOnFail": false,
+        "keepMsgProperties": false,
+        "delayOnStart": false,
+        "startDelayTime": "",
+        "x": 420,
+        "y": 100,
+        "wires": [
+            [
+                "1e6f02dddd31a2e7"
+            ],
+            [
+                "444409c41ab5e9a4"
+            ]
+        ]
+    },
+    {
+        "id": "1e6f02dddd31a2e7",
+        "type": "function",
+        "z": "f31e55153689cae9",
+        "name": "decode message",
+        "func": "var newMsg = {\n    topic: '',\n    payload: 0x0000\n}\n\n// Function Node to Interpret the Modbus Response\nvar buffer = msg.payload.buffer;\nvar data = buffer[0] * 256 + buffer[1]; // Combine high and low byte\n\nnewMsg.payload = data;\n\n// Interpret the value according to your device's documentation\nswitch (data) {\n    case 0x0011:\n        newMsg.topic = \"Red light solid\";\n        break;\n    case 0x0012:\n        newMsg.topic = \"Yellow light solid\";\n        break;\n    case 0x0013:\n        newMsg.topic = \"Green light solid\";\n        break;\n    case 0x0021:\n        newMsg.topic = \"Red light slow flash\";\n        break;\n    case 0x0022:\n        newMsg.topic = \"Yellow light slow flash\";\n        break;\n    case 0x0023:\n        newMsg.topic = \"Green light slow flash\";\n        break;\n    case 0x0031:\n        newMsg.topic = \"Red light fast flash\";\n        break;\n    case 0x0032:\n        newMsg.topic = \"Yellow light fast flash\";\n        break;\n    case 0x0033:\n        newMsg.topic = \"Green light fast flash\";\n        break;\n    case 0x0060:\n        newMsg.topic = \"Light off\";\n        break;\n    default:\n        newMsg.topic = \"Unknown state\";\n}\n\nnode.status({ fill: \"green\", shape: \"dot\", text: newMsg.topic });\n\nreturn newMsg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 690,
+        "y": 60,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7bae1afd782eeb71",
+        "type": "status",
+        "z": "f31e55153689cae9",
+        "name": "",
+        "scope": [
+            "893ed17c5c757939",
+            "1e6f02dddd31a2e7"
+        ],
+        "x": 670,
+        "y": 260,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "cab6b95f08d6c398",
+        "type": "catch",
+        "z": "f31e55153689cae9",
+        "name": "",
+        "scope": null,
+        "uncaught": false,
+        "x": 660,
+        "y": 340,
+        "wires": [
+            []
+        ]
+    }
+]

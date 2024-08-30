@@ -1,0 +1,22 @@
+name: sensecraft-whisper
+
+services:
+  openai-whisper-asr-webservice:
+    image: onerahmet/openai-whisper-asr-webservice:v1.5.0
+    ports:
+      - 9000:9000
+    restart: always
+    environment:
+      # ASR_ENGINE: openai_whisper
+      ASR_ENGINE: faster_whisper
+      ASR_MODEL: base.en
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - ./docker-container-datas/tmp/stt:/tmp/stt
+      - ./docker-container-datas/sensecraft-whisper/cache:/root/.cache/whisper
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "1"

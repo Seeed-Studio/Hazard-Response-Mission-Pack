@@ -1,0 +1,1279 @@
+[
+    {
+        "id": "ff55010600100001",
+        "type": "subflow",
+        "name": "meshtastic chat - init route state",
+        "info": "",
+        "category": "※meshtastic_chat",
+        "in": [],
+        "out": [
+            {
+                "x": 740,
+                "y": 160,
+                "wires": [
+                    {
+                        "id": "9e8f4a0ffd0eda44",
+                        "port": 0
+                    }
+                ]
+            }
+        ],
+        "env": [
+            {
+                "name": "mqtt-broker",
+                "type": "mqtt-broker",
+                "value": "ff55020100010001",
+                "ui": {
+                    "icon": "font-awesome/fa-server",
+                    "label": {
+                        "zh-CN": "*Server",
+                        "en-US": "*Server"
+                    },
+                    "type": "conf-types"
+                }
+            }
+        ],
+        "meta": {
+            "version": "0.0.1",
+            "author": "seeed",
+            "license": "Apache-2.0"
+        },
+        "color": "#B8EA4F",
+        "icon": "node-red/node_icon_meshtastic.png",
+        "status": {
+            "x": 740,
+            "y": 240,
+            "wires": [
+                {
+                    "id": "5b54f9c21e1e18cf",
+                    "port": 0
+                }
+            ]
+        }
+    },
+    {
+        "id": "5f1a254d4658f374",
+        "type": "mqtt in",
+        "z": "ff55010600100001",
+        "name": "Subscribe route online state",
+        "topic": "msh/seeed/2/stat/+",
+        "qos": "0",
+        "datatype": "utf8",
+        "broker": "${mqtt-broker}",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 260,
+        "y": 160,
+        "wires": [
+            [
+                "9e8f4a0ffd0eda44"
+            ]
+        ]
+    },
+    {
+        "id": "9e8f4a0ffd0eda44",
+        "type": "function",
+        "z": "ff55010600100001",
+        "name": "get online route id",
+        "func": "let topic = msg.topic;\nlet outputMsg = {\n    payload: {\n        routeid: 0,\n        state: false\n    }\n};\n\nlet originalRouteId = topic.split('/')[4];\n\nlet processed = originalRouteId.replace(/[^a-z0-9]/g, '');\nlet decimalValue = parseInt(processed, 16);\n\n\nif (msg.payload === 'online') {\n    outputMsg.payload.routeid = decimalValue;\n    outputMsg.payload.state = true;\n    flow.set(\"currentRouteId\", decimalValue);\n    flow.set(\"currentRouteState\", true);\n    global.set(\"currentRouteId\", decimalValue);\n    global.set(\"currentRouteState\", true);\n    return {\n        topic: outputMsg.payload.routeid,\n        payload: outputMsg.payload.state\n    };\n} else if (msg.payload === 'offline') {\n    if (global.get(\"currentRouteId\") == decimalValue) {\n        outputMsg.payload.routeid = 0;\n        outputMsg.payload.state = false;\n        flow.set(\"currentRouteId\", 0);\n        flow.set(\"currentRouteState\", false);\n        global.set(\"currentRouteId\", 0);\n        global.set(\"currentRouteState\", false);\n        return {\n            topic: outputMsg.payload.routeid,\n            payload: outputMsg.payload.state\n        };\n    } else {\n        return null;\n    }\n} else {\n    return null;\n}\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 570,
+        "y": 160,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c392a41fd52b31fe",
+        "type": "inject",
+        "z": "ff55010600100001",
+        "name": "on startup",
+        "props": [],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "0",
+        "topic": "",
+        "x": 230,
+        "y": 80,
+        "wires": [
+            [
+                "5c9eedc434bd084a"
+            ]
+        ]
+    },
+    {
+        "id": "5c9eedc434bd084a",
+        "type": "change",
+        "z": "ff55010600100001",
+        "name": "init flow envs",
+        "rules": [
+            {
+                "t": "set",
+                "p": "currentRouteId",
+                "pt": "flow",
+                "to": "0",
+                "tot": "num"
+            },
+            {
+                "t": "set",
+                "p": "currentRouteState",
+                "pt": "flow",
+                "to": "false",
+                "tot": "bool"
+            },
+            {
+                "t": "set",
+                "p": "currentRouteId",
+                "pt": "global",
+                "to": "0",
+                "tot": "num"
+            },
+            {
+                "t": "set",
+                "p": "currentRouteState",
+                "pt": "global",
+                "to": "false",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 550,
+        "y": 80,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5b54f9c21e1e18cf",
+        "type": "status",
+        "z": "ff55010600100001",
+        "name": "",
+        "scope": [
+            "5f1a254d4658f374"
+        ],
+        "x": 570,
+        "y": 240,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c331a93ea0d418b4",
+        "type": "subflow",
+        "name": "meshtastic chat - receive message",
+        "info": "",
+        "category": "※meshtastic_chat",
+        "in": [],
+        "out": [
+            {
+                "x": 1020,
+                "y": 100,
+                "wires": [
+                    {
+                        "id": "9ebe95fbfa40c393",
+                        "port": 0
+                    }
+                ]
+            }
+        ],
+        "env": [
+            {
+                "name": "mqtt-broker",
+                "type": "mqtt-broker",
+                "value": "ff55020100010001",
+                "ui": {
+                    "icon": "font-awesome/fa-server",
+                    "label": {
+                        "zh-CN": "*Server",
+                        "en-US": "*Server"
+                    },
+                    "type": "conf-types"
+                }
+            }
+        ],
+        "meta": {
+            "version": "0.0.1",
+            "author": "seeed",
+            "license": "Apache-2.0"
+        },
+        "color": "#B8EA4F",
+        "outputLabels": [
+            "chat message"
+        ],
+        "icon": "node-red/node_icon_meshtastic.png",
+        "status": {
+            "x": 960,
+            "y": 200,
+            "wires": [
+                {
+                    "id": "cc68c7211e329ee0",
+                    "port": 0
+                },
+                {
+                    "id": "9ebe95fbfa40c393",
+                    "port": 0
+                }
+            ]
+        }
+    },
+    {
+        "id": "74c8d76f73804762",
+        "type": "function",
+        "z": "c331a93ea0d418b4",
+        "name": "Meshtastic Decoder",
+        "func": "// Function to check if an object is valid JSON\nfunction isValidJsonObject(obj) {\n    try {\n        JSON.stringify(obj);\n    } catch (e) {\n        return false;\n    }\n    return true;\n}\n\n// Check if the payload is a valid JSON string or a JSON object\nif (typeof msg.payload === 'string' && isValidJsonObject(JSON.parse(msg.payload))) {\n    // Parse the JSON message if it's a string\n    msg.payload = JSON.parse(msg.payload);\n} else if (typeof msg.payload === 'object' && isValidJsonObject(msg.payload)) {\n    // Do nothing if it's already a JSON object\n} else {\n    // Ignore invalid JSON strings or objects\n    return [null, null, null, null, null];\n}\n\nlet decoded = msg.payload;\n\nlet positionMsg = null;\nlet textMsg = null;\nlet telemetryMsg = null;\nlet emptyTypeMsg = null;\nlet unknownTypeMsg = null;\n\n// Process different types of messages\nif (decoded.type === \"position\") {\n    if (decoded.payload.latitude_i !== 0 && decoded.payload.longitude_i !== 0) {\n        positionMsg = {\n            payload: {\n                type: \"position\",\n                channel: decoded.channel,\n                from: decoded.from,\n                hop_start: decoded.hop_start,\n                hops_away: decoded.hops_away,\n                id: decoded.id,\n                latitude: decoded.payload.latitude_i,\n                longitude: decoded.payload.longitude_i,\n                PDOP: decoded.payload.PDOP,\n                altitude: decoded.payload.altitude,\n                ground_track: decoded.payload.ground_track,\n                precision_bits: decoded.payload.precision_bits,\n                sats_in_view: decoded.payload.sats_in_view,\n                time: decoded.payload.time,\n                rssi: decoded.rssi,\n                snr: decoded.snr,\n                sender: decoded.sender,\n                timestamp: decoded.timestamp,\n                to: decoded.to\n            }\n        };\n    }\n} else if (decoded.type === \"text\") {\n    var chatmessage = \"\";\n    if (decoded.payload.text && decoded.payload.text.includes(\"\\u0000\")) {\n        chatmessage = \"( Unsupported text content format )\";\n    } else {\n        chatmessage = decoded.payload.text || decoded.payload;\n    }\n\n    textMsg = {\n        payload: {\n            type: \"text\",\n            channel: decoded.channel,\n            from: decoded.from,\n            hop_start: decoded.hop_start,\n            hops_away: decoded.hops_away,\n            id: decoded.id,\n            text: chatmessage,\n            sender: decoded.sender,\n            timestamp: decoded.timestamp,\n            to: decoded.to\n        }\n    };\n} else if (decoded.type === \"telemetry\") {\n    telemetryMsg = {\n        payload: {\n            type: \"telemetry\",\n            channel: decoded.channel,\n            from: decoded.from,\n            hop_start: decoded.hop_start,\n            hops_away: decoded.hops_away,\n            id: decoded.id,\n            air_util_tx: decoded.payload.air_util_tx,\n            battery_level: decoded.payload.battery_level,\n            channel_utilization: decoded.payload.channel_utilization,\n            uptime_seconds: decoded.payload.uptime_seconds,\n            voltage: decoded.payload.voltage,\n            sender: decoded.sender,\n            timestamp: decoded.timestamp,\n            to: decoded.to\n        }\n    };\n} else if (decoded.type === \"\") {\n    emptyTypeMsg = {\n        payload: {\n            type: \"\",\n            channel: decoded.channel,\n            from: decoded.from,\n            hop_start: decoded.hop_start,\n            hops_away: decoded.hops_away,\n            id: decoded.id,\n            rssi: decoded.rssi,\n            sender: decoded.sender,\n            snr: decoded.snr,\n            timestamp: decoded.timestamp,\n            to: decoded.to\n        }\n    };\n} else {\n    unknownTypeMsg = {\n        payload: {\n            type: \"unknown\",\n            raw: decoded\n        }\n    };\n}\n\nreturn [positionMsg, textMsg, telemetryMsg, emptyTypeMsg, unknownTypeMsg];\n",
+        "outputs": 5,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 560,
+        "y": 100,
+        "wires": [
+            [],
+            [
+                "9ebe95fbfa40c393"
+            ],
+            [],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "5d6d30f1d583c1aa",
+        "type": "mqtt in",
+        "z": "c331a93ea0d418b4",
+        "name": "Subscribe meshtastic message",
+        "topic": "msh/seeed/2/json/#",
+        "qos": "0",
+        "datatype": "json",
+        "broker": "${mqtt-broker}",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 270,
+        "y": 100,
+        "wires": [
+            [
+                "74c8d76f73804762"
+            ]
+        ]
+    },
+    {
+        "id": "9ebe95fbfa40c393",
+        "type": "function",
+        "z": "c331a93ea0d418b4",
+        "name": "wrap chat message",
+        "func": "var chatUsername = msg.payload.from.toString(16).slice(-4);\nvar chatMessage = msg.payload.text;\n\nreturn {\n    topic: chatUsername,\n    payload: chatMessage\n};",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 790,
+        "y": 100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "cc68c7211e329ee0",
+        "type": "status",
+        "z": "c331a93ea0d418b4",
+        "name": "",
+        "scope": [
+            "5d6d30f1d583c1aa"
+        ],
+        "x": 790,
+        "y": 200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "15e3d881bcd13372",
+        "type": "subflow",
+        "name": "meshtastic chat - send message",
+        "info": "",
+        "category": "※meshtastic_chat",
+        "in": [
+            {
+                "x": 60,
+                "y": 80,
+                "wires": [
+                    {
+                        "id": "5872a66485b62222"
+                    }
+                ]
+            }
+        ],
+        "out": [],
+        "env": [
+            {
+                "name": "mqtt-broker",
+                "type": "mqtt-broker",
+                "value": "ff55020100010001",
+                "ui": {
+                    "icon": "font-awesome/fa-server",
+                    "label": {
+                        "zh-CN": "*Server",
+                        "en-US": "*Server"
+                    },
+                    "type": "conf-types"
+                }
+            },
+            {
+                "name": "firstLineText",
+                "type": "str",
+                "value": "",
+                "ui": {
+                    "icon": "font-awesome/fa-file-text-o",
+                    "label": {
+                        "zh-CN": "First line text",
+                        "en-US": "First line text"
+                    },
+                    "type": "input",
+                    "opts": {
+                        "types": [
+                            "str",
+                            "env"
+                        ]
+                    }
+                }
+            },
+            {
+                "name": "prefixText",
+                "type": "str",
+                "value": "",
+                "ui": {
+                    "icon": "font-awesome/fa-file-text-o",
+                    "label": {
+                        "zh-CN": "Prefix text",
+                        "en-US": "Prefix text"
+                    },
+                    "type": "input",
+                    "opts": {
+                        "types": [
+                            "str",
+                            "env"
+                        ]
+                    }
+                }
+            },
+            {
+                "name": "suffixText",
+                "type": "str",
+                "value": "",
+                "ui": {
+                    "icon": "font-awesome/fa-file-text-o",
+                    "label": {
+                        "zh-CN": "Suffix text",
+                        "en-US": "Suffix text"
+                    },
+                    "type": "input",
+                    "opts": {
+                        "types": [
+                            "str",
+                            "env"
+                        ]
+                    }
+                }
+            }
+        ],
+        "meta": {},
+        "color": "#B8EA4F",
+        "inputLabels": [
+            "chat message"
+        ],
+        "icon": "node-red/node_icon_meshtastic.png",
+        "status": {
+            "x": 700,
+            "y": 160,
+            "wires": [
+                {
+                    "id": "0a4a0cebe01e9bab",
+                    "port": 0
+                }
+            ]
+        }
+    },
+    {
+        "id": "5872a66485b62222",
+        "type": "function",
+        "z": "15e3d881bcd13372",
+        "name": "set chat message",
+        "func": "var firstLineText = env.get(\"firstLineText\");\nvar prefixText = env.get(\"prefixText\");\nvar suffixText = env.get(\"suffixText\");\n\nvar toSendMessage = '';\nvar inputMessage = msg.payload;\n\nif(firstLineText) {\n    toSendMessage += firstLineText;\n    \n    if (typeof inputMessage === 'string' && inputMessage.trim().length > 0) {\n        toSendMessage += '\\n';\n    }\n}\n\ntoSendMessage += prefixText;\ntoSendMessage += inputMessage;\ntoSendMessage += suffixText;\n\nreturn {\n    payload: {\n        // your meshtastic route id\n        \"from\": global.get('currentRouteId'),\n        \"type\": \"sendtext\",\n        \"payload\": toSendMessage\n    }\n}",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 230,
+        "y": 80,
+        "wires": [
+            [
+                "4107e606d6030695"
+            ]
+        ]
+    },
+    {
+        "id": "4107e606d6030695",
+        "type": "mqtt out",
+        "z": "15e3d881bcd13372",
+        "name": "send a downlink message to meshtastic channel",
+        "topic": "msh/seeed/2/json/mqtt/",
+        "qos": "0",
+        "retain": "false",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "${mqtt-broker}",
+        "x": 540,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "0a4a0cebe01e9bab",
+        "type": "status",
+        "z": "15e3d881bcd13372",
+        "name": "",
+        "scope": [
+            "4107e606d6030695"
+        ],
+        "x": 550,
+        "y": 160,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "6b6c5faec21326f9",
+        "type": "subflow",
+        "name": "meshtastic chat ui",
+        "info": "",
+        "category": "※meshtastic_chat",
+        "in": [
+            {
+                "x": 60,
+                "y": 80,
+                "wires": [
+                    {
+                        "id": "0a0e8259eebb401b"
+                    }
+                ]
+            }
+        ],
+        "out": [],
+        "env": [
+            {
+                "name": "Group",
+                "type": "ui-group",
+                "value": "",
+                "ui": {
+                    "type": "conf-types"
+                }
+            }
+        ],
+        "meta": {},
+        "color": "#9FE6EC",
+        "icon": "node-red/node_icon_meshtastic.png",
+        "status": {
+            "x": 300,
+            "y": 180,
+            "wires": []
+        }
+    },
+    {
+        "id": "0a0e8259eebb401b",
+        "type": "ui-template",
+        "z": "6b6c5faec21326f9",
+        "group": "${Group}",
+        "page": "",
+        "ui": "",
+        "name": "chat ui",
+        "order": 2,
+        "width": "0",
+        "height": "0",
+        "head": "",
+        "format": "<template>\n  <div class=\"chat-window\" id=\"chat\">\n    <div ref=\"chatList\" class=\"chat-content\" id=\"chat-content\">\n      <div v-for=\"(item, index) in reversedMessages\" :key=\"item.id\" class=\"value-per\"\n        :class=\"{ right: item.sender === '@You' }\">\n        <div class=\"flex\">\n          <div v-html=\"item.image\" class=\"avatar-container\"></div>\n          <div>\n            <div style=\"line-height:20px\">\n              <div>\n                <span class=\"text-caption\">{{ formatTime(item.time) }}</span>\n              </div>\n              <div>\n                <strong class=\"user-name\">{{ item.sender }}</strong>\n              </div>\n            </div>\n            <p v-html=\"item.message\" class=\"pre-wrap\"></p>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</template>\n\n<script>\n  export default {\n    data() {\n      return {\n        timer: null,\n      };\n    },\n    computed: {\n      reversedMessages() {\n        return Array.isArray(this.msg.payload) ? [...this.msg.payload] : [];\n      },\n    },\n    methods: {\n      formatTime(timestamp) {\n        const date = new Date(timestamp);\n        return date.toLocaleTimeString();\n      },\n      scrollToBottom(elementId) {\n        const domWrapper = document.getElementById(elementId);\n        const scrollHeight = domWrapper.scrollHeight; // 内容总高度\n        domWrapper.scrollTo(0, scrollHeight + 150);\n\n      },\n    },\n    watch: {\n      msg: {\n        handler(newVal, oldVal) {\n          if (\n            newVal.payload &&\n            newVal.payload.length > (oldVal.payload ? oldVal.payload.length : 0)\n          ) {\n            if (this.timer) clearTimeout(this.timer)\n            this.timer = setTimeout(this.scrollToBottom(\"chat\"), 500)\n          }\n        },\n        deep: true,\n        immediate: true,\n      },\n    },\n    mounted() { },\n    unmounted() {\n      // code here when the component is removed from the Dashboard\n      // i.e. when the user navigates away from the page\n    },\n  };\n</script>\n\n<style scoped>\n  .chat-window {\n    height: 600px;\n    /* Adjust as needed */\n    overflow-y: auto;\n    position: relative;\n  }\n\n  .value-per {\n    display: flex;\n    align-items: flex-start;\n    justify-content: flex-start;\n    line-height: 30px;\n    border-bottom: 1px dashed #abc;\n    padding: 10px;\n  }\n\n  .value-per.right {\n    justify-content: flex-end;\n  }\n\n  .flex {\n    display: flex;\n  }\n\n  .avatar-container {\n    width: 40px;\n    /* Adjust size as needed */\n    height: 40px;\n    /* Adjust size as needed */\n    display: flex;\n    align-items: center;\n    /* Center the avatar vertically */\n  }\n\n  .pre-wrap {\n    white-space: pre-wrap;\n  }\n</style>",
+        "storeOutMessages": true,
+        "passthru": false,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 270,
+        "y": 80,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ff55010600100002",
+        "type": "subflow",
+        "name": "meshtastic tracker - get gps position",
+        "info": "## Introduction\n\nThrough the network of meshtastic, the location information of trackers in the network is obtained.\n\n\n---\n\n## input\n\nNo input is required, and when it runs in flow, it automatically listens for gps location messages in the meshtastic network, according to the configuration\n\n---\n\n## output\n\n#### Port 1\n\n#### Port 2\n",
+        "category": "※meshtastic_tracker",
+        "in": [],
+        "out": [
+            {
+                "x": 840,
+                "y": 160,
+                "wires": [
+                    {
+                        "id": "c751dff9f403c31b",
+                        "port": 0
+                    }
+                ]
+            }
+        ],
+        "env": [
+            {
+                "name": "----- Device Connection -----",
+                "type": "str",
+                "value": "",
+                "ui": {
+                    "type": "none"
+                }
+            },
+            {
+                "name": "mqtt-broker",
+                "type": "mqtt-broker",
+                "value": "ff55020100010001",
+                "ui": {
+                    "icon": "font-awesome/fa-server",
+                    "label": {
+                        "zh-CN": "*Server",
+                        "en-US": "*Server"
+                    },
+                    "type": "conf-types"
+                }
+            }
+        ],
+        "meta": {
+            "version": "0.0.1",
+            "author": "seeed",
+            "license": "Apache-2.0"
+        },
+        "color": "#B8EA4F",
+        "outputLabels": [
+            "a mapping point"
+        ],
+        "icon": "font-awesome/fa-sitemap",
+        "status": {
+            "x": 780,
+            "y": 280,
+            "wires": [
+                {
+                    "id": "cb2302df9f3430d8",
+                    "port": 0
+                }
+            ]
+        }
+    },
+    {
+        "id": "9da9cc49a95f1f28",
+        "type": "function",
+        "z": "ff55010600100002",
+        "name": "Decoder",
+        "func": "// Function to check if an object is valid JSON\nfunction isValidJsonObject(obj) {\n    try {\n        JSON.stringify(obj);\n    } catch (e) {\n        return false;\n    }\n    return true;\n}\n\n// Check if the payload is a valid JSON string or a JSON object\nif (typeof msg.payload === 'string' && isValidJsonObject(JSON.parse(msg.payload))) {\n    // Parse the JSON message if it's a string\n    msg.payload = JSON.parse(msg.payload);\n} else if (typeof msg.payload === 'object' && isValidJsonObject(msg.payload)) {\n    // Do nothing if it's already a JSON object\n} else {\n    // Ignore invalid JSON strings or objects\n    return [null, null, null, null, null];\n}\n\nlet decoded = msg.payload;\n\nlet positionMsg = null;\nlet textMsg = null;\nlet telemetryMsg = null;\nlet emptyTypeMsg = null;\nlet unknownTypeMsg = null;\n\n// Process different types of messages\nif (decoded.type === \"position\") {\n    if (decoded.payload.latitude_i !== 0 && decoded.payload.longitude_i !== 0) {\n        positionMsg = {\n            payload: {\n                type: \"position\",\n                channel: decoded.channel,\n                from: decoded.from,\n                hop_start: decoded.hop_start,\n                hops_away: decoded.hops_away,\n                id: decoded.id,\n                latitude: decoded.payload.latitude_i,\n                longitude: decoded.payload.longitude_i,\n                PDOP: decoded.payload.PDOP,\n                altitude: decoded.payload.altitude,\n                ground_track: decoded.payload.ground_track,\n                precision_bits: decoded.payload.precision_bits,\n                sats_in_view: decoded.payload.sats_in_view,\n                time: decoded.payload.time,\n                rssi: decoded.rssi,\n                snr: decoded.snr,\n                sender: decoded.sender,\n                timestamp: decoded.timestamp,\n                to: decoded.to\n            }\n        };\n    }\n} else if (decoded.type === \"text\") {\n    textMsg = {\n        payload: {\n            type: \"text\",\n            channel: decoded.channel,\n            from: decoded.from,\n            hop_start: decoded.hop_start,\n            hops_away: decoded.hops_away,\n            id: decoded.id,\n            text: decoded.payload.text,\n            sender: decoded.sender,\n            timestamp: decoded.timestamp,\n            to: decoded.to\n        }\n    };\n} else if (decoded.type === \"telemetry\") {\n    telemetryMsg = {\n        payload: {\n            type: \"telemetry\",\n            channel: decoded.channel,\n            from: decoded.from,\n            hop_start: decoded.hop_start,\n            hops_away: decoded.hops_away,\n            id: decoded.id,\n            air_util_tx: decoded.payload.air_util_tx,\n            battery_level: decoded.payload.battery_level,\n            channel_utilization: decoded.payload.channel_utilization,\n            uptime_seconds: decoded.payload.uptime_seconds,\n            voltage: decoded.payload.voltage,\n            sender: decoded.sender,\n            timestamp: decoded.timestamp,\n            to: decoded.to\n        }\n    };\n} else if (decoded.type === \"\") {\n    emptyTypeMsg = {\n        payload: {\n            type: \"\",\n            channel: decoded.channel,\n            from: decoded.from,\n            hop_start: decoded.hop_start,\n            hops_away: decoded.hops_away,\n            id: decoded.id,\n            rssi: decoded.rssi,\n            sender: decoded.sender,\n            snr: decoded.snr,\n            timestamp: decoded.timestamp,\n            to: decoded.to\n        }\n    };\n} else {\n    unknownTypeMsg = {\n        payload: {\n            type: \"unknown\",\n            raw: decoded\n        }\n    };\n}\n\nreturn [positionMsg, textMsg, telemetryMsg, emptyTypeMsg, unknownTypeMsg];\n",
+        "outputs": 5,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 460,
+        "y": 160,
+        "wires": [
+            [
+                "c751dff9f403c31b"
+            ],
+            [],
+            [],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "25ae89ce94e38a1d",
+        "type": "mqtt in",
+        "z": "ff55010600100002",
+        "name": "Subscribe meshtastic topic and receive",
+        "topic": "msh/seeed/2/json/#",
+        "qos": "0",
+        "datatype": "json",
+        "broker": "${mqtt-broker}",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 190,
+        "y": 160,
+        "wires": [
+            [
+                "9da9cc49a95f1f28"
+            ]
+        ]
+    },
+    {
+        "id": "cb2302df9f3430d8",
+        "type": "status",
+        "z": "ff55010600100002",
+        "name": "",
+        "scope": null,
+        "x": 660,
+        "y": 280,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c751dff9f403c31b",
+        "type": "function",
+        "z": "ff55010600100002",
+        "name": "tidy msg",
+        "func": "let name = msg.payload.from;\nlet nameHex = name.toString(16);\n\nreturn {\n    topic: 'report',\n    payload: {\n        name: name,\n        nameHex: nameHex,\n        latitude: msg.payload.latitude * 0.0000001,\n        longitude: msg.payload.longitude * 0.0000001\n\n    }\n};",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 660,
+        "y": 160,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4e5422b6b02cff02",
+        "type": "comment",
+        "z": "ff55010600100002",
+        "name": "On startup",
+        "info": "",
+        "x": 100,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "0d921b2cdb2f47a8",
+        "type": "subflow",
+        "name": "tracking analyze",
+        "info": "",
+        "category": "※meshtastic_tracker",
+        "in": [
+            {
+                "x": 40,
+                "y": 140,
+                "wires": [
+                    {
+                        "id": "b7006d8725379028"
+                    }
+                ]
+            }
+        ],
+        "out": [
+            {
+                "x": 1530,
+                "y": 220,
+                "wires": [
+                    {
+                        "id": "4dc77c2354f525c8",
+                        "port": 0
+                    }
+                ]
+            },
+            {
+                "x": 1530,
+                "y": 260,
+                "wires": [
+                    {
+                        "id": "1c0afd68563ff258",
+                        "port": 0
+                    }
+                ]
+            },
+            {
+                "x": 1530,
+                "y": 300,
+                "wires": [
+                    {
+                        "id": "1c0afd68563ff258",
+                        "port": 1
+                    }
+                ]
+            }
+        ],
+        "env": [],
+        "meta": {
+            "version": "0.0.1",
+            "author": "seeed",
+            "license": "Apache-2.0"
+        },
+        "color": "#B0CBFF",
+        "outputLabels": [
+            "Annotated Image",
+            "Counting (A to B)",
+            "Counting (B to A)"
+        ],
+        "icon": "font-awesome/fa-map-marker",
+        "status": {
+            "x": 1620,
+            "y": 420,
+            "wires": [
+                {
+                    "id": "eba60b2edc9f1677",
+                    "port": 0
+                }
+            ]
+        }
+    },
+    {
+        "id": "4cea5da7a6e042b9",
+        "type": "group",
+        "z": "0d921b2cdb2f47a8",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "cf49b87ca54fadb6",
+            "2001f5fb16131c7a",
+            "ef3714d03835eed0",
+            "ea0c0d562f20ce77",
+            "42ee150fd31ac501"
+        ],
+        "x": 94,
+        "y": 399,
+        "w": 1032,
+        "h": 142
+    },
+    {
+        "id": "a4b73bc8cf9a4730",
+        "type": "group",
+        "z": "0d921b2cdb2f47a8",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "15333d07b325118d",
+            "3693cc2db6709049",
+            "3d954623e05cac57",
+            "33ef77d3eac513f0",
+            "01b6c388adacec9b",
+            "03c368738cc7f8f2"
+        ],
+        "x": 94,
+        "y": 239,
+        "w": 1032,
+        "h": 142
+    },
+    {
+        "id": "a39f94d95dd8c901",
+        "type": "group",
+        "z": "0d921b2cdb2f47a8",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "b7006d8725379028",
+            "f928057a172b6bc7",
+            "6e1637526d57a66b",
+            "d40434e5e9fa984d",
+            "d4685d2e3ef9a309",
+            "54b9a4ed0e9da2db"
+        ],
+        "x": 94,
+        "y": 19,
+        "w": 1022,
+        "h": 202
+    },
+    {
+        "id": "15333d07b325118d",
+        "type": "function",
+        "z": "0d921b2cdb2f47a8",
+        "g": "a4b73bc8cf9a4730",
+        "name": "Construct settings from flow",
+        "func": "// Check if msg.payload.data exists\nif (msg.payload.data) {\n    // Initialize an empty list for annotations\n    var annotations_list = [];\n\n    // Check for various annotation types in the flow context and add them to the list\n    if (flow.get(\"polygon\"))\n        annotations_list.push(\"polygon\");\n    if (flow.get(\"heatmap\"))\n        annotations_list.push(\"heatmap\");\n    if (flow.get(\"bounding_box\"))\n        annotations_list.push(\"bounding_box\");\n    if (flow.get(\"tracing\"))\n        annotations_list.push(\"tracing\");\n    if (flow.get(\"labeling\"))\n        annotations_list.push(\"labeling\");\n\n    // Initialize the annotations array in the payload data\n    msg.payload.data.annotations = [];\n    msg.payload.data.annotations.push(annotations_list);\n\n    // Convert the payload data to a JSON string\n    msg.payload = JSON.stringify(msg.payload.data);\n} else {\n    // If msg.payload.data does not exist, set msg to null\n    msg = null;\n}\n\n// Return the modified message\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "// 部署节点后，此处添加的代码将运行一次。\n// flow.set(\"polygon\", false);\n// flow.set(\"bounding_box\", false);\n// flow.set(\"tracing\", false);\n// flow.set(\"labeling\", false);\n// flow.set(\"heatmap\", false);",
+        "finalize": "",
+        "libs": [],
+        "x": 400,
+        "y": 340,
+        "wires": [
+            [
+                "3693cc2db6709049"
+            ]
+        ]
+    },
+    {
+        "id": "3693cc2db6709049",
+        "type": "http request",
+        "z": "0d921b2cdb2f47a8",
+        "g": "a4b73bc8cf9a4730",
+        "name": "Request tracking analyze",
+        "method": "POST",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "http://192.168.100.10:8000/72d6be56",
+        "tls": "",
+        "persist": true,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [
+            {
+                "keyType": "Content-Type",
+                "keyValue": "",
+                "valueType": "other",
+                "valueValue": "application/json"
+            }
+        ],
+        "x": 570,
+        "y": 300,
+        "wires": [
+            [
+                "33ef77d3eac513f0",
+                "ea0c0d562f20ce77"
+            ]
+        ]
+    },
+    {
+        "id": "3d954623e05cac57",
+        "type": "json",
+        "z": "0d921b2cdb2f47a8",
+        "g": "a4b73bc8cf9a4730",
+        "name": "format json",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 1030,
+        "y": 300,
+        "wires": [
+            [
+                "4dc77c2354f525c8",
+                "1c0afd68563ff258"
+            ]
+        ]
+    },
+    {
+        "id": "33ef77d3eac513f0",
+        "type": "switch",
+        "z": "0d921b2cdb2f47a8",
+        "g": "a4b73bc8cf9a4730",
+        "name": "Check response msg is valid",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "nempty"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 820,
+        "y": 300,
+        "wires": [
+            [
+                "3d954623e05cac57"
+            ]
+        ]
+    },
+    {
+        "id": "cf49b87ca54fadb6",
+        "type": "function",
+        "z": "0d921b2cdb2f47a8",
+        "g": "4cea5da7a6e042b9",
+        "name": "modify pos postion config",
+        "func": "var pos1 = flow.get(\"pos1\") || 0;\nvar pos2 = flow.get(\"pos2\") || 0;\n\nif (flow.get(\"vertical\")) {\n    msg.payload.regions_config.Region_A.polygon[1] = [240, 0];\n    msg.payload.regions_config.Region_A.polygon[2] = [240, pos2];\n    msg.payload.regions_config.Region_A.polygon[3] = [0, pos1];\n\n    msg.payload.regions_config.Region_B.polygon[0] = [0, pos1];\n    msg.payload.regions_config.Region_B.polygon[1] = [240, pos2];\n    msg.payload.regions_config.Region_B.polygon[3] = [0, 240];\n}\nelse {\n    msg.payload.regions_config.Region_A.polygon[1] = [pos1, 0];\n    msg.payload.regions_config.Region_A.polygon[2] = [pos2, 240];\n    msg.payload.regions_config.Region_A.polygon[3] = [0, 240];\n\n    msg.payload.regions_config.Region_B.polygon[0] = [pos1, 0];\n    msg.payload.regions_config.Region_B.polygon[1] = [240, 0];\n    msg.payload.regions_config.Region_B.polygon[3] = [pos2, 240];\n}\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 730,
+        "y": 500,
+        "wires": [
+            [
+                "2001f5fb16131c7a"
+            ]
+        ]
+    },
+    {
+        "id": "2001f5fb16131c7a",
+        "type": "http request",
+        "z": "0d921b2cdb2f47a8",
+        "g": "4cea5da7a6e042b9",
+        "name": "Request modify config",
+        "method": "POST",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "http://192.168.100.10:8000",
+        "tls": "",
+        "persist": true,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [
+            {
+                "keyType": "Content-Type",
+                "keyValue": "",
+                "valueType": "application/json",
+                "valueValue": ""
+            },
+            {
+                "keyType": "other",
+                "keyValue": "Session-Id",
+                "valueType": "other",
+                "valueValue": "72d6be56"
+            }
+        ],
+        "x": 1000,
+        "y": 500,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ef3714d03835eed0",
+        "type": "function",
+        "z": "0d921b2cdb2f47a8",
+        "g": "4cea5da7a6e042b9",
+        "name": "build default config",
+        "func": "return {\n    topic: 'track_session',\n    payload: {\n        \"tracker_config\": {\n            \"track_thresh\": 0.25,\n            \"track_buffer\": 30,\n            \"match_thresh\": 0.8,\n            \"frame_rate\": 30\n        },\n        \"annotation_config\": {\n            \"resolution\": [\n                240,\n                240\n            ],\n            \"polygon\": {\n                \"thickness\": 1,\n                \"text_scale\": 0.3,\n                \"text_thickness\": 0.5,\n                \"text_padding\": 2\n            },\n            \"bounding_box\": {\n                \"thickness\": 2\n            },\n            \"tracing\": {\n                \"position\": \"CENTER\",\n                \"trace_length\": 30,\n                \"trace_thickness\": 1\n            },\n            \"labeling\": {\n                \"text_scale\": 0.3,\n                \"text_thickness\": 1,\n                \"text_padding\": 3,\n                \"text_position\": \"TOP_LEFT\",\n                \"label_map\": {\n                    \"0\": \"Person\",\n                    \"1\": \"Car\",\n                    \"2\": \"Truck\"\n                }\n            },\n            \"heatmap\": {\n                \"position\": \"BOTTOM_CENTER\",\n                \"opacity\": 0.25,\n                \"radius\": 10,\n                \"kernel_size\": 5\n            }\n        },\n        \"regions_config\": {\n            \"Region_A\": {\n                \"polygon\": [\n                    [\n                        0,\n                        0\n                    ],\n                    [\n                        240,\n                        0\n                    ],\n                    [\n                        240,\n                        160\n                    ],\n                    [\n                        0,\n                        80\n                    ]\n                ],\n                \"triggering_position\": \"CENTER\"\n            },\n            \"Region_B\": {\n                \"polygon\": [\n                    [\n                        0,\n                        80\n                    ],\n                    [\n                        240,\n                        160\n                    ],\n                    [\n                        240,\n                        240\n                    ],\n                    [\n                        0,\n                        240\n                    ]\n                ],\n                \"triggering_position\": \"CENTER\"\n            }\n        }\n    }\n};",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 470,
+        "y": 500,
+        "wires": [
+            [
+                "cf49b87ca54fadb6"
+            ]
+        ]
+    },
+    {
+        "id": "ea0c0d562f20ce77",
+        "type": "delay",
+        "z": "0d921b2cdb2f47a8",
+        "g": "4cea5da7a6e042b9",
+        "name": "limit 1 msg/1s",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 240,
+        "y": 500,
+        "wires": [
+            [
+                "ef3714d03835eed0"
+            ]
+        ]
+    },
+    {
+        "id": "42ee150fd31ac501",
+        "type": "comment",
+        "z": "0d921b2cdb2f47a8",
+        "g": "4cea5da7a6e042b9",
+        "name": "take effect config",
+        "info": "",
+        "x": 200,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "b7006d8725379028",
+        "type": "switch",
+        "z": "0d921b2cdb2f47a8",
+        "g": "a39f94d95dd8c901",
+        "name": "config or analyze",
+        "property": "topic",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "config",
+                "vt": "str"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 210,
+        "y": 140,
+        "wires": [
+            [
+                "f928057a172b6bc7"
+            ],
+            [
+                "6e1637526d57a66b",
+                "54b9a4ed0e9da2db"
+            ]
+        ]
+    },
+    {
+        "id": "f928057a172b6bc7",
+        "type": "function",
+        "z": "0d921b2cdb2f47a8",
+        "g": "a39f94d95dd8c901",
+        "name": "action to set a config to flow env",
+        "func": "flow.set(msg.payload.k, msg.payload.v);",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 500,
+        "y": 60,
+        "wires": [
+            [
+                "d40434e5e9fa984d"
+            ]
+        ]
+    },
+    {
+        "id": "6e1637526d57a66b",
+        "type": "function",
+        "z": "0d921b2cdb2f47a8",
+        "g": "a39f94d95dd8c901",
+        "name": "storage last analyze input",
+        "func": "flow.set('last_analyze_input', msg)",
+        "outputs": 0,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 470,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "d40434e5e9fa984d",
+        "type": "function",
+        "z": "0d921b2cdb2f47a8",
+        "g": "a39f94d95dd8c901",
+        "name": "replay last analyze input message",
+        "func": "var lastMsg = flow.get('last_analyze_input')\n\nreturn lastMsg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 820,
+        "y": 60,
+        "wires": [
+            [
+                "d4685d2e3ef9a309"
+            ]
+        ]
+    },
+    {
+        "id": "01b6c388adacec9b",
+        "type": "comment",
+        "z": "0d921b2cdb2f47a8",
+        "g": "a4b73bc8cf9a4730",
+        "name": "request pysscma for analyze",
+        "info": "",
+        "x": 240,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "03c368738cc7f8f2",
+        "type": "link in",
+        "z": "0d921b2cdb2f47a8",
+        "g": "a4b73bc8cf9a4730",
+        "name": "link A",
+        "links": [
+            "54b9a4ed0e9da2db",
+            "d4685d2e3ef9a309",
+            "2649b6e22c4c7042"
+        ],
+        "x": 200,
+        "y": 340,
+        "wires": [
+            [
+                "15333d07b325118d"
+            ]
+        ],
+        "l": true
+    },
+    {
+        "id": "d4685d2e3ef9a309",
+        "type": "link out",
+        "z": "0d921b2cdb2f47a8",
+        "g": "a39f94d95dd8c901",
+        "name": "link A",
+        "mode": "link",
+        "links": [
+            "03c368738cc7f8f2",
+            "1466bddebcba4155"
+        ],
+        "x": 1040,
+        "y": 60,
+        "wires": [],
+        "l": true
+    },
+    {
+        "id": "54b9a4ed0e9da2db",
+        "type": "link out",
+        "z": "0d921b2cdb2f47a8",
+        "g": "a39f94d95dd8c901",
+        "name": "link A",
+        "mode": "link",
+        "links": [
+            "03c368738cc7f8f2",
+            "1466bddebcba4155"
+        ],
+        "x": 410,
+        "y": 180,
+        "wires": [],
+        "l": true
+    },
+    {
+        "id": "4dc77c2354f525c8",
+        "type": "function",
+        "z": "0d921b2cdb2f47a8",
+        "name": "postPost",
+        "func": "if (msg.payload.annotations) {\n    msg.topic = \"track\"\n    msg.payload = msg.payload.annotations[0];\n}\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1220,
+        "y": 240,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "1c0afd68563ff258",
+        "type": "function",
+        "z": "0d921b2cdb2f47a8",
+        "name": " flow statistics",
+        "func": "var list_a = flow.get(\"list_a\");\nvar list_b = flow.get(\"list_b\");\n\nif (msg.payload.filtered_regions) {\n    var set_a_pre = new Set(flow.get(\"list_a\"));\n    var set_b_pre = new Set(flow.get(\"list_b\"));\n    var set_a = new Set(msg.payload.filtered_regions.Region_A);\n    var set_b = new Set(msg.payload.filtered_regions.Region_B);\n\n    var map_all = new Map();\n    for (let id of [...set_a_pre, ...set_a_pre]) {\n        if (!map_all.has(id)) {\n            map_all.set(id, 0);\n        }\n    }\n    for (let [id, misses] of map_all.entries()) {\n        if (!set_a.has(id) && !set_b.has(id)) {\n            misses += 1;\n            map_all.set(id, misses);\n            if (misses >= 10) {\n                map_all.delete(id);\n                if (set_a_pre.has(id)) set_a_pre.delete(id);\n                if (set_b_pre.has(id)) set_b_pre.delete(id);\n            }\n        } else {\n            map_all.set(id, 0); // appear, reset counter\n        }\n    }\n\n    for (let id of set_a_pre) {\n        if (!set_a.has(id) && set_b.has(id)) {\n            set_a_pre.delete(id);\n            flow.set(\"cnt_a2b\", flow.get(\"cnt_a2b\") + 1);\n            node.log(flow.get(\"cnt_a2b\"));\n        }\n    }\n\n    for (let id of set_b_pre) {\n        if (!set_b.has(id) && set_a.has(id)) {\n            set_b_pre.delete(id);\n            flow.set(\"cnt_b2a\", flow.get(\"cnt_b2a\") + 1);\n            node.log(flow.get(\"cnt_b2a\"));\n        }\n    }\n\n    msg.payload.filtered_regions.Region_A.forEach(set_a_pre.add, set_a_pre);\n    msg.payload.filtered_regions.Region_B.forEach(set_b_pre.add, set_b_pre);\n    // set_a_pre.add(msg.payload.filtered_regions.Region_A.slice());\n    // set_b_pre.add(msg.payload.filtered_regions.Region_B.slice());\n    flow.set(\"list_a\", [...set_a_pre]);\n    flow.set(\"list_b\", [...set_b_pre]);\n    // flow.set(\"list_a\", msg.payload.filtered_regions.Region_A.slice());\n    // flow.set(\"list_b\", msg.payload.filtered_regions.Region_B.slice());\n\n    return [{ payload: flow.get(\"cnt_a2b\") }, { payload: flow.get(\"cnt_b2a\") }];\n} else {\n    return [null, null];\n}",
+        "outputs": 2,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1240,
+        "y": 280,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "1466bddebcba4155",
+        "type": "link in",
+        "z": "0d921b2cdb2f47a8",
+        "name": "link A",
+        "links": [
+            "54b9a4ed0e9da2db",
+            "d4685d2e3ef9a309"
+        ],
+        "x": 1210,
+        "y": 420,
+        "wires": [
+            [
+                "9fca247ed3844e4a"
+            ]
+        ],
+        "l": true
+    },
+    {
+        "id": "9fca247ed3844e4a",
+        "type": "msg-speed",
+        "z": "0d921b2cdb2f47a8",
+        "name": "",
+        "frequency": "sec",
+        "interval": 1,
+        "estimation": false,
+        "ignore": false,
+        "pauseAtStartup": false,
+        "topicDependent": false,
+        "x": 1390,
+        "y": 420,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "eba60b2edc9f1677",
+        "type": "status",
+        "z": "0d921b2cdb2f47a8",
+        "name": "",
+        "scope": [
+            "9fca247ed3844e4a"
+        ],
+        "x": 1420,
+        "y": 480,
+        "wires": [
+            []
+        ]
+    }
+]

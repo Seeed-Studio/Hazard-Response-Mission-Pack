@@ -1,0 +1,207 @@
+[
+    {
+        "id": "dfe811de8f857fd2",
+        "type": "group",
+        "z": "ce3acd4e9503d8d4",
+        "name": "",
+        "style": {
+            "label": true,
+            "color": "#000000",
+            "fill": "#dbcbe7"
+        },
+        "nodes": [
+            "ebcc401d9cf240f1",
+            "fdd12a4e99a4b657",
+            "b4cd65598a4d4f16",
+            "28274b491a42bae4",
+            "ec8b92d87eccb96f",
+            "fe72aa57e87bd02c"
+        ],
+        "x": 14,
+        "y": 799,
+        "w": 592,
+        "h": 242
+    },
+    {
+        "id": "ebcc401d9cf240f1",
+        "type": "ui-button",
+        "z": "ce3acd4e9503d8d4",
+        "g": "dfe811de8f857fd2",
+        "group": "69fbe1228561845f",
+        "name": "",
+        "label": "Alarm On",
+        "order": 1,
+        "width": "1",
+        "height": "1",
+        "emulateClick": false,
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "iconPosition": "left",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 120,
+        "y": 900,
+        "wires": [
+            [
+                "b4cd65598a4d4f16"
+            ]
+        ]
+    },
+    {
+        "id": "fdd12a4e99a4b657",
+        "type": "ui-button",
+        "z": "ce3acd4e9503d8d4",
+        "g": "dfe811de8f857fd2",
+        "group": "69fbe1228561845f",
+        "name": "",
+        "label": "Alarm off",
+        "order": 2,
+        "width": "1",
+        "height": "1",
+        "emulateClick": false,
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "iconPosition": "left",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 120,
+        "y": 960,
+        "wires": [
+            [
+                "28274b491a42bae4"
+            ]
+        ]
+    },
+    {
+        "id": "b4cd65598a4d4f16",
+        "type": "subflow:b8596ac29abcf525",
+        "z": "ce3acd4e9503d8d4",
+        "g": "dfe811de8f857fd2",
+        "name": "",
+        "env": [
+            {
+                "name": "modbus-client",
+                "value": "ff55020100020001",
+                "type": "conf-type"
+            }
+        ],
+        "x": 420,
+        "y": 900,
+        "wires": []
+    },
+    {
+        "id": "28274b491a42bae4",
+        "type": "subflow:b8596ac29abcf525",
+        "z": "ce3acd4e9503d8d4",
+        "g": "dfe811de8f857fd2",
+        "name": "",
+        "env": [
+            {
+                "name": "modbus-client",
+                "value": "ff55020100020001",
+                "type": "conf-type"
+            },
+            {
+                "name": "action",
+                "value": "stop",
+                "type": "str"
+            }
+        ],
+        "x": 420,
+        "y": 960,
+        "wires": []
+    },
+    {
+        "id": "ec8b92d87eccb96f",
+        "type": "comment",
+        "z": "ce3acd4e9503d8d4",
+        "g": "dfe811de8f857fd2",
+        "name": "Sound Control",
+        "info": "",
+        "x": 120,
+        "y": 840,
+        "wires": []
+    },
+    {
+        "id": "fe72aa57e87bd02c",
+        "type": "comment",
+        "z": "ce3acd4e9503d8d4",
+        "g": "dfe811de8f857fd2",
+        "name": "v0.0.1",
+        "info": "",
+        "x": 530,
+        "y": 1000,
+        "wires": [],
+        "icon": "font-awesome/fa-exclamation-circle"
+    },
+    {
+        "id": "69fbe1228561845f",
+        "type": "ui-group",
+        "name": "Sound Controller",
+        "page": "53377d4c79f72de5",
+        "width": "6",
+        "height": "1",
+        "order": 6,
+        "showTitle": true,
+        "className": "",
+        "visible": "true",
+        "disabled": "false"
+    },
+    {
+        "id": "53377d4c79f72de5",
+        "type": "ui-page",
+        "name": "4-Resilient Infrastructure",
+        "ui": "2a6c6f3f0d1de049",
+        "path": "/resilient",
+        "icon": "home",
+        "layout": "grid",
+        "theme": "d86c2124665af35b",
+        "order": 5,
+        "className": "",
+        "visible": true,
+        "disabled": false
+    },
+    {
+        "id": "2a6c6f3f0d1de049",
+        "type": "ui-base",
+        "name": "Hazard Response Mission Pack",
+        "path": "/dashboard",
+        "includeClientData": true,
+        "acceptsClientConfig": [
+            "ui-notification",
+            "ui-control"
+        ],
+        "showPathInSidebar": false,
+        "showPageTitle": true,
+        "navigationStyle": "fixed",
+        "titleBarStyle": "default"
+    },
+    {
+        "id": "d86c2124665af35b",
+        "type": "ui-theme",
+        "name": "Theme",
+        "colors": {
+            "surface": "#ffffff",
+            "primary": "#0094ce",
+            "bgPage": "#eeeeee",
+            "groupBg": "#ffffff",
+            "groupOutline": "#cccccc"
+        },
+        "sizes": {
+            "pagePadding": "12px",
+            "groupGap": "12px",
+            "groupBorderRadius": "4px",
+            "widgetGap": "12px"
+        }
+    }
+]

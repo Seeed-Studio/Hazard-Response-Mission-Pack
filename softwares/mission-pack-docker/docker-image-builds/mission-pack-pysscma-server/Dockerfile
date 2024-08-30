@@ -1,0 +1,1 @@
+FROM sensecraft/python-sscma:latest

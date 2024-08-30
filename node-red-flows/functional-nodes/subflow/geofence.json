@@ -1,0 +1,798 @@
+[
+    {
+        "id": "864d0ea09f268ade",
+        "type": "subflow",
+        "name": "clear geofence",
+        "info": "",
+        "category": "※geofence",
+        "in": [
+            {
+                "x": 60,
+                "y": 60,
+                "wires": [
+                    {
+                        "id": "6118cd66d545feee"
+                    }
+                ]
+            }
+        ],
+        "out": [],
+        "env": [],
+        "meta": {},
+        "color": "#B0CBFF",
+        "status": {
+            "x": 320,
+            "y": 160,
+            "wires": [
+                {
+                    "id": "b4fa1b291be93bd0",
+                    "port": 0
+                }
+            ]
+        }
+    },
+    {
+        "id": "6118cd66d545feee",
+        "type": "function",
+        "z": "864d0ea09f268ade",
+        "name": "override global envs",
+        "func": "global.set('geoLat', undefined);\nglobal.set('geoLng', undefined);\nglobal.set('radius', undefined);\nglobal.set('geoArea', undefined);\nglobal.set('geoPolygon', undefined);\n\nnode.status({ \n    fill: \"yellow\", \n    shape: \"dot\", \n    text: \"Geofence cleared\" \n});\nmsg.payload = \"Geofence cleared\";\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 240,
+        "y": 60,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b4fa1b291be93bd0",
+        "type": "status",
+        "z": "864d0ea09f268ade",
+        "name": "",
+        "scope": null,
+        "x": 130,
+        "y": 160,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "8e71ad1d725a1c4b",
+        "type": "subflow",
+        "name": "geofence check",
+        "info": "",
+        "category": "※geofence",
+        "in": [
+            {
+                "x": 60,
+                "y": 140,
+                "wires": [
+                    {
+                        "id": "4c66e73173def117"
+                    },
+                    {
+                        "id": "6043d188a20436b2"
+                    },
+                    {
+                        "id": "08675c9954291a36"
+                    }
+                ]
+            }
+        ],
+        "out": [
+            {
+                "x": 750,
+                "y": 140,
+                "wires": [
+                    {
+                        "id": "60dcdf32abc3caca",
+                        "port": 0
+                    }
+                ]
+            }
+        ],
+        "env": [],
+        "meta": {
+            "version": "0.0.1",
+            "author": "seeed",
+            "license": "Apache-2.0"
+        },
+        "color": "#B0CBFF",
+        "inputLabels": [
+            "input from meshtastic gps position original data"
+        ],
+        "outputLabels": [
+            "true or false"
+        ],
+        "icon": "font-awesome/fa-map-marker",
+        "status": {
+            "x": 800,
+            "y": 280,
+            "wires": [
+                {
+                    "id": "56ab0313b569ca75",
+                    "port": 0
+                }
+            ]
+        }
+    },
+    {
+        "id": "4c66e73173def117",
+        "type": "function",
+        "z": "8e71ad1d725a1c4b",
+        "name": "Circle Geofence Check",
+        "func": "const geoLat = parseFloat(global.get('geofence_geoLat'));\nconst geoLng = parseFloat(global.get('geofence_geoLng'));\nconst radius = parseFloat(global.get('geofence_radius'));\n\n// Check if the geofence values are set\nif (isNaN(geoLat) || isNaN(geoLng) || isNaN(radius)) {\n    node.status({ fill: \"yellow\", shape: \"dot\", text: \"Geofence not set\" });\n    msg.payload = \"Geofence not set\";\n    msg.result = false;\n    return msg;\n}\n\nfunction haversine(lat1, lon1, lat2, lon2) {\n    const R = 6371000; // Radius of the Earth in meters\n    const dLat = (lat2 - lat1) * (Math.PI / 180);\n    const dLon = (lon2 - lon1) * (Math.PI / 180);\n    const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +\n        Math.cos(lat1 * (Math.PI / 180)) * Math.cos(lat2 * (Math.PI / 180)) *\n        Math.sin(dLon / 2) * Math.sin(dLon / 2);\n    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));\n    return R * c;\n}\n\nconst latitude = msg.payload.latitude;\nconst longitude = msg.payload.longitude;\nconst distance = haversine(latitude, longitude, geoLat, geoLng);\n\nif (distance <= radius) {\n    node.status({ fill: \"green\", shape: \"dot\", text: \"Inside geofence\" });\n    msg.payload = \"Inside geofence\";\n    msg.result = false;\n} else {\n    node.status({ fill: \"red\", shape: \"dot\", text: \"Outside geofence\" });\n    msg.payload = \"Outside geofence\";\n    msg.result = true;\n}\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 250,
+        "y": 80,
+        "wires": [
+            [
+                "60dcdf32abc3caca"
+            ]
+        ]
+    },
+    {
+        "id": "6043d188a20436b2",
+        "type": "function",
+        "z": "8e71ad1d725a1c4b",
+        "name": "Rectangle Geofence Check",
+        "func": "const geoArea = global.get('geofence_geoArea');\n// node.warn(\"Rectangle geofence retrieved: \" + JSON.stringify(geoArea));\n\n// Check if the geofence values are set\nif (!geoArea || geoArea.length !== 4) {\n    node.status({\n        fill: \"yellow\", \n        shape: \"dot\", \n        text: \"Geofence not set\"\n    });\n    msg.payload = \"Geofence not set\";\n    msg.result = false;\n    return msg;\n}\n\nconst latitude = msg.payload.latitude;\nconst longitude = msg.payload.longitude;\n// node.warn(\"Checking point: \" + JSON.stringify({lat: latitude, lon: longitude}));\n\nconst [sw, nw, ne, se] = geoArea;\n\nif (latitude >= sw.lat && latitude <= nw.lat && longitude >= sw.lng && longitude <= se.lng) {\n    node.status({\n        fill: \"green\", \n        shape: \"dot\", \n        text: \"Inside geofence\"\n    });\n    msg.payload = \"Inside geofence\";\n    msg.result = false;\n} else {\n    node.status({\n        fill: \"red\", \n        shape: \"dot\", \n        text: \"Outside geofence\"\n    });\n    msg.payload = \"Outside geofence\";\n    msg.result = true;\n}\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 260,
+        "y": 140,
+        "wires": [
+            [
+                "60dcdf32abc3caca"
+            ]
+        ]
+    },
+    {
+        "id": "08675c9954291a36",
+        "type": "function",
+        "z": "8e71ad1d725a1c4b",
+        "name": "Polygon Geofence Check",
+        "func": "const geoPolygon = global.get('geofence_geoPolygon');\n// node.warn(\"Polygon geofence retrieved: \" + JSON.stringify(geoPolygon));\n\n// Check if the geofence values are set\nif (!geoPolygon || geoPolygon.length < 3) {\n    node.status({\n        fill: \"yellow\", \n        shape: \"dot\", \n        text: \"Geofence not set\"\n    });\n    msg.payload = \"Geofence not set\";\n    msg.result = false;\n    return msg;\n}\n\nconst latitude = msg.payload.latitude;\nconst longitude = msg.payload.longitude;\n// node.warn(\"Checking point: \" + JSON.stringify({lat: latitude, lon: longitude}));\n\nfunction pointInPolygon(point, vs) {\n    const x = point[0], y = point[1];\n\n    let inside = false;\n    for (let i = 0, j = vs.length - 1; i < vs.length; j = i++) {\n        const xi = vs[i][0], yi = vs[i][1];\n        const xj = vs[j][0], yj = vs[j][1];\n\n        const intersect = ((yi > y) != (yj > y))\n            && (x < (xj - xi) * (y - yi) / (yj - yi) + xi);\n        if (intersect) inside = !inside;\n    }\n\n    return inside;\n}\n\n// Convert polygon points to array of arrays\nconst polygonPoints = geoPolygon.map(point => [point.lat, point.lng]);\n\n// Check if the point is inside the polygon\nconst isInside = pointInPolygon([latitude, longitude], polygonPoints);\n\nif (isInside) {\n    node.status({\n        fill: \"green\", \n        shape: \"dot\", \n        text: \"Inside geofence\"\n    });\n    msg.payload = \"Inside geofence\";\n    msg.result = false;\n} else {\n    node.status({\n        fill: \"red\", \n        shape: \"dot\", \n        text: \"Outside geofence\"\n    });\n    msg.payload = \"Outside geofence\";\n    msg.result = true;\n}\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 250,
+        "y": 200,
+        "wires": [
+            [
+                "60dcdf32abc3caca"
+            ]
+        ]
+    },
+    {
+        "id": "56ab0313b569ca75",
+        "type": "status",
+        "z": "8e71ad1d725a1c4b",
+        "name": "",
+        "scope": null,
+        "x": 570,
+        "y": 280,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "60dcdf32abc3caca",
+        "type": "function",
+        "z": "8e71ad1d725a1c4b",
+        "name": "return result only",
+        "func": "return {\n    payload: msg.result\n};",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 530,
+        "y": 140,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c4c69de5166fafdd",
+        "type": "subflow",
+        "name": "geofence map ui",
+        "info": "",
+        "category": "※geofence",
+        "in": [
+            {
+                "x": 100,
+                "y": 480,
+                "wires": [
+                    {
+                        "id": "08ebc59461b725fb"
+                    }
+                ]
+            }
+        ],
+        "out": [],
+        "env": [
+            {
+                "name": "Group",
+                "type": "ui-group",
+                "value": "",
+                "ui": {
+                    "type": "conf-types"
+                }
+            },
+            {
+                "name": "webPath",
+                "type": "str",
+                "value": "/w",
+                "ui": {
+                    "label": {
+                        "zh-CN": "webPath",
+                        "en-US": "webPath"
+                    },
+                    "type": "input",
+                    "opts": {
+                        "types": [
+                            "str",
+                            "env"
+                        ]
+                    }
+                }
+            },
+            {
+                "name": "startLatitude",
+                "type": "str",
+                "value": "22.57"
+            },
+            {
+                "name": "startLongitude",
+                "type": "str",
+                "value": "113.92"
+            },
+            {
+                "name": "zoom",
+                "type": "str",
+                "value": "11"
+            },
+            {
+                "name": "----- Offline Map -----",
+                "type": "str",
+                "value": "",
+                "ui": {
+                    "type": "none"
+                }
+            },
+            {
+                "name": "useOfflineMap",
+                "type": "bool",
+                "value": "false",
+                "ui": {
+                    "label": {
+                        "zh-CN": "Offline map",
+                        "en-US": "Offline map"
+                    },
+                    "type": "input",
+                    "opts": {
+                        "types": [
+                            "bool"
+                        ]
+                    }
+                }
+            },
+            {
+                "name": "offlineMapZoom",
+                "type": "str",
+                "value": "1",
+                "ui": {
+                    "label": {
+                        "zh-CN": "Offline Map Zoom",
+                        "en-US": "Offline Map Zoom"
+                    },
+                    "type": "select",
+                    "opts": {
+                        "opts": [
+                            {
+                                "l": {
+                                    "zh-CN": "1 (map-1.pmtiles)",
+                                    "en-US": "1 (map-1.pmtiles)"
+                                },
+                                "v": "1"
+                            },
+                            {
+                                "l": {
+                                    "zh-CN": "2 (map-2.pmtiles)",
+                                    "en-US": "2 (map-2.pmtiles)"
+                                },
+                                "v": "2"
+                            },
+                            {
+                                "l": {
+                                    "zh-CN": "3 (map-3.pmtiles)",
+                                    "en-US": "3 (map-3.pmtiles)"
+                                },
+                                "v": "3"
+                            },
+                            {
+                                "l": {
+                                    "zh-CN": "4 (map-4.pmtiles)",
+                                    "en-US": "4 (map-4.pmtiles)"
+                                },
+                                "v": "4"
+                            },
+                            {
+                                "l": {
+                                    "zh-CN": "5 (map-5.pmtiles)",
+                                    "en-US": "5 (map-5.pmtiles)"
+                                },
+                                "v": "5"
+                            },
+                            {
+                                "l": {
+                                    "zh-CN": "6 (map-6.pmtiles)",
+                                    "en-US": "6 (map-6.pmtiles)"
+                                },
+                                "v": "6"
+                            },
+                            {
+                                "l": {
+                                    "zh-CN": "7 (map-7.pmtiles)",
+                                    "en-US": "7 (map-7.pmtiles)"
+                                },
+                                "v": "7"
+                            },
+                            {
+                                "l": {
+                                    "zh-CN": "8 (map-8.pmtiles)",
+                                    "en-US": "8 (map-8.pmtiles)"
+                                },
+                                "v": "8"
+                            },
+                            {
+                                "l": {
+                                    "zh-CN": "9 (map-9.pmtiles)",
+                                    "en-US": "9 (map-9.pmtiles)"
+                                },
+                                "v": "9"
+                            },
+                            {
+                                "l": {
+                                    "zh-CN": "10 (map-10.pmtiles)",
+                                    "en-US": "10 (map-10.pmtiles)"
+                                },
+                                "v": "10"
+                            },
+                            {
+                                "l": {
+                                    "zh-CN": "11 (map-11.pmtiles)",
+                                    "en-US": "11 (map-11.pmtiles)"
+                                },
+                                "v": "11"
+                            },
+                            {
+                                "l": {
+                                    "zh-CN": "12 (map-12.pmtiles)",
+                                    "en-US": "12 (map-12.pmtiles)"
+                                },
+                                "v": "12"
+                            }
+                        ]
+                    }
+                }
+            }
+        ],
+        "meta": {},
+        "color": "#9FE6EC",
+        "status": {
+            "x": 640,
+            "y": 580,
+            "wires": [
+                {
+                    "id": "6e67621c825551cf",
+                    "port": 0
+                }
+            ]
+        }
+    },
+    {
+        "id": "2bb23bcf3066d948",
+        "type": "group",
+        "z": "c4c69de5166fafdd",
+        "name": "update geofence",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "bf8030f03f7aaecf",
+            "4c15cc8d575e89cc",
+            "55b5b5ed834e5c05",
+            "f80e7c523421d7bc",
+            "ab32e98ba6154f6b"
+        ],
+        "x": 54,
+        "y": 251.5,
+        "w": 632,
+        "h": 149.5
+    },
+    {
+        "id": "99e5220aef247514",
+        "type": "group",
+        "z": "c4c69de5166fafdd",
+        "name": "set map settings on connect",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "337633503c2515db",
+            "26312f12f3217573",
+            "96ea24175fedf6f4"
+        ],
+        "x": 54,
+        "y": 139,
+        "w": 912,
+        "h": 82
+    },
+    {
+        "id": "f4f3769682678829",
+        "type": "group",
+        "z": "c4c69de5166fafdd",
+        "name": "dashboard ui",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "e7755049244b350f",
+            "bb27f4c3b8c37aea",
+            "ade60163a11e3c8c"
+        ],
+        "x": 54,
+        "y": 39,
+        "w": 532,
+        "h": 82
+    },
+    {
+        "id": "ab32e98ba6154f6b",
+        "type": "link out",
+        "z": "c4c69de5166fafdd",
+        "g": "2bb23bcf3066d948",
+        "name": "set worldmap",
+        "mode": "link",
+        "links": [
+            "bb27f4c3b8c37aea"
+        ],
+        "x": 580,
+        "y": 360,
+        "wires": [],
+        "l": true
+    },
+    {
+        "id": "f80e7c523421d7bc",
+        "type": "template",
+        "z": "c4c69de5166fafdd",
+        "g": "2bb23bcf3066d948",
+        "name": "",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "{\n    \"command\": {\n        \"name\": \"Circle5\",\n        \"deleted\": true\n    }\n}",
+        "output": "json",
+        "x": 390,
+        "y": 360,
+        "wires": [
+            [
+                "ab32e98ba6154f6b"
+            ]
+        ]
+    },
+    {
+        "id": "55b5b5ed834e5c05",
+        "type": "function",
+        "z": "c4c69de5166fafdd",
+        "g": "2bb23bcf3066d948",
+        "name": "update geofence",
+        "func": "var payload = msg.payload;\nvar circleMsg = null;\nvar rectangleMsg = null;\nvar polygonMsg = null;\n\n// Parse the incoming payload\ntry {\n    var parsedPayload = JSON.parse(payload);\n} catch (e) {\n    // node.error(\"Invalid JSON payload\", msg);\n    return null;\n}\n\n// Store geofence data in flow context\nif (parsedPayload.type === \"Circle\") {\n    global.set('geofence_geoLat', parsedPayload.lat);\n    global.set('geofence_geoLng', parsedPayload.lon);\n    global.set('geofence_radius', parsedPayload.radius);\n    circleMsg = { \n        payload: parsedPayload \n    };\n    var warnlog = \"Circle geofence set: \" + JSON.stringify(parsedPayload);\n    // node.warn(\"Circle geofence set: \" + JSON.stringify(parsedPayload));\n    node.status({ fill: \"grey\", shape: \"ring\", text: warnlog });\n} else if (parsedPayload.type === \"Rectangle\") {\n    global.set('geofence_geoArea', parsedPayload.area);\n    rectangleMsg = { \n        payload: parsedPayload \n    };\n    var warnlog = \"Rectangle geofence set: \" + JSON.stringify(parsedPayload);\n    // node.warn(\"Rectangle geofence set: \" + JSON.stringify(parsedPayload));\n    node.status({ fill: \"grey\", shape: \"ring\", text: warnlog });\n} else if (parsedPayload.type === \"Polygon\") {\n    global.set('geofence_geoPolygon', parsedPayload.area);\n    polygonMsg = { \n        payload: parsedPayload\n    };\n    var warnlog = \"Polygon geofence set: \" + JSON.stringify(parsedPayload);\n    // node.warn(\"Polygon geofence set: \" + JSON.stringify(parsedPayload));\n    node.status({ fill: \"grey\", shape: \"ring\", text: warnlog });\n}\n\nreturn [circleMsg, rectangleMsg, polygonMsg];\n",
+        "outputs": 3,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 570,
+        "y": 300,
+        "wires": [
+            [],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "4c15cc8d575e89cc",
+        "type": "json",
+        "z": "c4c69de5166fafdd",
+        "g": "2bb23bcf3066d948",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 390,
+        "y": 300,
+        "wires": [
+            [
+                "55b5b5ed834e5c05"
+            ]
+        ]
+    },
+    {
+        "id": "bf8030f03f7aaecf",
+        "type": "worldmap in",
+        "z": "c4c69de5166fafdd",
+        "g": "2bb23bcf3066d948",
+        "name": "worldmap geofence event",
+        "path": "${webPath}",
+        "events": "draw",
+        "x": 190,
+        "y": 300,
+        "wires": [
+            [
+                "4c15cc8d575e89cc",
+                "f80e7c523421d7bc"
+            ]
+        ]
+    },
+    {
+        "id": "96ea24175fedf6f4",
+        "type": "link out",
+        "z": "c4c69de5166fafdd",
+        "g": "99e5220aef247514",
+        "name": "set worldmap",
+        "mode": "link",
+        "links": [
+            "bb27f4c3b8c37aea"
+        ],
+        "x": 860,
+        "y": 180,
+        "wires": [],
+        "l": true
+    },
+    {
+        "id": "bb27f4c3b8c37aea",
+        "type": "link in",
+        "z": "c4c69de5166fafdd",
+        "g": "f4f3769682678829",
+        "name": "set worldmap'",
+        "links": [
+            "1f20fd19c6b93810",
+            "96ea24175fedf6f4",
+            "eeecd4df7a93968f",
+            "af8c93719ea1fabf",
+            "ab32e98ba6154f6b"
+        ],
+        "x": 350,
+        "y": 80,
+        "wires": [
+            [
+                "ade60163a11e3c8c"
+            ]
+        ],
+        "l": true
+    },
+    {
+        "id": "26312f12f3217573",
+        "type": "worldmap in",
+        "z": "c4c69de5166fafdd",
+        "g": "99e5220aef247514",
+        "name": "worldmap geofence event",
+        "path": "${webPath}",
+        "events": "connect",
+        "x": 190,
+        "y": 180,
+        "wires": [
+            [
+                "337633503c2515db"
+            ]
+        ]
+    },
+    {
+        "id": "e7755049244b350f",
+        "type": "ui-template",
+        "z": "c4c69de5166fafdd",
+        "g": "f4f3769682678829",
+        "group": "${Group}",
+        "page": "",
+        "ui": "",
+        "name": "Map ui",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "head": "",
+        "format": "<template>\n   <iframe src=\"/w\" width=\"100%\" height=\"100%\" frameborder=\"0\" loading=\"lazy\" class=\"iframe\" allow=\"geolocation\"></iframe>\n</template>\n\n<style scoped>\n   .iframe {\n      width: 100% !important;\n      height: 100% !important;\n      position: absolute;\n      left: 0;\n      top: 0;\n   }\n</style>",
+        "storeOutMessages": true,
+        "passthru": false,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 130,
+        "y": 80,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "337633503c2515db",
+        "type": "function",
+        "z": "c4c69de5166fafdd",
+        "g": "99e5220aef247514",
+        "name": "send map config commands from envs and defaults",
+        "func": "return {\n    payload: {\n        \"command\": {\n            // define offline map\n            map: {\n                name: \"SenseCraft Offline Map\",\n                pmtiles: \"/data/files/_geofence/map-\" + env.get(\"offlineMapZoom\") + \".pmtiles\",\n                opt: {\n                    \"attribution\": \"SenseCraft Offline Map\",\n                    \"maxDataZoom\": parseInt(env.get(\"offlineMapZoom\")),\n                    \"maxZoom\": 20,\n                    \"theme\": \"light\"\n                }\n            },\n\n            // use offline map\n            layer: env.get(\"useOfflineMap\") ? \"SenseCraft Offline Map\" : \"Esri Streetmap\",\n\n            // default central and zoom\n            lat: env.get(\"startLatitude\"),\n            lon: env.get(\"startLongitude\"),\n            zoom: env.get(\"zoom\"),\n\n            // adjust map ui\n            showlayer: [\"drawing\", \"tracker\"],\n            ruler: { \"showruler\": false },\n            hiderightclick: true,\n            toptitle: \"SenseCraft Map\",\n            drawcontextmenu: \n                \"<button onclick='editPoly(\\\"geofence\\\");'>Edit points</button>\" +\n                \"<button onclick='editPoly(\\\"geofence\\\", \\\"drag\\\");'>Drag</button>\" +\n                \"<button onclick='editPoly(\\\"geofence\\\", \\\"rot\\\");'>Rotate</button>\" +\n                \"<button onclick='delMarker(\\\"geofence\\\", true);'>Delete</button>\" +\n                \"<button onclick='delMarker(\\\"geofence\\\", true); sendDrawing();'>Set Geofence</button>\"\n        }\n    }\n};",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 540,
+        "y": 180,
+        "wires": [
+            [
+                "96ea24175fedf6f4"
+            ]
+        ]
+    },
+    {
+        "id": "ade60163a11e3c8c",
+        "type": "worldmap",
+        "z": "c4c69de5166fafdd",
+        "g": "f4f3769682678829",
+        "name": "worldmap",
+        "lat": "",
+        "lon": "",
+        "zoom": "",
+        "layer": "EsriC",
+        "cluster": "",
+        "maxage": "",
+        "usermenu": "show",
+        "layers": "show",
+        "panit": "false",
+        "panlock": "false",
+        "zoomlock": "false",
+        "hiderightclick": "true",
+        "coords": "deg",
+        "showgrid": "false",
+        "showruler": "false",
+        "allowFileDrop": "false",
+        "path": "${webPath}",
+        "overlist": "DR,CO,RA,DN,HM",
+        "maplist": "EsriC",
+        "mapname": "",
+        "mapurl": "",
+        "mapopt": "",
+        "mapwms": false,
+        "x": 500,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "6e67621c825551cf",
+        "type": "status",
+        "z": "c4c69de5166fafdd",
+        "name": "",
+        "scope": [
+            "ade60163a11e3c8c"
+        ],
+        "x": 470,
+        "y": 580,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "1f20fd19c6b93810",
+        "type": "link out",
+        "z": "c4c69de5166fafdd",
+        "name": "set worldmap",
+        "mode": "link",
+        "links": [
+            "bb27f4c3b8c37aea"
+        ],
+        "x": 580,
+        "y": 480,
+        "wires": [],
+        "l": true
+    },
+    {
+        "id": "2bdcf54b359a2b84",
+        "type": "template",
+        "z": "c4c69de5166fafdd",
+        "name": "payload",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "plain",
+        "template": "{\n    \"channel\": 0,\n    \"from\": \"test\",\n    \"hop_start\": 3,\n    \"hops_away\": 0,\n    \"id\": 974060372,\n    \"payload\": {\n        \"PDOP\": 187,\n        \"altitude\": 79,\n        \"ground_speed\": 1,\n        \"ground_track\": 4501000,\n        \"latitude_i\": 225754329,\n        \"longitude_i\": 1139216733,\n        \"precision_bits\": 32,\n        \"sats_in_view\": 8,\n        \"time\": 1720783381\n    },\n    \"rssi\": -40,\n    \"sender\": \"!43562584\",\n    \"snr\": 6.75,\n    \"timestamp\": 1720783378,\n    \"to\": 4294967295,\n    \"type\": \"position\"\n}",
+        "output": "json",
+        "x": 1180,
+        "y": 400,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "eb49510ba5a5468b",
+        "type": "inject",
+        "z": "c4c69de5166fafdd",
+        "name": "simulate reported a position",
+        "props": [],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 980,
+        "y": 400,
+        "wires": [
+            [
+                "2bdcf54b359a2b84"
+            ]
+        ]
+    },
+    {
+        "id": "3d1b9edd429b77f0",
+        "type": "inject",
+        "z": "c4c69de5166fafdd",
+        "name": "simulate reported a position (outside)",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"channel\":0,\"from\":\"test2\",\"hop_start\":3,\"hops_away\":0,\"id\":974060372,\"payload\":{\"PDOP\":187,\"altitude\":79,\"ground_speed\":1,\"ground_track\":4501000,\"latitude_i\":226064329,\"longitude_i\":1139216733,\"precision_bits\":32,\"sats_in_view\":8,\"time\":1720783381},\"rssi\":-40,\"sender\":\"!43562584\",\"snr\":6.75,\"timestamp\":1720783378,\"to\":4294967295,\"type\":\"position\"}",
+        "payloadType": "json",
+        "x": 1010,
+        "y": 460,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "08ebc59461b725fb",
+        "type": "function",
+        "z": "c4c69de5166fafdd",
+        "name": "send a mapping point",
+        "func": "let payload = msg.payload;\n\nlet lat = payload.latitude;\nlet lon = payload.longitude;\nlet name = payload.name;\nlet nameHex = payload.nameHex;\n\nmsg = {\n   payload: {\n      action: \"point\",\n      layer: \"traker_layer\",\n      icon: \"car\",\n      name: nameHex,\n      label: nameHex,\n      lat: lat,\n      lon: lon\n   }\n}\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 300,
+        "y": 480,
+        "wires": [
+            [
+                "1f20fd19c6b93810"
+            ]
+        ]
+    }
+]

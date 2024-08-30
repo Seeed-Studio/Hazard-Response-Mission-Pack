@@ -1,0 +1,242 @@
+name: sensecraft
+
+services:
+  sensecraft-nodered:
+    build: 
+      context: ./docker-image-builds/mission-pack-node-red/
+      dockerfile: ./Dockerfile
+    image: sensecraft/mission-pack-node-red:1.0
+    container_name: sensecraft-nodered
+    restart: always
+    env_file:
+      - ./factory-datas/env_docker_sensecraft-node-red.env
+    ports:
+      - "1880:1880"
+    volumes:
+      - ./docker-container-datas/sensecraft-nodered:/data
+      - ./docker-container-datas/tmp/stt:/tmp/stt
+      - /dev:/dev
+    user: "1000:20"
+    privileged: true
+    depends_on:
+      - sensecraft-nodered-filemanager
+      - sensecraft-nodered-static-file-server
+      - sensecraft-nodered-eventbus
+      - sensecraft-devices-mqtt-broker
+      - sensecraft-pysscma-server
+      - sensecraft-rs485-de
+    networks:
+      - sensecraft_network
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:1880 || exit 1"]
+      interval: 10s
+      timeout: 10s
+      retries: 3
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "1"
+
+  sensecraft-nodered-filemanager:
+    build: 
+      context: ./docker-image-builds/mission-pack-nodered-filemanager/
+      dockerfile: ./Dockerfile
+    image: sensecraft/mission-pack-nodered-filemanager:1.0
+    container_name: sensecraft-nodered-filemanager
+    restart: always
+    ports:
+      - "8091:8091"
+    user: "1000:20"
+    command:
+      - "--cache-dir=/data/cache"
+      - "--config=/data/.filebrowser.json"
+      - "--noauth"
+    volumes:
+      - ./docker-container-datas/sensecraft-nodered/files:/srv
+      - ./docker-container-datas/sensecraft-nodered-filemanager:/data
+    privileged: true
+    networks:
+      - sensecraft_network
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:8091 || exit 1"]
+      interval: 10s
+      timeout: 10s
+      retries: 3
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "1"
+
+  sensecraft-nodered-static-file-server:
+    build: 
+      context: ./docker-image-builds/mission-pack-nodered-static-file-server/
+      dockerfile: ./Dockerfile
+    image: sensecraft/mission-pack-nodered-static-file-server:1.0
+    container_name: sensecraft-nodered-static-file-server
+    restart: always
+    ports:
+      - "8092:80"
+    volumes:
+      - ./docker-container-datas/sensecraft-nodered/files:/usr/share/nginx/html
+      - ./docker-container-datas/sensecraft-nodered-static-file-server/nginx.conf:/usr/local/openresty/nginx/conf/nginx.conf
+      - ./docker-container-datas/sensecraft-nodered-static-file-server/default.conf:/etc/nginx/conf.d/default.conf
+    privileged: true
+    networks:
+      - sensecraft_network
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:80 || exit 1"]
+      interval: 10s
+      timeout: 10s
+      retries: 3
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "1"
+
+  # only for node-red internal eventbus, with qos0 mqtt message
+  sensecraft-nodered-eventbus:
+    build: 
+      context: ./docker-image-builds/mission-pack-nodered-eventbus/
+      dockerfile: ./Dockerfile
+    image: sensecraft/mission-pack-nodered-eventbus:1.0
+    container_name: sensecraft-nodered-eventbus
+    restart: always
+    networks:
+      - sensecraft_network
+    user: "1000:1000"
+    ports:
+      - "2003:1880"
+    healthcheck:
+      test: ["CMD-SHELL", "mosquitto_pub -h localhost -t 'healthcheck' -m 'test'"]
+      interval: 10s
+      timeout: 10s
+      retries: 3
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "1"
+
+  sensecraft-devices-mqtt-broker:
+    build: 
+      context: ./docker-image-builds/mission-pack-devices-mqtt-broker/
+      dockerfile: ./Dockerfile
+    image: sensecraft/mission-pack-devices-mqtt-broker:1.0
+    container_name: sensecraft-devices-mqtt-broker
+    restart: always
+    networks:
+      - sensecraft_network
+    ports:
+      - "1883:1883"
+      - "8083:8083"
+      - "2001:18083"
+    volumes:
+      - ./docker-container-datas/sensecraft-devices-mqtt-broker/data:/opt/emqx/data
+      - ./docker-container-datas/sensecraft-devices-mqtt-broker/log:/opt/emqx/log
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "1"
+    healthcheck:
+      test: ["CMD", "emqx_ctl", "status"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+  
+  sensecraft-pysscma-server:
+    build: 
+      context: ./docker-image-builds/mission-pack-pysscma-server/
+      dockerfile: ./Dockerfile
+    image: sensecraft/mission-pack-pysscma-server:1.0
+    container_name: sensecraft-pysscma-server
+    entrypoint: ['/usr/local/bin/sscma.cli','server','--host','0.0.0.0']
+    restart: on-failure
+    privileged: true
+    networks:
+      - sensecraft_network
+    ports: 
+      - 8000:8000
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "1"
+
+  sensecraft-rs485-de:
+    build: 
+      context: ./docker-image-builds/mission-pack-rs485-de/
+      dockerfile: ./Dockerfile
+    image: sensecraft/mission-pack-rs485-de:1.0
+    container_name: sensecraft-rs485-de
+    restart: always
+    privileged: true
+    networks:
+      - sensecraft_network
+    volumes:
+      - /dev:/dev
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "1"
+
+  sensecraft-media-server:
+    build: 
+      context: ./docker-image-builds/mission-pack-media-server/
+      dockerfile: ./Dockerfile
+    image: sensecraft/mission-pack-media-server:1.0
+    container_name: sensecraft-media-server
+    network_mode: host
+    restart: always
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "1"
+
+
+  # sensecraft-raspap:
+  #   container_name: sensecraft-raspap
+  #   image: ghcr.io/raspap/raspap-docker:latest
+  #   restart: always
+  #   privileged: true
+  #   environment:
+  #     RASPAP_SSID: mission-pack-ap
+  #     RASPAP_SSID_PASS: 12345678
+  #     RASPAP_WEBGUI_USER: admin
+  #     RASPAP_WEBGUI_PASS: admin
+  #     RASPAP_WEBGUI_PORT: 10001
+  #   network_mode: host
+  #   extra_hosts:
+  #     - "host.docker.internal:host-gateway"
+  #   cgroup: host
+  #   cap_add:
+  #     - SYS_ADMIN
+  #   volumes:
+  #     - /sys/fs/cgroup:/sys/fs/cgroup:rw
+  #   logging:
+  #     driver: "json-file"
+  #     options:
+  #       max-size: "10m"
+  #       max-file: "1"
+
+networks:
+  sensecraft_network:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 192.168.99.0/24
+          gateway: 192.168.99.1

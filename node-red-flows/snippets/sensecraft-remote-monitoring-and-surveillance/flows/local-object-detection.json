@@ -1,0 +1,247 @@
+[
+    {
+        "id": "69a9c77ee5e784d2",
+        "type": "group",
+        "z": "1d374d406a20801f",
+        "name": "",
+        "style": {
+            "label": true,
+            "color": "#000000",
+            "fill": "#dbcbe7"
+        },
+        "nodes": [
+            "27305ebce4a2d493",
+            "17a5c7085e533dc2",
+            "cff0741c6fdb4b9d",
+            "14ed4a4e100c7ee0",
+            "e5e47ed9301b0d9c",
+            "0e9b95629c161df6",
+            "2aff97b44b1f241d",
+            "30a0d30e2edc72e9",
+            "ea20ed6b4d612b21",
+            "e36c938de732ca09",
+            "8f9044118e666074"
+        ],
+        "x": 14,
+        "y": 2179,
+        "w": 992,
+        "h": 222
+    },
+    {
+        "id": "27305ebce4a2d493",
+        "type": "inject",
+        "z": "1d374d406a20801f",
+        "g": "69a9c77ee5e784d2",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "3",
+        "topic": "",
+        "payload": "3.jpg",
+        "payloadType": "str",
+        "x": 130,
+        "y": 2280,
+        "wires": [
+            [
+                "17a5c7085e533dc2"
+            ]
+        ]
+    },
+    {
+        "id": "17a5c7085e533dc2",
+        "type": "file in",
+        "z": "1d374d406a20801f",
+        "g": "69a9c77ee5e784d2",
+        "name": "read image",
+        "filename": "payload",
+        "filenameType": "msg",
+        "format": "",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "base64",
+        "allProps": false,
+        "x": 290,
+        "y": 2280,
+        "wires": [
+            [
+                "14ed4a4e100c7ee0"
+            ]
+        ]
+    },
+    {
+        "id": "cff0741c6fdb4b9d",
+        "type": "subflow:24744a865787dab5",
+        "z": "1d374d406a20801f",
+        "g": "69a9c77ee5e784d2",
+        "name": "",
+        "env": [
+            {
+                "name": "Group",
+                "value": "cde4df4e1b515e62",
+                "type": "conf-type"
+            },
+            {
+                "name": "height",
+                "value": "240",
+                "type": "num"
+            },
+            {
+                "key": "DB2_SF_ORDER",
+                "value": "1",
+                "type": "str"
+            }
+        ],
+        "x": 890,
+        "y": 2240,
+        "wires": []
+    },
+    {
+        "id": "14ed4a4e100c7ee0",
+        "type": "subflow:db0357a026e3fe9d",
+        "z": "1d374d406a20801f",
+        "g": "69a9c77ee5e784d2",
+        "name": "",
+        "x": 480,
+        "y": 2280,
+        "wires": [
+            [
+                "cff0741c6fdb4b9d",
+                "8f9044118e666074"
+            ],
+            [
+                "0e9b95629c161df6"
+            ],
+            [
+                "2aff97b44b1f241d"
+            ]
+        ],
+        "inputLabels": [
+            "image (base64 or buffer)"
+        ]
+    },
+    {
+        "id": "e5e47ed9301b0d9c",
+        "type": "subflow:cca203ebc25b2ce6",
+        "z": "1d374d406a20801f",
+        "g": "69a9c77ee5e784d2",
+        "name": "",
+        "x": 140,
+        "y": 2360,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "0e9b95629c161df6",
+        "type": "debug",
+        "z": "1d374d406a20801f",
+        "g": "69a9c77ee5e784d2",
+        "name": "debug 9",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 660,
+        "y": 2300,
+        "wires": []
+    },
+    {
+        "id": "2aff97b44b1f241d",
+        "type": "debug",
+        "z": "1d374d406a20801f",
+        "g": "69a9c77ee5e784d2",
+        "name": "debug 10",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 660,
+        "y": 2340,
+        "wires": []
+    },
+    {
+        "id": "30a0d30e2edc72e9",
+        "type": "comment",
+        "z": "1d374d406a20801f",
+        "g": "69a9c77ee5e784d2",
+        "name": "IP camera ai inference",
+        "info": "",
+        "x": 140,
+        "y": 2220,
+        "wires": []
+    },
+    {
+        "id": "ea20ed6b4d612b21",
+        "type": "comment",
+        "z": "1d374d406a20801f",
+        "g": "69a9c77ee5e784d2",
+        "name": "v0.0.1",
+        "info": "",
+        "x": 930,
+        "y": 2360,
+        "wires": []
+    },
+    {
+        "id": "e36c938de732ca09",
+        "type": "inject",
+        "z": "1d374d406a20801f",
+        "g": "69a9c77ee5e784d2",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "3",
+        "topic": "",
+        "payload": "3.jpg",
+        "payloadType": "str",
+        "x": 130,
+        "y": 2320,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "8f9044118e666074",
+        "type": "image",
+        "z": "1d374d406a20801f",
+        "g": "69a9c77ee5e784d2",
+        "name": "viewer",
+        "width": "80",
+        "data": "payload",
+        "dataType": "msg",
+        "thumbnail": false,
+        "active": true,
+        "pass": true,
+        "outputs": 1,
+        "x": 850,
+        "y": 2300,
+        "wires": [
+            []
+        ]
+    }
+]

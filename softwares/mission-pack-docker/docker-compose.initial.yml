@@ -1,0 +1,16 @@
+name: sensecraft-initial
+
+services:
+  nodered:
+    build: 
+      context: ./docker-image-builds/mission-pack-node-red-initial/
+      dockerfile: ./Dockerfile
+    image: sensecraft/mission-pack-node-red-initial:1.0
+    restart: "no"
+    env_file:
+      - ./factory-datas/env_docker_sensecraft-node-red.env
+    volumes:
+      - ./docker-container-datas/sensecraft-nodered:/data
+      - /dev:/dev
+    user: "1000:20"
+    privileged: true

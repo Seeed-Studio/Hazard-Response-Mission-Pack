@@ -1,0 +1,807 @@
+[
+    {
+        "id": "3222c245ca4d6f5a",
+        "type": "subflow",
+        "name": "condition item",
+        "info": "",
+        "category": "※conditions",
+        "in": [
+            {
+                "x": 480,
+                "y": 200,
+                "wires": [
+                    {
+                        "id": "cdf78b2f3d8e9912"
+                    }
+                ]
+            }
+        ],
+        "out": [
+            {
+                "x": 1120,
+                "y": 160,
+                "wires": [
+                    {
+                        "id": "9abdef358b9063d3",
+                        "port": 0
+                    },
+                    {
+                        "id": "6feedcb6904fe0b7",
+                        "port": 0
+                    }
+                ]
+            }
+        ],
+        "env": [
+            {
+                "name": "Title",
+                "type": "str",
+                "value": "",
+                "ui": {
+                    "label": {
+                        "zh-CN": "The following conditions are also satisfied:",
+                        "en-US": "The following conditions are also satisfied:"
+                    },
+                    "type": "none"
+                }
+            },
+            {
+                "name": "--1:",
+                "type": "str",
+                "value": "",
+                "ui": {
+                    "type": "none"
+                }
+            },
+            {
+                "name": "condition1",
+                "type": "str",
+                "value": "any",
+                "ui": {
+                    "label": {
+                        "zh-CN": "condition",
+                        "en-US": "condition"
+                    },
+                    "type": "select",
+                    "opts": {
+                        "opts": [
+                            {
+                                "l": {
+                                    "zh-CN": "any",
+                                    "en-US": "any"
+                                },
+                                "v": "any"
+                            },
+                            {
+                                "l": {
+                                    "zh-CN": "equal to",
+                                    "en-US": "equal to"
+                                },
+                                "v": "=="
+                            },
+                            {
+                                "l": {
+                                    "zh-CN": "not equal to",
+                                    "en-US": "not equal to"
+                                },
+                                "v": "!="
+                            },
+                            {
+                                "l": {
+                                    "zh-CN": "greater than",
+                                    "en-US": "greater than"
+                                },
+                                "v": ">"
+                            },
+                            {
+                                "l": {
+                                    "zh-CN": "greater than or equal",
+                                    "en-US": "greater than or equal"
+                                },
+                                "v": ">="
+                            },
+                            {
+                                "l": {
+                                    "zh-CN": "less than",
+                                    "en-US": "less than"
+                                },
+                                "v": "<"
+                            },
+                            {
+                                "l": {
+                                    "zh-CN": "less than or equal",
+                                    "en-US": "less than or equal"
+                                },
+                                "v": "<="
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "name": "value1",
+                "type": "str",
+                "value": "",
+                "ui": {
+                    "label": {
+                        "zh-CN": "value",
+                        "en-US": "value"
+                    },
+                    "type": "input",
+                    "opts": {
+                        "types": [
+                            "str",
+                            "num",
+                            "bool",
+                            "json",
+                            "bin",
+                            "env",
+                            "conf-types"
+                        ]
+                    }
+                }
+            },
+            {
+                "name": "--2:",
+                "type": "str",
+                "value": "",
+                "ui": {
+                    "type": "none"
+                }
+            },
+            {
+                "name": "condition2",
+                "type": "str",
+                "value": "any",
+                "ui": {
+                    "label": {
+                        "zh-CN": "condition",
+                        "en-US": "condition"
+                    },
+                    "type": "select",
+                    "opts": {
+                        "opts": [
+                            {
+                                "l": {
+                                    "zh-CN": "any",
+                                    "en-US": "any"
+                                },
+                                "v": "any"
+                            },
+                            {
+                                "l": {
+                                    "zh-CN": "equal to",
+                                    "en-US": "equal to"
+                                },
+                                "v": "=="
+                            },
+                            {
+                                "l": {
+                                    "zh-CN": "not equal to",
+                                    "en-US": "not equal to"
+                                },
+                                "v": "!="
+                            },
+                            {
+                                "l": {
+                                    "zh-CN": "greater than",
+                                    "en-US": "greater than"
+                                },
+                                "v": ">"
+                            },
+                            {
+                                "l": {
+                                    "zh-CN": "greater than or equal",
+                                    "en-US": "greater than or equal"
+                                },
+                                "v": ">="
+                            },
+                            {
+                                "l": {
+                                    "zh-CN": "less than",
+                                    "en-US": "less than"
+                                },
+                                "v": "<"
+                            },
+                            {
+                                "l": {
+                                    "zh-CN": "less than or equal",
+                                    "en-US": "less than or equal"
+                                },
+                                "v": "<="
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "name": "value2",
+                "type": "str",
+                "value": "",
+                "ui": {
+                    "label": {
+                        "zh-CN": "value",
+                        "en-US": "value"
+                    },
+                    "type": "input",
+                    "opts": {
+                        "types": [
+                            "str",
+                            "num",
+                            "bool",
+                            "json",
+                            "bin",
+                            "env",
+                            "conf-types"
+                        ]
+                    }
+                }
+            },
+            {
+                "name": "--3:",
+                "type": "str",
+                "value": "",
+                "ui": {
+                    "type": "none"
+                }
+            },
+            {
+                "name": "condition3",
+                "type": "str",
+                "value": "any",
+                "ui": {
+                    "label": {
+                        "zh-CN": "condition",
+                        "en-US": "condition"
+                    },
+                    "type": "select",
+                    "opts": {
+                        "opts": [
+                            {
+                                "l": {
+                                    "zh-CN": "any",
+                                    "en-US": "any"
+                                },
+                                "v": "any"
+                            },
+                            {
+                                "l": {
+                                    "zh-CN": "equal to",
+                                    "en-US": "equal to"
+                                },
+                                "v": "=="
+                            },
+                            {
+                                "l": {
+                                    "zh-CN": "not equal to",
+                                    "en-US": "not equal to"
+                                },
+                                "v": "!="
+                            },
+                            {
+                                "l": {
+                                    "zh-CN": "greater than",
+                                    "en-US": "greater than"
+                                },
+                                "v": ">"
+                            },
+                            {
+                                "l": {
+                                    "zh-CN": "greater than or equal",
+                                    "en-US": "greater than or equal"
+                                },
+                                "v": ">="
+                            },
+                            {
+                                "l": {
+                                    "zh-CN": "less than",
+                                    "en-US": "less than"
+                                },
+                                "v": "<"
+                            },
+                            {
+                                "l": {
+                                    "zh-CN": "less than or equal",
+                                    "en-US": "less than or equal"
+                                },
+                                "v": "<="
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "name": "value3",
+                "type": "str",
+                "value": "",
+                "ui": {
+                    "label": {
+                        "zh-CN": "value",
+                        "en-US": "value"
+                    },
+                    "type": "input",
+                    "opts": {
+                        "types": [
+                            "str",
+                            "num",
+                            "bool",
+                            "json",
+                            "bin",
+                            "env",
+                            "conf-types"
+                        ]
+                    }
+                }
+            }
+        ],
+        "meta": {},
+        "color": "#98942B",
+        "status": {
+            "x": 1120,
+            "y": 280,
+            "wires": []
+        }
+    },
+    {
+        "id": "17166137dc2d2393",
+        "type": "function",
+        "z": "3222c245ca4d6f5a",
+        "name": "get this node id as 'condition item id' and set to flow",
+        "func": "var condition_item_id = node.id;\n\nflow.set(\"condition_item_id\", condition_item_id)\n\nreturn {\n    payload: condition_item_id\n};",
+        "outputs": 1,
+        "timeout": "0",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 480,
+        "y": 100,
+        "wires": [
+            [
+                "9abdef358b9063d3"
+            ]
+        ]
+    },
+    {
+        "id": "9abdef358b9063d3",
+        "type": "change",
+        "z": "3222c245ca4d6f5a",
+        "name": "prepare the metadata to next node",
+        "rules": [
+            {
+                "t": "set",
+                "p": "condition.action",
+                "pt": "msg",
+                "to": "report_item_id",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "condition.value",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg",
+                "dc": true
+            },
+            {
+                "t": "delete",
+                "p": "topic",
+                "pt": "msg"
+            },
+            {
+                "t": "delete",
+                "p": "payload",
+                "pt": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 900,
+        "y": 100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f90a4f3b20c7063b",
+        "type": "inject",
+        "z": "3222c245ca4d6f5a",
+        "name": "onstartup",
+        "props": [],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "0",
+        "topic": "",
+        "x": 160,
+        "y": 100,
+        "wires": [
+            [
+                "17166137dc2d2393"
+            ]
+        ]
+    },
+    {
+        "id": "6feedcb6904fe0b7",
+        "type": "function",
+        "z": "3222c245ca4d6f5a",
+        "name": "handle condition",
+        "func": "return msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 950,
+        "y": 200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "cdf78b2f3d8e9912",
+        "type": "change",
+        "z": "3222c245ca4d6f5a",
+        "name": "set condition flag",
+        "rules": [
+            {
+                "t": "set",
+                "p": "condition.action",
+                "pt": "msg",
+                "to": "report_item",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 630,
+        "y": 200,
+        "wires": [
+            [
+                "6feedcb6904fe0b7"
+            ]
+        ]
+    },
+    {
+        "id": "aa193c820dc14bcf",
+        "type": "subflow",
+        "name": "condition judgment",
+        "info": "",
+        "category": "※conditions",
+        "in": [
+            {
+                "x": 100,
+                "y": 160,
+                "wires": [
+                    {
+                        "id": "a1a49100e860fc7f"
+                    },
+                    {
+                        "id": "58a570950dc50edf"
+                    }
+                ]
+            }
+        ],
+        "out": [
+            {
+                "x": 650,
+                "y": 260,
+                "wires": [
+                    {
+                        "id": "3452e74a6f467e5e",
+                        "port": 0
+                    }
+                ]
+            },
+            {
+                "x": 650,
+                "y": 340,
+                "wires": [
+                    {
+                        "id": "3452e74a6f467e5e",
+                        "port": 0
+                    }
+                ]
+            }
+        ],
+        "env": [
+            {
+                "name": "title-judgmentTriggerMode",
+                "type": "str",
+                "value": "",
+                "ui": {
+                    "label": {
+                        "zh-CN": "Judgment Trigger mode:",
+                        "en-US": "Judgment Trigger mode:"
+                    },
+                    "type": "none"
+                }
+            },
+            {
+                "name": "judgmentTriggerMode",
+                "type": "str",
+                "value": "any",
+                "ui": {
+                    "label": {
+                        "zh-CN": "On",
+                        "en-US": "On"
+                    },
+                    "type": "select",
+                    "opts": {
+                        "opts": [
+                            {
+                                "l": {
+                                    "zh-CN": "All the items have matched the conditions",
+                                    "en-US": "All the items have matched the conditions"
+                                },
+                                "v": "all"
+                            },
+                            {
+                                "l": {
+                                    "zh-CN": "Any item has match the condition",
+                                    "en-US": "Any item has match the condition"
+                                },
+                                "v": "any"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "name": "output",
+                "type": "str",
+                "value": "yes",
+                "ui": {
+                    "type": "select",
+                    "opts": {
+                        "opts": [
+                            {
+                                "l": {
+                                    "zh-CN": "When yes",
+                                    "en-US": "When yes"
+                                },
+                                "v": "yes"
+                            },
+                            {
+                                "l": {
+                                    "zh-CN": "When no",
+                                    "en-US": "When no"
+                                },
+                                "v": "no"
+                            }
+                        ]
+                    }
+                }
+            }
+        ],
+        "meta": {},
+        "color": "#E2D96E",
+        "outputLabels": [
+            "true",
+            "false"
+        ],
+        "status": {
+            "x": 620,
+            "y": 440,
+            "wires": [
+                {
+                    "id": "ea3247f6fb34b34b",
+                    "port": 0
+                }
+            ]
+        }
+    },
+    {
+        "id": "99d0e9268f69dc25",
+        "type": "group",
+        "z": "aa193c820dc14bcf",
+        "name": "initial stage, all items report ids",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "c7ddc2768894bbca",
+            "3ea72c2a420cfde0"
+        ],
+        "x": 374,
+        "y": 39,
+        "w": 492,
+        "h": 82
+    },
+    {
+        "id": "3452e74a6f467e5e",
+        "type": "function",
+        "z": "aa193c820dc14bcf",
+        "name": "function 65",
+        "func": "\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 450,
+        "y": 260,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ea3247f6fb34b34b",
+        "type": "function",
+        "z": "aa193c820dc14bcf",
+        "name": "function 66",
+        "func": "\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 470,
+        "y": 440,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a1a49100e860fc7f",
+        "type": "switch",
+        "z": "aa193c820dc14bcf",
+        "name": "report_node_id",
+        "property": "condition.action",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "report_item_id",
+                "vt": "str"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 240,
+        "y": 160,
+        "wires": [
+            [
+                "c7ddc2768894bbca"
+            ],
+            [
+                "3452e74a6f467e5e"
+            ]
+        ]
+    },
+    {
+        "id": "c7ddc2768894bbca",
+        "type": "function",
+        "z": "aa193c820dc14bcf",
+        "g": "99d0e9268f69dc25",
+        "name": "save all condition items id",
+        "func": "var items = flow.get(\"items\") || [];\n\nif (msg.condition && msg.condition.value !== undefined) {\n    items.push(msg.condition.value);\n}\n\nflow.set(\"items\", items);\n\nreturn {\n    payload: items\n};\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 510,
+        "y": 80,
+        "wires": [
+            [
+                "3ea72c2a420cfde0"
+            ]
+        ]
+    },
+    {
+        "id": "3ea72c2a420cfde0",
+        "type": "debug",
+        "z": "aa193c820dc14bcf",
+        "g": "99d0e9268f69dc25",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 760,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "58a570950dc50edf",
+        "type": "debug",
+        "z": "aa193c820dc14bcf",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 220,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "cb0af35beb73a330",
+        "type": "subflow",
+        "name": "condition no",
+        "info": "",
+        "category": "※conditions",
+        "in": [
+            {
+                "x": 60,
+                "y": 100,
+                "wires": [
+                    {
+                        "id": "9657bcc00fd4b2a5"
+                    }
+                ]
+            }
+        ],
+        "out": [
+            {
+                "x": 480,
+                "y": 100,
+                "wires": [
+                    {
+                        "id": "9657bcc00fd4b2a5",
+                        "port": 0
+                    }
+                ]
+            }
+        ],
+        "env": [],
+        "meta": {},
+        "color": "#E2D96E",
+        "status": {
+            "x": 480,
+            "y": 180,
+            "wires": []
+        }
+    },
+    {
+        "id": "9657bcc00fd4b2a5",
+        "type": "function",
+        "z": "cb0af35beb73a330",
+        "name": "function 64",
+        "func": "\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 270,
+        "y": 100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "71fa94fa94dbdf24",
+        "type": "subflow",
+        "name": "condition yes",
+        "info": "",
+        "category": "※conditions",
+        "in": [],
+        "out": [],
+        "env": [],
+        "meta": {},
+        "color": "#E2D96E"
+    }
+]

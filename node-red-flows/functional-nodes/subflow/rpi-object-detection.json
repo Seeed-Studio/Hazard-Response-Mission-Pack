@@ -1,0 +1,2138 @@
+[
+    {
+      "id": "db0357a026e3fe9d",
+      "type": "subflow",
+      "name": "object detection",
+      "info": "",
+      "category": "※vision-computing",
+      "in": [
+        {
+          "x": 80,
+          "y": 660,
+          "wires": [
+            {
+              "id": "3f6aeb65d3e2c942"
+            }
+          ]
+        }
+      ],
+      "out": [
+        {
+          "x": 2170,
+          "y": 620,
+          "wires": [
+            {
+              "id": "5f4428b940c5bf31",
+              "port": 0
+            }
+          ]
+        },
+        {
+          "x": 2160,
+          "y": 920,
+          "wires": [
+            {
+              "id": "8df1bae56c96b08c",
+              "port": 0
+            }
+          ]
+        },
+        {
+          "x": 2310,
+          "y": 1040,
+          "wires": [
+            {
+              "id": "7b1d5ceaabf82e41",
+              "port": 0
+            },
+            {
+              "id": "a1aa1633b40cbc7f",
+              "port": 0
+            }
+          ]
+        }
+      ],
+      "env": [
+        {
+          "name": "----- Inference Settings -----",
+          "type": "str",
+          "value": "",
+          "ui": {
+            "type": "none"
+          }
+        },
+        {
+          "name": "detectObject",
+          "type": "str",
+          "value": "person",
+          "ui": {
+            "icon": "font-awesome/fa-bullseye",
+            "label": {
+              "zh-CN": "Detect object",
+              "en-US": "Detect object"
+            },
+            "type": "select",
+            "opts": {
+              "opts": [
+                {
+                  "l": {
+                    "zh-CN": "person",
+                    "en-US": "person"
+                  },
+                  "v": "person"
+                },
+                {
+                  "l": {
+                    "zh-CN": "bicycle",
+                    "en-US": "bicycle"
+                  },
+                  "v": "bicycle"
+                },
+                {
+                  "l": {
+                    "zh-CN": "car",
+                    "en-US": "car"
+                  },
+                  "v": "car"
+                },
+                {
+                  "l": {
+                    "zh-CN": "motorcycle",
+                    "en-US": "motorcycle"
+                  },
+                  "v": "motorcycle"
+                },
+                {
+                  "l": {
+                    "zh-CN": "airplane",
+                    "en-US": "airplane"
+                  },
+                  "v": "airplane"
+                },
+                {
+                  "l": {
+                    "zh-CN": "bus",
+                    "en-US": "bus"
+                  },
+                  "v": "bus"
+                },
+                {
+                  "l": {
+                    "zh-CN": "train",
+                    "en-US": "train"
+                  },
+                  "v": "train"
+                },
+                {
+                  "l": {
+                    "zh-CN": "truck",
+                    "en-US": "truck"
+                  },
+                  "v": "truck"
+                },
+                {
+                  "l": {
+                    "zh-CN": "boat",
+                    "en-US": "boat"
+                  },
+                  "v": "boat"
+                },
+                {
+                  "l": {
+                    "zh-CN": "traffic light",
+                    "en-US": "traffic light"
+                  },
+                  "v": "traffic light"
+                },
+                {
+                  "l": {
+                    "zh-CN": "fire hydrant",
+                    "en-US": "fire hydrant"
+                  },
+                  "v": "fire hydrant"
+                },
+                {
+                  "l": {
+                    "zh-CN": "stop sign",
+                    "en-US": "stop sign"
+                  },
+                  "v": "stop sign"
+                },
+                {
+                  "l": {
+                    "zh-CN": "parking meter",
+                    "en-US": "parking meter"
+                  },
+                  "v": "parking meter"
+                },
+                {
+                  "l": {
+                    "zh-CN": "bench",
+                    "en-US": "bench"
+                  },
+                  "v": "bench"
+                },
+                {
+                  "l": {
+                    "zh-CN": "bird",
+                    "en-US": "bird"
+                  },
+                  "v": "bird"
+                },
+                {
+                  "l": {
+                    "zh-CN": "cat",
+                    "en-US": "cat"
+                  },
+                  "v": "cat"
+                },
+                {
+                  "l": {
+                    "zh-CN": "dog",
+                    "en-US": "dog"
+                  },
+                  "v": "dog"
+                },
+                {
+                  "l": {
+                    "zh-CN": "horse",
+                    "en-US": "horse"
+                  },
+                  "v": "horse"
+                },
+                {
+                  "l": {
+                    "zh-CN": "sheep",
+                    "en-US": "sheep"
+                  },
+                  "v": "sheep"
+                },
+                {
+                  "l": {
+                    "zh-CN": "cow",
+                    "en-US": "cow"
+                  },
+                  "v": "cow"
+                },
+                {
+                  "l": {
+                    "zh-CN": "elephant",
+                    "en-US": "elephant"
+                  },
+                  "v": "elephant"
+                },
+                {
+                  "l": {
+                    "zh-CN": "bear",
+                    "en-US": "bear"
+                  },
+                  "v": "bear"
+                },
+                {
+                  "l": {
+                    "zh-CN": "zebra",
+                    "en-US": "zebra"
+                  },
+                  "v": "zebra"
+                },
+                {
+                  "l": {
+                    "zh-CN": "giraffe",
+                    "en-US": "giraffe"
+                  },
+                  "v": "giraffe"
+                },
+                {
+                  "l": {
+                    "zh-CN": "backpack",
+                    "en-US": "backpack"
+                  },
+                  "v": "backpack"
+                },
+                {
+                  "l": {
+                    "zh-CN": "umbrella",
+                    "en-US": "umbrella"
+                  },
+                  "v": "umbrella"
+                },
+                {
+                  "l": {
+                    "zh-CN": "handbag",
+                    "en-US": "handbag"
+                  },
+                  "v": "handbag"
+                },
+                {
+                  "l": {
+                    "zh-CN": "tie",
+                    "en-US": "tie"
+                  },
+                  "v": "tie"
+                },
+                {
+                  "l": {
+                    "zh-CN": "suitcase",
+                    "en-US": "suitcase"
+                  },
+                  "v": "suitcase"
+                },
+                {
+                  "l": {
+                    "zh-CN": "frisbee",
+                    "en-US": "frisbee"
+                  },
+                  "v": "frisbee"
+                },
+                {
+                  "l": {
+                    "zh-CN": "skis",
+                    "en-US": "skis"
+                  },
+                  "v": "skis"
+                },
+                {
+                  "l": {
+                    "zh-CN": "snowboard",
+                    "en-US": "snowboard"
+                  },
+                  "v": "snowboard"
+                },
+                {
+                  "l": {
+                    "zh-CN": "sports ball",
+                    "en-US": "sports ball"
+                  },
+                  "v": "sports ball"
+                },
+                {
+                  "l": {
+                    "zh-CN": "kite",
+                    "en-US": "kite"
+                  },
+                  "v": "kite"
+                },
+                {
+                  "l": {
+                    "zh-CN": "baseball bat",
+                    "en-US": "baseball bat"
+                  },
+                  "v": "baseball bat"
+                },
+                {
+                  "l": {
+                    "zh-CN": "baseball glove",
+                    "en-US": "baseball glove"
+                  },
+                  "v": "baseball glove"
+                },
+                {
+                  "l": {
+                    "zh-CN": "skateboard",
+                    "en-US": "skateboard"
+                  },
+                  "v": "skateboard"
+                },
+                {
+                  "l": {
+                    "zh-CN": "surfboard",
+                    "en-US": "surfboard"
+                  },
+                  "v": "surfboard"
+                },
+                {
+                  "l": {
+                    "zh-CN": "tennis racket",
+                    "en-US": "tennis racket"
+                  },
+                  "v": "tennis racket"
+                },
+                {
+                  "l": {
+                    "zh-CN": "bottle",
+                    "en-US": "bottle"
+                  },
+                  "v": "bottle"
+                },
+                {
+                  "l": {
+                    "zh-CN": "wine glass",
+                    "en-US": "wine glass"
+                  },
+                  "v": "wine glass"
+                },
+                {
+                  "l": {
+                    "zh-CN": "cup",
+                    "en-US": "cup"
+                  },
+                  "v": "cup"
+                },
+                {
+                  "l": {
+                    "zh-CN": "fork",
+                    "en-US": "fork"
+                  },
+                  "v": "fork"
+                },
+                {
+                  "l": {
+                    "zh-CN": "knife",
+                    "en-US": "knife"
+                  },
+                  "v": "knife"
+                },
+                {
+                  "l": {
+                    "zh-CN": "spoon",
+                    "en-US": "spoon"
+                  },
+                  "v": "spoon"
+                },
+                {
+                  "l": {
+                    "zh-CN": "bowl",
+                    "en-US": "bowl"
+                  },
+                  "v": "bowl"
+                },
+                {
+                  "l": {
+                    "zh-CN": "banana",
+                    "en-US": "banana"
+                  },
+                  "v": "banana"
+                },
+                {
+                  "l": {
+                    "zh-CN": "apple",
+                    "en-US": "apple"
+                  },
+                  "v": "apple"
+                },
+                {
+                  "l": {
+                    "zh-CN": "sandwich",
+                    "en-US": "sandwich"
+                  },
+                  "v": "sandwich"
+                },
+                {
+                  "l": {
+                    "zh-CN": "orange",
+                    "en-US": "orange"
+                  },
+                  "v": "orange"
+                },
+                {
+                  "l": {
+                    "zh-CN": "broccoli",
+                    "en-US": "broccoli"
+                  },
+                  "v": "broccoli"
+                },
+                {
+                  "l": {
+                    "zh-CN": "carrot",
+                    "en-US": "carrot"
+                  },
+                  "v": "carrot"
+                },
+                {
+                  "l": {
+                    "zh-CN": "hot dog",
+                    "en-US": "hot dog"
+                  },
+                  "v": "hot dog"
+                },
+                {
+                  "l": {
+                    "zh-CN": "pizza",
+                    "en-US": "pizza"
+                  },
+                  "v": "pizza"
+                },
+                {
+                  "l": {
+                    "zh-CN": "donut",
+                    "en-US": "donut"
+                  },
+                  "v": "donut"
+                },
+                {
+                  "l": {
+                    "zh-CN": "cake",
+                    "en-US": "cake"
+                  },
+                  "v": "cake"
+                },
+                {
+                  "l": {
+                    "zh-CN": "chair",
+                    "en-US": "chair"
+                  },
+                  "v": "chair"
+                },
+                {
+                  "l": {
+                    "zh-CN": "couch",
+                    "en-US": "couch"
+                  },
+                  "v": "couch"
+                },
+                {
+                  "l": {
+                    "zh-CN": "potted plant",
+                    "en-US": "potted plant"
+                  },
+                  "v": "potted plant"
+                },
+                {
+                  "l": {
+                    "zh-CN": "bed",
+                    "en-US": "bed"
+                  },
+                  "v": "bed"
+                },
+                {
+                  "l": {
+                    "zh-CN": "dining table",
+                    "en-US": "dining table"
+                  },
+                  "v": "dining table"
+                },
+                {
+                  "l": {
+                    "zh-CN": "toilet",
+                    "en-US": "toilet"
+                  },
+                  "v": "toilet"
+                },
+                {
+                  "l": {
+                    "zh-CN": "tv",
+                    "en-US": "tv"
+                  },
+                  "v": "tv"
+                },
+                {
+                  "l": {
+                    "zh-CN": "laptop",
+                    "en-US": "laptop"
+                  },
+                  "v": "laptop"
+                },
+                {
+                  "l": {
+                    "zh-CN": "mouse",
+                    "en-US": "mouse"
+                  },
+                  "v": "mouse"
+                },
+                {
+                  "l": {
+                    "zh-CN": "remote",
+                    "en-US": "remote"
+                  },
+                  "v": "remote"
+                },
+                {
+                  "l": {
+                    "zh-CN": "keyboard",
+                    "en-US": "keyboard"
+                  },
+                  "v": "keyboard"
+                },
+                {
+                  "l": {
+                    "zh-CN": "cell phone",
+                    "en-US": "cell phone"
+                  },
+                  "v": "cell phone"
+                },
+                {
+                  "l": {
+                    "zh-CN": "microwave",
+                    "en-US": "microwave"
+                  },
+                  "v": "microwave"
+                },
+                {
+                  "l": {
+                    "zh-CN": "oven",
+                    "en-US": "oven"
+                  },
+                  "v": "oven"
+                },
+                {
+                  "l": {
+                    "zh-CN": "toaster",
+                    "en-US": "toaster"
+                  },
+                  "v": "toaster"
+                },
+                {
+                  "l": {
+                    "zh-CN": "sink",
+                    "en-US": "sink"
+                  },
+                  "v": "sink"
+                },
+                {
+                  "l": {
+                    "zh-CN": "refrigerator",
+                    "en-US": "refrigerator"
+                  },
+                  "v": "refrigerator"
+                },
+                {
+                  "l": {
+                    "zh-CN": "book",
+                    "en-US": "book"
+                  },
+                  "v": "book"
+                },
+                {
+                  "l": {
+                    "zh-CN": "clock",
+                    "en-US": "clock"
+                  },
+                  "v": "clock"
+                },
+                {
+                  "l": {
+                    "zh-CN": "vase",
+                    "en-US": "vase"
+                  },
+                  "v": "vase"
+                },
+                {
+                  "l": {
+                    "zh-CN": "scissors",
+                    "en-US": "scissors"
+                  },
+                  "v": "scissors"
+                },
+                {
+                  "l": {
+                    "zh-CN": "teddy bear",
+                    "en-US": "teddy bear"
+                  },
+                  "v": "teddy bear"
+                },
+                {
+                  "l": {
+                    "zh-CN": "hair drier",
+                    "en-US": "hair drier"
+                  },
+                  "v": "hair drier"
+                },
+                {
+                  "l": {
+                    "zh-CN": "toothbrush",
+                    "en-US": "toothbrush"
+                  },
+                  "v": "toothbrush"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "confidence",
+          "type": "str",
+          "value": "50%",
+          "ui": {
+            "label": {
+              "zh-CN": "Confidence",
+              "en-US": "Confidence"
+            },
+            "type": "select",
+            "opts": {
+              "opts": [
+                {
+                  "l": {
+                    "zh-CN": "10%",
+                    "en-US": "10%"
+                  },
+                  "v": "10%"
+                },
+                {
+                  "l": {
+                    "zh-CN": "20%",
+                    "en-US": "20%"
+                  },
+                  "v": "20%"
+                },
+                {
+                  "l": {
+                    "zh-CN": "30%",
+                    "en-US": "30%"
+                  },
+                  "v": "30%"
+                },
+                {
+                  "l": {
+                    "zh-CN": "40%",
+                    "en-US": "40%"
+                  },
+                  "v": "40%"
+                },
+                {
+                  "l": {
+                    "zh-CN": "50%",
+                    "en-US": "50%"
+                  },
+                  "v": "50%"
+                },
+                {
+                  "l": {
+                    "zh-CN": "60%",
+                    "en-US": "60%"
+                  },
+                  "v": "60%"
+                },
+                {
+                  "l": {
+                    "zh-CN": "70%",
+                    "en-US": "70%"
+                  },
+                  "v": "70%"
+                },
+                {
+                  "l": {
+                    "zh-CN": "80%",
+                    "en-US": "80%"
+                  },
+                  "v": "80%"
+                },
+                {
+                  "l": {
+                    "zh-CN": "90%",
+                    "en-US": "90%"
+                  },
+                  "v": "90%"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "accuracy",
+          "type": "str",
+          "value": "low",
+          "ui": {
+            "label": {
+              "zh-CN": "Accuracy",
+              "en-US": "Accuracy"
+            },
+            "type": "select",
+            "opts": {
+              "opts": [
+                {
+                  "l": {
+                    "zh-CN": "(Takes 2 seconds) Low",
+                    "en-US": "(Takes 2 seconds) Low"
+                  },
+                  "v": "low"
+                },
+                {
+                  "l": {
+                    "zh-CN": "(Takes 5 seconds) Medium",
+                    "en-US": "(Takes 5 seconds) Medium"
+                  },
+                  "v": "medium"
+                },
+                {
+                  "l": {
+                    "zh-CN": "(Takes 10 seconds) High",
+                    "en-US": "(Takes 10 seconds) High"
+                  },
+                  "v": "high"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "----- Output 1: image -----",
+          "type": "str",
+          "value": "",
+          "ui": {
+            "type": "none"
+          }
+        },
+        {
+          "name": "enabled",
+          "type": "str",
+          "value": "",
+          "ui": {
+            "type": "none"
+          }
+        },
+        {
+          "name": "----- Output 2: inference result -----",
+          "type": "str",
+          "value": "",
+          "ui": {
+            "type": "none"
+          }
+        },
+        {
+          "name": "enabled",
+          "type": "str",
+          "value": "",
+          "ui": {
+            "type": "none"
+          }
+        },
+        {
+          "name": "----- Output 3: trigger -----",
+          "type": "str",
+          "value": "",
+          "ui": {
+            "type": "none"
+          }
+        },
+        {
+          "name": "triggerMode",
+          "type": "str",
+          "value": "yes",
+          "ui": {
+            "label": {
+              "zh-CN": "When ...",
+              "en-US": "When ..."
+            },
+            "type": "select",
+            "opts": {
+              "opts": [
+                {
+                  "l": {
+                    "zh-CN": "Detected",
+                    "en-US": "Detected"
+                  },
+                  "v": "yes"
+                },
+                {
+                  "l": {
+                    "zh-CN": "Not detected",
+                    "en-US": "Not detected"
+                  },
+                  "v": "no"
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "meta": {},
+      "color": "#B0CBFF",
+      "outputLabels": [
+        "Annotated Image",
+        "Inference Result",
+        "Detection Trigger"
+      ],
+      "status": {
+        "x": 2160,
+        "y": 1320,
+        "wires": [
+          {
+            "id": "112bd9434fbbd5f1",
+            "port": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "e5814d054eae8048",
+      "type": "group",
+      "z": "db0357a026e3fe9d",
+      "style": {
+        "stroke": "#999999",
+        "stroke-opacity": "1",
+        "fill": "none",
+        "fill-opacity": "1",
+        "label": true,
+        "label-position": "nw",
+        "color": "#a4a4a4"
+      },
+      "nodes": [
+        "0f4d7859be6d8074",
+        "09f9f99a2de46ed5",
+        "678f2517e5e8f360",
+        "b543a5489b7db3b9",
+        "6842503887995176"
+      ],
+      "x": 1894,
+      "y": 699,
+      "w": 592,
+      "h": 162
+    },
+    {
+      "id": "4cc9810beb057ce1",
+      "type": "good-object-detection",
+      "z": "db0357a026e3fe9d",
+      "name": "",
+      "returnValue": "0",
+      "model": "yolov8n",
+      "threshold": "0.1",
+      "absolutePathDir": "",
+      "x": 1110,
+      "y": 60,
+      "wires": [
+        [
+          "dc88fe07cfda2ae6"
+        ]
+      ]
+    },
+    {
+      "id": "8ca81b01323d0223",
+      "type": "function",
+      "z": "db0357a026e3fe9d",
+      "name": "tidy message",
+      "func": "var payload = msg.payload;\nvar originImg = payload.originImg;\n\nvar detectObject = env.get(\"detectObject\");\nvar detections = payload.data[detectObject];\n\n// 将 Buffer 转换为 Base64\n\nmsg.payload = {\n    imageBuffer: originImg,\n    detections: detections\n};\n\nreturn msg;\n",
+      "outputs": 1,
+      "timeout": 0,
+      "noerr": 0,
+      "initialize": "",
+      "finalize": "",
+      "libs": [],
+      "x": 1610,
+      "y": 620,
+      "wires": [
+        [
+          "5f4428b940c5bf31",
+          "8df1bae56c96b08c"
+        ]
+      ]
+    },
+    {
+      "id": "5f4428b940c5bf31",
+      "type": "function",
+      "z": "db0357a026e3fe9d",
+      "name": "draw box",
+      "func": "const imageBuffer = msg.payload.imageBuffer;\nconst detections = msg.payload.detections;\n\n(async function processImage() {\n    try {\n        let image = sharp(imageBuffer);\n        const metadata = await image.metadata();\n\n        let svgContent = `\n            <svg width=\"${metadata.width}\" height=\"${metadata.height}\" xmlns=\"http://www.w3.org/2000/svg\">\n        `;\n\n        detections.forEach(det => {\n            const x = det.x;\n            const y = det.y;\n            const w = det.w;\n            const h = det.h;\n            const prob = det.prob;\n\n            // Convert confidence to percentage and round to an integer\n            const probPercentage = Math.round(prob * 100);\n            const label = `people ${probPercentage}%`;\n\n            // Measure the text width dynamically\n            const textWidth = label.length * 8; // Approximate width: 8 pixels per character\n\n            // Add rectangle and text with background to SVG content\n            svgContent += `\n                <rect x=\"${x}\" y=\"${y}\" width=\"${w}\" height=\"${h}\" fill=\"none\" stroke=\"red\" stroke-width=\"2\"/>\n                <rect x=\"${x}\" y=\"${y - 20}\" width=\"${textWidth + 4}\" height=\"20\" fill=\"rgba(255, 0, 0, 0.5)\"/>\n                <text x=\"${x + 2}\" y=\"${y - 5}\" font-family=\"Arial\" font-size=\"12\" fill=\"white\">${label}</text>\n            `;\n        });\n\n        svgContent += `</svg>`;\n\n        const svgBuffer = Buffer.from(svgContent);\n\n        image = await image\n            .composite([{ input: svgBuffer, top: 0, left: 0 }])\n            .toBuffer();\n\n        const src = image.toString('base64');\n        msg.payload = src;\n        node.send(msg);\n    } catch (err) {\n        node.warn(\"Error processing image: \" + err.message);\n        msg.payload = msg.payload.image.toString('base64'); // Send original image\n        node.send(msg);\n    }\n})();\n",
+      "outputs": 1,
+      "timeout": 0,
+      "noerr": 0,
+      "initialize": "",
+      "finalize": "",
+      "libs": [
+        {
+          "var": "jimp",
+          "module": "jimp"
+        },
+        {
+          "var": "sharp",
+          "module": "sharp"
+        }
+      ],
+      "x": 1800,
+      "y": 620,
+      "wires": [
+        [
+          "6842503887995176"
+        ]
+      ]
+    },
+    {
+      "id": "924b7001efd94ca5",
+      "type": "good-object-detection",
+      "z": "db0357a026e3fe9d",
+      "name": "",
+      "returnValue": "0",
+      "model": "yolov8s",
+      "threshold": "0.1",
+      "absolutePathDir": "",
+      "x": 1110,
+      "y": 460,
+      "wires": [
+        [
+          "dc88fe07cfda2ae6"
+        ]
+      ]
+    },
+    {
+      "id": "8b26f5ebb300a09e",
+      "type": "good-object-detection",
+      "z": "db0357a026e3fe9d",
+      "name": "",
+      "returnValue": "0",
+      "model": "yolov8m",
+      "threshold": "0.1",
+      "absolutePathDir": "",
+      "x": 1110,
+      "y": 860,
+      "wires": [
+        [
+          "dc88fe07cfda2ae6"
+        ]
+      ]
+    },
+    {
+      "id": "fd67ba63b7633538",
+      "type": "switch",
+      "z": "db0357a026e3fe9d",
+      "name": "depend on accuracy",
+      "property": "accuracy",
+      "propertyType": "env",
+      "rules": [
+        {
+          "t": "eq",
+          "v": "low",
+          "vt": "str"
+        },
+        {
+          "t": "eq",
+          "v": "medium",
+          "vt": "str"
+        },
+        {
+          "t": "eq",
+          "v": "high",
+          "vt": "str"
+        }
+      ],
+      "checkall": "true",
+      "repair": false,
+      "outputs": 3,
+      "x": 640,
+      "y": 620,
+      "wires": [
+        [
+          "6263a3b406ed611a"
+        ],
+        [
+          "c24362c677babd77"
+        ],
+        [
+          "bef8f3fe1877249a"
+        ]
+      ]
+    },
+    {
+      "id": "1bdb545ad0c231d1",
+      "type": "good-object-detection",
+      "z": "db0357a026e3fe9d",
+      "name": "",
+      "returnValue": "0",
+      "model": "yolov8n",
+      "threshold": "0.2",
+      "absolutePathDir": "",
+      "x": 1110,
+      "y": 100,
+      "wires": [
+        [
+          "dc88fe07cfda2ae6"
+        ]
+      ]
+    },
+    {
+      "id": "e57b7d5758a55de9",
+      "type": "good-object-detection",
+      "z": "db0357a026e3fe9d",
+      "name": "",
+      "returnValue": "0",
+      "model": "yolov8n",
+      "threshold": "0.3",
+      "absolutePathDir": "",
+      "x": 1110,
+      "y": 140,
+      "wires": [
+        [
+          "dc88fe07cfda2ae6"
+        ]
+      ]
+    },
+    {
+      "id": "d84bc85ca0a98635",
+      "type": "good-object-detection",
+      "z": "db0357a026e3fe9d",
+      "name": "",
+      "returnValue": "0",
+      "model": "yolov8n",
+      "threshold": "0.4",
+      "absolutePathDir": "",
+      "x": 1110,
+      "y": 180,
+      "wires": [
+        [
+          "dc88fe07cfda2ae6"
+        ]
+      ]
+    },
+    {
+      "id": "62d4683b1fc2cc06",
+      "type": "good-object-detection",
+      "z": "db0357a026e3fe9d",
+      "name": "",
+      "returnValue": "0",
+      "model": "yolov8n",
+      "threshold": "0.5",
+      "absolutePathDir": "",
+      "x": 1110,
+      "y": 220,
+      "wires": [
+        [
+          "dc88fe07cfda2ae6"
+        ]
+      ]
+    },
+    {
+      "id": "ca3f1644744d9130",
+      "type": "good-object-detection",
+      "z": "db0357a026e3fe9d",
+      "name": "",
+      "returnValue": "0",
+      "model": "yolov8n",
+      "threshold": "0.6",
+      "absolutePathDir": "",
+      "x": 1110,
+      "y": 260,
+      "wires": [
+        [
+          "dc88fe07cfda2ae6"
+        ]
+      ]
+    },
+    {
+      "id": "8f236a0ce7736a67",
+      "type": "good-object-detection",
+      "z": "db0357a026e3fe9d",
+      "name": "",
+      "returnValue": "0",
+      "model": "yolov8n",
+      "threshold": "0.7",
+      "absolutePathDir": "",
+      "x": 1110,
+      "y": 300,
+      "wires": [
+        [
+          "dc88fe07cfda2ae6"
+        ]
+      ]
+    },
+    {
+      "id": "161e7e63771837c3",
+      "type": "good-object-detection",
+      "z": "db0357a026e3fe9d",
+      "name": "",
+      "returnValue": "0",
+      "model": "yolov8n",
+      "threshold": "0.8",
+      "absolutePathDir": "",
+      "x": 1110,
+      "y": 340,
+      "wires": [
+        [
+          "dc88fe07cfda2ae6"
+        ]
+      ]
+    },
+    {
+      "id": "a79b1d0e0933bbcd",
+      "type": "good-object-detection",
+      "z": "db0357a026e3fe9d",
+      "name": "",
+      "returnValue": "0",
+      "model": "yolov8n",
+      "threshold": "0.9",
+      "absolutePathDir": "",
+      "x": 1110,
+      "y": 380,
+      "wires": [
+        [
+          "dc88fe07cfda2ae6"
+        ]
+      ]
+    },
+    {
+      "id": "b7bfdb04c96a8c7e",
+      "type": "good-object-detection",
+      "z": "db0357a026e3fe9d",
+      "name": "",
+      "returnValue": "0",
+      "model": "yolov8s",
+      "threshold": "0.2",
+      "absolutePathDir": "",
+      "x": 1110,
+      "y": 500,
+      "wires": [
+        [
+          "dc88fe07cfda2ae6"
+        ]
+      ]
+    },
+    {
+      "id": "7179f7629c37b417",
+      "type": "good-object-detection",
+      "z": "db0357a026e3fe9d",
+      "name": "",
+      "returnValue": "0",
+      "model": "yolov8s",
+      "threshold": "0.3",
+      "absolutePathDir": "",
+      "x": 1110,
+      "y": 540,
+      "wires": [
+        [
+          "dc88fe07cfda2ae6"
+        ]
+      ]
+    },
+    {
+      "id": "b1ef1e51b44e0b4d",
+      "type": "good-object-detection",
+      "z": "db0357a026e3fe9d",
+      "name": "",
+      "returnValue": "0",
+      "model": "yolov8s",
+      "threshold": "0.4",
+      "absolutePathDir": "",
+      "x": 1110,
+      "y": 580,
+      "wires": [
+        [
+          "dc88fe07cfda2ae6"
+        ]
+      ]
+    },
+    {
+      "id": "60e60dc505d059f2",
+      "type": "good-object-detection",
+      "z": "db0357a026e3fe9d",
+      "name": "",
+      "returnValue": "0",
+      "model": "yolov8s",
+      "threshold": "0.5",
+      "absolutePathDir": "",
+      "x": 1110,
+      "y": 620,
+      "wires": [
+        [
+          "dc88fe07cfda2ae6"
+        ]
+      ]
+    },
+    {
+      "id": "7e800305f9499c3d",
+      "type": "good-object-detection",
+      "z": "db0357a026e3fe9d",
+      "name": "",
+      "returnValue": "0",
+      "model": "yolov8s",
+      "threshold": "0.6",
+      "absolutePathDir": "",
+      "x": 1110,
+      "y": 660,
+      "wires": [
+        [
+          "dc88fe07cfda2ae6"
+        ]
+      ]
+    },
+    {
+      "id": "1cac76d5a83ba664",
+      "type": "good-object-detection",
+      "z": "db0357a026e3fe9d",
+      "name": "",
+      "returnValue": "0",
+      "model": "yolov8s",
+      "threshold": "0.7",
+      "absolutePathDir": "",
+      "x": 1110,
+      "y": 700,
+      "wires": [
+        [
+          "dc88fe07cfda2ae6"
+        ]
+      ]
+    },
+    {
+      "id": "7baf00e00fb3d165",
+      "type": "good-object-detection",
+      "z": "db0357a026e3fe9d",
+      "name": "",
+      "returnValue": "0",
+      "model": "yolov8s",
+      "threshold": "0.8",
+      "absolutePathDir": "",
+      "x": 1110,
+      "y": 740,
+      "wires": [
+        [
+          "dc88fe07cfda2ae6"
+        ]
+      ]
+    },
+    {
+      "id": "5e6cdd3fbf116072",
+      "type": "good-object-detection",
+      "z": "db0357a026e3fe9d",
+      "name": "",
+      "returnValue": "0",
+      "model": "yolov8s",
+      "threshold": "0.9",
+      "absolutePathDir": "",
+      "x": 1110,
+      "y": 780,
+      "wires": [
+        [
+          "dc88fe07cfda2ae6"
+        ]
+      ]
+    },
+    {
+      "id": "9e17c4c34c7b5c44",
+      "type": "good-object-detection",
+      "z": "db0357a026e3fe9d",
+      "name": "",
+      "returnValue": "0",
+      "model": "yolov8m",
+      "threshold": "0.2",
+      "absolutePathDir": "",
+      "x": 1110,
+      "y": 900,
+      "wires": [
+        [
+          "dc88fe07cfda2ae6"
+        ]
+      ]
+    },
+    {
+      "id": "7539db75ab464661",
+      "type": "good-object-detection",
+      "z": "db0357a026e3fe9d",
+      "name": "",
+      "returnValue": "0",
+      "model": "yolov8m",
+      "threshold": "0.3",
+      "absolutePathDir": "",
+      "x": 1110,
+      "y": 940,
+      "wires": [
+        [
+          "dc88fe07cfda2ae6"
+        ]
+      ]
+    },
+    {
+      "id": "4d480d861e612286",
+      "type": "good-object-detection",
+      "z": "db0357a026e3fe9d",
+      "name": "",
+      "returnValue": "0",
+      "model": "yolov8m",
+      "threshold": "0.4",
+      "absolutePathDir": "",
+      "x": 1110,
+      "y": 980,
+      "wires": [
+        [
+          "dc88fe07cfda2ae6"
+        ]
+      ]
+    },
+    {
+      "id": "17a7a5cd00355553",
+      "type": "good-object-detection",
+      "z": "db0357a026e3fe9d",
+      "name": "",
+      "returnValue": "0",
+      "model": "yolov8m",
+      "threshold": "0.5",
+      "absolutePathDir": "",
+      "x": 1110,
+      "y": 1020,
+      "wires": [
+        [
+          "dc88fe07cfda2ae6"
+        ]
+      ]
+    },
+    {
+      "id": "acb8b71da47fa23a",
+      "type": "good-object-detection",
+      "z": "db0357a026e3fe9d",
+      "name": "",
+      "returnValue": "0",
+      "model": "yolov8m",
+      "threshold": "0.6",
+      "absolutePathDir": "",
+      "x": 1110,
+      "y": 1060,
+      "wires": [
+        [
+          "dc88fe07cfda2ae6"
+        ]
+      ]
+    },
+    {
+      "id": "c6e89ed70aa495f0",
+      "type": "good-object-detection",
+      "z": "db0357a026e3fe9d",
+      "name": "",
+      "returnValue": "0",
+      "model": "yolov8m",
+      "threshold": "0.7",
+      "absolutePathDir": "",
+      "x": 1110,
+      "y": 1100,
+      "wires": [
+        [
+          "dc88fe07cfda2ae6"
+        ]
+      ]
+    },
+    {
+      "id": "c95290edc8b467c0",
+      "type": "good-object-detection",
+      "z": "db0357a026e3fe9d",
+      "name": "",
+      "returnValue": "0",
+      "model": "yolov8m",
+      "threshold": "0.8",
+      "absolutePathDir": "",
+      "x": 1110,
+      "y": 1140,
+      "wires": [
+        [
+          "dc88fe07cfda2ae6"
+        ]
+      ]
+    },
+    {
+      "id": "58e13e024d448eaa",
+      "type": "good-object-detection",
+      "z": "db0357a026e3fe9d",
+      "name": "",
+      "returnValue": "0",
+      "model": "yolov8m",
+      "threshold": "0.9",
+      "absolutePathDir": "",
+      "x": 1110,
+      "y": 1180,
+      "wires": [
+        [
+          "dc88fe07cfda2ae6"
+        ]
+      ]
+    },
+    {
+      "id": "6263a3b406ed611a",
+      "type": "switch",
+      "z": "db0357a026e3fe9d",
+      "name": "confidence",
+      "property": "confidence",
+      "propertyType": "env",
+      "rules": [
+        {
+          "t": "eq",
+          "v": "10%",
+          "vt": "str"
+        },
+        {
+          "t": "eq",
+          "v": "20%",
+          "vt": "str"
+        },
+        {
+          "t": "eq",
+          "v": "30%",
+          "vt": "str"
+        },
+        {
+          "t": "eq",
+          "v": "40%",
+          "vt": "str"
+        },
+        {
+          "t": "eq",
+          "v": "50%",
+          "vt": "str"
+        },
+        {
+          "t": "eq",
+          "v": "60%",
+          "vt": "str"
+        },
+        {
+          "t": "eq",
+          "v": "70%",
+          "vt": "str"
+        },
+        {
+          "t": "eq",
+          "v": "80%",
+          "vt": "str"
+        },
+        {
+          "t": "eq",
+          "v": "90%",
+          "vt": "str"
+        }
+      ],
+      "checkall": "true",
+      "repair": false,
+      "outputs": 9,
+      "x": 870,
+      "y": 220,
+      "wires": [
+        [
+          "4cc9810beb057ce1"
+        ],
+        [
+          "1bdb545ad0c231d1"
+        ],
+        [
+          "e57b7d5758a55de9"
+        ],
+        [
+          "d84bc85ca0a98635"
+        ],
+        [
+          "62d4683b1fc2cc06"
+        ],
+        [
+          "ca3f1644744d9130"
+        ],
+        [
+          "8f236a0ce7736a67"
+        ],
+        [
+          "161e7e63771837c3"
+        ],
+        [
+          "a79b1d0e0933bbcd"
+        ]
+      ]
+    },
+    {
+      "id": "c24362c677babd77",
+      "type": "switch",
+      "z": "db0357a026e3fe9d",
+      "name": "confidence",
+      "property": "confidence",
+      "propertyType": "env",
+      "rules": [
+        {
+          "t": "eq",
+          "v": "10%",
+          "vt": "str"
+        },
+        {
+          "t": "eq",
+          "v": "20%",
+          "vt": "str"
+        },
+        {
+          "t": "eq",
+          "v": "30%",
+          "vt": "str"
+        },
+        {
+          "t": "eq",
+          "v": "40%",
+          "vt": "str"
+        },
+        {
+          "t": "eq",
+          "v": "50%",
+          "vt": "str"
+        },
+        {
+          "t": "eq",
+          "v": "60%",
+          "vt": "str"
+        },
+        {
+          "t": "eq",
+          "v": "70%",
+          "vt": "str"
+        },
+        {
+          "t": "eq",
+          "v": "80%",
+          "vt": "str"
+        },
+        {
+          "t": "eq",
+          "v": "90%",
+          "vt": "str"
+        }
+      ],
+      "checkall": "true",
+      "repair": false,
+      "outputs": 9,
+      "x": 870,
+      "y": 620,
+      "wires": [
+        [
+          "924b7001efd94ca5"
+        ],
+        [
+          "b7bfdb04c96a8c7e"
+        ],
+        [
+          "7179f7629c37b417"
+        ],
+        [
+          "b1ef1e51b44e0b4d"
+        ],
+        [
+          "60e60dc505d059f2"
+        ],
+        [
+          "7e800305f9499c3d"
+        ],
+        [
+          "1cac76d5a83ba664"
+        ],
+        [
+          "7baf00e00fb3d165"
+        ],
+        [
+          "5e6cdd3fbf116072"
+        ]
+      ]
+    },
+    {
+      "id": "bef8f3fe1877249a",
+      "type": "switch",
+      "z": "db0357a026e3fe9d",
+      "name": "confidence",
+      "property": "confidence",
+      "propertyType": "env",
+      "rules": [
+        {
+          "t": "eq",
+          "v": "10%",
+          "vt": "str"
+        },
+        {
+          "t": "eq",
+          "v": "20%",
+          "vt": "str"
+        },
+        {
+          "t": "eq",
+          "v": "30%",
+          "vt": "str"
+        },
+        {
+          "t": "eq",
+          "v": "40%",
+          "vt": "str"
+        },
+        {
+          "t": "eq",
+          "v": "50%",
+          "vt": "str"
+        },
+        {
+          "t": "eq",
+          "v": "60%",
+          "vt": "str"
+        },
+        {
+          "t": "eq",
+          "v": "70%",
+          "vt": "str"
+        },
+        {
+          "t": "eq",
+          "v": "80%",
+          "vt": "str"
+        },
+        {
+          "t": "eq",
+          "v": "90%",
+          "vt": "str"
+        }
+      ],
+      "checkall": "true",
+      "repair": false,
+      "outputs": 9,
+      "x": 870,
+      "y": 1020,
+      "wires": [
+        [
+          "8b26f5ebb300a09e"
+        ],
+        [
+          "9e17c4c34c7b5c44"
+        ],
+        [
+          "7539db75ab464661"
+        ],
+        [
+          "4d480d861e612286"
+        ],
+        [
+          "17a7a5cd00355553"
+        ],
+        [
+          "acb8b71da47fa23a"
+        ],
+        [
+          "c6e89ed70aa495f0"
+        ],
+        [
+          "c95290edc8b467c0"
+        ],
+        [
+          "58e13e024d448eaa"
+        ]
+      ]
+    },
+    {
+      "id": "dc88fe07cfda2ae6",
+      "type": "function",
+      "z": "db0357a026e3fe9d",
+      "name": "all-in-one",
+      "func": "\nreturn msg;",
+      "outputs": 1,
+      "timeout": 0,
+      "noerr": 0,
+      "initialize": "",
+      "finalize": "",
+      "libs": [],
+      "x": 1420,
+      "y": 620,
+      "wires": [
+        [
+          "8ca81b01323d0223"
+        ]
+      ]
+    },
+    {
+      "id": "0f4d7859be6d8074",
+      "type": "change",
+      "z": "db0357a026e3fe9d",
+      "g": "e5814d054eae8048",
+      "name": "unblock",
+      "rules": [
+        {
+          "t": "set",
+          "p": "object_detection_is_block",
+          "pt": "flow",
+          "to": "false",
+          "tot": "bool"
+        }
+      ],
+      "action": "",
+      "property": "",
+      "from": "",
+      "to": "",
+      "reg": false,
+      "x": 2400,
+      "y": 780,
+      "wires": [
+        []
+      ]
+    },
+    {
+      "id": "cd1b3a88fe1625f4",
+      "type": "change",
+      "z": "db0357a026e3fe9d",
+      "name": "block",
+      "rules": [
+        {
+          "t": "set",
+          "p": "object_detection_is_block",
+          "pt": "flow",
+          "to": "true",
+          "tot": "bool"
+        }
+      ],
+      "action": "",
+      "property": "",
+      "from": "",
+      "to": "",
+      "reg": false,
+      "x": 590,
+      "y": 700,
+      "wires": [
+        []
+      ]
+    },
+    {
+      "id": "3f6aeb65d3e2c942",
+      "type": "switch",
+      "z": "db0357a026e3fe9d",
+      "name": "not block",
+      "property": "object_detection_is_block",
+      "propertyType": "flow",
+      "rules": [
+        {
+          "t": "false"
+        }
+      ],
+      "checkall": "true",
+      "repair": false,
+      "outputs": 1,
+      "x": 200,
+      "y": 660,
+      "wires": [
+        [
+          "8a351d2fe6cf41a6"
+        ]
+      ]
+    },
+    {
+      "id": "09f9f99a2de46ed5",
+      "type": "delay",
+      "z": "db0357a026e3fe9d",
+      "g": "e5814d054eae8048",
+      "name": "",
+      "pauseType": "delay",
+      "timeout": "1",
+      "timeoutUnits": "seconds",
+      "rate": "1",
+      "nbRateUnits": "1",
+      "rateUnits": "second",
+      "randomFirst": "1",
+      "randomLast": "5",
+      "randomUnits": "seconds",
+      "drop": false,
+      "allowrate": false,
+      "outputs": 1,
+      "x": 2220,
+      "y": 740,
+      "wires": [
+        [
+          "0f4d7859be6d8074"
+        ]
+      ]
+    },
+    {
+      "id": "6599187ffa3f22a7",
+      "type": "inject",
+      "z": "db0357a026e3fe9d",
+      "name": "",
+      "props": [],
+      "repeat": "",
+      "crontab": "",
+      "once": true,
+      "onceDelay": "0",
+      "topic": "",
+      "x": 130,
+      "y": 540,
+      "wires": [
+        [
+          "943b12013f8cb826"
+        ]
+      ]
+    },
+    {
+      "id": "943b12013f8cb826",
+      "type": "change",
+      "z": "db0357a026e3fe9d",
+      "name": "unblock",
+      "rules": [
+        {
+          "t": "set",
+          "p": "object_detection_is_block",
+          "pt": "flow",
+          "to": "false",
+          "tot": "bool"
+        }
+      ],
+      "action": "",
+      "property": "",
+      "from": "",
+      "to": "",
+      "reg": false,
+      "x": 300,
+      "y": 540,
+      "wires": [
+        []
+      ]
+    },
+    {
+      "id": "8a351d2fe6cf41a6",
+      "type": "function",
+      "z": "db0357a026e3fe9d",
+      "name": "if base64, convert to buffer",
+      "func": "if (typeof msg.payload === 'string' && msg.payload.length % 4 === 0 && /^[A-Za-z0-9+/]+[=]{0,2}$/.test(msg.payload)) {\n    try {\n        msg.payload = Buffer.from(msg.payload, 'base64');\n    } catch (e) {\n        return msg;\n    }\n}\n\nreturn msg;",
+      "outputs": 1,
+      "timeout": 0,
+      "noerr": 0,
+      "initialize": "",
+      "finalize": "",
+      "libs": [],
+      "x": 400,
+      "y": 660,
+      "wires": [
+        [
+          "fd67ba63b7633538",
+          "cd1b3a88fe1625f4"
+        ]
+      ]
+    },
+    {
+      "id": "112bd9434fbbd5f1",
+      "type": "status",
+      "z": "db0357a026e3fe9d",
+      "name": "",
+      "scope": null,
+      "x": 1970,
+      "y": 1320,
+      "wires": [
+        []
+      ]
+    },
+    {
+      "id": "8df1bae56c96b08c",
+      "type": "function",
+      "z": "db0357a026e3fe9d",
+      "name": "Change the format to a uniform format",
+      "func": "const originResult = msg.payload.detections;\n\nconst handledResult = originResult.map(item => [\n  Math.round(item.x),\n  Math.round(item.y),\n  Math.round(item.w),\n  Math.round(item.h),\n  Math.round(item.prob * 100),\n  0\n]);\n\nreturn {\n    payload: handledResult\n}",
+      "outputs": 1,
+      "timeout": 0,
+      "noerr": 0,
+      "initialize": "",
+      "finalize": "",
+      "libs": [],
+      "x": 1890,
+      "y": 920,
+      "wires": [
+        [
+          "781f8497148592e9"
+        ]
+      ]
+    },
+    {
+      "id": "678f2517e5e8f360",
+      "type": "delay",
+      "z": "db0357a026e3fe9d",
+      "g": "e5814d054eae8048",
+      "name": "",
+      "pauseType": "delay",
+      "timeout": "2",
+      "timeoutUnits": "seconds",
+      "rate": "1",
+      "nbRateUnits": "1",
+      "rateUnits": "second",
+      "randomFirst": "1",
+      "randomLast": "5",
+      "randomUnits": "seconds",
+      "drop": false,
+      "allowrate": false,
+      "outputs": 1,
+      "x": 2220,
+      "y": 780,
+      "wires": [
+        [
+          "0f4d7859be6d8074"
+        ]
+      ]
+    },
+    {
+      "id": "b543a5489b7db3b9",
+      "type": "delay",
+      "z": "db0357a026e3fe9d",
+      "g": "e5814d054eae8048",
+      "name": "",
+      "pauseType": "delay",
+      "timeout": "5",
+      "timeoutUnits": "seconds",
+      "rate": "1",
+      "nbRateUnits": "1",
+      "rateUnits": "second",
+      "randomFirst": "1",
+      "randomLast": "5",
+      "randomUnits": "seconds",
+      "drop": false,
+      "allowrate": false,
+      "outputs": 1,
+      "x": 2220,
+      "y": 820,
+      "wires": [
+        [
+          "0f4d7859be6d8074"
+        ]
+      ]
+    },
+    {
+      "id": "6842503887995176",
+      "type": "switch",
+      "z": "db0357a026e3fe9d",
+      "g": "e5814d054eae8048",
+      "name": "depend on accuracy",
+      "property": "accuracy",
+      "propertyType": "env",
+      "rules": [
+        {
+          "t": "eq",
+          "v": "low",
+          "vt": "str"
+        },
+        {
+          "t": "eq",
+          "v": "medium",
+          "vt": "str"
+        },
+        {
+          "t": "eq",
+          "v": "high",
+          "vt": "str"
+        }
+      ],
+      "checkall": "true",
+      "repair": false,
+      "outputs": 3,
+      "x": 2020,
+      "y": 780,
+      "wires": [
+        [
+          "09f9f99a2de46ed5"
+        ],
+        [
+          "678f2517e5e8f360"
+        ],
+        [
+          "b543a5489b7db3b9"
+        ]
+      ]
+    },
+    {
+      "id": "781f8497148592e9",
+      "type": "function",
+      "z": "db0357a026e3fe9d",
+      "name": "Check if the target is detected",
+      "func": "if (Array.isArray(msg.payload)) {\n    var length = msg.payload.length;\n    if (length > 1) {\n        msg.payload = 1;\n    } else if (length === 0) {\n        msg.payload = 0;\n    } else {\n        msg.payload = 1;\n    }\n} else {\n    msg.payload = 0;\n}\nreturn msg;",
+      "outputs": 1,
+      "timeout": 0,
+      "noerr": 0,
+      "initialize": "",
+      "finalize": "",
+      "libs": [],
+      "x": 1630,
+      "y": 1040,
+      "wires": [
+        [
+          "f1a60136981a081e"
+        ]
+      ]
+    },
+    {
+      "id": "f1a60136981a081e",
+      "type": "switch",
+      "z": "db0357a026e3fe9d",
+      "name": "yes or no",
+      "property": "payload",
+      "propertyType": "msg",
+      "rules": [
+        {
+          "t": "eq",
+          "v": "1",
+          "vt": "str"
+        },
+        {
+          "t": "eq",
+          "v": "0",
+          "vt": "str"
+        }
+      ],
+      "checkall": "true",
+      "repair": false,
+      "outputs": 2,
+      "x": 1860,
+      "y": 1040,
+      "wires": [
+        [
+          "203628dce3e52008"
+        ],
+        [
+          "5281469c32ebaa36"
+        ]
+      ]
+    },
+    {
+      "id": "203628dce3e52008",
+      "type": "switch",
+      "z": "db0357a026e3fe9d",
+      "name": "",
+      "property": "triggerMode",
+      "propertyType": "env",
+      "rules": [
+        {
+          "t": "eq",
+          "v": "yes",
+          "vt": "str"
+        }
+      ],
+      "checkall": "true",
+      "repair": false,
+      "outputs": 1,
+      "x": 1990,
+      "y": 1000,
+      "wires": [
+        [
+          "7b1d5ceaabf82e41"
+        ]
+      ]
+    },
+    {
+      "id": "5281469c32ebaa36",
+      "type": "switch",
+      "z": "db0357a026e3fe9d",
+      "name": "",
+      "property": "triggerMode",
+      "propertyType": "env",
+      "rules": [
+        {
+          "t": "eq",
+          "v": "no",
+          "vt": "str"
+        }
+      ],
+      "checkall": "true",
+      "repair": false,
+      "outputs": 1,
+      "x": 1990,
+      "y": 1080,
+      "wires": [
+        [
+          "a1aa1633b40cbc7f"
+        ]
+      ]
+    },
+    {
+      "id": "7b1d5ceaabf82e41",
+      "type": "function",
+      "z": "db0357a026e3fe9d",
+      "name": "true",
+      "func": "return {\n    payload: true\n};",
+      "outputs": 1,
+      "timeout": 0,
+      "noerr": 0,
+      "initialize": "",
+      "finalize": "",
+      "libs": [],
+      "x": 2130,
+      "y": 1000,
+      "wires": [
+        []
+      ]
+    },
+    {
+      "id": "a1aa1633b40cbc7f",
+      "type": "function",
+      "z": "db0357a026e3fe9d",
+      "name": "false",
+      "func": "return {\n    payload: true\n};",
+      "outputs": 1,
+      "timeout": 0,
+      "noerr": 0,
+      "initialize": "",
+      "finalize": "",
+      "libs": [],
+      "x": 2130,
+      "y": 1080,
+      "wires": [
+        []
+      ]
+    }
+  ]

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Node-RED Flow Converter</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        h1 {
+            text-align: center;
+            margin: 10px 0;
+        }
+
+        .container {
+            display: flex;
+            flex: 1;
+            height: 100%;
+        }
+
+        .panel {
+            width: 50%;
+            padding: 10px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+        }
+
+        textarea {
+            flex: 1;
+            resize: none;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        button {
+            margin: 5px 0;
+        }
+
+        .stats {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Node-RED Flow Converter</h1>
+    <div class="container">
+        <div class="panel">
+            <textarea id="inputFlow" placeholder="Paste your Node-RED flow here..."></textarea>
+            <button onclick="convertFlow()">Convert Flow</button>
+            <button onclick="clearAll()">Clear All</button>
+        </div>
+        <div class="panel">
+            <textarea id="outputFlow" readonly placeholder="Converted flow will appear here..."></textarea>
+            <div id="stats" class="stats"></div>
+        </div>
+    </div>
+
+    <script>
+    function convertFlow() {
+        // Get the input flow from the textarea
+        let inputFlow = document.getElementById('inputFlow').value;
+        try {
+            // Parse the input flow into a JSON object
+            let flowArray = JSON.parse(inputFlow);
+            
+            // Identify all subflow definition nodes
+            let subflowIds = flowArray
+                .filter(node => node.type === 'subflow')
+                .map(subflow => subflow.id);
+
+            // Initial node count before filtering
+            let initialNodeCount = flowArray.length;
+
+            // Filter out subflow definition nodes and their internal nodes
+            let filteredFlow = flowArray.filter(node => {
+                if (subflowIds.includes(node.z) || subflowIds.includes(node.id)) {
+                    return false;
+                }
+                return true;
+            });
+
+            // Final node count after filtering
+            let finalNodeCount = filteredFlow.length;
+
+            // Count the number of each node type
+            let nodeTypeCounts = {};
+            filteredFlow.forEach(node => {
+                if (nodeTypeCounts[node.type]) {
+                    nodeTypeCounts[node.type]++;
+                } else {
+                    nodeTypeCounts[node.type] = 1;
+                }
+            });
+
+            // Display statistics about the flow
+            document.getElementById('stats').innerHTML = `
+                <p>Initial Node Count: ${initialNodeCount}</p>
+                <p>Nodes Deleted: ${initialNodeCount - finalNodeCount}</p>
+                <p>Final Node Count: ${finalNodeCount}</p>
+                <p>Node Types and Counts:</p>
+                <ul>
+                    ${Object.entries(nodeTypeCounts).map(([type, count]) => `<li>${type}: ${count}</li>`).join('')}
+                </ul>
+            `;
+
+            // Convert the filtered flow back to a JSON string
+            let outputFlow = JSON.stringify(filteredFlow, null, 4);
+            
+            // Display the converted flow in the output textarea
+            document.getElementById('outputFlow').value = outputFlow;
+        } catch (e) {
+            // Handle errors such as invalid JSON format
+            alert("Invalid JSON format. Please check your input.");
+        }
+    }
+
+    function clearAll() {
+        // Clear the input flow textarea
+        document.getElementById('inputFlow').value = '';
+        
+        // Clear the output flow textarea
+        document.getElementById('outputFlow').value = '';
+        
+        // Clear the statistics display
+        document.getElementById('stats').innerHTML = '';
+    }
+    </script>
+</body>
+</html>
