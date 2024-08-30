@@ -1,19 +1,21 @@
-清理未使用镜像
+Clean Up Unused Images:
+
 ```
 #!/bin/bash
 
 docker image prune -a
 ```
 
-推送所有镜像
+Push All Images:
+
 ```
 #!/bin/bash
 
-# 获取所有以 sensecraft 开头的镜像
+# Get all images starting with 'sensecraft'
 images=$(docker images --format "{{.Repository}}:{{.Tag}}" | grep '^sensecraft')
 
 for image in $images; do
-    # 推送到目标仓库
+    # Push to target repository
     docker push $image
 
     echo "Pushed $image"

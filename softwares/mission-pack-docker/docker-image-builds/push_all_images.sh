@@ -1,18 +1,18 @@
 #!/bin/bash
 
-# 获取所有以 sensecraft 开头的镜像
+# Get all images that start with "sensecraft"
 images=$(docker images --format "{{.Repository}}:{{.Tag}}" | grep '^sensecraft')
 
 for image in $images; do
-    # 推送到目标仓库
+    # Push the image to the target repository
     docker push $image
     echo "Pushed $image"
 
-    # 获取镜像的仓库名和原来的标签
+    # Extract the repository name and the original tag
     repo=$(echo $image | cut -d':' -f1)
     tag=$(echo $image | cut -d':' -f2)
 
-    # 重新打上原来的标签并推送
+    # Push the image with the original tag again
     docker push $repo:$tag
-    echo "pushed $repo:$tag"
+    echo "Pushed $repo:$tag"
 done

@@ -1,9 +1,9 @@
 FROM nodered/node-red:4.0.2-debian
 
-# 切换到 root 用户以安装系统依赖
+# Switch to root user to install system dependencies
 USER root
 
-# 更新包列表并安装必要的系统依赖
+# Update package lists and install necessary system dependencies
 RUN apt-get update && apt-get install -y \
     build-essential \
     libcairo2-dev \
@@ -16,14 +16,14 @@ RUN apt-get update && apt-get install -y \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-# 确保 Node-RED 目录的权限正确
+# Ensure the correct permissions for the Node-RED directory
 RUN chown -R node-red:node-red /data
 
-# 切换回 node-red 用户
+# Switch back to node-red user
 USER node-red
 
-# 暴露端口
+# Expose port
 EXPOSE 1880
 
-# 启动 Node-RED
+# Start Node-RED
 CMD ["npm", "start", "--", "--userDir", "/data"]
