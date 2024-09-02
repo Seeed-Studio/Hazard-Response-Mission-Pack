@@ -12,9 +12,15 @@ This initiative is not a market-ready product but rather a collaborative effort 
 
 ### Documentation Overview
 
-1. **[Jumpstart Guide](./docs/jumpstart-usage/README.md)** - Get started quickly with a hands-on introduction to the Mission Pack's features and capabilities.
-2. **[Integrator Handbook](./docs/integrator-handbook/README.md)** - A comprehensive guide for integrators, providing detailed instructions on how to customize and deploy the Mission Pack effectively.
-3. **[Example Applications](./node-red-flows/README.md)** - Explore practical examples and Node-RED flows to see how the Mission Pack can be used in real-world scenarios.
+#### 1. ⭐️ **[Jumpstart Guide](./docs/jumpstart-usage/README.md)**
+Get started quickly with a hands-on introduction to the Mission Pack's features and capabilities.
+
+
+#### 2. ⭐️ **[Integrator Handbook](./docs/integrator-handbook/README.md)**
+A comprehensive guide for integrators, providing detailed instructions on how to customize and deploy the Mission Pack effectively.
+
+#### 3. ⭐️ **[Example Applications](./node-red-flows/README.md)** 
+Explore practical examples and Node-RED flows to see how the Mission Pack can be used in real-world scenarios.
 
 ### Contributions and Working Groups
 
