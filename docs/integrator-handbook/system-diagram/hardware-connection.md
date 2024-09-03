@@ -1,10 +1,23 @@
-# Hardware Connection
+<!-- TOC -->
+
+- [Hardware Connection](#hardware-connection)
+    - [Unpack and Inspect All Components](#unpack-and-inspect-all-components)
+    - [Set Up LoRaWAN Nodes](#set-up-lorawan-nodes)
+    - [Set Up Meshtastic Nodes](#set-up-meshtastic-nodes)
+    - [Set Up Vision Module](#set-up-vision-module)
+    - [Assemble Basecamp](#assemble-basecamp)
+- [Conclusion](#conclusion)
+- [Troubleshooting](#troubleshooting)
+
+<!-- /TOC -->
+
+## Hardware Connection
 
 In this section, you'll get through the process of physically setting up the hardware components of the **Hazard Response Mission Pack**. Follow these steps to ensure all devices are properly connected and ready for operation.
 
-![system diagram](https://raw.githubusercontent.com/Seeed-Studio/Hazard-Response-Mission-Pack/v0.2/img/v2-system-diagram.png)
+![system diagram](/assets/img/v2-system-diagram.png)
 
-## Unpack and Inspect All Components
+### Unpack and Inspect All Components
 
 Start by carefully unpacking all components of the **Mission Pack**. Verify that you have all the necessary devices and accessories:
 
@@ -19,7 +32,7 @@ Start by carefully unpacking all components of the **Mission Pack**. Verify that
 - Flashlight - the alerting signal
 - HDMI 10" screen - the display interface for R1000
 
-## Set Up LoRaWAN Nodes
+### Set Up LoRaWAN Nodes
 
 This device enables long-range communication for your system:
 
@@ -27,7 +40,7 @@ This device enables long-range communication for your system:
 - **Power Supply**: Connect the LoRaWAN communicator to a power source using the appropriate adapter.
 - **Interface with the ReComputer**: Use a USB or serial cable to connect the LoRaWAN communicator to the R1000 ReComputer for data transmission.
 
-## Set Up Meshtastic Nodes
+### Set Up Meshtastic Nodes
 
 In **Mission Pack V0.2**, the Meshtastic nodes are powered by the [**Tracker T1000-E for Meshtastic**](https://www.seeedstudio.com/SenseCAP-Card-Tracker-T1000-E-for-Meshtastic-p-5913.html). This versatile device can sense temperature, light, accelerometer data, and GPS signals, making it ideal for various tracking and monitoring applications.
 
@@ -35,7 +48,7 @@ To get started with the **T1000-E Tracker**, you need to ensure it is fully char
 
 Next step: [Configure Meshtastic network](./software-setup.md#meshtastic)
 
-## Set Up Vision Module
+### Set Up Vision Module
 
 To set up the **Grove Vision AI Module V2**, you'll need to gather the following components:
 
@@ -45,13 +58,13 @@ To set up the **Grove Vision AI Module V2**, you'll need to gather the following
 
 ![Vision V2 Module](https://files.seeedstudio.com/wiki/grove-vision-ai-v2/00.jpg)
 
-### Step 1: Connect the Camera to the CSI Interface
+#### Step 1: Connect the Camera to the CSI Interface
 
 To start, connect the **OV5647 Camera Module** to the **Grove Vision AI Module V2** via the CSI interface. This connection allows the camera to feed visual data directly to the AI module for processing.
 
 ![Vision V2 connect with camera](https://files.seeedstudio.com/wiki/grove-vision-ai-v2/9.gif)
 
-### Step 2: Connect the Vision Module to XIAO ESP32C3
+#### Step 2: Connect the Vision Module to XIAO ESP32C3
 
 Next, connect the **Grove Vision AI Module V2** to the **XIAO ESP32C3** microcontroller. Follow the instructions in the GIF below carefully, ensuring the correct orientation and secure connections to avoid damage to the pins and ports.
 
@@ -61,15 +74,15 @@ This AI-powered setup monitors critical areas for potential hazards effectively,
 
 For more detailed instructions and troubleshooting, refer to the [Grove Vision V2 with Seeed Studio XIAO guide](https://wiki.seeedstudio.com/grove_vision_ai_v2_software_support/#-getting-started-with-seeed-studio-xiao-).
 
-## Assemble Basecamp
+### Assemble Basecamp
 
 The **Basecamp** assembly involves preparing the R1000 ReComputer as the central hub of your system. Follow these steps to properly assemble and connect all necessary hardware components.
 
-### Assemble R1000 ReComputer
+#### Assemble R1000 ReComputer
 
 The **R1000 ReComputer** serves as the core of your system, managing edge computing tasks and integrating various components. For detailed assembly instructions, refer to the [reComputer R1000 Assembly Guide](https://wiki.seeedstudio.com/recomputer_r1000_assembly_guide/).
 
-#### Step 1.1: Install the LoRaWAN Gateway Chip
+##### Step 1.1: Install the LoRaWAN Gateway Chip
 
 > [!Note] 
 > You can skip this step if your R1000 ReComputer is equipped with the LoRaWAN Gateway chip ([Wio-WM1302 LoRaWAN Gateway](https://www.seeedstudio.com/WM1302-LoRaWAN-Gateway-Module-SPI-EU868-p-4889.html)).
@@ -78,7 +91,7 @@ Insert the **WM1302 module** into the designated slot inside the R1000 ReCompute
 
 ![Assembly_Guide](https://files.seeedstudio.com/wiki/reComputer-R1000/Assembly_Guide/Wifi_and_ble.gif)
 
-#### Step 1.2: Connect the RS485/EIA-485 Device
+##### Step 1.2: Connect the RS485/EIA-485 Device
 
 For more details about the **RS485** configuration on the R1000, refer to the [RS485 Setup Guide](https://wiki.seeedstudio.com/reComputer_r1000_use_rs485_modbus_rtu/).
 
@@ -86,7 +99,7 @@ For more details about the **RS485** configuration on the R1000, refer to the [R
 > The power connection for the system is also configured during this step.
 
 
-#### Step 1.3: Connect the HDMI 10" Screen
+##### Step 1.3: Connect the HDMI 10" Screen
 
 The **HDMI 10" screen** provides real-time monitoring and allows you to interact with the system:
 
@@ -95,14 +108,14 @@ The **HDMI 10" screen** provides real-time monitoring and allows you to interact
 
 <!-- Insert relevant image showing the cable connection -->
 
-#### Step 1.4: Connect the Keyboard
+##### Step 1.4: Connect the Keyboard
 
 To set up the keyboard:
 
 1. Insert two AAA batteries to power the keyboard.
 2. Remove the USB receiver from the back of the keyboard and plug it into one of the remaining USB ports on the R1000 ReComputer.
 
-#### Step 1.5: Final Checks and Power Connection
+##### Step 1.5: Final Checks and Power Connection
 
 The power connection was established in **Step 1.2**. You can now proceed to power on the system.
 

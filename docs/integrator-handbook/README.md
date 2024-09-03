@@ -1,6 +1,6 @@
 # Integrator Handbook
 
-![basecamp interface](/img/basecamp-interface.png)
+![basecamp interface](/assets/img/basecamp-interface.png)
 
 The **Mission Pack** is a versatile toolkit designed for disaster response, allowing users to quickly and efficiently react to emergencies without relying on external power or network connections. Its low-power sensors and the plug-and-play support of the Basecamp ensure the system remains operational even in critical conditions.
 

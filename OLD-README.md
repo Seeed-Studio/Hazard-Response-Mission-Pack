@@ -4,13 +4,13 @@ Equipping You Today for a Safer Tomorrow
 
 ![header](https://www.seeedstudio.com/blog/wp-content/uploads/2024/08/9.png)
 
-![the pack](./img/case.jpg)
+![the pack](/assets/img/case.jpg)
 
 #### ~~Seeed is giving away 5 Kits for free! apply to be selected before the end of this first batch!~~ We are evaluating the proposals we received up to now. We'll get back to you soon!
 
-![the pack](./img/user-journey.PNG)
+![the pack](/assets/img/user-journey.PNG)
 
-![the pack](./img/kit-02.png)
+![the pack](/assets/img/kit-02.png)
 
 ### Description:
 
@@ -24,7 +24,7 @@ The goal of this research project is to provide a robust yet flexible system for
 
 ### Architecture:
 
-![image](./img/diagram-03.png)
+![image](/assets/img/diagram-03.png)
 
 
 ### Part list v 0.2
@@ -40,7 +40,7 @@ The  Hazard Response Mission Pack consists of five different cornerstones of ou
 
 This kit addresses small independent groups of individuals (or even one person team) willing to monitor and record natural events and bring them online, for community and scientific purposes, with the idea of learning to prevent big disasters and casualties.
 
-![image](./img/part-02.png)
+![image](/assets/img/part-02.png)
 
 | Number | Product Name                                                             | SKU       |
 | ------ | ------------------------------------------------------------------------ | --------- |
@@ -63,13 +63,13 @@ This kit addresses small independent groups of individuals (or even one person t
 
 ### Build Your Own Sensor with WIO Tracker -- WIO Tracker + GROVE Sensors
 
-![image](./img/wio-02.png)
+![image](/assets/img/wio-02.png)
 
-![image](./img/wio-03.png)
+![image](/assets/img/wio-03.png)
 
 ### Jump into the workd of Conputer Vision and Edge AI
 
-![image](./img/crowd.png)
+![image](/assets/img/crowd.png)
 
 You can switch the AI inference Model preinstalled on the device by click the AI Model. The list of models are:
 
@@ -92,7 +92,7 @@ You can switch the AI inference Model preinstalled on the device by click the AI
 ### SenseCAP Tracker - T1000
 #### Tiny Card-Size Locator with High Capability
 
-![image](./img/tracker-02.png)
+![image](/assets/img/tracker-02.png)
 
 Play around: 
 * Outdoor & Indoor Tracking 
