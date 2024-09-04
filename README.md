@@ -22,6 +22,37 @@ A comprehensive guide for integrators, providing detailed instructions on how to
 #### 3. ⭐️ **[Example Applications](./node-red-flows/README.md)** 
 Explore practical examples and Node-RED flows to see how the Mission Pack can be used in real-world scenarios.
 
+# Node-RED Flow Repository
+
+This is a share and repository of flow for Node-RED that includes community contributors, as well as flow contributions from seeed studio, so that the mission pack can be continuously integrated and extended with more features.
+
+## Flow Types
+
+#### Snippets
+
+Various Sample applications and Node-RED flow snippets.
+
+For more information, see [here](./snippets/README.md)
+
+#### Projects
+
+Including the complete application case, a subsystem is implemented through flow.
+
+For more information, see [here](./projects/README.md)
+
+#### Functional Nodes
+
+This includes the incoming and outgoing data from the device, and some of the application case base dependencies on the Global and Subflow nodes.
+
+For more information, see [here](./functional-nodes/README.md)
+
+## Contributing
+
+see more about [Contributing](/CONTRIBUTING.md)
+
+## FAQ
+
+
 ## 🤝 Contributions and Working Groups
 
 The Hazard Response Mission Pack is a collaborative effort between Seeed and our global community. Since its debut in July 2023, it has evolved through various iterations, integrating new products with emerging technologies and adapting to diverse application needs. We invite everyone to join us in this ongoing development!
