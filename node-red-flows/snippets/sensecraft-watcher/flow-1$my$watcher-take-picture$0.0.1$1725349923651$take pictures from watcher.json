@@ -1,0 +1,188 @@
+[
+    {
+        "x": 740,
+        "y": 340,
+        "z": "15864d4d4c5fa11e",
+        "type": "subflow:336d4af7487f2429",
+        "changed": true,
+        "_config": {},
+        "id": "fdb146a5fbf5da64",
+        "_def": {
+            "defaults": {
+                "name": {
+                    "value": ""
+                },
+                "env": {
+                    "value": []
+                }
+            },
+            "category": "subflows",
+            "inputs": 0,
+            "outputs": 1,
+            "color": "#DDAA99",
+            "set": {
+                "module": "node-red"
+            },
+            "type": "subflow:336d4af7487f2429"
+        },
+        "name": "",
+        "outputs": 1,
+        "inputs": 0,
+        "env": [
+            {
+                "name": "PIC_DURATION",
+                "value": "5",
+                "type": "str"
+            },
+            {
+                "name": "MODEL_NAME",
+                "value": "person",
+                "type": "str"
+            }
+        ],
+        "dirty": false,
+        "i": 3,
+        "valid": true,
+        "validationErrors": [],
+        "selected": true,
+        "moved": true,
+        "w": 200,
+        "h": 30,
+        "resize": false,
+        "_index": 0,
+        "_detachFromGroup": false,
+        "wires": [
+            [
+                "77d732cea9689c0f"
+            ]
+        ]
+    },
+    {
+        "x": 980,
+        "y": 340,
+        "z": "15864d4d4c5fa11e",
+        "type": "ui_template",
+        "changed": true,
+        "_config": {
+            "group": "\"b4872e7880f0ceea\"",
+            "name": "\"Image Viewer\"",
+            "order": "0",
+            "width": "\"6\"",
+            "height": "\"6\"",
+            "format": "\"<div>\\n    <h1>Image Viewer</h1>\\n    <img id=\\\"image\\\" style=\\\"max-width: 100%;\\\" />\\n</div>\\n\\n<script>\\n(function(scope) {\\n    scope.$watch('msg.payload', function(data) {\\n        if (data) {\\n            document.getElementById('image').src = \\\"data:image/jpeg;base64,\\\" + data;\\n        }\\n    });\\n})(scope);\\n</script>\"",
+            "storeOutMessages": "true",
+            "fwdInMessages": "true",
+            "resendOnRefresh": "true",
+            "templateScope": "\"local\"",
+            "className": "\"\"",
+            "x": 1040,
+            "y": 380
+        },
+        "id": "77d732cea9689c0f",
+        "_def": {
+            "category": "dashboard",
+            "color": "rgb( 63, 173, 181)",
+            "defaults": {
+                "group": {
+                    "type": "ui_group",
+                    "required": false,
+                    "_type": {
+                        "types": [
+                            "ui_group"
+                        ],
+                        "array": false
+                    }
+                },
+                "name": {
+                    "value": ""
+                },
+                "order": {
+                    "value": 0
+                },
+                "width": {
+                    "value": 0
+                },
+                "height": {
+                    "value": 0
+                },
+                "format": {
+                    "value": "<div ng-bind-html=\"msg.payload\"></div>"
+                },
+                "storeOutMessages": {
+                    "value": true
+                },
+                "fwdInMessages": {
+                    "value": true
+                },
+                "resendOnRefresh": {
+                    "value": true
+                },
+                "templateScope": {
+                    "value": "local"
+                },
+                "className": {
+                    "value": ""
+                }
+            },
+            "inputs": 1,
+            "outputs": 1,
+            "icon": "ui_template.png",
+            "paletteLabel": "template",
+            "set": {
+                "id": "node-red-dashboard/ui_template",
+                "name": "ui_template",
+                "types": [
+                    "ui_template"
+                ],
+                "enabled": true,
+                "local": true,
+                "user": false,
+                "module": "node-red-dashboard",
+                "version": "3.6.5",
+                "added": true
+            },
+            "type": "ui_template"
+        },
+        "inputs": 1,
+        "outputs": 1,
+        "group": "b4872e7880f0ceea",
+        "name": "Image Viewer",
+        "order": 0,
+        "width": "6",
+        "height": "6",
+        "format": "<div>\n    <h1>Image Viewer</h1>\n    <img id=\"image\" style=\"max-width: 100%;\" />\n</div>\n\n<script>\n(function(scope) {\n    scope.$watch('msg.payload', function(data) {\n        if (data) {\n            document.getElementById('image').src = \"data:image/jpeg;base64,\" + data;\n        }\n    });\n})(scope);\n</script>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "dirty": false,
+        "valid": true,
+        "validationErrors": [],
+        "selected": true,
+        "moved": true,
+        "w": 160,
+        "h": 30,
+        "resize": false,
+        "_index": 1,
+        "_detachFromGroup": false,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ff55500100010001",
+        "type": "comment",
+        "name": "",
+        "info": "",
+        "_sensecraft_config": {
+            "name": "watcher-take-picture",
+            "desc": "take pictures from watcher",
+            "time": 1725349923651,
+            "type": "1",
+            "author": "my",
+            "version": "0.0.1",
+            "introduction": ""
+        }
+    }
+]
