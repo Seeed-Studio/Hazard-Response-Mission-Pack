@@ -106,3 +106,40 @@ With Docker and Docker Compose installed and configured, you can now build Docke
 
 
 By following these steps, you can effectively deploy and manage the Mission Pack system using Docker Compose. This setup ensures that all necessary components are correctly configured and operational, providing a robust and scalable solution for hazard response management.
+
+## Server - Software Instructions
+
+This section provides an overview of the various software components installed on the server through Docker Compose. Each YAML configuration file (`.yml`) defines different services and their functions. Let's dive into what is installed on the server and how you can use these services.
+
+For this guide, we assume that your Basecamp server is assigned the IP address `192.168.100.10`. If you are using the Basecamp computer directly, you can access these services via `localhost`.
+
+### Node-RED - Low-Code Platform
+
+**Access URL:** http://192.168.100.10:1880/
+
+Node-RED is a low-code development platform for visual programming, allowing you to connect devices, APIs, and online services in new and interesting ways.
+
+### EMQX - MQTT Broker
+
+**Access URL:** http://192.168.100.10:2001/
+
+- **Default Username:** `admin`
+- **Default Password:** `public`
+
+To connect an MQTT client, use the address `192.168.100.10:1883`, where `1883` is the standard MQTT connection port.
+
+### File Browser - Web File Management Console
+
+The File Browser allows you to manage and organize your data files through a web interface.
+
+**Access URL:** http://192.168.100.10:8091/
+
+For example, if you upload a file named `default_background.jpg` to the root directory, it can be accessed via http://192.168.100.10:8092/default_background.jpg
+
+In Node-RED, the file can also be accessed via http://sensecraft-nodered-static-file-server:8092/default_background.jpg.
+
+### ChirpStack - LoRaWAN Network Server
+
+If your Basecamp is equipped with the LoRaWAN WM1302 module and has the ChirpStack service installed, you can manage your LoRa devices and network information through the ChirpStack LoRaWAN network server.
+
+**Access URL:** http://192.168.100.10:8080/
