@@ -91,7 +91,7 @@ With Docker and Docker Compose installed and configured, you can now build Docke
    Use Docker Compose to build and start the services by running the following commands. These commands will initialize each service according to the specified configuration files:
 
    ```sh
-   docker compose --file ~/sensecraft/docker-compose.initial.yml up 
+   docker compose --file ~/sensecraft/docker-compose.initial.yml up --build
    docker compose --file ~/sensecraft/docker-compose.yml up -d --build
    docker compose --file ~/sensecraft/docker-compose.chirpstack.yml up -d --build
    ```
