@@ -93,7 +93,6 @@ With Docker and Docker Compose installed and configured, you can now build Docke
    ```sh
    docker compose --file ~/sensecraft/docker-compose.initial.yml up 
    docker compose --file ~/sensecraft/docker-compose.yml up -d --build
-   docker compose --file ~/sensecraft/docker-compose.frp.yml up -d --build
    docker compose --file ~/sensecraft/docker-compose.chirpstack.yml up -d --build
    ```
 
