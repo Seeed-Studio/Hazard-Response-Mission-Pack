@@ -1,4 +1,4 @@
-# Node-RED Flows - Projects
+# Node-RED Flows - Projects | Handbook
 
 Including the complete application case, a subsystem is implemented through flow.
 

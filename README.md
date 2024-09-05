@@ -10,17 +10,36 @@ This initiative is not a market-ready product but rather a collaborative effort 
 
 ![hazard-post](https://github.com/user-attachments/assets/61f7f9af-0603-4ec1-8a16-d00a3b78a8f9)
 
-### Documentation Overview
+## Documentation Overview
 
-#### 1. ⭐️ **[Jumpstart Guide](./docs/jumpstart-usage/README.md)**
+### 1. ⭐️ **[Jumpstart Guide](./docs/jumpstart-usage/README.md)**
 Get started quickly with a hands-on introduction to the Mission Pack's features and capabilities.
 
 
-#### 2. ⭐️ **[Integrator Handbook](./docs/integrator-handbook/README.md)**
+### 2. ⭐️ **[Integrator Handbook](./docs/integrator-handbook/README.md)**
 A comprehensive guide for integrators, providing detailed instructions on how to customize and deploy the Mission Pack effectively.
 
-#### 3. ⭐️ **[Example Applications](./node-red-flows/README.md)** 
-Explore practical examples and Node-RED flows to see how the Mission Pack can be used in real-world scenarios.
+## Node-RED Flows
+
+There are a collection of Node-RED flows contributed by the community and Seeed Studio. It serves as a platform for sharing and continuously integrating new features into the Mission Pack, enabling the extension and enhancement of its functionalities.
+
+### Function - Snippets
+
+This section contains various sample applications and Node-RED flow snippets designed to showcase specific functions and use cases. These snippets can be used as building blocks to develop more complex flows.
+
+For more information, see the [Function README](./functions/README.md).
+
+### Examples - Functional Nodes
+
+Here, you will find examples of functional nodes that handle incoming and outgoing data from devices. This section also includes application cases that rely on global and subflow nodes, providing essential dependencies for building robust flows. 
+
+For more information, see the [Example README](./examples/README.md).
+
+### Projects
+
+This section features comprehensive application cases implemented through Node-RED flows. Each project demonstrates one or multiple scenarios, providing practical examples of how Node-RED can be used to solve real-world problems.
+
+For more information, see the [Projects README](./projects/README.md).
 
 ## 🤝 Contributions and Working Groups
 
