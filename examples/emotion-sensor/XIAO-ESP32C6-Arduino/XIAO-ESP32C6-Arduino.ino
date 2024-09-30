@@ -4,8 +4,8 @@
 #include <ArduinoJson.h>
 
 // Network credentials
-const char* ssid = "Maker_2.4G";
-const char* password = "bugeinizadi";
+const char* ssid = "YOUR_SSID";
+const char* password = "YOUR_PASSWORD";
 
 // MQTT broker details
 const char* mqtt_server = "test.mosquitto.org";
