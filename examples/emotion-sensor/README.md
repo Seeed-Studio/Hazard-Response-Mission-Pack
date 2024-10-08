@@ -54,6 +54,8 @@ This project implements an emotion detection system using the SenseCAP Watcher, 
 - [Grove - Piezo Buzzer](https://www.seeedstudio.com/Grove-Buzzer.html)
 - Mission Pack
 
+The LCD RGB is connected to the XIAO ESP32C6 via **IIC**. the Buzzer is connected to the XIAO ESP32C6 via **A1**.
+
 ## Software Dependencies
 
 - Arduino IDE
