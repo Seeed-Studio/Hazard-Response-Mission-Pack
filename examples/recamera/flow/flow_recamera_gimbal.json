@@ -1,0 +1,385 @@
+[
+    {
+        "id": "8e2cbbed015ad3cf",
+        "type": "tab",
+        "label": "Model",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "a94b3229dcd42eb9",
+        "type": "tab",
+        "label": "Control",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "1b0a1f7c.9c1e1e",
+        "type": "tab",
+        "label": "Image Preview",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "de264cd76730d19b",
+        "type": "sscma",
+        "host": "localhost",
+        "port": "1883",
+        "clientid": "recamera",
+        "username": "",
+        "password": ""
+    },
+    {
+        "id": "6a73b8bf6d1c46c2",
+        "type": "sscma",
+        "host": "localhost",
+        "port": "1883",
+        "clientid": "",
+        "username": "",
+        "password": ""
+    },
+    {
+        "id": "fcb52b5cb260efca",
+        "type": "ui_tab",
+        "name": "control",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "fdb1833d90ac9e5d",
+        "type": "ui_base",
+        "theme": {
+            "name": "theme-light",
+            "lightTheme": {
+                "default": "#0094CE",
+                "baseColor": "#0094CE",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "darkTheme": {
+                "default": "#097479",
+                "baseColor": "#097479",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": false
+            },
+            "customTheme": {
+                "name": "Untitled Theme 1",
+                "default": "#4B7930",
+                "baseColor": "#4B7930",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+            },
+            "themeState": {
+                "base-color": {
+                    "default": "#0094CE",
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-titlebar-backgroundColor": {
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-backgroundColor": {
+                    "value": "#fafafa",
+                    "edited": false
+                },
+                "page-sidebar-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-textColor": {
+                    "value": "#1bbfff",
+                    "edited": false
+                },
+                "group-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "widget-textColor": {
+                    "value": "#111111",
+                    "edited": false
+                },
+                "widget-backgroundColor": {
+                    "value": "#0094ce",
+                    "edited": false
+                },
+                "widget-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "base-font": {
+                    "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+                }
+            },
+            "angularTheme": {
+                "primary": "indigo",
+                "accents": "blue",
+                "warn": "red",
+                "background": "grey",
+                "palette": "light"
+            }
+        },
+        "site": {
+            "name": "Node-RED Dashboard",
+            "hideToolbar": "false",
+            "allowSwipe": "false",
+            "lockMenu": "false",
+            "allowTempTheme": "true",
+            "dateFormat": "DD/MM/YYYY",
+            "sizes": {
+                "sx": 48,
+                "sy": 48,
+                "gx": 6,
+                "gy": 6,
+                "cx": 6,
+                "cy": 6,
+                "px": 0,
+                "py": 0
+            }
+        }
+    },
+    {
+        "id": "1b8ab658a4d87950",
+        "type": "ui_group",
+        "name": "control",
+        "tab": "fcb52b5cb260efca",
+        "order": 1,
+        "disp": true,
+        "width": "12",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "f1g2h3i4.j5k6l7",
+        "type": "ui_group",
+        "name": "Image",
+        "tab": "g1h2i3j4.k5l6m7",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "g1h2i3j4.k5l6m7",
+        "type": "ui_tab",
+        "name": "Dashboard",
+        "icon": "dashboard",
+        "order": 1,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "3246925004c42ada",
+        "type": "camera",
+        "z": "8e2cbbed015ad3cf",
+        "resolution": "1080p",
+        "width": "1920",
+        "height": "1080",
+        "fps": "30",
+        "client": "de264cd76730d19b",
+        "x": 210,
+        "y": 420,
+        "wires": [
+            [
+                "782499d274f8bf66",
+                "0e161fc5f726fdd0"
+            ]
+        ]
+    },
+    {
+        "id": "782499d274f8bf66",
+        "type": "model",
+        "z": "8e2cbbed015ad3cf",
+        "name": "",
+        "uri": "/home/recamera/gesture_cv181x_int8.cvimodel",
+        "tscore": 0.45,
+        "tiou": 0.25,
+        "trace": false,
+        "debug": true,
+        "client": "de264cd76730d19b",
+        "x": 430,
+        "y": 340,
+        "wires": [
+            [
+                "6ca1dcbecc4d1b26"
+            ]
+        ]
+    },
+    {
+        "id": "0e161fc5f726fdd0",
+        "type": "stream",
+        "z": "8e2cbbed015ad3cf",
+        "name": "stream",
+        "protocol": 0,
+        "port": 8554,
+        "session": "live",
+        "client": "de264cd76730d19b",
+        "x": 430,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "6ca1dcbecc4d1b26",
+        "type": "function",
+        "z": "8e2cbbed015ad3cf",
+        "name": "function 1",
+        "func": "// 获取输入消息的 payload\nvar imageData = msg.payload.data.image;\n\n// 输出图像信息\nmsg.payload = {\n    image: imageData\n};\n\n// 返回新的消息\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 580,
+        "y": 340,
+        "wires": [
+            [
+                "221dcbbabe221a73"
+            ]
+        ]
+    },
+    {
+        "id": "221dcbbabe221a73",
+        "type": "ui_template",
+        "z": "8e2cbbed015ad3cf",
+        "group": "1b8ab658a4d87950",
+        "name": "",
+        "order": 2,
+        "width": "9",
+        "height": "10",
+        "format": "<div style=\"text-align: center;\">\n    <h2>Image Preview</h2>\n    <img src=\"{{ 'data:image/jpeg;base64,' + msg.payload.image }}\" style=\"max-width: 100%; height: auto;\" />\n</div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 740,
+        "y": 340,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "af57dc4df4d6ac63",
+        "type": "exec",
+        "z": "a94b3229dcd42eb9",
+        "command": "sudo /home/recamera/Deploy",
+        "addpay": "payload",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "",
+        "x": 990,
+        "y": 460,
+        "wires": [
+            [],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "a1b2c3d4.e5f6g7",
+        "type": "ui_slider",
+        "z": "a94b3229dcd42eb9",
+        "name": "Slider 1",
+        "label": "Angle 1",
+        "tooltip": "",
+        "group": "1b8ab658a4d87950",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "outs": "all",
+        "topic": "slider1",
+        "topicType": "str",
+        "min": 0,
+        "max": 360,
+        "step": 1,
+        "className": "",
+        "x": 440,
+        "y": 410,
+        "wires": [
+            [
+                "c3d4e5f6.g7h8i9"
+            ]
+        ]
+    },
+    {
+        "id": "b2c3d4e5.f6g7h8",
+        "type": "ui_slider",
+        "z": "a94b3229dcd42eb9",
+        "name": "Slider 2",
+        "label": "Angle 2",
+        "tooltip": "",
+        "group": "1b8ab658a4d87950",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "outs": "all",
+        "topic": "slider2",
+        "topicType": "str",
+        "min": 0,
+        "max": 360,
+        "step": 1,
+        "className": "",
+        "x": 440,
+        "y": 510,
+        "wires": [
+            [
+                "c3d4e5f6.g7h8i9"
+            ]
+        ]
+    },
+    {
+        "id": "c3d4e5f6.g7h8i9",
+        "type": "function",
+        "z": "a94b3229dcd42eb9",
+        "name": "Combine Sliders",
+        "func": "// 获取上次保存的值\nvar value1 = context.get('value1') || 0;\nvar value2 = context.get('value2') || 0;\n\nif (msg.topic === \"slider1\") {\n    value1 = msg.payload; \n    context.set('value1', value1); // 更新存储的值\n}\nif (msg.topic === \"slider2\") {\n    value2 = msg.payload; \n    context.set('value2', value2); // 更新存储的值\n}\n\nreturn { payload: value1 + ' ' + value2 };\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 640,
+        "y": 460,
+        "wires": [
+            [
+                "af57dc4df4d6ac63"
+            ]
+        ]
+    },
+    {
+        "id": "40b615f6a6aac841",
+        "type": "ui_template",
+        "z": "1b0a1f7c.9c1e1e",
+        "group": "f1g2h3i4.j5k6l7",
+        "name": "",
+        "order": 1,
+        "width": "6",
+        "height": "6",
+        "format": "<img src=\"data:image/jpeg;base64,msg.data.image\">",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 500,
+        "y": 400,
+        "wires": [
+            []
+        ]
+    }
+]
