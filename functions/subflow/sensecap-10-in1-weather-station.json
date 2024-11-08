@@ -286,7 +286,7 @@
         "meta": {
             "module": "10in1_weather_station_subflow",
             "version": "0.0.1",
-            "author": "Peter peter@seeed.cc",
+            "author": "Peter at Seeed",
             "desc": "Subflow receives and processes LoRaWAN data from a SenseCAP 10in1 weather station",
             "license": "MIT"
         },
