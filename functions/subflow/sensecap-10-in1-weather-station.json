@@ -1,0 +1,927 @@
+[
+    {
+        "id": "2b656bd2efd3ccda",
+        "type": "subflow",
+        "name": "10in1 Weather Station",
+        "info": "---\n\n# SenseCAP 10-in-1 Weather Station Subflow Documentation\n\nThis **10-in-1 Weather Station** subflow processes data from a SenseCAP weather station, decoding it to output specific weather parameters like temperature, humidity, and more. This subflow connects to an MQTT broker, receives LoRaWAN data, decodes it, and outputs each selected parameter through individual ports.\n\n---\n\n### How to Use This Subflow\n\n1. **Add the Subflow to Your Flow**  \n   Drag and drop this subflow into your Node-RED workspace.\n\n2. **Configure Subflow Properties**  \n   Open the subflow’s properties to configure it for your weather station device. Each property is explained below to guide you in setting up the subflow correctly.\n\n---\n\n### Subflow Property Settings\n\n#### 1. mqtt-broker (required)\n   - **Type**: MQTT Broker\n   - **Description**: Choose your MQTT broker connection. By default, the broker is set to `host.docker.internal:1883`, but you can select or add a different broker configuration if necessary.\n\n#### 2. applicationId (required)\n   - **Type**: String\n   - **Description**: Enter the unique LoRaWAN application ID for your weather station. This ID helps build the correct MQTT topic for data subscription.\n\n#### 3. deviceId (required)\n   - **Type**: String\n   - **Description**: Enter the device ID of your weather station. This ID is used along with the `applicationId` to subscribe to the right MQTT topic.\n\n#### 4. Parameter Selection\n   Each weather parameter has an on/off checkbox. Set each parameter to `true` if you want the subflow to output that data, or to `false` if you wish to exclude it.\n\n| Parameter        | Default | Description                             |\n|------------------|---------|-----------------------------------------|\n| **temperature**  | true    | Enable/disable temperature output.      |\n| **humidity**     | true    | Enable/disable humidity output.         |\n| **pressure**     | true    | Enable/disable pressure output.         |\n| **light**        | true    | Enable/disable light intensity output.  |\n| **wind_speed**   | true    | Enable/disable wind speed output.       |\n| **wind_direction** | true  | Enable/disable wind direction output.   |\n| **rainfall**     | true    | Enable/disable rainfall output.         |\n| **pm2_5**        | true    | Enable/disable PM2.5 output.            |\n| **pm10**         | true    | Enable/disable PM10 output.             |\n| **co2**          | true    | Enable/disable CO2 output.              |\n\n---\n\n### Deploy the Subflow\n\nAfter configuring the properties, click **Deploy**. The subflow will start listening to the MQTT broker, decode incoming messages, and output data for each selected parameter.\n\n---\n\n### Understanding the Outputs\n\nEach parameter has a dedicated output port. Data will only be sent to a port if:\n   - The parameter is enabled in the subflow properties.\n   - The weather station sends data for that parameter.\n\nThe subflow’s 10 output ports correspond to:\n1. Temperature\n2. Humidity\n3. Pressure\n4. Light Intensity\n5. Wind Speed\n6. Wind Direction\n7. Rainfall\n8. PM2.5\n9. PM10\n10. CO2\n\nAttach `debug` nodes to these output ports to verify data values or connect them to other processing or display nodes in your flow.\n\n---\n\n### Example Use Case\n\nTo output only temperature, humidity, and wind speed:\n1. In the subflow properties, set `temperature`, `humidity`, and `wind_speed` to `true`.\n2. Set all other parameters to `false`.\n3. Deploy the flow. Only these three data types will be sent to their respective output ports.\n\n---\n\n### Troubleshooting\n\n- **No Data at Outputs**: Verify that `mqtt-broker`, `applicationId`, and `deviceId` are correctly configured.\n- **Incorrect Data**: Check that the weather station is sending data and that each parameter is enabled if you want it outputted.\n- **Debugging**: Use `debug` nodes to confirm that data is being output from the desired ports.\n\n---\n\n### Need More Help?\n\ncontact support at seeedstudio.com if you experience issues with the subflow setup or configuration.\n\n---",
+        "category": "※sensecap-weather-station",
+        "in": [],
+        "out": [
+            {
+                "x": 1360,
+                "y": 400,
+                "wires": [
+                    {
+                        "id": "821d5e0fed96d0f9",
+                        "port": 0
+                    }
+                ]
+            },
+            {
+                "x": 1360,
+                "y": 460,
+                "wires": [
+                    {
+                        "id": "6d889207c2eaefc1",
+                        "port": 0
+                    }
+                ]
+            },
+            {
+                "x": 1360,
+                "y": 520,
+                "wires": [
+                    {
+                        "id": "e6362bf7c656aad5",
+                        "port": 0
+                    }
+                ]
+            },
+            {
+                "x": 1360,
+                "y": 580,
+                "wires": [
+                    {
+                        "id": "be44043d91821c7c",
+                        "port": 0
+                    }
+                ]
+            },
+            {
+                "x": 1360,
+                "y": 640,
+                "wires": [
+                    {
+                        "id": "34b68b64edf872f0",
+                        "port": 0
+                    }
+                ]
+            },
+            {
+                "x": 1360,
+                "y": 700,
+                "wires": [
+                    {
+                        "id": "64ddde8ffe7b0b5a",
+                        "port": 0
+                    }
+                ]
+            },
+            {
+                "x": 1360,
+                "y": 760,
+                "wires": [
+                    {
+                        "id": "aea0113d632cb5a9",
+                        "port": 0
+                    }
+                ]
+            },
+            {
+                "x": 1360,
+                "y": 820,
+                "wires": [
+                    {
+                        "id": "9b686bc86908e92a",
+                        "port": 0
+                    }
+                ]
+            },
+            {
+                "x": 1360,
+                "y": 880,
+                "wires": [
+                    {
+                        "id": "6a33db3b39eccac4",
+                        "port": 0
+                    }
+                ]
+            },
+            {
+                "x": 1360,
+                "y": 940,
+                "wires": [
+                    {
+                        "id": "d19c383f02577a85",
+                        "port": 0
+                    }
+                ]
+            }
+        ],
+        "env": [
+            {
+                "name": "mqtt-broker",
+                "type": "mqtt-broker",
+                "value": "ff55020100010001",
+                "ui": {
+                    "type": "conf-types"
+                }
+            },
+            {
+                "name": "applicationId",
+                "type": "str",
+                "value": "447ecfe1-6d26-4e82-bf28-d6dba2fb0d36",
+                "ui": {
+                    "label": {
+                        "zh-CN": "*AppId"
+                    },
+                    "type": "input",
+                    "opts": {
+                        "types": [
+                            "str",
+                            "num",
+                            "bool",
+                            "json",
+                            "bin",
+                            "env",
+                            "conf-types"
+                        ]
+                    }
+                }
+            },
+            {
+                "name": "deviceId",
+                "type": "str",
+                "value": "",
+                "ui": {
+                    "label": {
+                        "zh-CN": "*EUI"
+                    },
+                    "type": "input",
+                    "opts": {
+                        "types": [
+                            "str",
+                            "num",
+                            "bool",
+                            "json",
+                            "bin",
+                            "env",
+                            "conf-types"
+                        ]
+                    }
+                }
+            },
+            {
+                "name": "Title - Select data to output",
+                "type": "str",
+                "value": "",
+                "ui": {
+                    "label": {
+                        "en-US": "Select data to output:"
+                    },
+                    "type": "none"
+                }
+            },
+            {
+                "name": "temperature",
+                "type": "bool",
+                "value": "true",
+                "ui": {
+                    "label": {
+                        "en-US": "Temperature"
+                    },
+                    "type": "checkbox"
+                }
+            },
+            {
+                "name": "humidity",
+                "type": "bool",
+                "value": "true",
+                "ui": {
+                    "label": {
+                        "en-US": "Humidity"
+                    },
+                    "type": "checkbox"
+                }
+            },
+            {
+                "name": "pressure",
+                "type": "bool",
+                "value": "true",
+                "ui": {
+                    "label": {
+                        "en-US": "Pressure"
+                    },
+                    "type": "checkbox"
+                }
+            },
+            {
+                "name": "light",
+                "type": "bool",
+                "value": "true",
+                "ui": {
+                    "label": {
+                        "en-US": "Light"
+                    },
+                    "type": "checkbox"
+                }
+            },
+            {
+                "name": "wind_speed",
+                "type": "bool",
+                "value": "true",
+                "ui": {
+                    "label": {
+                        "en-US": "Wind Speed"
+                    },
+                    "type": "checkbox"
+                }
+            },
+            {
+                "name": "wind_direction",
+                "type": "bool",
+                "value": "true",
+                "ui": {
+                    "label": {
+                        "en-US": "wind Direction"
+                    },
+                    "type": "checkbox"
+                }
+            },
+            {
+                "name": "rainfall",
+                "type": "bool",
+                "value": "true",
+                "ui": {
+                    "label": {
+                        "en-US": "Rainfall"
+                    },
+                    "type": "checkbox"
+                }
+            },
+            {
+                "name": "pm2_5",
+                "type": "bool",
+                "value": "true",
+                "ui": {
+                    "label": {
+                        "en-US": "PM 2.5"
+                    },
+                    "type": "checkbox"
+                }
+            },
+            {
+                "name": "pm10",
+                "type": "bool",
+                "value": "true",
+                "ui": {
+                    "label": {
+                        "en-US": "PM 10"
+                    },
+                    "type": "checkbox"
+                }
+            },
+            {
+                "name": "co2",
+                "type": "bool",
+                "value": "true",
+                "ui": {
+                    "label": {
+                        "en-US": "CO2"
+                    },
+                    "type": "checkbox"
+                }
+            }
+        ],
+        "meta": {
+            "module": "10in1_weather_station_subflow",
+            "version": "0.0.1",
+            "author": "Peter at Seeed",
+            "desc": "Subflow receives and processes LoRaWAN data from a SenseCAP 10in1 weather station",
+            "license": "MIT"
+        },
+        "color": "#B8EA4F",
+        "icon": "node-red/node_icon_s2100.png",
+        "status": {
+            "x": 980,
+            "y": 120,
+            "wires": [
+                {
+                    "id": "20bdd85c0b2a52d1",
+                    "port": 0
+                }
+            ]
+        }
+    },
+    {
+        "id": "b6af498b42bfc985",
+        "type": "mqtt in",
+        "z": "2b656bd2efd3ccda",
+        "name": "subscribe mqtt, and receive message",
+        "topic": "",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "ff55020100010001",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 1,
+        "x": 410,
+        "y": 480,
+        "wires": [
+            [
+                "ce7b81b064eef601"
+            ]
+        ]
+    },
+    {
+        "id": "861baa45f478423a",
+        "type": "function",
+        "z": "2b656bd2efd3ccda",
+        "name": "build subscribe topic command",
+        "func": "var applicationId = env.get(\"applicationId\");\nvar deviceId = env.get(\"deviceId\");\n\nif(!applicationId) {\n    applicationId = env.get(\"SENSECRAFT_MISSION_PACK_CHIRPSTACK_APPID\");\n}\n\nif(!deviceId) {\n    node.warn(\"Please check your deviceId configuration\");\n}\n\nmsg.action = 'subscribe'\nmsg.topic = {\n    topic: `application/${applicationId}/device/${deviceId}/event/up`,\n    qos: 0\n}\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 430,
+        "y": 360,
+        "wires": [
+            [
+                "b6af498b42bfc985"
+            ]
+        ]
+    },
+    {
+        "id": "4111c1facfd185dd",
+        "type": "inject",
+        "z": "2b656bd2efd3ccda",
+        "name": "on startup",
+        "props": [],
+        "repeat": "60",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 390,
+        "y": 260,
+        "wires": [
+            [
+                "861baa45f478423a"
+            ]
+        ]
+    },
+    {
+        "id": "ce7b81b064eef601",
+        "type": "function",
+        "z": "2b656bd2efd3ccda",
+        "name": "decode lorawan raw message",
+        "func": "// Decode the MQTT payload from ChirpStack, which is Base64 encoded hex data\nvar base64Data = msg.payload.data || \"\";\nvar devEui = msg.payload.deviceInfo.devEui;\nvar bytes = Buffer.from(base64Data, 'base64'); // Decode Base64 string to byte array\nvar port = msg.payload.fPort || 0; // Extract fPort from the message, defaulting to 0 if not present\n\n// Call the decodeUplink function to process the decoded bytes\nmsg = {\n    payload: decodeUplink({bytes: bytes}, port).data\n}\n\n// Return the processed message object\nreturn msg;\n\n/**\n * Main decoder function for uplink messages.\n * Takes in the decoded byte array and processes it into a structured format.\n */\nfunction decodeUplink(input, port) {\n    var bytes = input['bytes'];\n    bytes = bytes2HexString(bytes).toUpperCase(); // Convert byte array to uppercase hex string\n\n    let result = {\n        'err': 0, \n        'eui': devEui,\n        'port': port,\n        'payload': bytes, \n        'valid': true,\n        'messages': []\n    };\n\n    // Split the hex string into individual data frames based on their identifiers\n    let splitArray = dataSplit(bytes);\n\n    // Decode each data frame according to its dataId and store the results\n    let decoderArray = splitArray.map(item => {\n        return dataIdAndDataValueJudge(item.dataId, item.dataValue);\n    });\n\n    // Store the decoded messages in the result object\n    result.messages = decoderArray;\n\n    return { data: result };\n}\n\n/**\n * data splits\n * @param bytes\n * @returns {*[]}\n */\nfunction dataSplit(bytes) {\n    let frameArray = []\n\n    for (let i = 0; i < bytes.length; i++) {\n        let remainingValue = bytes\n        let dataId = remainingValue.substring(0, 2)\n        let dataValue\n        let dataObj = {}\n        switch (dataId) {\n            case '01':\n            case '20':\n            case '21':\n            case '30':\n            case '31':\n            case '33':\n            case '40':\n            case '41':\n            case '42':\n            case '43':\n            case '44':\n            case '45':\n                dataValue = remainingValue.substring(2, 22)\n                bytes = remainingValue.substring(22)\n                dataObj = {\n                    'dataId': dataId, 'dataValue': dataValue\n                }\n                break\n            case '02':\n                dataValue = remainingValue.substring(2, 18)\n                bytes = remainingValue.substring(18)\n                dataObj = {\n                    'dataId': '02', 'dataValue': dataValue\n                }\n                break\n            case '03':\n            case '06':\n                dataValue = remainingValue.substring(2, 4)\n                bytes = remainingValue.substring(4)\n                dataObj = {\n                    'dataId': dataId, 'dataValue': dataValue\n                }\n                break\n            case '05':\n            case '34':\n                dataValue = bytes.substring(2, 10)\n                bytes = remainingValue.substring(10)\n                dataObj = {\n                    'dataId': dataId, 'dataValue': dataValue\n                }\n                break\n            case '04':\n            case '10':\n            case '32':\n            case '35':\n            case '36':\n            case '37':\n            case '38':\n            case '39':\n                dataValue = bytes.substring(2, 20)\n                bytes = remainingValue.substring(20)\n                dataObj = {\n                    'dataId': dataId, 'dataValue': dataValue\n                }\n                break\n            default:\n                dataValue = '9'\n                break\n        }\n        if (dataValue.length < 2) {\n            break\n        }\n        frameArray.push(dataObj)\n    }\n    return frameArray\n}\n\nfunction dataIdAndDataValueJudge(dataId, dataValue) {\n    let messages = []\n    switch (dataId) {\n        case '01':\n            let temperature = dataValue.substring(0, 4)\n            let humidity = dataValue.substring(4, 6)\n            let illumination = dataValue.substring(6, 14)\n            let uv = dataValue.substring(14, 16)\n            let windSpeed = dataValue.substring(16, 20)\n            messages = [{\n                measurementValue: loraWANV2DataFormat(temperature, 10), measurementId: '4097', type: 'Air Temperature'\n            }, {\n                measurementValue: loraWANV2DataFormat(humidity), measurementId: '4098', type: 'Air Humidity'\n            }, {\n                measurementValue: loraWANV2DataFormat(illumination), measurementId: '4099', type: 'Light Intensity'\n            }, {\n                measurementValue: loraWANV2DataFormat(uv, 10), measurementId: '4190', type: 'UV Index'\n            }, {\n                measurementValue: loraWANV2DataFormat(windSpeed, 10), measurementId: '4105', type: 'Wind Speed'\n            }]\n            break\n        case '02':\n            let windDirection = dataValue.substring(0, 4)\n            let rainfall = dataValue.substring(4, 12)\n            let airPressure = dataValue.substring(12, 16)\n            messages = [{\n                measurementValue: loraWANV2DataFormat(windDirection), measurementId: '4104', type: 'Wind Direction Sensor'\n            }, {\n                measurementValue: loraWANV2DataFormat(rainfall, 1000), measurementId: '4113', type: 'Rain Gauge'\n            }, {\n\n                measurementValue: loraWANV2DataFormat(airPressure, 0.1), measurementId: '4101', type: 'Barometric Pressure'\n            }]\n            break\n        case '03':\n            let Electricity = dataValue\n            messages = [{\n                'Battery(%)': loraWANV2DataFormat(Electricity)\n            }]\n            break\n        case '04':\n            let electricityWhether = dataValue.substring(0, 2)\n            let hwv = dataValue.substring(2, 6)\n            let bdv = dataValue.substring(6, 10)\n            let sensorAcquisitionInterval = dataValue.substring(10, 14)\n            let gpsAcquisitionInterval = dataValue.substring(14, 18)\n            messages = [{\n                'Battery(%)': loraWANV2DataFormat(electricityWhether),\n                'Hardware Version': `${loraWANV2DataFormat(hwv.substring(0, 2))}.${loraWANV2DataFormat(hwv.substring(2, 4))}`,\n                'Firmware Version': `${loraWANV2DataFormat(bdv.substring(0, 2))}.${loraWANV2DataFormat(bdv.substring(2, 4))}`,\n                'measureInterval': parseInt(loraWANV2DataFormat(sensorAcquisitionInterval)) * 60,\n                'gpsInterval': parseInt(loraWANV2DataFormat(gpsAcquisitionInterval)) * 60\n            }]\n            break\n        case '05':\n            let sensorAcquisitionIntervalFive = dataValue.substring(0, 4)\n            let gpsAcquisitionIntervalFive = dataValue.substring(4, 8)\n            messages = [{\n                'measureInterval': parseInt(loraWANV2DataFormat(sensorAcquisitionIntervalFive)) * 60,\n                'gpsInterval': parseInt(loraWANV2DataFormat(gpsAcquisitionIntervalFive)) * 60\n            }]\n            break\n        case '06':\n            let errorCode = dataValue\n            let descZh\n            switch (errorCode) {\n                case '00':\n                    descZh = 'CCL_SENSOR_ERROR_NONE'\n                    break\n                case '01':\n                    descZh = 'CCL_SENSOR_NOT_FOUND'\n                    break\n                case '02':\n                    descZh = 'CCL_SENSOR_WAKEUP_ERROR'\n                    break\n                case '03':\n                    descZh = 'CCL_SENSOR_NOT_RESPONSE'\n                    break\n                case '04':\n                    descZh = 'CCL_SENSOR_DATA_EMPTY'\n                    break\n                case '05':\n                    descZh = 'CCL_SENSOR_DATA_HEAD_ERROR'\n                    break\n                case '06':\n                    descZh = 'CCL_SENSOR_DATA_CRC_ERROR'\n                    break\n                case '07':\n                    descZh = 'CCL_SENSOR_DATA_B1_NO_VALID'\n                    break\n                case '08':\n                    descZh = 'CCL_SENSOR_DATA_B2_NO_VALID'\n                    break\n                case '09':\n                    descZh = 'CCL_SENSOR_RANDOM_NOT_MATCH'\n                    break\n                case '0A':\n                    descZh = 'CCL_SENSOR_PUBKEY_SIGN_VERIFY_FAILED'\n                    break\n                case '0B':\n                    descZh = 'CCL_SENSOR_DATA_SIGN_VERIFY_FAILED'\n                    break\n                case '0C':\n                    descZh = 'CCL_SENSOR_DATA_VALUE_HI'\n                    break\n                case '0D':\n                    descZh = 'CCL_SENSOR_DATA_VALUE_LOW'\n                    break\n                case '0E':\n                    descZh = 'CCL_SENSOR_DATA_VALUE_MISSED'\n                    break\n                case '0F':\n                    descZh = 'CCL_SENSOR_ARG_INVAILD'\n                    break\n                case '10':\n                    descZh = 'CCL_SENSOR_RS485_MASTER_BUSY'\n                    break\n                case '11':\n                    descZh = 'CCL_SENSOR_RS485_REV_DATA_ERROR'\n                    break\n                case '12':\n                    descZh = 'CCL_SENSOR_RS485_REG_MISSED'\n                    break\n                case '13':\n                    descZh = 'CCL_SENSOR_RS485_FUN_EXE_ERROR'\n                    break\n                case '14':\n                    descZh = 'CCL_SENSOR_RS485_WRITE_STRATEGY_ERROR'\n                    break\n                case '15':\n                    descZh = 'CCL_SENSOR_CONFIG_ERROR'\n                    break\n                case 'FF':\n                    descZh = 'CCL_SENSOR_DATA_ERROR_UNKONW'\n                    break\n                default:\n                    descZh = 'CC_OTHER_FAILED'\n                    break\n            }\n            messages = [{\n                measurementId: '4101', type: 'sensor_error_event', errCode: errorCode, descZh\n            }]\n            break\n        case '10':\n            let statusValue = dataValue.substring(0, 2)\n            let { status, type } = loraWANV2BitDataFormat(statusValue)\n            let sensecapId = dataValue.substring(2)\n            messages = [{\n                status: status, channelType: type, sensorEui: sensecapId\n            }]\n            break\n        case '20':\n            let initmeasurementId = 4175\n            let sensor = []\n            for (let i = 0; i < dataValue.length; i += 4) {\n                let modelId = loraWANV2DataFormat(dataValue.substring(i, i + 2))\n                let detectionType = loraWANV2DataFormat(dataValue.substring(i + 2, i + 4))\n                let aiHeadValues = `${modelId}.${detectionType}`\n                sensor.push({\n                    measurementValue: aiHeadValues, measurementId: initmeasurementId\n                })\n                initmeasurementId++\n            }\n            messages = sensor\n            break\n        case '21':\n            // Vision AI:\n            // AI 识别输出帧\n            let tailValueArray = []\n            let initTailmeasurementId = 4180\n            for (let i = 0; i < dataValue.length; i += 4) {\n                let modelId = loraWANV2DataFormat(dataValue.substring(i, i + 2))\n                let detectionType = loraWANV2DataFormat(dataValue.substring(i + 2, i + 4))\n                let aiTailValues = `${modelId}.${detectionType}`\n                tailValueArray.push({\n                    measurementValue: aiTailValues, measurementId: initTailmeasurementId, type: `AI Detection ${i}`\n                })\n                initTailmeasurementId++\n            }\n            messages = tailValueArray\n            break\n        case '30':\n        case '31':\n            // 首帧或者首帧输出帧\n            let channelInfoOne = loraWANV2ChannelBitFormat(dataValue.substring(0, 2))\n            let dataOne = {\n                measurementValue: loraWANV2DataFormat(dataValue.substring(4, 12), 1000),\n                measurementId: parseInt(channelInfoOne.one),\n                type: 'Measurement'\n            }\n            let dataTwo = {\n                measurementValue: loraWANV2DataFormat(dataValue.substring(12, 20), 1000),\n                measurementId: parseInt(channelInfoOne.two),\n                type: 'Measurement'\n            }\n            let cacheArrayInfo = []\n            if (parseInt(channelInfoOne.one)) {\n                cacheArrayInfo.push(dataOne)\n            }\n            if (parseInt(channelInfoOne.two)) {\n                cacheArrayInfo.push(dataTwo)\n            }\n            cacheArrayInfo.forEach(item => {\n                messages.push(item)\n            })\n            break\n        case '32':\n            let channelInfoTwo = loraWANV2ChannelBitFormat(dataValue.substring(0, 2))\n            let dataThree = {\n                measurementValue: loraWANV2DataFormat(dataValue.substring(2, 10), 1000),\n                measurementId: parseInt(channelInfoTwo.one),\n                type: 'Measurement'\n            }\n            let dataFour = {\n                measurementValue: loraWANV2DataFormat(dataValue.substring(10, 18), 1000),\n                measurementId: parseInt(channelInfoTwo.two),\n                type: 'Measurement'\n            }\n            if (parseInt(channelInfoTwo.one)) {\n                messages.push(dataThree)\n            }\n            if (parseInt(channelInfoTwo.two)) {\n                messages.push(dataFour)\n            }\n            break\n        case '33':\n            let channelInfoThree = loraWANV2ChannelBitFormat(dataValue.substring(0, 2))\n            let dataFive = {\n                measurementValue: loraWANV2DataFormat(dataValue.substring(4, 12), 1000),\n                measurementId: parseInt(channelInfoThree.one),\n                type: 'Measurement'\n            }\n            let dataSix = {\n                measurementValue: loraWANV2DataFormat(dataValue.substring(12, 20), 1000),\n                measurementId: parseInt(channelInfoThree.two),\n                type: 'Measurement'\n            }\n            if (parseInt(channelInfoThree.one)) {\n                messages.push(dataFive)\n            }\n            if (parseInt(channelInfoThree.two)) {\n                messages.push(dataSix)\n            }\n\n            break\n        case '34':\n            let model = loraWANV2DataFormat(dataValue.substring(0, 2))\n            let GPIOInput = loraWANV2DataFormat(dataValue.substring(2, 4))\n            let simulationModel = loraWANV2DataFormat(dataValue.substring(4, 6))\n            let simulationInterface = loraWANV2DataFormat(dataValue.substring(6, 8))\n            messages = [{\n                'dataloggerProtocol': model, 'dataloggerGPIOInput': GPIOInput, 'dataloggerAnalogType': simulationModel, 'dataloggerAnalogInterface': simulationInterface\n            }]\n            break\n        case '35':\n        case '36':\n            let channelTDOne = loraWANV2ChannelBitFormat(dataValue.substring(0, 2))\n            let channelSortTDOne = 3920 + (parseInt(channelTDOne.one) - 1) * 2\n            let channelSortTDTWO = 3921 + (parseInt(channelTDOne.one) - 1) * 2\n            messages = [{\n                [channelSortTDOne]: loraWANV2DataFormat(dataValue.substring(2, 10), 1000),\n                [channelSortTDTWO]: loraWANV2DataFormat(dataValue.substring(10, 18), 1000)\n            }]\n            break\n        case '37':\n            let channelTDInfoTwo = loraWANV2ChannelBitFormat(dataValue.substring(0, 2))\n            let channelSortOne = 3920 + (parseInt(channelTDInfoTwo.one) - 1) * 2\n            let channelSortTWO = 3921 + (parseInt(channelTDInfoTwo.one) - 1) * 2\n            messages = [{\n                [channelSortOne]: loraWANV2DataFormat(dataValue.substring(2, 10), 1000),\n                [channelSortTWO]: loraWANV2DataFormat(dataValue.substring(10, 18), 1000)\n            }]\n            break\n        case '38':\n            let channelTDInfoThree = loraWANV2ChannelBitFormat(dataValue.substring(0, 2))\n            let channelSortThreeOne = 3920 + (parseInt(channelTDInfoThree.one) - 1) * 2\n            let channelSortThreeTWO = 3921 + (parseInt(channelTDInfoThree.one) - 1) * 2\n            messages = [{\n                [channelSortThreeOne]: loraWANV2DataFormat(dataValue.substring(2, 10), 1000),\n                [channelSortThreeTWO]: loraWANV2DataFormat(dataValue.substring(10, 18), 1000)\n            }]\n            break\n        case '39':\n            let electricityWhetherTD = dataValue.substring(0, 2)\n            let hwvTD = dataValue.substring(2, 6)\n            let bdvTD = dataValue.substring(6, 10)\n            let sensorAcquisitionIntervalTD = dataValue.substring(10, 14)\n            let gpsAcquisitionIntervalTD = dataValue.substring(14, 18)\n            messages = [{\n                'Battery(%)': loraWANV2DataFormat(electricityWhetherTD),\n                'Hardware Version': `${loraWANV2DataFormat(hwvTD.substring(0, 2))}.${loraWANV2DataFormat(hwvTD.substring(2, 4))}`,\n                'Firmware Version': `${loraWANV2DataFormat(bdvTD.substring(0, 2))}.${loraWANV2DataFormat(bdvTD.substring(2, 4))}`,\n                'measureInterval': parseInt(loraWANV2DataFormat(sensorAcquisitionIntervalTD)) * 60,\n                'thresholdMeasureInterval': parseInt(loraWANV2DataFormat(gpsAcquisitionIntervalTD))\n            }]\n            break\n        case '40':\n        case '41':\n            let lightIntensity = dataValue.substring(0, 4)\n            let loudness = dataValue.substring(4, 8)\n            // X\n            let accelerateX = dataValue.substring(8, 12)\n            // Y\n            let accelerateY = dataValue.substring(12, 16)\n            // Z\n            let accelerateZ = dataValue.substring(16, 20)\n            messages = [{\n                measurementValue: loraWANV2DataFormat(lightIntensity), measurementId: '4193', type: 'Light Intensity'\n            }, {\n                measurementValue: loraWANV2DataFormat(loudness), measurementId: '4192', type: 'Sound Intensity'\n            }, {\n\n                measurementValue: loraWANV2DataFormat(accelerateX, 100), measurementId: '4150', type: 'AccelerometerX'\n            }, {\n\n                measurementValue: loraWANV2DataFormat(accelerateY, 100), measurementId: '4151', type: 'AccelerometerY'\n            }, {\n\n                measurementValue: loraWANV2DataFormat(accelerateZ, 100), measurementId: '4152', type: 'AccelerometerZ'\n            }]\n            break\n        case '42':\n            let airTemperature = dataValue.substring(0, 4)\n            let AirHumidity = dataValue.substring(4, 8)\n            let tVOC = dataValue.substring(8, 12)\n            let CO2eq = dataValue.substring(12, 16)\n            let soilMoisture = dataValue.substring(16, 20)\n            messages = [{\n                measurementValue: loraWANV2DataFormat(airTemperature, 100), measurementId: '4097', type: 'Air Temperature'\n            }, {\n                measurementValue: loraWANV2DataFormat(AirHumidity, 100), measurementId: '4098', type: 'Air Humidity'\n            }, {\n                measurementValue: loraWANV2DataFormat(tVOC), measurementId: '4195', type: 'Total Volatile Organic Compounds'\n            }, {\n                measurementValue: loraWANV2DataFormat(CO2eq), measurementId: '4100', type: 'CO2'\n            }, {\n                measurementValue: loraWANV2DataFormat(soilMoisture), measurementId: '4196', type: 'Soil moisture intensity'\n            }]\n            break\n        case '43':\n        case '44':\n            let headerDevKitValueArray = []\n            let initDevkitmeasurementId = 4175\n            for (let i = 0; i < dataValue.length; i += 4) {\n                let modelId = loraWANV2DataFormat(dataValue.substring(i, i + 2))\n                let detectionType = loraWANV2DataFormat(dataValue.substring(i + 2, i + 4))\n                let aiHeadValues = `${modelId}.${detectionType}`\n                headerDevKitValueArray.push({\n                    measurementValue: aiHeadValues, measurementId: initDevkitmeasurementId, type: `AI Detection ${i}`\n                })\n                initDevkitmeasurementId++\n            }\n            messages = headerDevKitValueArray\n            break\n        case '45':\n            let initTailDevKitmeasurementId = 4180\n            for (let i = 0; i < dataValue.length; i += 4) {\n                let modelId = loraWANV2DataFormat(dataValue.substring(i, i + 2))\n                let detectionType = loraWANV2DataFormat(dataValue.substring(i + 2, i + 4))\n                let aiTailValues = `${modelId}.${detectionType}`\n                messages.push({\n                    measurementValue: aiTailValues, measurementId: initTailDevKitmeasurementId, type: `AI Detection ${i}`\n                })\n                initTailDevKitmeasurementId++\n            }\n            break\n        default:\n            break\n    }\n    return messages\n}\n\n/**\n *\n * data formatting\n * @param str\n * @param divisor\n * @returns {string|number}\n */\nfunction loraWANV2DataFormat(str, divisor = 1) {\n    let strReverse = bigEndianTransform(str)\n    let str2 = toBinary(strReverse)\n    if (str2.substring(0, 1) === '1') {\n        let arr = str2.split('')\n        let reverseArr = arr.map((item) => {\n            if (parseInt(item) === 1) {\n                return 0\n            } else {\n                return 1\n            }\n        })\n        str2 = parseInt(reverseArr.join(''), 2) + 1\n        return parseFloat('-' + str2 / divisor)\n    }\n    return parseInt(str2, 2) / divisor\n}\n\n/**\n * Handling big-endian data formats\n * @param data\n * @returns {*[]}\n */\nfunction bigEndianTransform(data) {\n    let dataArray = []\n    for (let i = 0; i < data.length; i += 2) {\n        dataArray.push(data.substring(i, i + 2))\n    }\n    // array of hex\n    return dataArray\n}\n\n/**\n * Convert to an 8-digit binary number with 0s in front of the number\n * @param arr\n * @returns {string}\n */\nfunction toBinary(arr) {\n    let binaryData = arr.map((item) => {\n        let data = parseInt(item, 16)\n            .toString(2)\n        let dataLength = data.length\n        if (data.length !== 8) {\n            for (let i = 0; i < 8 - dataLength; i++) {\n                data = `0` + data\n            }\n        }\n        return data\n    })\n    let ret = binaryData.toString()\n        .replace(/,/g, '')\n    return ret\n}\n\n/**\n * sensor\n * @param str\n * @returns {{channel: number, type: number, status: number}}\n */\nfunction loraWANV2BitDataFormat(str) {\n    let strReverse = bigEndianTransform(str)\n    let str2 = toBinary(strReverse)\n    let channel = parseInt(str2.substring(0, 4), 2)\n    let status = parseInt(str2.substring(4, 5), 2)\n    let type = parseInt(str2.substring(5), 2)\n    return { channel, status, type }\n}\n\n/**\n * channel info\n * @param str\n * @returns {{channelTwo: number, channelOne: number}}\n */\nfunction loraWANV2ChannelBitFormat(str) {\n    let strReverse = bigEndianTransform(str)\n    let str2 = toBinary(strReverse)\n    let one = parseInt(str2.substring(0, 4), 2)\n    let two = parseInt(str2.substring(4, 8), 2)\n    let resultInfo = {\n        one: one, two: two\n    }\n    return resultInfo\n}\n\n/**\n * data log status bit\n * @param str\n * @returns {{total: number, level: number, isTH: number}}\n */\nfunction loraWANV2DataLogBitFormat(str) {\n    let strReverse = bigEndianTransform(str)\n    let str2 = toBinary(strReverse)\n    let isTH = parseInt(str2.substring(0, 1), 2)\n    let total = parseInt(str2.substring(1, 5), 2)\n    let left = parseInt(str2.substring(5), 2)\n    let resultInfo = {\n        isTH: isTH, total: total, left: left\n    }\n    return resultInfo\n}\n\nfunction bytes2HexString(arrBytes) {\n    var str = ''\n    for (var i = 0; i < arrBytes.length; i++) {\n        var tmp\n        var num = arrBytes[i]\n        if (num < 0) {\n            tmp = (255 + num + 1).toString(16)\n        } else {\n            tmp = num.toString(16)\n        }\n        if (tmp.length === 1) {\n            tmp = '0' + tmp\n        }\n        str += tmp\n    }\n    return str\n}\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 16,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 430,
+        "y": 540,
+        "wires": [
+            [
+                "11de9cf98aab2f4d"
+            ]
+        ]
+    },
+    {
+        "id": "11de9cf98aab2f4d",
+        "type": "function",
+        "z": "2b656bd2efd3ccda",
+        "name": "10in1 decode",
+        "func": "// 假设 msg.payload 包含了上述的 JSON 数据\n// 展平测量数据数组\nlet flattenedMeasurements = msg.payload.messages;\n\n// 创建一个数组来存储所有的输出消息数组\nlet outputMessages = [];\n\n// 创建消息对象，将测量值设置为 payload\nlet temperature = { payload: flattenedMeasurements[0][0].measurementValue };\nlet humidity = { payload: flattenedMeasurements[0][1].measurementValue };\nlet pressure = { payload: parseInt(flattenedMeasurements[1][0].measurementValue)/1000};\nlet light = { payload: flattenedMeasurements[1][1].measurementValue };\nlet wind_speed = { payload:  parseInt(flattenedMeasurements[2][0].measurementValue)/100 };\nlet wind_direction = { payload:  parseInt(flattenedMeasurements[2][1].measurementValue)/100 };\nlet rainfall = { payload: flattenedMeasurements[3][0].measurementValue };\nlet pm2_5 = { payload: flattenedMeasurements[3][1].measurementValue };\nlet pm10 = { payload: flattenedMeasurements[4][0].measurementValue };\nlet co2 = { payload: flattenedMeasurements[4][1].measurementValue };\n\n    // 将消息对象放入一个数组中（因为每个输出期望一个数组）\noutputMessages.push([temperature], [humidity], [pressure], [light], [wind_speed], [wind_direction], [rainfall], [pm2_5], [pm10], [co2]);\n\n// 返回一个包含所有输出消息数组的数组\nreturn outputMessages;",
+        "outputs": 10,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 700,
+        "y": 540,
+        "wires": [
+            [
+                "af204522328c3856"
+            ],
+            [
+                "d8b8283d989167a6"
+            ],
+            [
+                "795469a43c2026b9"
+            ],
+            [
+                "17e209008abe4015"
+            ],
+            [
+                "10f2a5adb9fe73ee"
+            ],
+            [
+                "cf5183b9af0ef14d"
+            ],
+            [
+                "de62bde5c3802d13"
+            ],
+            [
+                "1c54d8e73715180e"
+            ],
+            [
+                "f1340687dae3e072"
+            ],
+            [
+                "4e1c297961fb8ec5"
+            ]
+        ]
+    },
+    {
+        "id": "af204522328c3856",
+        "type": "switch",
+        "z": "2b656bd2efd3ccda",
+        "name": "",
+        "property": "temperature",
+        "propertyType": "env",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 890,
+        "y": 400,
+        "wires": [
+            [
+                "821d5e0fed96d0f9"
+            ]
+        ]
+    },
+    {
+        "id": "d8b8283d989167a6",
+        "type": "switch",
+        "z": "2b656bd2efd3ccda",
+        "name": "",
+        "property": "humidity",
+        "propertyType": "env",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 890,
+        "y": 440,
+        "wires": [
+            [
+                "6d889207c2eaefc1"
+            ]
+        ]
+    },
+    {
+        "id": "795469a43c2026b9",
+        "type": "switch",
+        "z": "2b656bd2efd3ccda",
+        "name": "",
+        "property": "pressure",
+        "propertyType": "env",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 890,
+        "y": 480,
+        "wires": [
+            [
+                "e6362bf7c656aad5"
+            ]
+        ]
+    },
+    {
+        "id": "17e209008abe4015",
+        "type": "switch",
+        "z": "2b656bd2efd3ccda",
+        "name": "",
+        "property": "light",
+        "propertyType": "env",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 890,
+        "y": 520,
+        "wires": [
+            [
+                "be44043d91821c7c"
+            ]
+        ]
+    },
+    {
+        "id": "10f2a5adb9fe73ee",
+        "type": "switch",
+        "z": "2b656bd2efd3ccda",
+        "name": "",
+        "property": "wind_speed",
+        "propertyType": "env",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 890,
+        "y": 560,
+        "wires": [
+            [
+                "34b68b64edf872f0"
+            ]
+        ]
+    },
+    {
+        "id": "cf5183b9af0ef14d",
+        "type": "switch",
+        "z": "2b656bd2efd3ccda",
+        "name": "",
+        "property": "wind_direction",
+        "propertyType": "env",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 890,
+        "y": 600,
+        "wires": [
+            [
+                "64ddde8ffe7b0b5a"
+            ]
+        ]
+    },
+    {
+        "id": "1c54d8e73715180e",
+        "type": "switch",
+        "z": "2b656bd2efd3ccda",
+        "name": "",
+        "property": "pm2_5",
+        "propertyType": "env",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 890,
+        "y": 680,
+        "wires": [
+            [
+                "9b686bc86908e92a"
+            ]
+        ]
+    },
+    {
+        "id": "de62bde5c3802d13",
+        "type": "switch",
+        "z": "2b656bd2efd3ccda",
+        "name": "",
+        "property": "rainfall",
+        "propertyType": "env",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 890,
+        "y": 640,
+        "wires": [
+            [
+                "aea0113d632cb5a9"
+            ]
+        ]
+    },
+    {
+        "id": "f1340687dae3e072",
+        "type": "switch",
+        "z": "2b656bd2efd3ccda",
+        "name": "",
+        "property": "pm10",
+        "propertyType": "env",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 890,
+        "y": 720,
+        "wires": [
+            [
+                "6a33db3b39eccac4"
+            ]
+        ]
+    },
+    {
+        "id": "4e1c297961fb8ec5",
+        "type": "switch",
+        "z": "2b656bd2efd3ccda",
+        "name": "",
+        "property": "co2",
+        "propertyType": "env",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 890,
+        "y": 760,
+        "wires": [
+            [
+                "d19c383f02577a85"
+            ]
+        ]
+    },
+    {
+        "id": "821d5e0fed96d0f9",
+        "type": "change",
+        "z": "2b656bd2efd3ccda",
+        "name": "Temperature",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "temperature",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1090,
+        "y": 400,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "6d889207c2eaefc1",
+        "type": "change",
+        "z": "2b656bd2efd3ccda",
+        "name": "Humidity",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "humidity",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1080,
+        "y": 440,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e6362bf7c656aad5",
+        "type": "change",
+        "z": "2b656bd2efd3ccda",
+        "name": "Pressure",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "pressure",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1080,
+        "y": 480,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "be44043d91821c7c",
+        "type": "change",
+        "z": "2b656bd2efd3ccda",
+        "name": "Light",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "light",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1070,
+        "y": 520,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "34b68b64edf872f0",
+        "type": "change",
+        "z": "2b656bd2efd3ccda",
+        "name": "Wind Speed",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "wind_speed",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1090,
+        "y": 560,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "64ddde8ffe7b0b5a",
+        "type": "change",
+        "z": "2b656bd2efd3ccda",
+        "name": "Wind Direction",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "wind_direction",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1100,
+        "y": 600,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "aea0113d632cb5a9",
+        "type": "change",
+        "z": "2b656bd2efd3ccda",
+        "name": "Rainfall",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "rainfall",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1080,
+        "y": 640,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9b686bc86908e92a",
+        "type": "change",
+        "z": "2b656bd2efd3ccda",
+        "name": "PM2.5",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "pm2_5",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1070,
+        "y": 680,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "6a33db3b39eccac4",
+        "type": "change",
+        "z": "2b656bd2efd3ccda",
+        "name": "PM10",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "pm10",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1070,
+        "y": 720,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d19c383f02577a85",
+        "type": "change",
+        "z": "2b656bd2efd3ccda",
+        "name": "CO2",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "co2",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1070,
+        "y": 760,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "20bdd85c0b2a52d1",
+        "type": "status",
+        "z": "2b656bd2efd3ccda",
+        "name": "",
+        "scope": [
+            "b6af498b42bfc985"
+        ],
+        "x": 720,
+        "y": 120,
+        "wires": [
+            []
+        ]
+    }
+]
