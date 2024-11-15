@@ -1,0 +1,175 @@
+[
+    {
+        "id": "72c4cec90fb25aed",
+        "type": "ui_button",
+        "z": "c3b11008927e8205",
+        "name": "Left",
+        "group": "group_id",
+        "order": 2,
+        "width": 1,
+        "height": 1,
+        "passthru": false,
+        "label": "←",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "left",
+        "payloadType": "str",
+        "topic": "",
+        "x": 450,
+        "y": 640,
+        "wires": [
+            [
+                "c7c4f5167167ea88"
+            ]
+        ]
+    },
+    {
+        "id": "d23fc51b153df8c6",
+        "type": "ui_button",
+        "z": "c3b11008927e8205",
+        "name": "Up",
+        "group": "group_id",
+        "order": 3,
+        "width": 1,
+        "height": 1,
+        "passthru": false,
+        "label": "↑",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "up",
+        "payloadType": "str",
+        "topic": "",
+        "topicType": "str",
+        "x": 530,
+        "y": 580,
+        "wires": [
+            [
+                "c7c4f5167167ea88"
+            ]
+        ]
+    },
+    {
+        "id": "ceef22aecdcf89c9",
+        "type": "ui_button",
+        "z": "c3b11008927e8205",
+        "name": "Down",
+        "group": "group_id",
+        "order": 4,
+        "width": 1,
+        "height": 1,
+        "passthru": false,
+        "label": "↓",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "down",
+        "payloadType": "str",
+        "topic": "",
+        "x": 550,
+        "y": 680,
+        "wires": [
+            [
+                "c7c4f5167167ea88"
+            ]
+        ]
+    },
+    {
+        "id": "7a6d436d41e31ea9",
+        "type": "ui_button",
+        "z": "c3b11008927e8205",
+        "name": "Right",
+        "group": "group_id",
+        "order": 5,
+        "width": 1,
+        "height": 1,
+        "passthru": false,
+        "label": "→",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "right",
+        "payloadType": "str",
+        "topic": "",
+        "x": 650,
+        "y": 620,
+        "wires": [
+            [
+                "c7c4f5167167ea88"
+            ]
+        ]
+    },
+    {
+        "id": "c7c4f5167167ea88",
+        "type": "mqtt out",
+        "z": "c3b11008927e8205",
+        "name": "",
+        "topic": "/recamera_gimbal",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "56f95760cf04ac1f",
+        "x": 890,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "group_id",
+        "type": "ui_group",
+        "name": "Snake Game",
+        "tab": "tab_id",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "56f95760cf04ac1f",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "192.168.100.10",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "tab_id",
+        "type": "ui_tab",
+        "name": "Snake Game",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]
