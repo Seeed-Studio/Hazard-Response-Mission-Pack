@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xsl" href="rss.xsl"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+    <channel>
+        <title>Hazard Response Mission Pack Blog</title>
+        <link>https://seeed-studio.github.io/Hazard-Response-Mission-Pack/zh/blog</link>
+        <description>Hazard Response Mission Pack Blog</description>
+        <lastBuildDate>Mon, 06 Jan 2025 00:00:00 GMT</lastBuildDate>
+        <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
+        <generator>https://github.com/jpmonette/feed</generator>
+        <language>zh</language>
+        <item>
+            <title><![CDATA[Welcome to 2025]]></title>
+            <link>https://seeed-studio.github.io/Hazard-Response-Mission-Pack/zh/blog/welcome-to-2025</link>
+            <guid>https://seeed-studio.github.io/Hazard-Response-Mission-Pack/zh/blog/welcome-to-2025</guid>
+            <pubDate>Mon, 06 Jan 2025 00:00:00 GMT</pubDate>
+            <description><![CDATA[2025: Mission Pack 的新篇章]]></description>
+            <content:encoded><![CDATA[<h2 class="anchor anchorWithStickyNavbar_LWe7" id="2025-mission-pack-的新篇章">2025: Mission Pack 的新篇章<a href="https://seeed-studio.github.io/Hazard-Response-Mission-Pack/zh/blog/welcome-to-2025#2025-mission-pack-%E7%9A%84%E6%96%B0%E7%AF%87%E7%AB%A0" class="hash-link" aria-label="Direct link to 2025: Mission Pack 的新篇章" title="Direct link to 2025: Mission Pack 的新篇章">​</a></h2>
+<p>2024 年对于 Mission Pack 来说，是充满转折与成长的一年。 从最初的 0.1 版本产品形态到现在的 0.3 版本，我们见证了产品从萌芽到逐步成熟的过程。 一路走来，我们的目标越来越清晰：打造一个灵活、稳定、功能强大的解决方案，既能应对复杂的实际需求，也能与更多场景自然结合。</p>
+<p><img decoding="async" loading="lazy" alt="basecamp interface" src="https://seeed-studio.github.io/Hazard-Response-Mission-Pack/zh/assets/images/basecamp-interface-1148a5d5b02a5eccf1366ae33f2227a6.png" width="839" height="568" class="img_ev3q"></p>
+<p>Mission Pack has been embraced across diverse fields—from surveillance and building automation to emergency response and disaster recovery. These applications have highlighted its adaptability and efficiency, enabling users to enhance operational workflows and intelligence.</p>
+<p>尤其是在应急救灾领域，Mission Pack 展现出了无限的可能性，也是我们这一年探索最多的方向。</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="mesh-networking-in-hazard-response">Mesh Networking in Hazard Response<a href="https://seeed-studio.github.io/Hazard-Response-Mission-Pack/zh/blog/welcome-to-2025#mesh-networking-in-hazard-response" class="hash-link" aria-label="Direct link to Mesh Networking in Hazard Response" title="Direct link to Mesh Networking in Hazard Response">​</a></h3>
+<p>在 2024 年，Mission Pack 迎来了一个重要升级：我们用 基于 Mesh 网络的 T1000-E (MeshTastic 版本)，替代了此前的 基于 LoRaWAN 的 T1000-A (SenseCAP Tracker)。 这一改动让 Mission Pack 在灾害救治中显得更加的强大和灵活，更是产品适用场景的巨大扩展。</p>
+<p>近年来，全球气候变化加剧，各种突发灾难的频率和强度显著增加。 尽管全球已有95%的人口生活在移动宽带网络覆盖范围内<sup><a href="https://seeed-studio.github.io/Hazard-Response-Mission-Pack/zh/blog/welcome-to-2025#user-content-fn-1-0ec6a5" id="user-content-fnref-1-0ec6a5" data-footnote-ref="true" aria-describedby="footnote-label">1</a></sup>，在人类活动相对较少的非城市地区，如农业生产基地、矿产资源开发区以及偏远交通枢纽，移动网络覆盖仍存在明显空白。 这些区域不仅在经济生产中至关重要，更是灾难发生时应急响应系统亟需关注的重点。如何实现灾难响应的智能化、实时性和稳定性，已成为保障生命财产安全的重要课题。</p>
+<p>而 <strong>T1000-E</strong> 依托 Mesh 网络技术，它就像一张动态的蜘蛛网，每个设备都能成为一个节点，自动建立通信链路，实现点对点和多节点连接。 也让 T1000-E 能实现超长的通信距离，这对复杂地形的通信能力提升是革命性的。</p>
+<p><strong>应用场景：</strong></p>
+<ul>
+<li>
+<p><strong>在山地救援中</strong>：设备之间无需依赖基站，就能自动组建临时通信网络，哪怕在信号极差的地方也能保持稳定的数据传递。</p>
+</li>
+<li>
+<p><strong>在偏远农业基地</strong>：工作人员可以通过手机连接 T1000-E，实现跨区域的远程数据采集，无需依赖蜂窝网络，节省了成本，也提高了效率。</p>
+</li>
+</ul>
+<p><img decoding="async" loading="lazy" alt="v2-system-diagram" src="https://seeed-studio.github.io/Hazard-Response-Mission-Pack/zh/assets/images/v2-system-diagram-803af3d583f25c1b5d5fa5280fb2b428.png" width="1299" height="898" class="img_ev3q"></p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="mission-packs-2024-milestones">Mission Pack’s 2024 Milestones<a href="https://seeed-studio.github.io/Hazard-Response-Mission-Pack/zh/blog/welcome-to-2025#mission-packs-2024-milestones" class="hash-link" aria-label="Direct link to Mission Pack’s 2024 Milestones" title="Direct link to Mission Pack’s 2024 Milestones">​</a></h3>
+<p>Over the past year, Mission Pack showcased its potential at various events, engaging with global audiences:</p>
+<ul>
+<li><strong>2024 Shenzhen Emergency Exhibition</strong></li>
+<li><strong>Japan Maker Faire</strong></li>
+<li><strong>Chengdu Maker Space Renovation</strong>: A collaborative project to create an intelligent home system using Mission Pack.</li>
+</ul>
+<p>Each interaction reinforced our belief that technology must address real-world needs to unlock its true value.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="looking-ahead-to-2025-building-smarter-spaces-together">Looking Ahead to 2025: Building Smarter Spaces Together<a href="https://seeed-studio.github.io/Hazard-Response-Mission-Pack/zh/blog/welcome-to-2025#looking-ahead-to-2025-building-smarter-spaces-together" class="hash-link" aria-label="Direct link to Looking Ahead to 2025: Building Smarter Spaces Together" title="Direct link to Looking Ahead to 2025: Building Smarter Spaces Together">​</a></h3>
+<p>As we step into 2025, our journey is just beginning. We’re committed to advancing Mission Pack along these key directions:</p>
+<p>​ 1. <strong>优化用户体验</strong>：降低 Mission Pack 的使用门槛，让更多用户轻松上手，快速实现想法。</p>
+<p>​ 2. <strong>推动开源合作</strong>：我们计划在 GitHub 上推进名为 <a href="https://github.com/Seeed-Studio/Smarter-Spaces-Solutions" target="_blank" rel="noopener noreferrer">智能空间解决方案</a> 的开源项目，希望更多的创客和开发者入，一起打造更智能的解决方案。</p>
+<p>​ 3. <strong>成都创客空间的进一步探索</strong>：我们会以成都为起点，将 Mission Pack 应用于更多真实场景，从灾害救援到日常智能化改造，探索更广阔的可能性。</p>
+<p>最重要的是，我们想要告诉大家，Mission Pack 的价值并不仅仅在于硬件的性能或者软件的复杂性，而是它能作为一座桥梁，连接技术与实际场景，帮助人们解决问题。 Its ultimate value lies in solving real-world problems.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="a-platform-in-motion-join-us">A Platform in Motion: Join Us<a href="https://seeed-studio.github.io/Hazard-Response-Mission-Pack/zh/blog/welcome-to-2025#a-platform-in-motion-join-us" class="hash-link" aria-label="Direct link to A Platform in Motion: Join Us" title="Direct link to A Platform in Motion: Join Us">​</a></h2>
+<p>Mission Pack 不是一个静态的产品，而是一个不断进化的平台。它的未来不仅取决于我们团队的努力，更需要来自社区的智慧和灵感。 无论你是开发者、创客，还是有兴趣尝试新技术的用户，我们都期待和你一起探索 Mission Pack 的更多可能性。</p>
+<p>Let’s build a smarter, more connected future together, make the space a better world.</p>
+<p>Explore and contribute to <a href="https://github.com/Seeed-Studio/Smarter-Spaces-Solutions" target="_blank" rel="noopener noreferrer">Smarter Spaces Solutions</a>.</p>
+<!-- -->
+<section data-footnotes="true" class="footnotes"><h2 class="anchor anchorWithStickyNavbar_LWe7 sr-only" id="footnote-label">Footnotes<a href="https://seeed-studio.github.io/Hazard-Response-Mission-Pack/zh/blog/welcome-to-2025#footnote-label" class="hash-link" aria-label="Direct link to Footnotes" title="Direct link to Footnotes">​</a></h2>
+<ol>
+<li id="user-content-fn-1-0ec6a5">
+<p><a href="https://www.gsma.com/r/wp-content/uploads/2023/10/The-State-of-Mobile-Internet-Connectivity-Report-2023.pdf?utm_source=chatgpt.com" target="_blank" rel="noopener noreferrer">GSMA: State of Mobile Internet Connectivity 2023</a> <a href="https://seeed-studio.github.io/Hazard-Response-Mission-Pack/zh/blog/welcome-to-2025#user-content-fnref-1-0ec6a5" data-footnote-backref="" aria-label="Back to reference 1" class="data-footnote-backref">↩</a></p>
+</li>
+</ol>
+</section>]]></content:encoded>
+            <category>Voila</category>
+        </item>
+    </channel>
+</rss>

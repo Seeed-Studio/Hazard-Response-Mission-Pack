@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkwebsite=self.webpackChunkwebsite||[]).push([[472],{5513:e=>{e.exports=JSON.parse('{"title":"\u6700\u65b0\u53d1\u5e03","items":[{"title":"Welcome to 2025","permalink":"/Hazard-Response-Mission-Pack/zh/blog/welcome-to-2025","unlisted":false,"date":"2025-01-06T00:00:00.000Z"}]}')}}]);

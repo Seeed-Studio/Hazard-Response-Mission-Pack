@@ -1,87 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xsl" href="rss.xsl"?>
 <rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/">
     <channel>
-        <title>Mission Pack Blog</title>
+        <title>Hazard Response Mission Pack Blog</title>
         <link>https://seeed-studio.github.io/Hazard-Response-Mission-Pack/blog</link>
-        <description>Mission Pack Blog</description>
-        <lastBuildDate>Thu, 26 Aug 2021 00:00:00 GMT</lastBuildDate>
+        <description>Hazard Response Mission Pack Blog</description>
+        <lastBuildDate>Mon, 06 Jan 2025 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
         <item>
-            <title><![CDATA[Welcome]]></title>
-            <link>https://seeed-studio.github.io/Hazard-Response-Mission-Pack/blog/welcome</link>
-            <guid>https://seeed-studio.github.io/Hazard-Response-Mission-Pack/blog/welcome</guid>
-            <pubDate>Thu, 26 Aug 2021 00:00:00 GMT</pubDate>
-            <description><![CDATA[Docusaurus blogging features are powered by the blog plugin.]]></description>
-            <content:encoded><![CDATA[<p><a href="https://docusaurus.io/docs/blog" target="_blank" rel="noopener noreferrer">Docusaurus blogging features</a> are powered by the <a href="https://docusaurus.io/docs/api/plugins/@docusaurus/plugin-content-blog" target="_blank" rel="noopener noreferrer">blog plugin</a>.</p>
-<p>Here are a few tips you might find useful.</p>
-<p>Simply add Markdown files (or folders) to the <code>blog</code> directory.</p>
-<p>Regular blog authors can be added to <code>authors.yml</code>.</p>
-<p>The blog post date can be extracted from filenames, such as:</p>
+            <title><![CDATA[Welcome to 2025]]></title>
+            <link>https://seeed-studio.github.io/Hazard-Response-Mission-Pack/blog/welcome-to-2025</link>
+            <guid>https://seeed-studio.github.io/Hazard-Response-Mission-Pack/blog/welcome-to-2025</guid>
+            <pubDate>Mon, 06 Jan 2025 00:00:00 GMT</pubDate>
+            <description><![CDATA[Welcome to 2025: A New Chapter for Mission Pack]]></description>
+            <content:encoded><![CDATA[<h2 class="anchor anchorWithStickyNavbar_LWe7" id="welcome-to-2025-a-new-chapter-for-mission-pack">Welcome to 2025: A New Chapter for Mission Pack<a href="https://seeed-studio.github.io/Hazard-Response-Mission-Pack/blog/welcome-to-2025#welcome-to-2025-a-new-chapter-for-mission-pack" class="hash-link" aria-label="Direct link to Welcome to 2025: A New Chapter for Mission Pack" title="Direct link to Welcome to 2025: A New Chapter for Mission Pack">​</a></h2>
+<p>2024 was a transformative year for Mission Pack, marked by significant milestones and growth. From the initial 0.1 product prototype to the refined 0.3 version, we’ve witnessed the journey of Mission Pack evolving from a concept into a versatile, mature solution. Along the way, our vision has crystallized: to build a flexible, robust, and feature-rich platform that addresses complex real-world challenges while seamlessly integrating into diverse scenarios.</p>
+<p><img decoding="async" loading="lazy" alt="basecamp interface" src="https://seeed-studio.github.io/Hazard-Response-Mission-Pack/assets/images/basecamp-interface-1148a5d5b02a5eccf1366ae33f2227a6.png" width="839" height="568" class="img_ev3q"></p>
+<p>Mission Pack has been embraced across diverse fields—from surveillance and building automation to emergency response and disaster recovery. These applications have highlighted its adaptability and efficiency, enabling users to enhance operational workflows and intelligence.</p>
+<p>Among these, the field of <strong>emergency disaster response</strong> has emerged as a particularly promising area of innovation.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="mesh-networking-in-hazard-response">Mesh Networking in Hazard Response<a href="https://seeed-studio.github.io/Hazard-Response-Mission-Pack/blog/welcome-to-2025#mesh-networking-in-hazard-response" class="hash-link" aria-label="Direct link to Mesh Networking in Hazard Response" title="Direct link to Mesh Networking in Hazard Response">​</a></h3>
+<p>In 2024, Mission Pack saw a pivotal enhancement with the launch of the <strong>T1000-E</strong>, a MeshTastic-based device that replaced the previous LoRaWAN-based <strong>T1000-A (SenseCAP Tracker)</strong>. This transition has dramatically enhanced Mission Pack’s capabilities in disaster scenarios, significantly expanding its range of applications.</p>
+<p>With the escalating frequency and intensity of natural disasters due to climate change, ensuring smart, real-time, and reliable disaster response systems has become crucial. Although 95% of the global population now resides in areas with mobile broadband coverage<sup><a href="https://seeed-studio.github.io/Hazard-Response-Mission-Pack/blog/welcome-to-2025#user-content-fn-1-07d47b" id="user-content-fnref-1-07d47b" data-footnote-ref="true" aria-describedby="footnote-label">1</a></sup>, remote regions—such as agricultural zones, mining sites, and isolated transport hubs—often face connectivity gaps. These areas are critical for economic activity and require robust communication systems during emergencies.</p>
+<p>The <strong>T1000-E</strong>, leveraging <strong>Mesh networking</strong>, operates like a dynamic web where each device serves as a node, establishing seamless links for point-to-point and multi-node communication. Its ability to maintain ultra-long communication ranges and adapt to challenging terrains represents a revolutionary advance in connectivity.</p>
+<p><strong>Real-World Applications:</strong></p>
 <ul>
-<li><code>2019-05-30-welcome.md</code></li>
-<li><code>2019-05-30-welcome/index.md</code></li>
+<li>
+<p><strong>Mountain Rescue</strong>: In rugged terrains with poor signal coverage, T1000-E autonomously forms temporary communication networks, ensuring stable data transmission without relying on base stations.</p>
+</li>
+<li>
+<p><strong>Remote Agricultural Sites</strong>: Staff can use smartphones to connect with T1000-E for long-distance data collection, bypassing cellular networks to save costs and improve efficiency.</p>
+</li>
 </ul>
-<p>A blog post folder can be convenient to co-locate blog post images:</p>
-<p><img decoding="async" loading="lazy" alt="Docusaurus Plushie" src="https://seeed-studio.github.io/Hazard-Response-Mission-Pack/assets/images/docusaurus-plushie-banner-a60f7593abca1e3eef26a9afa244e4fb.jpeg" width="1500" height="500" class="img_ev3q"></p>
-<p>The blog supports tags as well!</p>
-<p><strong>And if you don't want a blog</strong>: just delete this directory, and use <code>blog: false</code> in your Docusaurus config.</p>]]></content:encoded>
-            <category>Facebook</category>
-            <category>Hello</category>
-            <category>Docusaurus</category>
-        </item>
-        <item>
-            <title><![CDATA[MDX Blog Post]]></title>
-            <link>https://seeed-studio.github.io/Hazard-Response-Mission-Pack/blog/mdx-blog-post</link>
-            <guid>https://seeed-studio.github.io/Hazard-Response-Mission-Pack/blog/mdx-blog-post</guid>
-            <pubDate>Sun, 01 Aug 2021 00:00:00 GMT</pubDate>
-            <description><![CDATA[Blog posts support Docusaurus Markdown features, such as MDX.]]></description>
-            <content:encoded><![CDATA[<p>Blog posts support <a href="https://docusaurus.io/docs/markdown-features" target="_blank" rel="noopener noreferrer">Docusaurus Markdown features</a>, such as <a href="https://mdxjs.com/" target="_blank" rel="noopener noreferrer">MDX</a>.</p>
-<div class="theme-admonition theme-admonition-tip admonition_xJq3 alert alert--success"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 12 16"><path fill-rule="evenodd" d="M6.5 0C3.48 0 1 2.19 1 5c0 .92.55 2.25 1 3 1.34 2.25 1.78 2.78 2 4v1h5v-1c.22-1.22.66-1.75 2-4 .45-.75 1-2.08 1-3 0-2.81-2.48-5-5.5-5zm3.64 7.48c-.25.44-.47.8-.67 1.11-.86 1.41-1.25 2.06-1.45 3.23-.02.05-.02.11-.02.17H5c0-.06 0-.13-.02-.17-.2-1.17-.59-1.83-1.45-3.23-.2-.31-.42-.67-.67-1.11C2.44 6.78 2 5.65 2 5c0-2.2 2.02-4 4.5-4 1.22 0 2.36.42 3.22 1.19C10.55 2.94 11 3.94 11 5c0 .66-.44 1.78-.86 2.48zM4 14h5c-.23 1.14-1.3 2-2.5 2s-2.27-.86-2.5-2z"></path></svg></span>tip</div><div class="admonitionContent_BuS1"><p>Use the power of React to create interactive blog posts.</p></div></div>
+<p><img decoding="async" loading="lazy" alt="v2-system-diagram" src="https://seeed-studio.github.io/Hazard-Response-Mission-Pack/assets/images/v2-system-diagram-803af3d583f25c1b5d5fa5280fb2b428.png" width="1299" height="898" class="img_ev3q"></p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="mission-packs-2024-milestones">Mission Pack’s 2024 Milestones<a href="https://seeed-studio.github.io/Hazard-Response-Mission-Pack/blog/welcome-to-2025#mission-packs-2024-milestones" class="hash-link" aria-label="Direct link to Mission Pack’s 2024 Milestones" title="Direct link to Mission Pack’s 2024 Milestones">​</a></h3>
+<p>Over the past year, Mission Pack showcased its potential at various events, engaging with global audiences:</p>
+<ul>
+<li><strong>2024 Shenzhen Emergency Exhibition</strong></li>
+<li><strong>Japan Maker Faire</strong></li>
+<li><strong>Chengdu Maker Space Renovation</strong>: A collaborative project to create an intelligent home system using Mission Pack.</li>
+</ul>
+<p>Each interaction reinforced our belief that technology must address real-world needs to unlock its true value.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="looking-ahead-to-2025-building-smarter-spaces-together">Looking Ahead to 2025: Building Smarter Spaces Together<a href="https://seeed-studio.github.io/Hazard-Response-Mission-Pack/blog/welcome-to-2025#looking-ahead-to-2025-building-smarter-spaces-together" class="hash-link" aria-label="Direct link to Looking Ahead to 2025: Building Smarter Spaces Together" title="Direct link to Looking Ahead to 2025: Building Smarter Spaces Together">​</a></h3>
+<p>As we step into 2025, our journey is just beginning. We’re committed to advancing Mission Pack along these key directions:</p>
+<p>​ 1. <strong>Enhancing User Experience</strong>: Lowering barriers to adoption, enabling more users to effortlessly turn ideas into reality.</p>
+<p>​ 2. <strong>Driving Open Source Collaboration</strong>: Expanding our GitHub project, <a href="https://github.com/Seeed-Studio/Smarter-Spaces-Solutions" target="_blank" rel="noopener noreferrer">Smarter Spaces Solutions</a>, to invite creators and developers to co-create intelligent solutions.</p>
+<p>​ 3. <strong>Scaling Maker Space Applications</strong>: Building on our success in Chengdu, we aim to explore new use cases—from disaster response to everyday smart solutions.</p>
+<p>At its core, Mission Pack is more than hardware or software—it’s a bridge connecting technology with practical applications. Its ultimate value lies in solving real-world problems.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="a-platform-in-motion-join-us">A Platform in Motion: Join Us<a href="https://seeed-studio.github.io/Hazard-Response-Mission-Pack/blog/welcome-to-2025#a-platform-in-motion-join-us" class="hash-link" aria-label="Direct link to A Platform in Motion: Join Us" title="Direct link to A Platform in Motion: Join Us">​</a></h2>
+<p>Mission Pack is a dynamic platform, continuously evolving through the collective efforts of our team and the broader community. Whether you’re a developer, maker, or simply curious about emerging technologies, we invite you to join us in exploring the boundless possibilities of Mission Pack.</p>
+<p>Let’s build a smarter, more connected future together, make the space a better world.</p>
+<p>Explore and contribute to <a href="https://github.com/Seeed-Studio/Smarter-Spaces-Solutions" target="_blank" rel="noopener noreferrer">Smarter Spaces Solutions</a>.</p>
 <!-- -->
-<p>For example, use JSX to create an interactive button:</p>
-<div class="language-js codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-js codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token operator" style="color:#393A34">&lt;</span><span class="token plain">button onClick</span><span class="token operator" style="color:#393A34">=</span><span class="token punctuation" style="color:#393A34">{</span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token arrow operator" style="color:#393A34">=&gt;</span><span class="token plain"> </span><span class="token function" style="color:#d73a49">alert</span><span class="token punctuation" style="color:#393A34">(</span><span class="token string" style="color:#e3116c">'button clicked!'</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">}</span><span class="token operator" style="color:#393A34">&gt;</span><span class="token maybe-class-name">Click</span><span class="token plain"> me</span><span class="token operator" style="color:#393A34">!</span><span class="token operator" style="color:#393A34">&lt;</span><span class="token operator" style="color:#393A34">/</span><span class="token plain">button</span><span class="token operator" style="color:#393A34">&gt;</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
-<button>Click me!</button>]]></content:encoded>
-            <category>Docusaurus</category>
-        </item>
-        <item>
-            <title><![CDATA[Long Blog Post]]></title>
-            <link>https://seeed-studio.github.io/Hazard-Response-Mission-Pack/blog/long-blog-post</link>
-            <guid>https://seeed-studio.github.io/Hazard-Response-Mission-Pack/blog/long-blog-post</guid>
-            <pubDate>Wed, 29 May 2019 00:00:00 GMT</pubDate>
-            <description><![CDATA[This is the summary of a very long blog post,]]></description>
-            <content:encoded><![CDATA[<p>This is the summary of a very long blog post,</p>
-<p>Use a <code>&lt;!--</code> <code>truncate</code> <code>--&gt;</code> comment to limit blog post size in the list view.</p>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet</p>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet</p>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet</p>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet</p>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet</p>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet</p>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet</p>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet</p>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet</p>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet</p>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet</p>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet</p>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet</p>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet</p>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet</p>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet</p>]]></content:encoded>
-            <category>Hello</category>
-            <category>Docusaurus</category>
-        </item>
-        <item>
-            <title><![CDATA[First Blog Post]]></title>
-            <link>https://seeed-studio.github.io/Hazard-Response-Mission-Pack/blog/first-blog-post</link>
-            <guid>https://seeed-studio.github.io/Hazard-Response-Mission-Pack/blog/first-blog-post</guid>
-            <pubDate>Tue, 28 May 2019 00:00:00 GMT</pubDate>
-            <description><![CDATA[Lorem ipsum dolor sit amet...]]></description>
-            <content:encoded><![CDATA[<p>Lorem ipsum dolor sit amet...</p>
-<p>...consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet</p>]]></content:encoded>
-            <category>Hola</category>
-            <category>Docusaurus</category>
+<section data-footnotes="true" class="footnotes"><h2 class="anchor anchorWithStickyNavbar_LWe7 sr-only" id="footnote-label">Footnotes<a href="https://seeed-studio.github.io/Hazard-Response-Mission-Pack/blog/welcome-to-2025#footnote-label" class="hash-link" aria-label="Direct link to Footnotes" title="Direct link to Footnotes">​</a></h2>
+<ol>
+<li id="user-content-fn-1-07d47b">
+<p><a href="https://www.gsma.com/r/wp-content/uploads/2023/10/The-State-of-Mobile-Internet-Connectivity-Report-2023.pdf?utm_source=chatgpt.com" target="_blank" rel="noopener noreferrer">GSMA: State of Mobile Internet Connectivity 2023</a> <a href="https://seeed-studio.github.io/Hazard-Response-Mission-Pack/blog/welcome-to-2025#user-content-fnref-1-07d47b" data-footnote-backref="" aria-label="Back to reference 1" class="data-footnote-backref">↩</a></p>
+</li>
+</ol>
+</section>]]></content:encoded>
+            <category>Voila</category>
         </item>
     </channel>
 </rss>

@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkwebsite=self.webpackChunkwebsite||[]).push([[595],{9551:e=>{e.exports=JSON.parse('{"metadata":{"permalink":"/Hazard-Response-Mission-Pack/zh/blog","page":1,"postsPerPage":10,"totalPages":1,"totalCount":1,"blogDescription":"\u535a\u5ba2","blogTitle":"\u535a\u5ba2"}}')}}]);

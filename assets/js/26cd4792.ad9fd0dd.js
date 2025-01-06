@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkwebsite=self.webpackChunkwebsite||[]).push([[396],{1477:e=>{e.exports=JSON.parse('{"tags":[{"label":"Voila","permalink":"/Hazard-Response-Mission-Pack/blog/tags/voila","description":"News and updates.","count":1}]}')}}]);
